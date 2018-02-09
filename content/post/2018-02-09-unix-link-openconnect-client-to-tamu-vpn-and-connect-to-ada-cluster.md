@@ -1,5 +1,5 @@
 ---
-title: (Unix) Use OpenConnect client to TAMU VPN
+title: (Unix) Use OpenConnect client to Link TAMU VPN
 date: '2017-06-17'
 ---
 
