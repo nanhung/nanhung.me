@@ -1,5 +1,5 @@
 ---
-title: Using GNU MCSim in C9 IDE and combine with Github
+title: Using GNU MCSim in Cloud9 and combine with Github
 date: '2017-04-14'
 ---
 
