@@ -12,7 +12,7 @@ The testing environment is cloud9.
 
 repo: [SALib](https://github.com/SALib/SALib)
 
-### 1. In terminal, update the package list and install python-pip
+## 1. In terminal, update the package list and install python-pip
 
 ```
 sudo apt-get update 
@@ -22,7 +22,7 @@ sudo apt-get update
 sudo apt-get install python-pip
 ```
 
-### 2. Update the setuptools then install the SALib 
+## 2. Update the setuptools then install the SALib 
 
 ```
 sudo pip install -U setuptools
@@ -32,7 +32,7 @@ sudo pip install -U setuptools
 sudo pip install SALib
 ```
 
-### 3. Create the following python script and name it [morris.py](https://raw.githubusercontent.com/nanhung/c9.gsa/master/morris.py)
+## 3. Create the following python script and name it [morris.py](https://raw.githubusercontent.com/nanhung/c9.gsa/master/morris.py)
 
 ```python
 import matplotlib
@@ -74,7 +74,7 @@ sample_histograms(fig2, param_values, problem, {'color':'y'})
 fig2.savefig('morris2.png')
 ```
 
-### 4. We also need the input file [Sobol_G.txt](https://raw.githubusercontent.com/nanhung/c9.gsa/master/Sobol_G.txt),
+## 4. We also need the input file [Sobol_G.txt](https://raw.githubusercontent.com/nanhung/c9.gsa/master/Sobol_G.txt),
 to defind the range of input parameters
 
 ```
@@ -88,7 +88,7 @@ x7 0.0 1.0
 x8 0.0 1.0
 ```
 
-### 5. Run the python script
+## 5. Run the python script
 
 ```
 python morris.py

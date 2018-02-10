@@ -54,8 +54,7 @@ Enter the password to login to Ada cluster
 
 Tip: To stop the VPN connection, simply press `Ctrl+Z` or `Ctrl+C` in the terminal. 
 
-References
-===
+## References
 
 1. [Openconnect official website](http://www.infradead.org/openconnect/)
 2. [How to Connect to Cisco AnyConnect VPN in Ubuntu](http://ubuntuhandbook.org/index.php/2014/11/connect-cisco-anyconnect-vpn-ubuntu/)
