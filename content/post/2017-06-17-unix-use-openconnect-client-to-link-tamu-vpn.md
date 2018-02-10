@@ -6,8 +6,8 @@ date: '2017-06-17'
 
 OpenConnect is the free software with GNU LGPL v2.1. It's the alternative method to connect to AnyConnect VPN if the user can't use the Cisco VPN client software, or prefer to use the free software. We can get the access for TAMU VPN and connect to the HPRC (High-Performance Research Computer) by the following method.
 
-1 Connect to TAMU VPN
-===
+## 1 Connect to TAMU VPN
+
 
 Active the TUN module
 
@@ -41,8 +41,8 @@ Please enter your username and password.
 GROUP: [tunnel_all_traffic|tunnel_tamu_traffic]:
 ```
 
-2 Connect to Ada cluster
-===
+## 2 Connect to Ada cluster
+
 
 Open the new terminal and type 
 

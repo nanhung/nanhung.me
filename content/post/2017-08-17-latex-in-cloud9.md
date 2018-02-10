@@ -10,25 +10,25 @@ Here is my simple way to install and use latex in cloud9.
 
 repo: [c9.latex](https://github.com/nanhung/c9.latex)
 
-#### 1. In the terminal, update the package list
+### 1. In the terminal, update the package list
 
 ```
 sudo apt-get update 
 ```
 
-#### 2. Install the TexLive package 
+### 2. Install the TexLive package 
 
 ```
 sudo apt-get install texlive
 ```
 
-#### 3. Install thetexlive-latex-extra package 
+### 3. Install thetexlive-latex-extra package 
 
 ```
 sudo apt-get install texlive-latex-extra
 ```
 
-#### 4. (Optional) Check all install packages by using following command
+### 4. (Optional) Check all install packages by using following command
 
 ```
 apt list --installed
@@ -39,7 +39,7 @@ Here is the total list of the install packages
 ![Imgur](http://i.imgur.com/82wDFGh.png)
 
 
-#### 5. Now, create the simple test.tex file to test
+### 5. Now, create the simple test.tex file to test
 
 ```
 \documentclass{article} % Define documentclass
@@ -55,7 +55,7 @@ Hello!                  % The content
 
 ![Imgur](http://i.imgur.com/nkScMg6.png)
 
-#### 6. Then type following command in the terminal
+### 6. Then type following command in the terminal
 ```
 pdflatex test
 ```

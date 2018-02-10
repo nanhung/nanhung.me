@@ -10,7 +10,7 @@ Git is my first choice to control my files between my office desktop and my lapt
 Unfortunately, sometimes, I forgot to commit my updated result when I leave my office.
 And this is why I want to find this alternative method to use R in the cloud.
 
-## 1. Install R
+### 1. Install R
 
 We can use this simple method to install R, but it can only install the old version `3.0.2`
 
@@ -74,7 +74,7 @@ Boom!
 ![Imgur](https://i.imgur.com/WKh7TpL.png)
 
 
-## 2. Test Example 
+### 2. Test Example 
 
 Let me do some tests. First, create the following R script and name it `hello.R`
 
@@ -121,6 +121,6 @@ Here is the output
 
 Now, I can use R to do statistical analysis and visualize result in Cloud 9!
 
-## Reference
+### Reference
 1. [https://stackoverflow.com/questions/16093331/how-to-install-r-version-3](https://stackoverflow.com/questions/16093331/how-to-install-r-version-3)
 2. [https://cran.r-project.org/web/packages/showtext/vignettes/introduction.html](https://cran.r-project.org/web/packages/showtext/vignettes/introduction.html)
