@@ -7,7 +7,7 @@ date: "2018-02-09T21:48:51-07:00"
 'Talk is cheap. Show me the code.' — Linus Torvalds
 ```
 
-I'm Nan-Hung Hsieh (謝男鴻). I'm a postdoctoral research associate at Texas A&M University. 
+Hi! I'm Nan-Hung Hsieh (謝男鴻). I'm a postdoc at Texas A&M University. 
 
 My research interest is computational modelling of [biosystems](https://en.wikipedia.org/wiki/Modelling_biological_systems). 
 
