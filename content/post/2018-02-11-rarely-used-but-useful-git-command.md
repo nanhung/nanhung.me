@@ -1,5 +1,5 @@
 ---
-title: Rarely used but useful Git command (1. SAVE and LOAD)
+title: Rarely used but useful Git command (SAVE and LOAD)
 date: '2018-02-11'
 slug: rarely-used-but-useful-git-command
 ---
