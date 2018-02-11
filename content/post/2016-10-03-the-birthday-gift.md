@@ -7,7 +7,7 @@ slug: the-birthday-gift
 
 **"I am not a visionary. I'm an engineer. I'm happy with the people who are wandering around looking at the stars but I am looking at the ground and I want to fix the pothole before I fall in." - Linus Torvalds**
 
-這是Linus Torvalds (Linux之父)在今年二月的TED大會上提到的一段話[[1]](https://www.ted.com/talks/linus_torvalds_the_mind_behind_linux)。大概在八月多時我看到這部影片，因為還蠻喜歡這段影片的內容，所以就把他下載下來放在桌面上，一有機會就撥出來看，順便練習英語。這段影片裡有三個我很喜歡的元素:
+這是Linus Torvalds (Linux之父)在今年二月的TED大會上提到的一段話^[[Linus Torvalds: The mind behind](https://www.ted.com/talks/linus_torvalds_the_mind_behind_linux)]。大概在八月多時我看到這部影片，因為還蠻喜歡這段影片的內容，所以就把他下載下來放在桌面上，一有機會就撥出來看，順便練習英語。這段影片裡有三個我很喜歡的元素:
 
 1. Coding
 2. Open Source
@@ -16,7 +16,7 @@ slug: the-birthday-gift
 前面兩項，我認為對我現在的工作及生活態度多少有著蠻大的影響，而最後一點則是給了我一些啟發，因此我寫了這篇文章當作送給自己的生日禮物，也送給看到篇文章的你，希望能從中獲得一些想法。
 
 # About Coding
-三年前研究所畢業時我Coding的經驗幾乎是0，只有短暫的接觸過R，大部分的時候都是用套裝軟體(如：Excel)來做統計及數值模擬分析。然而畢業後開始工作的期間在一次偶然的機會下看到Code.org的影片[[2]](https://www.youtube.com/watch?v=nKIu9yen5nc)，這部影片的開頭就用了Steve Jobs曾說過的一句話當作引言[[3]](https://www.youtube.com/watch?v=UaA1PbyS8BA)：
+三年前研究所畢業時我Coding的經驗幾乎是0，只有短暫的接觸過R，大部分的時候都是用套裝軟體(如：Excel)來做統計及數值模擬分析。然而畢業後開始工作的期間在一次偶然的機會下看到Code.org的影片^[[What Most Schools Don't Teach.](https://www.youtube.com/watch?v=UaA1PbyS8BA)]，這部影片的開頭就用了Steve Jobs曾說過的一句話當作引言^[[Steve Jobs says everyone should learn to program.](https://www.youtube.com/watch?v=UaA1PbyS8BA)]
 
 ![](https://media-exp2.licdn.com/mpr/mpr/AAEAAQAAAAAAAASnAAAAJDhlMGZiY2YzLWY5MGYtNDg0My04NzZkLTA5ZTcxMDc0YzgyNw.jpg)
 
@@ -58,8 +58,3 @@ slug: the-birthday-gift
 **"I do research for fun, but I want to research for something meaningful."**
 
 ![](https://lh3.googleusercontent.com/-UgpcTpKVozg/Vsd18EjEybI/AAAAAAAACw8/Che-Tmhgt8wsb0p51Zy7mVWYprubpIWMwCJoC/w530-h444-n/Linus%2BTorvalds%2BQuotes.png)
-
-# 來源
-[1] [Linus Torvalds: The mind behind Linux](https://www.ted.com/talks/linus_torvalds_the_mind_behind_linux)  
-[2] [What Most Schools Don't Teach.](https://www.youtube.com/watch?v=UaA1PbyS8BA)  
-[3] [Steve Jobs says everyone should learn to program.](https://www.youtube.com/watch?v=UaA1PbyS8BA)
