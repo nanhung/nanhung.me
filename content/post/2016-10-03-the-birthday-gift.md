@@ -18,7 +18,7 @@ slug: the-birthday-gift
 # About Coding
 三年前研究所畢業時我Coding的經驗幾乎是0，只有短暫的接觸過R，大部分的時候都是用套裝軟體(如：Excel)來做統計及數值模擬分析。然而畢業後開始工作的期間在一次偶然的機會下看到Code.org的影片[[2]](https://www.youtube.com/watch?v=nKIu9yen5nc)，這部影片的開頭就用了Steve Jobs曾說過的一句話當作引言[[3]](https://www.youtube.com/watch?v=UaA1PbyS8BA)：
 
-![](http://www.azquotes.com/picture-quotes/quote-everybody-in-this-country-should-learn-how-to-program-a-computer-because-it-teaches-steve-jobs-105-93-84.jpg)
+![](https://media-exp2.licdn.com/mpr/mpr/AAEAAQAAAAAAAASnAAAAJDhlMGZiY2YzLWY5MGYtNDg0My04NzZkLTA5ZTcxMDc0YzgyNw.jpg)
 
 當時得我只是對這想法很感興趣，但還不知道該如何著手開始學習寫Code，但剛好那時我剛擬好了一個研究計劃而且審核通過，這個計劃主要是要從勞工血中的含鉛濃度資料來進行健康風險評估。對於一個剛到新環境工作的我而言，這種研究題目算是相對較為簡單，雖然我可以用我以前研究所時就習慣用的方法及軟體來進行資料分析，但是我選擇用不一樣的方式來進行這個研究，那就是強迫自己用R以及其他的Free Software來完成這研究的所有分析。
 
