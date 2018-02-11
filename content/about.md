@@ -7,9 +7,7 @@ date: "2018-02-09T21:48:51-07:00"
 'Talk is cheap. Show me the code.' — Linus Torvalds
 ```
 
-Hi! I'm Nan-Hung Hsieh (謝男鴻). I'm a postdoc at Texas A&M University. 
-
-My research interest is computational modelling of [biosystems](https://en.wikipedia.org/wiki/Modelling_biological_systems). 
+Hi! I'm Nan-Hung Hsieh (謝男鴻). I'm a postdoc at Texas A&M University. My research interest is computational modelling of [biosystems](https://en.wikipedia.org/wiki/Modelling_biological_systems). 
 
 ### Publication (open access)
 - **Hsieh NH**, Lin YJ, Yang YF, Liao CM*. Assessing the oseltamivir-induced resistance risk and implications for influenza infection control strategies. Infection and Drug Resistance 2017 July; 10:215-226. [link](https://www.dovepress.com/articles.php?article_id=33883) 
