@@ -7,7 +7,7 @@ slug: the-birthday-gift
 
 **"I am not a visionary. I'm an engineer. I'm happy with the people who are wandering around looking at the stars but I am looking at the ground and I want to fix the pothole before I fall in." - Linus Torvalds**
 
-這是Linus Torvalds (Linux之父)在今年二月的TED大會上提到的一段話。大概在八月多時我看到這部影片，因為還蠻喜歡這段影片的內容，所以就把他下載下來放在桌面上，一有機會就撥出來看，順便練習英語。這段影片裡有三個我很喜歡的元素:
+這是Linus Torvalds (Linux之父)在今年二月的TED大會上提到的一段話[[1]](https://www.ted.com/talks/linus_torvalds_the_mind_behind_linux)。大概在八月多時我看到這部影片，因為還蠻喜歡這段影片的內容，所以就把他下載下來放在桌面上，一有機會就撥出來看，順便練習英語。這段影片裡有三個我很喜歡的元素:
 
 1. Coding
 2. Open Source
@@ -16,9 +16,9 @@ slug: the-birthday-gift
 前面兩項，我認為對我現在的工作及生活態度多少有著蠻大的影響，而最後一點則是給了我一些啟發，因此我寫了這篇文章當作送給自己的生日禮物，也送給看到篇文章的你，希望能從中獲得一些想法。
 
 # About Coding
-三年前研究所畢業時我Coding的經驗幾乎是0，只有短暫的接觸過R，大部分的時候都是用套裝軟體(如：Excel)來做統計及數值模擬分析。然而畢業後開始工作的期間在一次偶然的機會下看到Code.org的影片，這部影片的開頭就用了Steve Jobs曾說過的一句話當作引言：
+三年前研究所畢業時我Coding的經驗幾乎是0，只有短暫的接觸過R，大部分的時候都是用套裝軟體(如：Excel)來做統計及數值模擬分析。然而畢業後開始工作的期間在一次偶然的機會下看到Code.org的影片，這部影片的開頭就用了Steve Jobs曾說過的一句話當作引言[[2]](https://www.youtube.com/watch?v=UaA1PbyS8BA)：
 
-**“Everybody in this country should learn to program a computer, ...because it teaches you how to think.”**
+![](http://www.azquotes.com/picture-quotes/quote-everybody-in-this-country-should-learn-how-to-program-a-computer-because-it-teaches-steve-jobs-105-93-84.jpg)
 
 當時得我只是對這想法很感興趣，但還不知道該如何著手開始學習寫Code，但剛好那時我剛擬好了一個研究計劃而且審核通過，這個計劃主要是要從勞工血中的含鉛濃度資料來進行健康風險評估。對於一個剛到新環境工作的我而言，這種研究題目算是相對較為簡單，雖然我可以用我以前研究所時就習慣用的方法及軟體來進行資料分析，但是我選擇用不一樣的方式來進行這個研究，那就是強迫自己用R以及其他的Free Software來完成這研究的所有分析。
 
@@ -35,14 +35,20 @@ slug: the-birthday-gift
 
 在科學這面，這幾年興起的Open Science的想法也逐漸被受重視，這個想法讓科學文章不在只屬於昂貴的出版社，任何有網路的人都有權限能夠閱讀這些文章內容，並提出自己的想法觀點及建議，一篇文章的產生也許也不應該只是由幾個審查者來決定它的刊登與否，任何人都有權力對一篇文章進行之後的批判討論。也因為這樣我現在引用文獻時更傾向於引用Open access的文章。而且我也特別喜歡在文章裡提供Source code的Paper，這也代表作者對自己研究的信心，願意讓任何人都能用這Source code來檢視研究的結果。
 
-如今生活在美國的當下，給我最棒的感覺就是自由(Freedom)，這算是Open Source 思維的核心，在這裡可以自由表達自己的想法跟做法，而不需在意別人的眼光，似乎也能感受到福爾泰曾說過的，**"我並不同意你的觀點，但是我誓死捍衛你說話的權利"**。
+如今生活在美國的當下，給我最棒的感覺就是自由(Freedom)，這算是Open Source 思維的核心，在這裡可以自由表達自己的想法跟做法，而不需在意別人的眼光，似乎也能感受到福爾泰曾說過的
+
+![](https://i.pinimg.com/236x/f4/d3/ea/f4d3ea026927ba65ba312c158d3cdfb7--cute-quotes-best-quotes.jpg)
+
+
 
 # About Visionary - Where do you see yourself in 5 years?
 
 今年我在跟美國教授(現在老闆)面試時被問了這個問題時，我覺得我回答得並不好，因為我覺的我有很多事想做，但又想不出一個未來非做不可的事跟非做不可的理由。我在想今天如果走在路上做市場調查，對每個三十歲以下的年輕人提出這個問題時，會有多少人能確切回答這問題的答案?
 
 念研究所時是我第一次接觸蒙地卡羅(Monte Carlo)，因為在環境及生物的世界裡不會有絕對的唯一答案，在每一次的量測及分析的過程都會有所謂的誤差產生，而蒙地卡羅就是要去解決這種不確定性的存在，而產生的分析工具。蒙地卡羅雖然只是個分析工具，但他也教我認識真實世界中所謂的不確定性(Uncertainty)。
-這是個不確定的年代，未來充滿者許多的不確定性，五年前的我根本沒想過我現在會在美國，做著一份很棒的工作。我很高興能聽到Linus在TED大會時說出的文章前面的內容，他自認他不是個願景家，他不會去規劃五年的計劃，但身為工程師的Linus認為他的工作就是在事情遇到麻煩前，好好務實的去修補存在他眼前現有的問題。現在我的研究內容及生活依然充滿著不確定性及蒙地卡羅，然而在聽了他的演講後，也許以後再遇到這個問題時我可以更明確的堅定自己的目標，因為至少我還知道現在的我想要做的是什麼，以及想要解決眼前什麼樣的問題。
+這是個不確定的年代，未來充滿者許多的不確定性，五年前的我根本沒想過我現在會在美國，做著一份很棒的工作。
+
+我很高興能聽到Linus在TED大會時說出的文章前面的內容，他自認他不是個願景家，他不會去規劃五年的計劃，但身為工程師的Linus認為他的工作就是在事情遇到麻煩前，好好務實的去修補存在他眼前現有的問題。現在我的研究內容及生活依然充滿著不確定性及蒙地卡羅，然而在聽了他的演講後，也許以後再遇到這個問題時我可以更明確的堅定自己的目標，因為至少我還知道現在的我想要做的是什麼，以及想要解決眼前什麼樣的問題。
 
 **"I do code for fun, but I want to code for something meaningful."**
 
@@ -51,3 +57,7 @@ slug: the-birthday-gift
 **"I do research for fun, but I want to research for something meaningful."**
 
 ![](https://lh3.googleusercontent.com/-UgpcTpKVozg/Vsd18EjEybI/AAAAAAAACw8/Che-Tmhgt8wsb0p51Zy7mVWYprubpIWMwCJoC/w530-h444-n/Linus%2BTorvalds%2BQuotes.png)
+
+# 來源
+[1] [Linus Torvalds: The mind behind Linux](https://www.ted.com/talks/linus_torvalds_the_mind_behind_linux)  
+[2] [Steve Jobs says everyone should learn to program.](https://www.youtube.com/watch?v=UaA1PbyS8BA)
