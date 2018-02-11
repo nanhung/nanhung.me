@@ -19,12 +19,6 @@ Research Associate, 08/2013 – 07/2016
 Ph.D., Bioenvironmental System Engineering, National Taiwan University, 2013  
 M.Eng., Bioenvironmental System Engineering, National Taiwan University, 2010  
 B.S., Safety, Health and Environmental Engineering, National United University, 2007  
-#### COMPUTATIONAL INTERESTS 
-Git, GNU MCSim, GNU/Linux, High-Performance Computer, R
-#### OTHER
-Membership: Society of Toxicology (USA)  
-Language: Mandarin (Native), English  
-Personal Interests: Computer & Information Technology  
 
 #### Publication (open access)
 - **Hsieh NH**, Lin YJ, Yang YF, Liao CM*. Assessing the oseltamivir-induced resistance risk and implications for influenza infection control strategies. Infection and Drug Resistance 2017 July; 10:215-226. [link](https://www.dovepress.com/articles.php?article_id=33883) 
@@ -35,5 +29,12 @@ More publication - [Google Scholar](https://scholar.google.com/citations?user=AM
 #### Peer review
 [Publons](https://publons.com/author/435686/nan-hung-hsieh)
 
+#### COMPUTATIONAL INTERESTS 
+Git, GNU MCSim, GNU/Linux, High-Performance Computer
+
+#### OTHER
+Membership: Society of Toxicology (USA)  
+Language: Mandarin (Native), English, R  
+Personal Interests: Computer & Information Technology  
 
 <br /><a href="http://www.appdesignvault.com/betterdeveloper/" ><img src="http://www.appdesignvault.com/wp-content/uploads/2013/04/BetterDeveloper.png" alt="How to be a better developer"></a><br />Source: <a href="http://www.appdesignvault.com/betterdeveloper/" >How to become a better developer</a>
