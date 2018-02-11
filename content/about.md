@@ -7,14 +7,14 @@ date: "2018-02-09T21:48:51-07:00"
 'Talk is cheap. Show me the code.' — Linus Torvalds
 ```
 
-Hi! I'm Nan-Hung Hsieh (謝男鴻). I'm a postdoc at Texas A&M University. My research interest is computational modelling of [biosystems](https://en.wikipedia.org/wiki/Modelling_biological_systems). 
+Hi! I'm Nan-Hung Hsieh (謝男鴻). I'm a postdoc at Texas A&M University. My research interest is computational modelling of [biosystems](https://en.wikipedia.org/wiki/Modelling_biological_systems). Now I mainly focus on the toxicokinetic modeling, designing the mathematical model with experimental data that can be used to describe and predict the chemical behavior in human under environmental exposure.
 
 ## Curriculum Vitae
 #### EXPERIENCE
-Department of Veterinary Integrative Biosciences, Texas A&M University  
-Postdoctoral Research Associate, 08/2016 –   
-Division of Occupational Hazards Assessment, Institute of Labor, Occupational Safety and Health, Ministry of Labor.  
-Research Associate, 08/2013 – 07/2016  
+[Department of Veterinary Integrative Biosciences](http://vetmed.tamu.edu/vibs/), Texas A&M University  
+**Postdoctoral Research Associate**, 08/2016 –   
+[Division of Occupational Hazards Assessment, Institute of Labor, Occupational Safety and Health](https://www.ilosh.gov.tw/enhome/), Ministry of Labor.  
+**Research Associate**, 08/2013 – 07/2016  
 #### EDUCATION
 Ph.D., Bioenvironmental System Engineering, National Taiwan University, 2013  
 M.Eng., Bioenvironmental System Engineering, National Taiwan University, 2010  
