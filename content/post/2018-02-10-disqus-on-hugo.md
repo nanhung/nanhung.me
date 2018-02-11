@@ -12,4 +12,6 @@ I follow the blog post from Dr. Baumgartner to [install the Disqus on Hugo](http
   </div>
 ```
 
+![](http://geekshumor.com/wp-content/uploads/2013/11/Debugging.jpg)
+
 

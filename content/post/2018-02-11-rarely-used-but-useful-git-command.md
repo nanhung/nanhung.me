@@ -25,3 +25,5 @@ git reset --hard
 git push
 ```
 Here, `6c5986b` is the previous commit number.
+
+![](http://files.explosm.net/comics/comicsavegamenew.png)
