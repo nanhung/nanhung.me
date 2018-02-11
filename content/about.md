@@ -30,11 +30,11 @@ More publication - [Google Scholar](https://scholar.google.com/citations?user=AM
 [Publons](https://publons.com/author/435686/nan-hung-hsieh)
 
 #### COMPUTATIONAL INTERESTS 
-Git, GNU MCSim, GNU/Linux, High-Performance Computer
+Git, GNU MCSim, GNU/Linux, High-Performance Computer, R
 
 #### OTHER
 Membership: Society of Toxicology (USA)  
-Language: Mandarin (Native), English, R  
+Language: Mandarin (Native), English   
 Personal Interests: Computer & Information Technology  
 
 <br /><a href="http://www.appdesignvault.com/betterdeveloper/" ><img src="http://www.appdesignvault.com/wp-content/uploads/2013/04/BetterDeveloper.png" alt="How to be a better developer"></a><br />Source: <a href="http://www.appdesignvault.com/betterdeveloper/" >How to become a better developer</a>
