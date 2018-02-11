@@ -16,7 +16,7 @@ slug: the-birthday-gift
 前面兩項，我認為對我現在的工作及生活態度多少有著蠻大的影響，而最後一點則是給了我一些啟發，因此我寫了這篇文章當作送給自己的生日禮物，也送給看到篇文章的你，希望能從中獲得一些想法。
 
 # About Coding
-三年前研究所畢業時我Coding的經驗幾乎是0，只有短暫的接觸過R，大部分的時候都是用套裝軟體(如：Excel)來做統計及數值模擬分析。然而畢業後開始工作的期間在一次偶然的機會下看到Code.org的影片，這部影片的開頭就用了Steve Jobs曾說過的一句話當作引言[[2]](https://www.youtube.com/watch?v=UaA1PbyS8BA)：
+三年前研究所畢業時我Coding的經驗幾乎是0，只有短暫的接觸過R，大部分的時候都是用套裝軟體(如：Excel)來做統計及數值模擬分析。然而畢業後開始工作的期間在一次偶然的機會下看到Code.org的影片[[2]](https://www.youtube.com/watch?v=nKIu9yen5nc)，這部影片的開頭就用了Steve Jobs曾說過的一句話當作引言[[3]](https://www.youtube.com/watch?v=UaA1PbyS8BA)：
 
 ![](http://www.azquotes.com/picture-quotes/quote-everybody-in-this-country-should-learn-how-to-program-a-computer-because-it-teaches-steve-jobs-105-93-84.jpg)
 
@@ -41,7 +41,8 @@ slug: the-birthday-gift
 
 
 
-# About Visionary - Where do you see yourself in 5 years?
+# About Visionary 
+### Where do you see yourself in 5 years?
 
 今年我在跟美國教授(現在老闆)面試時被問了這個問題時，我覺得我回答得並不好，因為我覺的我有很多事想做，但又想不出一個未來非做不可的事跟非做不可的理由。我在想今天如果走在路上做市場調查，對每個三十歲以下的年輕人提出這個問題時，會有多少人能確切回答這問題的答案?
 
@@ -60,4 +61,5 @@ slug: the-birthday-gift
 
 # 來源
 [1] [Linus Torvalds: The mind behind Linux](https://www.ted.com/talks/linus_torvalds_the_mind_behind_linux)  
-[2] [Steve Jobs says everyone should learn to program.](https://www.youtube.com/watch?v=UaA1PbyS8BA)
+[2] [What Most Schools Don't Teach.](https://www.youtube.com/watch?v=UaA1PbyS8BA)  
+[3] [Steve Jobs says everyone should learn to program.](https://www.youtube.com/watch?v=UaA1PbyS8BA)
