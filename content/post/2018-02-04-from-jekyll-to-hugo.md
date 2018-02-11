@@ -7,7 +7,6 @@ This note is inspired by the talk from **Yihui Xie** in Rstudio conference [[1]]
 
 **"DON'T forget to set the following information for deploys in Netlify"**
 
-
 ![](https://i.imgur.com/tlBpJjc.png)
 
 
