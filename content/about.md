@@ -3,7 +3,9 @@ title: "About"
 date: "2018-02-09T21:48:51-07:00"
 ---
 
-> 'Talk is cheap. Show me the code.' — Linus Torvalds
+```
+'Talk is cheap. Show me the code.' — Linus Torvalds
+```
 
 I'm Nan-Hung Hsieh (謝男鴻). I'm a postdoctoral research associate at Texas A&M University. 
 
