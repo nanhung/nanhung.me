@@ -12,7 +12,7 @@ Hi! I'm Nan-Hung Hsieh (謝男鴻). I'm a postdoc at Texas A&M University. My re
 - [Dynamical system](https://en.wikipedia.org/wiki/Dynamical_system)  
 - [Modelling biological systems](https://en.wikipedia.org/wiki/Modelling_biological_systems).  
 
-Now I mainly focus on the [pharmacokinetics](https://en.wikipedia.org/wiki/Pharmacokinetics) modeling and , designing the mathematical model with experimental data that can be used to describe and predict the chemical (or drug) behavior in human.
+Now I mainly focus on the [pharmacokinetics](https://en.wikipedia.org/wiki/Pharmacokinetics) and [Bayesian hierarchical modeling](https://en.wikipedia.org/wiki/Bayesian_hierarchical_modeling), designing the mathematical model with experimental data that can be used to describe and predict the chemical (or drug) behavior in human population.
 
 ## Curriculum Vitae
 #### EXPERIENCE
