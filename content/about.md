@@ -7,12 +7,7 @@ date: "2018-02-09T21:48:51-07:00"
 "Keep It Simple, Stupid"
 ```
 
-Hi! I'm Nan-Hung Hsieh (謝男鴻). I'm a postdoc at Texas A&M University. My research interests include  
-
-- [Dynamical system](https://en.wikipedia.org/wiki/Dynamical_system)  
-- [Modelling biological systems](https://en.wikipedia.org/wiki/Modelling_biological_systems).  
-
-Now I mainly focus on the [pharmacokinetics](https://en.wikipedia.org/wiki/Pharmacokinetics) and [Bayesian hierarchical modeling](https://en.wikipedia.org/wiki/Bayesian_hierarchical_modeling), designing the mathematical model with experimental data that can be used to describe and predict the chemical (or drug) behavior in human population.
+Hi! I'm Nan-Hung Hsieh (謝男鴻). I'm a postdoc at Texas A&M University. My research interest is [Risk](https://en.wikipedia.org/wiki/Risk) and [Uncertainty](https://en.wikipedia.org/wiki/Uncertainty) Analysis. Now I mainly focus on the [pharmacokinetics](https://en.wikipedia.org/wiki/Pharmacokinetics) and [Bayesian hierarchical modeling](https://en.wikipedia.org/wiki/Bayesian_hierarchical_modeling), designing the mathematical model with experimental data that can be used to describe and predict the chemical (or drug) behavior in human population.
 
 ## Curriculum Vitae
 #### EXPERIENCE
