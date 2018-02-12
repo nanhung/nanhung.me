@@ -6,7 +6,7 @@ slug: rarely-used-but-useful-git-command
 
 I don't frequently use `git reset`. But sometime it is very useful. It just like the "SAVE and LOAD" method if you familiar with old video game :)
 
-To revert to last version in current branch:
+To revert to last version in current branch: 
 
 ```
 git reset --hard HEAD
