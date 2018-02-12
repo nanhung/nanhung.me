@@ -7,7 +7,10 @@ date: "2018-02-09T21:48:51-07:00"
 "Keep It Simple, Stupid"
 ```
 
-Hi! I'm Nan-Hung Hsieh (謝男鴻). I'm a postdoc at Texas A&M University. My research interest is computational modelling of [biosystems](https://en.wikipedia.org/wiki/Modelling_biological_systems). Now I mainly focus on the [pharmacokinetics](https://en.wikipedia.org/wiki/Pharmacokinetics) modeling, designing the mathematical model with experimental data that can be used to describe and predict the chemical (or drug) behavior in human.
+Hi! I'm Nan-Hung Hsieh (謝男鴻). I'm a postdoc at Texas A&M University. My research interests include  
+- [Dynamical system](https://en.wikipedia.org/wiki/Dynamical_system)  
+- [Modelling biological systems](https://en.wikipedia.org/wiki/Modelling_biological_systems).  
+Now I mainly focus on the [pharmacokinetics](https://en.wikipedia.org/wiki/Pharmacokinetics) modeling, designing the mathematical model with experimental data that can be used to describe and predict the chemical (or drug) behavior in human.
 
 ## Curriculum Vitae
 #### EXPERIENCE
