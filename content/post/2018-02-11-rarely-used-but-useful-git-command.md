@@ -12,6 +12,12 @@ To revert to last version in current branch:
 git reset --hard HEAD
 ```
 
+For a single file :
+
+```
+git checkout -- <file name>
+```
+
 To revert to version before last version:
 
 ```
