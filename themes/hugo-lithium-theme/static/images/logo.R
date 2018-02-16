@@ -1,5 +1,5 @@
 library(ggplot2)
-temp <- paste("bold(pi)")
+temp <- paste("bold(sigma)")
 p <- ggplot(NULL, aes(x = 1, y = 1)) + ylim(0.8, 1.2) +
   annotate("text", 1, 1, label = temp, color="white",
            size = 99, parse = TRUE) +
