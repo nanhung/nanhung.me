@@ -1,6 +1,6 @@
 baseurl = "/"
 languageCode = "en-us"
-title = "Nan-Hung's"
+title = "RNought"
 theme = "hugo-lithium-theme"
 googleAnalytics = ""
 disqusShortname = "nanhung"
