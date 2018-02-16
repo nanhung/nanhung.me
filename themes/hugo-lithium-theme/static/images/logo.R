@@ -1,8 +1,8 @@
 library(ggplot2)
-temp <- paste("hat(Pi)")
+temp <- paste("italic(R[0])")
 p <- ggplot(NULL, aes(x = 1, y = 1)) + ylim(0.8, 1.2) +
   annotate("text", 1, 1, label = temp, color="white",
-           fontface = "bold", size = 80, parse = TRUE) +
+           size = 80, parse = TRUE) +
   theme_bw() +
   theme(panel.background = element_rect(fill = "red",
                                         colour = "lightblue"),
