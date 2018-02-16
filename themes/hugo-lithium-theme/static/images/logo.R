@@ -1,8 +1,8 @@
 library(ggplot2)
-temp <- paste("italic(R[0])")
+temp <- paste("bold(Lambda)")
 p <- ggplot(NULL, aes(x = 1, y = 1)) + ylim(0.8, 1.2) +
   annotate("text", 1, 1, label = temp, color="white",
-           size = 80, parse = TRUE) +
+           size = 90, parse = TRUE) +
   theme_bw() +
   theme(panel.background = element_rect(fill = "red",
                                         colour = "lightblue"),
@@ -12,5 +12,3 @@ p <- ggplot(NULL, aes(x = 1, y = 1)) + ylim(0.8, 1.2) +
         axis.text = element_blank())
 
 ggsave("logo.png", width = 5, height = 5, dpi = 96)
-
-
