@@ -35,17 +35,12 @@ B.S., **Safety, Health and Environmental Engineering**, National United Universi
 More publication - [Google Scholar](https://scholar.google.com/citations?user=AM1YgJAAAAAJ&hl=en&oi=ao)  
 Peer review - [Publons](https://publons.com/author/435686/nan-hung-hsieh)
 
+#### Computational Interests
+Git, GNU MCSim, GNU/Linux, High-Performance Computer, R
+
 #### OTHER
 Membership: Society of Toxicology (USA)  
 Language: Mandarin (Native), English   
 Personal Interests: Computer & Information Technology  
 
-***
 
-### Computational Interests
-
-![](https://upload.wikimedia.org/wikipedia/commons/e/ee/GNU%2BLinux.png)
-![](https://git-scm.com/images/logos/downloads/Git-Icon-Black.png)
-![](https://upload.wikimedia.org/wikipedia/commons/1/12/R_logo_2000.png)
-
-<br /><a href="http://www.appdesignvault.com/betterdeveloper/" ><img src="http://www.appdesignvault.com/wp-content/uploads/2013/04/BetterDeveloper.png" alt="How to be a better developer"></a><br />Source: <a href="http://www.appdesignvault.com/betterdeveloper/" >How to become a better developer</a>

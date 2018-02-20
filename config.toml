@@ -1,7 +1,7 @@
 # Site settings
 baseurl = "/"
 languageCode = "en-us"
-title = "Nan-Hung's Note"
+title = "Computational Toxicology"
 theme = "hugo-cactus-theme"
 # Enter your tracking code to enable Google Analytics
 googleAnalytics = ""
@@ -10,9 +10,10 @@ disqusShortname = "nanhung"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [params]
-	name = "Nan-Hung's Note"
+	name = "Nan-Hung Hsieh"
 	description = "Describe your website"
-	bio = "Programming, Modeling, and Analysis"
+	job = "Computational Toxicology"
+	bio = "Pharmacometrics | Bayesian | Risk"
 	# Enter optionally your twitter account
 	twitter = "nanhung5"
 	enableRSS = true
@@ -33,9 +34,9 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 	olderPosts = ""
 	newerPosts = ""
 	readMore = ""
-	copyright = ""
+	copyright = "Powered by [HUGO](https://gohugo.io/) and [blogdown](https://github.com/rstudio/blogdown)"
 	# Sharing options and author information in posts
-	aboutAuthor = "Contact: nh@nanhung.me"
+	aboutAuthor = "Computational Toxicology"
 	tweet = ""
 	share = ""
 	# 404 page
@@ -44,10 +45,12 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 	# Choose a font for the social icons in the footer. Either "mono-social" or "font-awesome"
 	iconFont = "mono-social"
-    # The social icons can be styled differently if you use mono as font - circle, rounded, or empty
-    socialIconStyle = "circle"
+  # The social icons can be styled differently if you use mono as font - circle, rounded, or empty
+  socialIconStyle = "rounded"
 
 # Add additional social link entries underneath
 [social]
+
     twitter  = "https://www.twitter.com/nanhung5"
     github   = "https://www.github.com/nanhung"
+    linkedin = "https://www.linkedin.com/in/nhsie"
