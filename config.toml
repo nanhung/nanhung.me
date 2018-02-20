@@ -14,8 +14,9 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 	description = "Describe your website"
 	bio = "Programming, Modeling, and Analysis"
 	# Enter optionally your twitter account
-	twitter = "Your Twitter account"
+	twitter = "nanhung5"
 	enableRSS = true
+	enableDisqus = true
 
 	# Integrate Javascript files or stylesheets by adding the url to the external assets or by
 	# linking local files with their path relative to the static folder, e.g. "css/styles.css"
@@ -34,7 +35,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 	readMore = ""
 	copyright = ""
 	# Sharing options and author information in posts
-	aboutAuthor = ""
+	aboutAuthor = "Contact: nh@nanhung.me"
 	tweet = ""
 	share = ""
 	# 404 page

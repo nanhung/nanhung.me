@@ -5,7 +5,7 @@ slug: the-birthday-gift
 ---
 
 
-**"I am not a visionary. I'm an engineer. I'm happy with the people who are wandering around looking at the stars but I am looking at the ground and I want to fix the pothole before I fall in." - Linus Torvalds**
+> **"I am not a visionary. I'm an engineer. I'm happy with the people who are wandering around looking at the stars but I am looking at the ground and I want to fix the pothole before I fall in." - Linus Torvalds**
 
 這是Linus Torvalds (Linux之父)在今年二月的TED大會上提到的一段話^[[Linus Torvalds: The mind behind](https://www.ted.com/talks/linus_torvalds_the_mind_behind_linux)]。大概在八月多時我看到這部影片，因為還蠻喜歡這段影片的內容，所以就把他下載下來放在桌面上，一有機會就撥出來看，順便練習英語。這段影片裡有三個我很喜歡的元素:
 
@@ -51,10 +51,10 @@ slug: the-birthday-gift
 
 我很高興能聽到Linus在TED大會時說出的文章前面的內容，他自認他不是個願景家，他不會去規劃五年的計劃，但身為工程師的Linus認為他的工作就是在事情遇到麻煩前，好好務實的去修補存在他眼前現有的問題。現在我的研究內容及生活依然充滿著不確定性及蒙地卡羅，然而在聽了他的演講後，也許以後再遇到這個問題時我可以更明確的堅定自己的目標，因為至少我還知道現在的我想要做的是什麼，以及想要解決眼前什麼樣的問題。
 
-**"I do code for fun, but I want to code for something meaningful."**
+> **"I do code for fun, but I want to code for something meaningful."**
 
 這是Linus在演講中提到的一句話，這句話雖然簡單但我覺得意義深遠，也許未來有天我也能達到這個目標，但我希望能貪心一點，
 
-**"I do research for fun, but I want to research for something meaningful."**
+> **"I do research for fun, but I want to research for something meaningful."**
 
 ![](https://lh3.googleusercontent.com/-UgpcTpKVozg/Vsd18EjEybI/AAAAAAAACw8/Che-Tmhgt8wsb0p51Zy7mVWYprubpIWMwCJoC/w530-h444-n/Linus%2BTorvalds%2BQuotes.png)

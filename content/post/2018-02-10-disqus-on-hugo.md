@@ -14,4 +14,16 @@ I follow the blog post from Dr. Baumgartner to [install the Disqus on Hugo](http
 
 ![](http://geekshumor.com/wp-content/uploads/2013/11/Debugging.jpg)
 
+**Update on 2018-02-19**:
+I changed the theme to cactus. To add disqus to this theme, I remove the default setting 
+
+```html
+{{ template "_internal/disqus.html" . }}
+```
+
+and add following syntax in `single.html`
+
+```html
+{{ partial "disqus.html" . }}
+```
 

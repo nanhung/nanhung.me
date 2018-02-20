@@ -6,9 +6,7 @@ menu = "main"
 +++
 
 
-```
-"Keep It Simple, Stupid"
-```
+> "Keep It Simple, Stupid"
 
 Hi! I'm Nan-Hung Hsieh (謝男鴻). I'm a postdoc at Texas A&M University. My research interests include
 
