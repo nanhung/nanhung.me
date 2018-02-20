@@ -97,7 +97,7 @@ Here is the output
 
 Sometimes, I like to use the ggplot to create the fancy figure. So, I also do this test. Install "ggplot2" and create the R script call `hello-gg.R`
 
-```R
+```{r}
 if(!require(ggplot2)) {install.packages("ggplot2"); require(ggplot2)}
 
 p <- ggplot(NULL, aes(x = 1, y = 1)) + ylim(0.8, 1.2) +

@@ -44,13 +44,13 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 	subtitle404 = ""
 
 	# Choose a font for the social icons in the footer. Either "mono-social" or "font-awesome"
-	iconFont = "mono-social"
-  shareOnTwitter = true
-  shareOnFacebook = true
-
+	iconFont = "font-awesome"
+	# The social icons can be styled differently if you use mono as font - circle, rounded, or empty
+  socialIconStyle = ""
+	
 # Add additional social link entries underneath
 [social]
 
-    twitter  = "https://www.twitter.com/nanhung5"
-    github   = "https://www.github.com/nanhung"
-    linkedin = "https://www.linkedin.com/in/nhsie"
+    twitter-square  = "https://www.twitter.com/nanhung5"
+    github-square   = "https://www.github.com/nanhung"
+    linkedin-square = "https://www.linkedin.com/in/nhsie"
