@@ -12,7 +12,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 [params]
 	name = "Nan-Hung's Note"
 	description = "Describe your website"
-	bio = "Programming, Modeling, and Statistics"
+	bio = "Programming, Modeling, and Analysis"
 	# Enter optionally your twitter account
 	twitter = "Your Twitter account"
 	enableRSS = true
