@@ -6,7 +6,7 @@ menu = "main"
 +++
 
 
-> "Keep It Simple, Stupid"
+> "**K**eep **I**t **S**imple, **S**tupid"^[[KISS principle](https://en.wikipedia.org/wiki/KISS_principle)]
 
 Hi! I'm Nan-Hung Hsieh (謝男鴻). I'm a postdoc at Texas A&M University. My research interests include
 
