@@ -35,8 +35,8 @@ B.S., **Safety, Health and Environmental Engineering**, National United Universi
 More publication - [Google Scholar](https://scholar.google.com/citations?user=AM1YgJAAAAAJ&hl=en&oi=ao)  
 Peer review - [Publons](https://publons.com/author/435686/nan-hung-hsieh)
 
-#### Computational Interests
-Git, GNU MCSim, GNU/Linux, High-Performance Computer, R
+#### COMPUTATIONAL INTERESTS
+GNU/Linux, Git, GNU/MCSim, R
 
 #### OTHER
 Membership: Society of Toxicology (USA)  

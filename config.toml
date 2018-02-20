@@ -46,7 +46,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 	# Choose a font for the social icons in the footer. Either "mono-social" or "font-awesome"
 	iconFont = "mono-social"
   # The social icons can be styled differently if you use mono as font - circle, rounded, or empty
-  socialIconStyle = "rounded"
+  socialIconStyle = "circle"
 
 # Add additional social link entries underneath
 [social]
