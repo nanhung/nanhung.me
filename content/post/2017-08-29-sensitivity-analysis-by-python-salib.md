@@ -2,6 +2,7 @@
 title: Sensitivity Analysis by Python SALib
 date: '2017-08-29'
 slug: sensitivity-analysis-by-python-salib
+tags: ["sensitivity", "python"]
 ---
 
 

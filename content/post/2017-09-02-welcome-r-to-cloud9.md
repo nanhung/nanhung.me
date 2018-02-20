@@ -2,6 +2,7 @@
 title: Welcome R to Cloud9
 date: '2017-09-02'
 slug: welcome-r-to-cloud9
+tags: ["r", "c9"]
 ---
 
 I use R Studio to do the data analysis in my everyday work. 

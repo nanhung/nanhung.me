@@ -3,6 +3,7 @@
 {{ end }}
 
 {{ define "main" }}
+	{{ partial "tags.html"  . }}
 	{{ partial "post-list.html"  . }}
 	{{ partial "pagination.html" . }}
 {{ end }}

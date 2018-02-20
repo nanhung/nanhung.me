@@ -1,6 +1,7 @@
 ---
 title: Latex in Cloud9
 date: '2017-08-17'
+tags: ["latex", "c9"]
 ---
 
 I'm trying to find the free software to replace the MS office. 

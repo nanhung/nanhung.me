@@ -1,6 +1,7 @@
 ---
 title: Using GNU MCSim in Cloud9 and combine with Github
 date: '2017-04-14'
+tags: ["MCSim", "c9", "git"]
 ---
 
 Web-based integrated development environment (IDE) can let us efficiently manage our code and develop the model. Version control is also the essential tool to track our projects and collaborate with other people. It allows us edit and backup our scripts more easily and makes the collaboration on complex projects.

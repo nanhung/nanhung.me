@@ -2,6 +2,7 @@
 title: Rarely used but useful Git command (SAVE and LOAD)
 date: '2018-02-11'
 slug: rarely-used-but-useful-git-command
+tags: ["git"]
 ---
 
 I don't frequently use `git reset`. But sometime it is very useful. It just like the "SAVE and LOAD" method if you familiar with old video game :)
