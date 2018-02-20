@@ -19,16 +19,16 @@ Now I mainly focus on the [pharmacokinetics](https://en.wikipedia.org/wiki/Pharm
 
 ***
 
-# Curriculum Vitae
-### EXPERIENCE
+### Curriculum Vitae
+#### EXPERIENCE
 Department of Veterinary Integrative Biosciences, Texas A&M University  
 **Postdoctoral Research Associate**, 08/2016 –   
 Division of Occupational Hazards Assessment, Institute of Labor, Occupational Safety and Health, Ministry of Labor.  
 **Research Associate**, 08/2013 – 07/2016  
 #### EDUCATION
-Ph.D., Bioenvironmental System Engineering, National Taiwan University, 2013  
-M.Eng., Bioenvironmental System Engineering, National Taiwan University, 2010  
-B.S., Safety, Health and Environmental Engineering, National United University, 2007  
+Ph.D., **Bioenvironmental System Engineering**, National Taiwan University, 2013  
+M.Eng., **Bioenvironmental System Engineering**, National Taiwan University, 2010  
+B.S., **Safety, Health and Environmental Engineering**, National United University, 2007  
 
 #### PUBLICATION (open access)
 **Hsieh NH**, Lin YJ, Yang YF, Liao CM*. Assessing the oseltamivir-induced resistance risk and implications for influenza infection control strategies. Infection and Drug Resistance 2017 July; 10:215-226. [link](https://www.dovepress.com/articles.php?article_id=33883)  
@@ -44,7 +44,7 @@ Personal Interests: Computer & Information Technology
 
 ***
 
-# Computational Interesting
+### Computational Interests
 
 ![](https://upload.wikimedia.org/wikipedia/commons/e/ee/GNU%2BLinux.png)
 ![](https://git-scm.com/images/logos/downloads/Git-Icon-Black.png)
