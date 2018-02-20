@@ -22,9 +22,9 @@ Now I mainly focus on the [pharmacokinetics](https://en.wikipedia.org/wiki/Pharm
 ### Curriculum Vitae
 #### EXPERIENCE
 Department of Veterinary Integrative Biosciences, Texas A&M University  
-**Postdoctoral Research Associate**, 08/2016 –   
+**Postdoctoral Research Associate**, 2016 –   
 Division of Occupational Hazards Assessment, Institute of Labor, Occupational Safety and Health, Ministry of Labor.  
-**Research Associate**, 08/2013 – 07/2016  
+**Research Associate**, 2013–2016  
 #### EDUCATION
 Ph.D., **Bioenvironmental System Engineering**, National Taiwan University, 2013  
 M.Eng., **Bioenvironmental System Engineering**, National Taiwan University, 2010  
