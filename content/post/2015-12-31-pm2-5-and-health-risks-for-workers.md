@@ -37,7 +37,7 @@ insignificant. This study suggests that we should consider the composition chara
 particle size distribution, and resource to further estimate the fine PM-induced health risk for
 workers.
 
-- Final Report^[[謝男鴻、鐘順輝。細懸浮微粒對作業場所勞工之暴露危害評估。ILOSH104-A310。](https://laws.ilosh.gov.tw/ioshcustom/Web/YearlyReserachReports/Detail?id=2862)]  
+- Research Report^[[謝男鴻、鐘順輝。細懸浮微粒對作業場所勞工之暴露危害評估。ILOSH104-A310。](https://laws.ilosh.gov.tw/ioshcustom/Web/YearlyReserachReports/Detail?id=2862)]  
 - SOT Poster^[[Hsieh NH, Chung SH. Meta-Analysis of the fine particulate matters-associated occupational health risks. SOT 56th Annual Meeting, Baltimore, USA, March 12–16, 2017.](https://github.com/nanhung/MetaPM/blob/master/beamerpostertest.pdf)]
 - ILOSH Messages^[[謝男鴻、吳宗鋼。外來殺手? PM2.5對作業場所勞工的危害探討。105年2月。](https://laws.ilosh.gov.tw/ioshcustom/Web/SafetyMessages/Detail2?id=1460)]
 

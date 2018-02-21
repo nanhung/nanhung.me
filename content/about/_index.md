@@ -8,12 +8,12 @@ menu = "main"
 
 > "**K**eep **I**t **S**imple, **S**tupid"^[[KISS principle](https://en.wikipedia.org/wiki/KISS_principle)]
 
-Hi! I'm Nan-Hung Hsieh (謝男鴻). I'm a postdoc at Texas A&M University. My research interests include
+Hi! I'm Nan-Hung Hsieh (謝男鴻). My research interests include
 
 - [Dynamical system](https://en.wikipedia.org/wiki/Dynamical_system): To predict the temporal (time-dependent) dynamics by  mathematical model  
 - [Uncertainty quantification](https://en.wikipedia.org/wiki/Uncertainty_quantification): To understand the uncertainty in the dynamical systems by statistical method
 
-Now I mainly focus on the [pharmacokinetics](https://en.wikipedia.org/wiki/Pharmacokinetics) and [Bayesian hierarchical modeling](https://en.wikipedia.org/wiki/Bayesian_hierarchical_modeling), designing the mathematical model with experimental data that can be used to describe and predict the chemical (or drug) behavior in human population.
+Currently, I'm a postdoc at Texas A&M University (veterinary school). I mainly focus on the [pharmacokinetics](https://en.wikipedia.org/wiki/Pharmacokinetics) and [Bayesian hierarchical modeling](https://en.wikipedia.org/wiki/Bayesian_hierarchical_modeling), designing the mathematical model with experimental data that can be used to describe and predict the chemical (or drug) behavior in human (or experiment animal) population.
 
 <img src="https://www.dovepress.com/cr_data/article_fulltext/s86000/86785/img/IJN-86785-F02.png" style="width:300px;" />
 
@@ -24,10 +24,11 @@ Now I mainly focus on the [pharmacokinetics](https://en.wikipedia.org/wiki/Pharm
 Department of Veterinary Integrative Biosciences, Texas A&M University (USA)  
 **Postdoctoral Research Associate**, 2016 –   
 
-Division of Occupational Hazards Assessment, Institute of Labor, Occupational Safety and Health, Ministry of Labor (Taiwan)    
+Division of Occupational Hazards Assessment, Institute of Labor, Occupational Safety and Health, Ministry of Labor (Taiwan) 
+
 **Research Associate**, 2013–2016  
-2015 Project (in Chinese): [Assessing the fine particles-associated health risks for workers in workplace](https://laws.ilosh.gov.tw/ioshcustom/Web/YearlyReserachReports/Detail?id=2862)  
-2014 Project (in Chinese): [Assessing health risks for workers in high lead exposed factories](https://laws.ilosh.gov.tw/ioshcustom/Web/YearlyReserachReports/Detail?id=2764)  
+2015 Project (in Chinese): [Assessing the fine particles-associated health risks for workers in workplace](https://nanhung.netlify.com/post/pm2-5-and-health-risks-for-workers/)  
+2014 Project (in Chinese): [Assessing health risks for workers in high lead exposed factories](https://nanhung.netlify.com/post/occupational-lead-exposure-risk/)  
 
 #### EDUCATION
 Ph.D., **Bioenvironmental System Engineering**, National Taiwan University, 2013  
@@ -46,7 +47,7 @@ More publication - [Google Scholar](https://scholar.google.com/citations?user=AM
 Peer review - [Publons](https://publons.com/author/435686/nan-hung-hsieh)
 
 #### COMPUTATIONAL INTERESTS
-<img src="https://upload.wikimedia.org/wikipedia/commons/0/06/Gnulinux.png" style="width:300px;" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/06/Gnulinux.png" style="width:200px;" />
 
 #### OTHER
 Membership: [Society of Toxicology (USA) - Biological Modeling Specialty Section](https://www.toxicology.org/groups/ss/BMSS/index.asp)  
