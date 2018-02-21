@@ -26,15 +26,15 @@ Department of Veterinary Integrative Biosciences, Texas A&M University (USA)
 
 Division of Occupational Hazards Assessment, Institute of Labor, Occupational Safety and Health, Ministry of Labor (Taiwan)    
 **Research Associate**, 2013–2016  
-2014 Project (in Chinese): [Assessing health risks for workers in high lead exposed factories](https://laws.ilosh.gov.tw/ioshcustom/Web/YearlyReserachReports/Detail?id=2764)  
 2015 Project (in Chinese): [Assessing the fine particles-associated health risks for workers in workplace](https://laws.ilosh.gov.tw/ioshcustom/Web/YearlyReserachReports/Detail?id=2862)  
+2014 Project (in Chinese): [Assessing health risks for workers in high lead exposed factories](https://laws.ilosh.gov.tw/ioshcustom/Web/YearlyReserachReports/Detail?id=2764)  
 
 #### EDUCATION
 Ph.D., **Bioenvironmental System Engineering**, National Taiwan University, 2013  
-Dissertation: *Dynamic modeling and analysis of environmental stimuli-associated lung function exacerbations risk*  
+Dissertation: [Dynamic modeling and analysis of environmental stimuli-associated lung function exacerbations risk](https://nanhung.netlify.com/post/phd-dissertation/) 
 
 M.Eng., **Bioenvironmental System Engineering**, National Taiwan University, 2010   
-Thesis: *Assessing the prevalence and exacerbations risk ofinfluenza-associated asthma*
+Thesis: [Assessing the prevalence and exacerbations risk ofinfluenza-associated asthma](https://nanhung.netlify.com/post/master-thesis/)
 
 B.S., **Safety, Health and Environmental Engineering**, National United University, 2007  
 
