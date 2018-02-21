@@ -1,5 +1,6 @@
 +++
 title = "Build the Github blog by Jekyll and Cloud9"
+date = '2017-04-26'
 description = ""
 tags = [
     "git",
