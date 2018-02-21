@@ -39,7 +39,7 @@ suggests that current health management for BPb should be revised to protect mor
 workers.
 
 - Research Report^[[謝男鴻、鐘順輝。高鉛暴露工廠勞工健康風險評估。ILOSH103-A307。](https://laws.ilosh.gov.tw/ioshcustom/Web/YearlyReserachReports/Detail?id=2764)] 
-- Published paper^[[Hsien NH, et al. Anemia risk in relation to lead exposure in lead-related manufacturing. BMC Public Health May; 2017 17:389.](https://github.com/nanhung/MetaPM/blob/master/beamerpostertest.pdf)]
+- Published paper^[[Hsien NH, et al. Anemia risk in relation to lead exposure in lead-related manufacturing. BMC Public Health May; 2017 17:389.](hhttps://bmcpublichealth.biomedcentral.com/articles/10.1186/s12889-017-4315-7)]
 - ILOSH Messages^[[謝男鴻。老玩意 新科學 如影隨形的血中鉛危害 。 103年12月。](https://laws.ilosh.gov.tw/ioshcustom/Web/SafetyMessages/Detail2?id=1460)]
 
 ***

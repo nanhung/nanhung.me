@@ -7,7 +7,7 @@ slug: pm2-5-and-health-risks-for-workers
 categories: []
 tags:
   - meta
-  - pm
+  - particle
   - risk
   - worker
 ---

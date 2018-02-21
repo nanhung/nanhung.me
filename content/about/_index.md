@@ -15,7 +15,7 @@ Hi! I'm Nan-Hung Hsieh (謝男鴻). My research interests include
 
 Currently, I'm a postdoc at Texas A&M University (veterinary school). I mainly focus on the [pharmacokinetics](https://en.wikipedia.org/wiki/Pharmacokinetics) and [Bayesian hierarchical modeling](https://en.wikipedia.org/wiki/Bayesian_hierarchical_modeling), designing the mathematical model with experimental data that can be used to describe and predict the chemical (or drug) behavior in human (or experiment animal) population.
 
-<img src="https://www.dovepress.com/cr_data/article_fulltext/s86000/86785/img/IJN-86785-F02.png" style="width:300px;" />
+<img src="https://www.dovepress.com/cr_data/article_fulltext/s86000/86785/img/IJN-86785-F02.png" style="width:300px;" />^[[Chen WY et al. Physiologically based pharmacokinetic modeling of zinc oxide nanoparticles and zinc nitrate in mice. Int J Nanomedicine. 2015; 10: 6277–6292.](https://en.wikipedia.org/wiki/KISS_principle)]
 
 ***
 
@@ -25,7 +25,6 @@ Department of Veterinary Integrative Biosciences, Texas A&M University (USA)
 **Postdoctoral Research Associate**, 2016 –   
 
 Division of Occupational Hazards Assessment, Institute of Labor, Occupational Safety and Health, Ministry of Labor (Taiwan) 
-
 **Research Associate**, 2013–2016  
 2015 Project (in Chinese): [Assessing the fine particles-associated health risks for workers in workplace](https://nanhung.netlify.com/post/pm2-5-and-health-risks-for-workers/)  
 2014 Project (in Chinese): [Assessing health risks for workers in high lead exposed factories](https://nanhung.netlify.com/post/occupational-lead-exposure-risk/)  
