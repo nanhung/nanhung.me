@@ -1,5 +1,6 @@
 ---
 title: The Birthday Gift
+description: "Three little things that change my life"
 date: '2016-10-03'
 slug: the-birthday-gift
 ---
@@ -7,7 +8,7 @@ slug: the-birthday-gift
 
 > **"I am not a visionary. I'm an engineer. I'm happy with the people who are wandering around looking at the stars but I am looking at the ground and I want to fix the pothole before I fall in." - Linus Torvalds**
 
-這是Linus Torvalds (Linux之父)在今年二月的TED大會上提到的一段話^[[Linus Torvalds: The mind behind](https://www.ted.com/talks/linus_torvalds_the_mind_behind_linux)]。大概在八月多時我看到這部影片，因為還蠻喜歡這段影片的內容，所以就把他下載下來放在桌面上，一有機會就撥出來看，順便練習英語。這段影片裡有三個我很喜歡的元素:
+這是Linus Torvalds (Linux之父)在今年二月的TED大會上提到的一段話^[[Linus Torvalds: The mind behind linux](https://www.ted.com/talks/linus_torvalds_the_mind_behind_linux)]。大概在八月多時我看到這部影片，因為還蠻喜歡這段影片的內容，所以就把他下載下來放在桌面上，一有機會就撥出來看，順便練習英語。這段影片裡有三個我很喜歡的元素:
 
 1. Coding
 2. Open Source
@@ -35,11 +36,9 @@ slug: the-birthday-gift
 
 在科學這面，這幾年興起的Open Science的想法也逐漸被受重視，這個想法讓科學文章不在只屬於昂貴的出版社，任何有網路的人都有權限能夠閱讀這些文章內容，並提出自己的想法觀點及建議，一篇文章的產生也許也不應該只是由幾個審查者來決定它的刊登與否，任何人都有權力對一篇文章進行之後的批判討論。也因為這樣我現在引用文獻時更傾向於引用Open access的文章。而且我也特別喜歡在文章裡提供Source code的Paper，這也代表作者對自己研究的信心，願意讓任何人都能用這Source code來檢視研究的結果。
 
-如今生活在美國的當下，給我最棒的感覺就是自由(Freedom)，這算是Open Source 思維的核心，在這裡可以自由表達自己的想法跟做法，而不需在意別人的眼光，似乎也能感受到福爾泰曾說過的
+如今生活在美國的當下，給我最棒的感覺就是自由(Freedom)，這算是Open Source思維的核心，在這裡可以自由表達自己的想法跟做法，而不需在意別人的眼光，似乎也能感受到福爾泰曾說過的
 
-![](https://i.pinimg.com/236x/f4/d3/ea/f4d3ea026927ba65ba312c158d3cdfb7--cute-quotes-best-quotes.jpg)
-
-
+<img src="https://i.pinimg.com/236x/f4/d3/ea/f4d3ea026927ba65ba312c158d3cdfb7--cute-quotes-best-quotes.jpg" style="width:300px;" />
 
 # About Visionary 
 ### Where do you see yourself in 5 years?
