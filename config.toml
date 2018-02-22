@@ -34,7 +34,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 	olderPosts = ""
 	newerPosts = ""
 	readMore = ""
-	copyright = "Powered by [HUGO](https://gohugo.io/) and [blogdown](https://github.com/rstudio/blogdown)"
+	copyright = "Powered by [hugo](https://gohugo.io/) and [blogdown](https://github.com/rstudio/blogdown). Source code in [github](https://github.com/rbind/nanhung.me)"
 	# Sharing options and author information in posts
 	aboutAuthor = "Computational Toxicology"
 	tweet = ""
