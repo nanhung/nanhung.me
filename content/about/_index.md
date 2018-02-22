@@ -23,25 +23,27 @@ My current research project is to apply the [sensitivity analysis](https://en.wi
 
 ### Curriculum Vitae
 **EPERIENCE**  
-Department of Veterinary Integrative Biosciences, Texas A&M University, USA  
+Department of Veterinary Integrative Biosciences, College of Veterinary Medicine & Biomedical Sciences, Texas A&M University, USA  
 **Postdoctoral Research Associate**, 2016 –   
 
-- Reducing the dimensionality of Bayesian population PBPK modeling algorithms to improve computational efficiency (FDA project)
+- Reducing the dimensionality of Bayesian population PBPK modeling algorithms to improve computational efficiency -FDA project
 
 Division of Occupational Hazards Assessment, Institute of Labor, Occupational Safety and Health, Ministry of Labor, Taiwan  
 **Research Associate**, 2013–2016   
 
-- 2015 Project (in Chinese): [Assessing the fine particles-associated health risks for workers in workplace](https://nanhung.netlify.com/post/pm2-5-and-health-risks-for-workers/)  
-- 2014 Project (in Chinese): [Assessing health risks for workers in high lead exposed factories](https://nanhung.netlify.com/post/occupational-lead-exposure-risk/)  
+- [Assessing the fine particles-associated health risks for workers in workplace](https://nanhung.netlify.com/post/pm2-5-and-health-risks-for-workers/) - 2015 Project  
+- [Assessing health risks for workers in high lead exposed factories](https://nanhung.netlify.com/post/occupational-lead-exposure-risk/) - 2014 Project  
 
 **EDUCATION**  
 Ph.D., **Bioenvironmental System Engineering**, National Taiwan University, 2013  
 
-- Dissertation: [Dynamic modeling and analysis of environmental stimuli-associated lung function exacerbations risk](https://nanhung.netlify.com/post/phd-dissertation/)   
+- Dissertation: 
+  - [Dynamic modeling and analysis of environmental stimuli-associated lung function exacerbations risk](https://nanhung.netlify.com/post/phd-dissertation/)
 
 M.Eng., **Bioenvironmental System Engineering**, National Taiwan University, 2010   
 
-- Thesis: [Assessing the prevalence and exacerbations risk of influenza-associated asthma](https://nanhung.netlify.com/post/master-thesis/)  
+- Thesis
+  - [Assessing the prevalence and exacerbations risk of influenza-associated asthma](https://nanhung.netlify.com/post/master-thesis/)
 
 B.S., **Safety, Health and Environmental Engineering**, National United University, 2007  
 

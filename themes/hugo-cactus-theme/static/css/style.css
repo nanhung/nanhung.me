@@ -220,7 +220,7 @@ p {
 
 nav.main-nav {
     padding: 20px 20px 0;
-    /*max-width: 600px;*/
+    max-width: 800px;
     /*width:100%;*/
     background: #fff;
     background: rgba(255, 255, 255, .90);
@@ -274,7 +274,7 @@ nav.main-nav a.cta {
 #wrapper {
     max-width: 700px;
     margin: 0 auto;
-    padding: 60px 40px 100px 40px;
+    /*padding: 60px 40px 100px 40px;*/
 }
 
 #wrapper.home {
@@ -378,7 +378,7 @@ em, i {
 	margin-top: 20px;
     margin-bottom: 20px;
     color: #222;
-    font: 300 32px/1.4em "Avenir", Helvetica, Arial, sans-serif;
+    font: 300 28px/1.4em "Avenir", Helvetica, Arial, sans-serif;
     font-weight: bold;
 }
 
@@ -411,7 +411,7 @@ em, i {
 #post-list h2 {
     font: normal 17px/1.5em "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #aaa;
-    max-width: 400px;
+    max-width: 540px;
     margin-top: 2px;
     font-weight: 300;
 }
