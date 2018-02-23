@@ -54,10 +54,13 @@ B.S., **Safety, Health and Environmental Engineering**, National United Universi
 More publication - [Google Scholar](https://scholar.google.com/citations?user=AM1YgJAAAAAJ&hl=en&oi=ao) · [ResearchGate](https://www.researchgate.net/profile/Nan-Hung_Hsieh)  
 Peer review - [Publons](https://publons.com/author/435686/nan-hung-hsieh)  
 
-**COMPUTATIONAL INTERESTS**  
-<center><img src="https://upload.wikimedia.org/wikipedia/commons/0/06/Gnulinux.png" style="width:200px;" /></center>
+**COMPUTER INTERESTS**  
+
+Operating Systems: GNU/Linux  
+Languages: R, python  
+Other: GNU/MCSim, LaTeX  
 
 **OTHER**  
-Membership: [Society of Toxicology (USA) - Biological Modeling Specialty Section](https://www.toxicology.org/groups/ss/BMSS/index.asp)  
+Membership: [Society of Toxicology - Biological Modeling Specialty Section](https://www.toxicology.org/groups/ss/BMSS/index.asp) ([certificate](https://nanhung.netlify.com/about/MembershipCertificate.pdf))  
 Language: Mandarin (Native), English   
 
