@@ -63,5 +63,3 @@ Other: GNU/MCSim, LaTeX
 **OTHER**  
 Membership: [Society of Toxicology - Biological Modeling Specialty Section](https://www.toxicology.org/groups/ss/BMSS/index.asp) ([certificate](https://nanhung.netlify.com/about/MembershipCertificate.pdf))  
 Language: Mandarin (Native), English   
-
-<style>.embed-container {position: relative; padding-bottom: 80%; height: 0; max-width: 100%;} .embed-container iframe, .embed-container object, .embed-container iframe{position: absolute; top: 0; left: 0; width: 100%; height: 100%;} small{position: absolute; z-index: 40; bottom: 0; margin-bottom: -15px;}</style><div class="embed-container"><iframe width="500" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="Practice map" src="//tamu.maps.arcgis.com/apps/Embed/index.html?webmap=7b1b52f163db417c9c27698efac0b33c&amp;extent=-95.4373,29.2945,-94.4231,29.8821&zoom=true&previewImage=false&scale=true&disable_scroll=true&theme=light"></iframe></div>
