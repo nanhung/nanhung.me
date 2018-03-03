@@ -1,12 +1,14 @@
 +++
-title = "Build the Github blog by Jekyll and Cloud9"
+title = "Github blog with Jekyll"
+slug = "github-blog-with-jekyll"
 date = '2017-04-26'
-description = ""
+categories = ["Coding"]
 tags = [
     "git",
     "Jekyll",
     "c9",
 ]
+summary = "Build the Github blog by Jekyll and Cloud9"
 
 +++
 

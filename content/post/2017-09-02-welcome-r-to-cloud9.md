@@ -1,9 +1,10 @@
----
-title: Welcome R to Cloud9
-date: '2017-09-02'
-slug: welcome-r-to-cloud9
-tags: ["r", "c9"]
----
++++
+title = "Welcome R to Cloud9"
+date = '2018-02-04'
+slug = "welcome-r-to-cloud9"
+tags = ["R", "c9"]
+summary = " "
++++
 
 I use R Studio to do the data analysis in my everyday work. 
 But I wanna use the cloud-based system to remote and control my works more efficient.

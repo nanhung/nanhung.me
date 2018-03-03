@@ -1,0 +1,20 @@
+# Theme metadata
+name = "TAMU"
+
+# Is theme light or dark?
+light = true
+
+# Primary
+primary = "#500000"
+primary_light = "#707373"
+primary_dark = "#500000"
+
+# Menu
+menu_primary = "#fff"
+menu_text = "#d6d3c4"
+menu_text_active = "#500000"
+menu_title = "#2b2b2b"
+
+# Home sections
+home_section_odd = "rgb(255, 255, 255)"
+home_section_even = "rgb(247, 247, 247)"

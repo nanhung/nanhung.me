@@ -1,13 +1,15 @@
----
-title: Latex in Cloud9
-date: '2017-08-17'
-tags: ["latex", "c9"]
----
++++
+title = "LaTeX in Cloud9"
+date = '2017-08-17'
+slug = "latex-in-cloud9"
+tags = ["LaTeX", "c9"]
+summary = " "
++++
 
 I'm trying to find the free software to replace the MS office. 
 Latex seems to be a better choice to do my work. 
 Also, I want to use the cloud-based IDE and version control system to manage my documents, efficiently. 
-Here is my simple way to install and use latex in cloud9.
+Here is my simple way to install and use LaTeX in cloud9.
 
 repo: [c9.latex](https://github.com/nanhung/c9.latex)
 

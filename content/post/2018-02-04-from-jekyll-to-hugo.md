@@ -1,8 +1,11 @@
----
-title: From Jekyll to Hugo
-date: '2018-02-04'
-tags: ["jekyll", "hugo"]
----
++++
+title = "From Jekyll to Hugo"
+date = '2018-02-04'
+slug = "from-jekyll-to-hugo"
+tags = ["jekyll", "hugo", "R"]
+summary = " "
++++
+
 
 > When you’ve written the same code 3 times, write a function. When you’ve given the same in-person advice 3 times, write a blog post.
 
