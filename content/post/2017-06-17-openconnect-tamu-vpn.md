@@ -1,11 +1,13 @@
 +++
 title = "Use OpenConnect client to Link TAMU VPN"
-date = '2016-02-17'
+date = '2017-06-17'
 slug = "openConnect-tamu-vpn"
 categories = ["Internet"]
-tags = ["vpn"]
-summary = "OpenConnect is the free software with GNU LGPL v2.1. It's the alternative method to connect to AnyConnect VPN if the user can't use the Cisco VPN client software, or prefer to use the free software. We can get the access for TAMU VPN and connect to the HPRC (High-Performance Research Computer) by the following method."
+tags = ["vpn", "unix"]
+summary = " "
 +++
+
+OpenConnect is the free software with GNU LGPL v2.1. It's the alternative method to connect to AnyConnect VPN if the user can't use the Cisco VPN client software, or prefer to use the free software. We can get the access for TAMU VPN and connect to the HPRC (High-Performance Research Computer) by the following method.
 
 ## 1 Connect to TAMU VPN
 

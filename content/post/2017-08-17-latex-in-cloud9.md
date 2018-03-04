@@ -66,7 +66,7 @@ pdflatex test
 And we can "preview" the pdf file like this
 ![Imgur](http://i.imgur.com/SI1028c.png)
 
-Also, we can use git to do version control for our documents. (check my [previous post](https://nanhung.github.io/Using-GNU-MCSim-in-web-based-IDE-and-combine-with-version-control/))
+Also, we can use git to do version control for our documents.
 
 That's it! 
 Happy texting!

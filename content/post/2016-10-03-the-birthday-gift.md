@@ -3,7 +3,7 @@ title = "The Birthday Gift"
 date = '2016-10-03'
 slug = "31-birthday-gift"
 categories = ["Career"]
-tags = ["R"]
+tags = ["R", "open-source"]
 summary = "Three little things that change my life"
 +++
 
