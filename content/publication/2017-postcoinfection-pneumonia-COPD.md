@@ -3,7 +3,7 @@ title = "Mathematical modeling of postcoinfection with influenza A virus and Str
 date = "2017-07-05"
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-authors = ["Cheng YH", "You SH", "Lin YJ", "Chen SC", "Chen WY", "Chou WC", "Hsieh NH", "Liao CM*"]
+authors = ["Cheng YH", "You SH", "Lin YJ", "Chen SC", "Chen WY", "Chou WC", "**Hsieh NH**", "Liao CM*"]
 
 # Publication type.
 # Legend:

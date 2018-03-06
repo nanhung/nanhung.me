@@ -3,7 +3,7 @@ title = "In vitro measurement and dynamic modeling-based approaches for depositi
 date = "2014-10-01"
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-authors = ["Hsieh NH","Liao CM*"]
+authors = ["**Hsieh NH**","Liao CM*"]
 
 # Publication type.
 # Legend:

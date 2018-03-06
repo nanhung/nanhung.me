@@ -3,7 +3,7 @@ title = "Assessing exposure risk for dust storm events-associated lung function 
 date = "2013-04-01"
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-authors = ["Hsieh NH", "Liao CM*"]
+authors = ["**Hsieh NH**", "Liao CM*"]
 
 # Publication type.
 # Legend:

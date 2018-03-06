@@ -3,7 +3,7 @@ title = "Anemia risk in relation to lead exposure in lead-related manufacturing"
 date = "2017-05-05"
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-authors = ["Hsieh NH", "Chung SH", "Chen SC", "Chen WY", "Cheng YH", "Lin YJ", "You SH", "Liao CM*"]
+authors = ["**Hsieh NH**", "Chung SH", "Chen SC", "Chen WY", "Cheng YH", "Lin YJ", "You SH", "Liao CM*"]
 
 # Publication type.
 # Legend:

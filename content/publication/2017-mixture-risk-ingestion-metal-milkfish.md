@@ -3,7 +3,7 @@ title = "Mixture risk assessment due to ingestion of arsenic, copper, and zinc f
 date = "2017-06-01"
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-authors = ["Lin YJ", "Ling MP", "Chen SC", "Chen WY", "Hsieh NH", "Cheng YH", "You SH", "Chou WC", "Lin MC", "Liao CM"]
+authors = ["Lin YJ", "Ling MP", "Chen SC", "Chen WY", "**Hsieh NH**", "Cheng YH", "You SH", "Chou WC", "Lin MC", "Liao CM"]
 
 # Publication type.
 # Legend:

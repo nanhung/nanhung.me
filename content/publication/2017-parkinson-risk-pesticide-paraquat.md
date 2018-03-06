@@ -3,7 +3,7 @@ title = "PBPK/PD assessment for Parkinson’s disease risk posed by airborne pes
 date = "2018-02-05"
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-authors = ["Cheng YH",  "Chou WC", "Yang YF", "Huang CW", "How CM", "Chen SC", "Chen WY", "Hsieh NH", "Lin YJ", "You SH", "Liao CM*"]
+authors = ["Cheng YH",  "Chou WC", "Yang YF", "Huang CW", "How CM", "Chen SC", "Chen WY", "**Hsieh NH**", "Lin YJ", "You SH", "Liao CM*"]
 
 # Publication type.
 # Legend:

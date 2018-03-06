@@ -3,7 +3,7 @@ title = "Fluctuation analysis-based risk assessment for respiratory virus activi
 date = "2011-08-15"
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-authors = ["Liao CM*", "Hsieh NH", "Chio CP"]
+authors = ["Liao CM*", "**Hsieh NH**", "Chio CP"]
 
 # Publication type.
 # Legend:
