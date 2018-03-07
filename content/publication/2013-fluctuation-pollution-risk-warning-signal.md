@@ -3,7 +3,7 @@ title = "Fluctuations in air pollution give risk warning signals of asthma hospi
 date = "2013-08-01"
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-authors = [ "Hsieh NH", "Liao CM*"]
+authors = [ "**Hsieh NH**", "Liao CM*"]
 
 # Publication type.
 # Legend:

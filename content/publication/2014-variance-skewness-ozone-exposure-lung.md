@@ -3,7 +3,7 @@ title = "Changing variance and skewness as leading indicators for detecting ozon
 date = "2014-05-05"
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-authors = ["Hsieh NH", "Cheng YH","Liao CM*"]
+authors = ["**Hsieh NH**", "Cheng YH","Liao CM*"]
 
 # Publication type.
 # Legend:

@@ -3,7 +3,7 @@ title = "Assessing the oseltamivir-induced resistance risk and implications for 
 date = "2017-07-20"
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-authors = ["Hsieh NH", "Lin YJ", "Yang YF", "Liao CM*"]
+authors = ["**Hsieh NH**", "Lin YJ", "Yang YF", "Liao CM*"]
 
 # Publication type.
 # Legend:

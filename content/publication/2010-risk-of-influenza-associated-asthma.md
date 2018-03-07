@@ -3,7 +3,7 @@ title = "Assessing the exacerbations risk of influenza-associated chronic occupa
 date = "2010-04-08"
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-authors = ["Liao CM*", "Hsieh NH", "Chio CP", "Chen SC"]
+authors = ["Liao CM*", "**Hsieh NH**", "Chio CP", "Chen SC"]
 
 # Publication type.
 # Legend:

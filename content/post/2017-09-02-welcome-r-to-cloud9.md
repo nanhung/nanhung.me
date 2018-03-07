@@ -1,6 +1,6 @@
 +++
 title = "Welcome R to Cloud9"
-date = '2018-02-04'
+date = '2017-09-02'
 slug = "welcome-r-to-cloud9"
 tags = ["R", "c9"]
 summary = " "
