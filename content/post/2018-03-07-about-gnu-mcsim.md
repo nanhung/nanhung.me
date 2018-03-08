@@ -81,7 +81,8 @@ Since there're only limited online resources that were related to [**GNU MCSim**
 
 #### Mar 29, 2002
 
+- [Dynamical Systems and System Dynamics??](http://www.ventanasystems.co.uk/forum/viewtopic.php?t=2280)  
 This post is not about MCSim, but they discussed the differences between dynamical systems and system dynamics.
 
-- [Dynamical Systems and System Dynamics??](http://www.ventanasystems.co.uk/forum/viewtopic.php?t=2280)
+
 

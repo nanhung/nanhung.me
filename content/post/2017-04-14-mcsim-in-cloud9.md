@@ -17,8 +17,6 @@ repo: [mcsim](https://github.com/nanhung/mcsim)
 - Create GitHub account ([https://github.com/](https://github.com/))
 - Use GitHub account to sign in Cloud9 (https://c9.io/)
 
----
-
 ## 2. Create the repository 
 - Name the repository and check *Create repository*
 
@@ -28,7 +26,6 @@ repo: [mcsim](https://github.com/nanhung/mcsim)
 
 ![](https://i.imgur.com/uRtnaeO.png)
 
----
 
 ## 3. Create the new workspace in Cloud9
 - Name the repository
@@ -38,7 +35,6 @@ repo: [mcsim](https://github.com/nanhung/mcsim)
 
 ![](https://i.imgur.com/X0gV4Gg.png)
 
----
 
 ## 4. Install MCSim in the Cloud9 IDE
 
@@ -97,8 +93,6 @@ make install
 
 ![](https://d2mxuefqeaa7sj.cloudfront.net/s_4E615E25DF123BA26B5E5BF98A09B0870890A8A44F2D14747238ACAED0138029_1492187783626_file.png)
 
----
-
 ## 5. Test MCSim
 - Make sure we have installed the MCSim, successfully. Check the directory, and we’ll find the *bin*, *include*, *lib*, and *share* folders have been added. 
 - To test run the MCsim we need to compile the model file first. We also need to use command *makemcsims* to create the standalone model.
@@ -114,8 +108,6 @@ makemcsims perc.model
 ```
 
 ![](https://i.imgur.com/5oWRdbw.png)
-
----
 
 ## 6. Apply git version control 
 - Check the current status and untracked files
@@ -146,13 +138,11 @@ git push
 ![](https://d2mxuefqeaa7sj.cloudfront.net/s_4E615E25DF123BA26B5E5BF98A09B0870890A8A44F2D14747238ACAED0138029_1492187806597_file.png)
 
 
- 
 - Check GitHub repository. We’ll see our latest commit
  
 
 ![](https://d2mxuefqeaa7sj.cloudfront.net/s_4E615E25DF123BA26B5E5BF98A09B0870890A8A44F2D14747238ACAED0138029_1492192802246_file.png)
 
----
 
 ## 7. By Using this method, we can…
 
