@@ -10,7 +10,7 @@ weight = 5
 # List your academic interests.
 [interests]
   interests = [
-    "[**Dynamical system**](https://en.wikipedia.org/wiki/Dynamical_system)",
+    "[**System Dynamics**](https://en.wikipedia.org/wiki/System_dynamics)",
     "[**Pharmacometrics**](https://en.wikipedia.org/wiki/Pharmacometrics)",
     "[**Bayesian Statistics**](https://en.wikipedia.org/wiki/Bayesian_statistics)",
     "[**R**](https://www.r-project.org/)",
