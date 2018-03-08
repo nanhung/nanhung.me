@@ -19,14 +19,14 @@ output:
 
 <div id="TOC">
 <ul>
-<li><a href="#run-ode-in-pure-r"><span class="toc-section-number">1</span> Run ODE in pure R</a></li>
+<li><a href="#solve-ode-in-pure-r"><span class="toc-section-number">1</span> Solve ODE in pure R</a></li>
 <li><a href="#compile-the-mcsim-model-file-and-solve-by-desolve"><span class="toc-section-number">2</span> Compile the MCSim model file and solve by deSolve</a></li>
 <li><a href="#compile-the-mcsim-model-file-and-solve-by-mcsim"><span class="toc-section-number">3</span> Compile the MCSim model file and solve by MCSim</a></li>
 </ul>
 </div>
 
-<p>This exercise was sourced from the file <a href="https://www.gnu.org/software/mcsim/mcsim_under_R.zip"><strong>MCSim under R</strong></a> in <a href="https://www.gnu.org/software/mcsim/"><strong>GNU MCSim</strong></a>. The testing operation system is <a href="https://lubuntu.net/">Lubuntu v17.10</a> with MCSim v5.6.6 and R v3.4.0 installed.</p>
-<p>{{% alert warning %}} Be sure you’re in the right place. Use <code>.Platform$OS.type == &quot;unix&quot;</code> first! {{% /alert %}}</p>
+<p>This exercise was sourced from the file <a href="https://www.gnu.org/software/mcsim/mcsim_under_R.zip"><strong>MCSim under R</strong></a> in <a href="https://www.gnu.org/software/mcsim/"><strong>GNU MCSim</strong></a>. The testing operation system is <a href="https://lubuntu.net/"><strong>Lubuntu v17.10</strong></a> with MCSim v5.6.6 and R v3.4.0 installed.</p>
+<p>{{% alert warning %}} Be sure you’re in the right place. Check <code>.Platform$OS.type == &quot;unix&quot;</code>! {{% /alert %}}</p>
 <div id="prerequisites" class="section level2">
 <h2><span class="header-section-number">0.1</span> Prerequisites</h2>
 <ul>
@@ -36,8 +36,8 @@ output:
 </ul>
 <hr />
 </div>
-<div id="run-ode-in-pure-r" class="section level1">
-<h1><span class="header-section-number">1</span> Run ODE in pure R</h1>
+<div id="solve-ode-in-pure-r" class="section level1">
+<h1><span class="header-section-number">1</span> Solve ODE in pure R</h1>
 <pre class="r"><code>library(deSolve)
 
 model &lt;- function(t, Y, parameters) {

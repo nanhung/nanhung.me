@@ -16,10 +16,10 @@ output:
     toc_depth: 1
 ---
 
-This exercise was sourced from the file [**MCSim under R**](https://www.gnu.org/software/mcsim/mcsim_under_R.zip) in [**GNU MCSim**](https://www.gnu.org/software/mcsim/). The testing operation system is [Lubuntu v17.10](https://lubuntu.net/) with MCSim v5.6.6 and R v3.4.0 installed.
+This exercise was sourced from the file [**MCSim under R**](https://www.gnu.org/software/mcsim/mcsim_under_R.zip) in [**GNU MCSim**](https://www.gnu.org/software/mcsim/). The testing operation system is [**Lubuntu v17.10**](https://lubuntu.net/) with MCSim v5.6.6 and R v3.4.0 installed.
 
 {{% alert warning %}}
-Be sure you're in the right place. Use `.Platform$OS.type == "unix"` first!
+Be sure you're in the right place. Check `.Platform$OS.type == "unix"`!
 {{% /alert %}}
 
 ## Prerequisites
@@ -30,7 +30,7 @@ Be sure you're in the right place. Use `.Platform$OS.type == "unix"` first!
 
 ---
 
-# Run ODE in pure R
+# Solve ODE in pure R
 
 ```{R, warning=FALSE}
 library(deSolve)
