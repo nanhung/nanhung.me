@@ -16,11 +16,17 @@ output:
     toc_depth: 1
 ---
 
-This exercises were sourced from the file [**MCSim under R**](https://www.gnu.org/software/mcsim/mcsim_under_R.zip) in [**GNU MCSim**](https://www.gnu.org/software/mcsim/). The testing operation system is Lubuntu 17.10.
+This exercise was sourced from the file [**MCSim under R**](https://www.gnu.org/software/mcsim/mcsim_under_R.zip) in [**GNU MCSim**](https://www.gnu.org/software/mcsim/). The testing operation system is [Lubuntu v17.10](https://lubuntu.net/) with MCSim v5.6.6 and R v3.4.0 installed.
 
 {{% alert warning %}}
 Be sure you're in the right place. Use `.Platform$OS.type == "unix"` first!
 {{% /alert %}}
+
+## Prerequisites
+
+- R
+- R Studio (optional)
+- MCSim 
 
 ---
 
@@ -55,15 +61,15 @@ jac <- function (t, Y, parameters) {
 
 parms <- c(k1 = 0.04, k2 = 1e4, k3=3e7) 
 
-Y <- c(1.0, 0.0, 0.0)
+Y <- c(y1 = 1.0, y2 = 0.0, y3 = 0.0)
 
 times  <- c(0, 0.4*10^(0:11))
 
 PD <- matrix(nrow = 3, ncol = 3, data = 0)
 
-out <- ode(Y, times, model, parms = parms, jacfunc = jac)
+out.1 <- ode(Y, times, model, parms = parms, jacfunc = jac)
 
-plot(out,type="b",log="x")
+plot(out.1,type="b",log="x")
 
 ```
 
@@ -75,7 +81,7 @@ The testing model `simple.model` file looks like this:
 
 ```
 #------------------------------------------------------------------------------
-# the deSolve example model
+# the deSolve example model (simple.model)
 #------------------------------------------------------------------------------
 
 States = {y0, y1, y2};
@@ -123,8 +129,8 @@ system (paste("R CMD SHLIB ", mName, ".c", sep = "")) # create .o and .so files
 dyn.load(paste(mName, .Platform$dynlib.ext, sep=""))
 source ("simple.model_inits.R")
 
-parms <- initParms () # define parameter values
-Y <- initStates (parms) # define initial state values
+parms_init <- initParms () # define parameter values
+Y_init <- initStates (parms) # define initial state values
 
 # Check the default parameters, initial values
 parms; Y
@@ -133,38 +139,102 @@ parms; Y
 Outputs 
 
 # set output times, time 0 must be given
-times <- c(0, 0.4*10^(0:11))
+times <- c(0, 0.4*10^(0:11)) # This setting is same as section 1
 
-out.1.1 <- ode(Y, times, func = "derivs", parms = parms, jacfunc = "jac", dllname = "simple.model", initfunc = "initmod", nout = 1, outnames = "Sum")
+out.2.1 <- ode(Y_init, times, func = "derivs", parms = parms_init, 
+               jacfunc = "jac", dllname = "simple.model", 
+               initfunc = "initmod", nout = 1, outnames = "Sum")
 
-plot(out.1.1, log="x",type="b")
+plot(out.2.1, log="x",type="b")
 ```
 
 {{% alert note %}}
-We can't find any change in the dynamic process. It is due to the all default variables equal to 0. 
+We can't find any change in the dynamic process. It is due to the all initial value equal to 0.  
 {{% /alert %}}
 
 ## Customize the parameter and initial values
 
 ```{R, warning=FALSE}
 
-# set parameter values
-parms <- c(k1 = 0.04, k2 = 1e4, k3=3e7)
-
-# set initial values
-Y <- c(y1 = 1.0, y2 = 0.0, y3 = 0.0)
-
-out.1.2 <- ode(Y, times, func = "derivs", parms = parms,
+# Use the samee parameters and initial values in section 1
+out.2.2 <- ode(Y, times, func = "derivs", parms = parms,
                dllname = mName, initfunc = "initmod",
                nout = 1, outnames = "Sum")
 
 # Here is the output data frame
-head(out.1.2)
+head(out.2.2)
 
 # Plotting
-plot(out.1.2, log="x",type="b")
+plot(out.2.2, log="x",type="b")
 
 # Use "which" to select specific variables
-plot(out.1.2, log="x",type="b", which = c("y1", "y2", "y3"))
+plot(out.2.2, log="x",type="b", which = c("y1", "y2", "y3"))
+
+```
+
+# Compile the MCSim model file and solve by MCSim
+
+## Prepare in file
+
+In this part, we need to put `simple.in` file in the working directory. The in file define the initial and parameter values, respectively. Also,we need to set the output time steps and intervals. The source code looks like this:
+
+```
+#------------------------------------------------------------------------------
+# the deSolve example model run with GNU MCSim (simple.in)
+#------------------------------------------------------------------------------
+
+Integrate (Lsodes, 1E-7, 1E-7, 1);
+
+Simulation {
+
+  y0 = 1;
+
+  # Parameters
+  k1 = 0.04;
+  k2 = 1e4;
+  k3 = 3e7;
+
+  Print (y0, 0, 4e-1, 4e+0, 4e+1, 4e+2, 4e+3, 4e+4, 4e+5, 4e+6, 4e+7, 4e+8, 
+         4e+9, 4e+10);
+  Print (y1, 0, 4e-1, 4e+0, 4e+1, 4e+2, 4e+3, 4e+4, 4e+5, 4e+6, 4e+7, 4e+8, 
+         4e+9, 4e+10);
+  Print (y2, 0, 4e-1, 4e+0, 4e+1, 4e+2, 4e+3, 4e+4, 4e+5, 4e+6, 4e+7, 4e+8, 
+         4e+9, 4e+10);
+
+  Print (yout, 0, 4e-1, 4e+0, 4e+1, 4e+2, 4e+3, 4e+4, 4e+5, 4e+6, 4e+7, 4e+8, 
+         4e+9, 4e+10);
+
+}
+
+End.
+```
+The following step compile the `simple.model` file and create the executable program named `mcsim.simple`
+
+```{R, warning=FALSE}
+
+Name <- "simple"
+mName <- "simple.model"
+
+# compile the "simple.model" to "mcsim.simple"
+system(paste("makemcsim ", mName, sep = ""))
+
+# run the simulation input file
+# put its name here
+inName <- "simple.in"
+
+# run!
+system(paste("./mcsim.", Name, " ", inName, sep = ""))
+
+# the output file is called out by default, load it
+out.3 <- read.delim("sim.out", skip = 2)
+
+head (out.3)
+
+# look
+
+lo = layout(t(matrix(1:4, ncol = 2)), respect = TRUE)
+plot(out.3[,1], out.3[,2], log="x",type="b", xlab = "time", ylab = "", main = "y1")
+plot(out.3[,1], out.3[,3], log="x",type="b", xlab = "time", ylab = "", main = "y2")
+plot(out.3[,1], out.3[,4], log="x",type="b", xlab = "time", ylab = "", main = "y3")
 
 ```
