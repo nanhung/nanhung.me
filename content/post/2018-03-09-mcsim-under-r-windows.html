@@ -1,3 +1,21 @@
+---
+title: MCSim under R (Windows)
+summary: The exercise of use GNU MCsim under R in Windows system 
+author: Nan-Hung Hsieh
+date: '2018-03-09'
+slug: mcsim-under-r-windows
+categories: []
+tags:
+  - mcsim
+  - R
+  - windows
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+    toc_depth: 1  
+---
+
 
 <div id="TOC">
 <ul>
@@ -18,13 +36,13 @@
 <p>{{% alert warning %}} Be sure you’re in the right place. Check <code>.Platform$OS.type == &quot;windows&quot;</code> first! {{% /alert %}}</p>
 <p>If you have installed <code>devtools</code> you can use <code>devtools::find_rtools()</code> to check the avaliable of Rtools. Also, we need to chek the Rtools is in the PATH by using <code>Sys.getenv(&quot;PATH&quot;)</code>. If you can not find the Rtools in the your PATH such as</p>
 <pre><code>[1] &quot;c:\\Rtools\\bin;c:\\Rtools\\mingw_32\\bin;c:\\Rtools\\gcc-4.6.3\\bin</code></pre>
-<p>you need to add the Rtools to your path manually, as follow</p>
+<p>You will need to add the Rtools to your path manually, as follow</p>
 <pre><code>Sys.setenv(PATH = paste(&quot;c:\\Rtools\\bin&quot;, Sys.getenv(&quot;PATH&quot;), sep=&quot;;&quot;))
 Sys.setenv(PATH = paste(&quot;c:\\Rtools\\mingw_$(WIN)/bin&quot;, Sys.getenv(&quot;PATH&quot;), sep=&quot;;&quot;))
-Sys.setenv(BINPREF = &quot;c:\\Rtools\\mingw_32/bin/&quot;)
+Sys.setenv(BINPREF = &quot;c:\\Rtools\\mingw_64/bin/&quot;)
 </code></pre>
-<p>then, use <code>system('g++ -v')</code> to check the function.</p>
-<p>If you use git as version control, you can put following files to “.gitignore”.</p>
+<p>Then, use <code>system('g++ -v')</code> to check the function.</p>
+<p>If you use git as version control, you can put following files to <code>.gitignore</code>.</p>
 <pre><code>*.o
 *.so
 *.exe
@@ -67,12 +85,16 @@ Roots { # here we need inlining, otherwise &#39;gout&#39; will not be understood
 
 End.</code></pre>
 <p>{{% alert warning %}} Make sure that the <code>simple.model</code> and <code>mod</code> folder is put in the working directory! {{% /alert %}}</p>
-<pre class="r"><code>libSBML = &quot;&quot; # libSBML = &quot;-lsbml&quot; # uncomment and execute if you have and want to use libSBML.
+<pre class="r"><code>libSBML = &quot;&quot; # libSBML = &quot;-lsbml&quot; 
+# uncomment and execute if you have and want to use libSBML.
 
-system(paste(&quot;gcc -o ./mod/mod.exe ./mod/*.c &quot;, libSBML, sep = &quot;&quot;)) # create mod.exe in &quot;mod&quot; folder</code></pre>
+# create mod.exe in &quot;mod&quot; folder
+system(paste(&quot;gcc -o ./mod/mod.exe ./mod/*.c &quot;, libSBML, sep = &quot;&quot;)) </code></pre>
 <p>Use model file to check it works.</p>
 <pre class="r"><code>mName &lt;- &quot;simple.model&quot;
-system(paste(&quot;./mod/mod.exe -R &quot;, mName, &quot; &quot;, mName, &quot;.c&quot;, sep = &quot;&quot;)) # compile the model file to c file</code></pre>
+
+# compile the model file to c file
+system(paste(&quot;./mod/mod.exe -R &quot;, mName, &quot; &quot;, mName, &quot;.c&quot;, sep = &quot;&quot;)) </code></pre>
 <p>If everything is going well, we can move on to next section.</p>
 </div>
 <div id="compile-the-mcsim-model-file-and-solve-by-desolve" class="section level1">
@@ -82,7 +104,7 @@ system(paste(&quot;./mod/mod.exe -R &quot;, mName, &quot; &quot;, mName, &quot;.
 <pre class="r"><code>library(deSolve)
 
 # Create .c file and use -R to generate &quot;simple.model_inits.R&quot; initialization file
-system(paste(&quot;./mod/mod.exe -R &quot;, mName, &quot; &quot;, mName, &quot;.c&quot;, sep = &quot;&quot;)) # create .c and .R file
+system(paste(&quot;./mod/mod.exe -R &quot;, mName, &quot; &quot;, mName, &quot;.c&quot;, sep = &quot;&quot;)) 
 # compile the MCSim executable, needs to be done each time you modify the model
 
 system (paste(&quot;R CMD SHLIB &quot;, mName, &quot;.c&quot;, sep = &quot;&quot;)) # create .o and .so files
@@ -93,14 +115,14 @@ parms_init &lt;- initParms () # define parameter values
 Y_init &lt;- initStates (parms) # define initial state values
 
 # set output times, time 0 must be given
-times &lt;- c(0, 0.4*10^(0:11)) # This setting is same as section 1
+times &lt;- c(0, 0.4*10^(0:11))
 
 out.2.1 &lt;- ode(Y_init, times, func = &quot;derivs&quot;, parms = parms_init, 
                jacfunc = &quot;jac&quot;, dllname = &quot;simple.model&quot;, 
                initfunc = &quot;initmod&quot;, nout = 1, outnames = &quot;Sum&quot;)
 
 plot(out.2.1, log=&quot;x&quot;,type=&quot;b&quot;)</code></pre>
-<p><img src="2018-03-09-mcsim-under-r-windows_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="/post/2018-03-09-mcsim-under-r-windows_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>{{% alert note %}} We can’t find any change in the dynamic process. It is due to the all initial value equal to 0.<br />
 {{% /alert %}}</p>
 </div>
@@ -126,10 +148,10 @@ head(out.2.2)</code></pre>
 ## [6,] 4e+03 0.1831994 8.942298e-07 0.81679972   1</code></pre>
 <pre class="r"><code># Plotting
 plot(out.2.2, log=&quot;x&quot;,type=&quot;b&quot;)</code></pre>
-<p><img src="2018-03-09-mcsim-under-r-windows_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="/post/2018-03-09-mcsim-under-r-windows_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <pre class="r"><code># Use &quot;which&quot; to select specific variables
 plot(out.2.2, log=&quot;x&quot;,type=&quot;b&quot;, which = c(&quot;y1&quot;, &quot;y2&quot;, &quot;y3&quot;))</code></pre>
-<p><img src="2018-03-09-mcsim-under-r-windows_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<p><img src="/post/2018-03-09-mcsim-under-r-windows_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
 </div>
 </div>
 <div id="compile-the-mcsim-model-file-and-solve-by-mcsim" class="section level1">
@@ -168,31 +190,24 @@ Simulation {
 }
 
 End.</code></pre>
-<p>The following step compile the <code>simple.model</code> file and create the executable program named <code>mcsim.simple</code></p>
-<pre class="r"><code># Script for compiling and running (with MCSim) a model written in GNU MCSim
-# The &quot;mod.exe&quot; utility must be available. If not, use the building_mod.R
-# script to create it
-
-# set the name of your model
+<p>The following step compile the <code>simple.model</code> file and create the executable program named <code>mcsim.simple.model.exe</code>.</p>
+<pre class="r"><code># set the name of your model
 mName = &quot;simple.model&quot;
 
-# Your model executable can be linked with the GNU Scientific Library
-# (GSL, recommended). If you have GSL installed the directives
-# &#39;#define HAVE_LIBGSL 1&#39; and &#39;#define HAVE_LIBGSLCBLAS 1&#39; should
-# appear in the config.h file, in the directory above this one. If it
-# does not, put them in, alone at the beginning of a line.  If you do
-# NOT have libGSL, those directives should NOT appear in that file. If
-# they do, delete them.
+# Your model executable can be linked with the GNU Scientific Library (GSL, recommended). 
+# If you have GSL installed the directives &#39;#define HAVE_LIBGSL 1&#39; and &#39;#define HAVE_LIBGSLCBLAS 1&#39; should appear in the config.h file, in the directory above this one.
+# If it does not, put them in, alone at the beginning of a line.  
+# If you do NOT have libGSL, those directives should NOT appear in that file. 
+# If they do, delete them.
 
-libGSL = &quot;&quot;
-# libGSL = &quot;-lgsl -lgslcblas&quot; # uncomment and execute if you have the GNU Scientific Library
+libGSL = &quot;&quot; # libGSL = &quot;-lgsl -lgslcblas&quot; 
+# uncomment and execute if you have the GNU Scientific Library
 
 
-system(paste(&quot;./mod/mod.exe &quot;, mName, &quot; &quot;, mName, &quot;.c&quot;, sep = &quot;&quot;)) # Unlike above exercice, you need to remove the -R flag that can only create c file.
-
-# compile the &quot;simple.model.c&quot; to &quot;mcsim.simple.model.exe&quot;
-# copy the &quot;sim&quot; file in MCSim folder and put in your working directory. Also copy the `config.h` file and put in the &quot;sim&quot; folder
-system(paste(&quot;gcc -O3 -I.. -I./sim -o mcsim_&quot;, mName, &quot;.exe &quot;, mName, &quot;.c ./sim/*.c -lm &quot;, libGSL, sep = &quot;&quot;))
+system(paste(&quot;./mod/mod.exe &quot;, mName, &quot; &quot;, mName, &quot;.c&quot;, sep = &quot;&quot;)) 
+# Unlike above exercice, you need to remove the -R flag that can only create c file.</code></pre>
+<p>Compile the “simple.model.c” to “mcsim.simple.model.exe”. Copy the “sim” file in MCSim folder and put in your working directory. Also copy the <code>config.h</code> file and put in the “sim” folder.</p>
+<pre class="r"><code>system(paste(&quot;gcc -O3 -I.. -I./sim -o mcsim_&quot;, mName, &quot;.exe &quot;, mName, &quot;.c ./sim/*.c -lm &quot;, libGSL, sep = &quot;&quot;))
 
 # run the simulation input file
 # put its name here
@@ -218,6 +233,6 @@ lo = layout(t(matrix(1:4, ncol = 2)), respect = TRUE)
 plot(out.3[,1], out.3[,2], log=&quot;x&quot;,type=&quot;b&quot;, xlab = &quot;time&quot;, ylab = &quot;&quot;, main = &quot;y1&quot;)
 plot(out.3[,1], out.3[,3], log=&quot;x&quot;,type=&quot;b&quot;, xlab = &quot;time&quot;, ylab = &quot;&quot;, main = &quot;y2&quot;)
 plot(out.3[,1], out.3[,4], log=&quot;x&quot;,type=&quot;b&quot;, xlab = &quot;time&quot;, ylab = &quot;&quot;, main = &quot;y3&quot;)</code></pre>
-<p><img src="2018-03-09-mcsim-under-r-windows_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="/post/2018-03-09-mcsim-under-r-windows_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 </div>
 </div>

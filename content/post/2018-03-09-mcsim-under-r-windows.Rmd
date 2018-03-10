@@ -35,18 +35,18 @@ If you have installed `devtools` you can use `devtools::find_rtools()` to check 
 [1] "c:\\Rtools\\bin;c:\\Rtools\\mingw_32\\bin;c:\\Rtools\\gcc-4.6.3\\bin
 ```
 
-you need to add the Rtools to your path manually, as follow
+You will need to add the Rtools to your path manually, as follow
 
 ```
 Sys.setenv(PATH = paste("c:\\Rtools\\bin", Sys.getenv("PATH"), sep=";"))
 Sys.setenv(PATH = paste("c:\\Rtools\\mingw_$(WIN)/bin", Sys.getenv("PATH"), sep=";"))
-Sys.setenv(BINPREF = "c:\\Rtools\\mingw_32/bin/")
+Sys.setenv(BINPREF = "c:\\Rtools\\mingw_64/bin/")
 
 ```
 
-then, use `system('g++ -v')` to check the function.
+Then, use `system('g++ -v')` to check the function.
 
-If you use git as version control, you can put following files to ".gitignore".
+If you use git as version control, you can put following files to `.gitignore`.
 
 ```
 *.o
@@ -102,9 +102,11 @@ Make sure that the `simple.model` and `mod` folder is put in the working directo
 {{% /alert %}}
 
 ```{R, warning=FALSE}
-libSBML = "" # libSBML = "-lsbml" # uncomment and execute if you have and want to use libSBML.
+libSBML = "" # libSBML = "-lsbml" 
+# uncomment and execute if you have and want to use libSBML.
 
-system(paste("gcc -o ./mod/mod.exe ./mod/*.c ", libSBML, sep = "")) # create mod.exe in "mod" folder
+# create mod.exe in "mod" folder
+system(paste("gcc -o ./mod/mod.exe ./mod/*.c ", libSBML, sep = "")) 
 
 ```
 
@@ -112,7 +114,9 @@ Use model file to check it works.
 
 ```{R}
 mName <- "simple.model"
-system(paste("./mod/mod.exe -R ", mName, " ", mName, ".c", sep = "")) # compile the model file to c file
+
+# compile the model file to c file
+system(paste("./mod/mod.exe -R ", mName, " ", mName, ".c", sep = "")) 
 ```
 
 If everything is going well, we can move on to next section.
@@ -125,7 +129,7 @@ If everything is going well, we can move on to next section.
 library(deSolve)
 
 # Create .c file and use -R to generate "simple.model_inits.R" initialization file
-system(paste("./mod/mod.exe -R ", mName, " ", mName, ".c", sep = "")) # create .c and .R file
+system(paste("./mod/mod.exe -R ", mName, " ", mName, ".c", sep = "")) 
 # compile the MCSim executable, needs to be done each time you modify the model
 
 system (paste("R CMD SHLIB ", mName, ".c", sep = "")) # create .o and .so files
@@ -136,7 +140,7 @@ parms_init <- initParms () # define parameter values
 Y_init <- initStates (parms) # define initial state values
 
 # set output times, time 0 must be given
-times <- c(0, 0.4*10^(0:11)) # This setting is same as section 1
+times <- c(0, 0.4*10^(0:11))
 
 out.2.1 <- ode(Y_init, times, func = "derivs", parms = parms_init, 
                jacfunc = "jac", dllname = "simple.model", 
@@ -211,33 +215,30 @@ Simulation {
 
 End.
 ```
-The following step compile the `simple.model` file and create the executable program named `mcsim.simple`
+The following step compile the `simple.model` file and create the executable program named `mcsim.simple.model.exe`. 
 
 ```{R, warning=FALSE}
-
-# Script for compiling and running (with MCSim) a model written in GNU MCSim
-# The "mod.exe" utility must be available. If not, use the building_mod.R
-# script to create it
 
 # set the name of your model
 mName = "simple.model"
 
-# Your model executable can be linked with the GNU Scientific Library
-# (GSL, recommended). If you have GSL installed the directives
-# '#define HAVE_LIBGSL 1' and '#define HAVE_LIBGSLCBLAS 1' should
-# appear in the config.h file, in the directory above this one. If it
-# does not, put them in, alone at the beginning of a line.  If you do
-# NOT have libGSL, those directives should NOT appear in that file. If
-# they do, delete them.
+# Your model executable can be linked with the GNU Scientific Library (GSL, recommended). 
+# If you have GSL installed the directives '#define HAVE_LIBGSL 1' and '#define HAVE_LIBGSLCBLAS 1' should appear in the config.h file, in the directory above this one.
+# If it does not, put them in, alone at the beginning of a line.  
+# If you do NOT have libGSL, those directives should NOT appear in that file. 
+# If they do, delete them.
 
-libGSL = ""
-# libGSL = "-lgsl -lgslcblas" # uncomment and execute if you have the GNU Scientific Library
+libGSL = "" # libGSL = "-lgsl -lgslcblas" 
+# uncomment and execute if you have the GNU Scientific Library
 
 
-system(paste("./mod/mod.exe ", mName, " ", mName, ".c", sep = "")) # Unlike above exercice, you need to remove the -R flag that can only create c file.
+system(paste("./mod/mod.exe ", mName, " ", mName, ".c", sep = "")) 
+# Unlike above exercice, you need to remove the -R flag that can only create c file.
+```
 
-# compile the "simple.model.c" to "mcsim.simple.model.exe"
-# copy the "sim" file in MCSim folder and put in your working directory. Also copy the `config.h` file and put in the "sim" folder
+Compile the "simple.model.c" to "mcsim.simple.model.exe". Copy the "sim" file in MCSim folder and put in your working directory. Also copy the `config.h` file and put in the "sim" folder.
+
+```{R, warning=FALSE}
 system(paste("gcc -O3 -I.. -I./sim -o mcsim_", mName, ".exe ", mName, ".c ./sim/*.c -lm ", libGSL, sep = ""))
 
 # run the simulation input file
