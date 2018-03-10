@@ -33,7 +33,7 @@ output:
 <li>MCSim</li>
 </ul>
 <p>This exercise was sourced from the file <a href="https://www.gnu.org/software/mcsim/mcsim_under_R.zip"><strong>MCSim under R</strong></a> in <a href="https://www.gnu.org/software/mcsim/"><strong>GNU MCSim</strong></a>. The testing operation system is Windows 7 with MCSim v5.6.6 and R v3.4.0 installed.</p>
-<p>{{% alert warning %}} Be sure you’re in the right place. Check <code>.Platform$OS.type == &quot;windows&quot;</code> first! {{% /alert %}}</p>
+<p>{{% alert warning %}} Be sure you’re in the right place. Check <code>.Platform$OS.type == &quot;windows&quot;</code> first! Linux or MacOS user can read <a href="https://nanhung.rbind.io/post/mcsim-under-r-unix/"><strong>this instruction</strong></a>. {{% /alert %}}</p>
 <p>If you have installed <code>devtools</code> you can use <code>devtools::find_rtools()</code> to check the avaliable of Rtools. Also, we need to chek the Rtools is in the PATH by using <code>Sys.getenv(&quot;PATH&quot;)</code>. If you can not find the Rtools in the your PATH such as</p>
 <pre><code>[1] &quot;c:\\Rtools\\bin;c:\\Rtools\\mingw_32\\bin;c:\\Rtools\\gcc-4.6.3\\bin</code></pre>
 <p>You will need to add the Rtools to your path manually, as follow</p>

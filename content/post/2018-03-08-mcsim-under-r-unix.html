@@ -33,7 +33,7 @@ output:
 <li>MCSim</li>
 </ul>
 <p>This exercise was sourced from the file <a href="https://www.gnu.org/software/mcsim/mcsim_under_R.zip"><strong>MCSim under R</strong></a> in <a href="https://www.gnu.org/software/mcsim/"><strong>GNU MCSim</strong></a>. The testing operation system is <a href="https://lubuntu.net/"><strong>Lubuntu v17.10</strong></a> with MCSim v5.6.6 and R v3.4.0 installed.</p>
-<p>{{% alert warning %}} Be sure you’re in the right place. Check <code>.Platform$OS.type == &quot;unix&quot;</code> first! {{% /alert %}}</p>
+<p>{{% alert warning %}} Be sure you’re in the right place. Check <code>.Platform$OS.type == &quot;unix&quot;</code> first! Windows user can read <a href="https://nanhung.rbind.io/post/mcsim-under-r-windows/"><strong>this instruction</strong></a>. {{% /alert %}}</p>
 <p>Also, we can use this method,</p>
 <pre class="r"><code>cat(system(&quot;lsb_release -a&quot;, intern = T), sep = &#39;\n&#39;)</code></pre>
 <pre><code>## Distributor ID:  Ubuntu

@@ -26,7 +26,7 @@ output:
 This exercise was sourced from the file [**MCSim under R**](https://www.gnu.org/software/mcsim/mcsim_under_R.zip) in [**GNU MCSim**](https://www.gnu.org/software/mcsim/). The testing operation system is Windows 7 with MCSim v5.6.6 and R v3.4.0 installed.
 
 {{% alert warning %}}
-Be sure you're in the right place. Check `.Platform$OS.type == "windows"` first!
+Be sure you're in the right place. Check `.Platform$OS.type == "windows"` first! Linux or MacOS user can read [**this instruction**](https://nanhung.rbind.io/post/mcsim-under-r-unix/).
 {{% /alert %}}
 
 If you have installed `devtools` you can use `devtools::find_rtools()` to check the avaliable of Rtools. Also, we need to chek the Rtools is in the PATH by using `Sys.getenv("PATH")`. If you can not find the Rtools in the your PATH such as
