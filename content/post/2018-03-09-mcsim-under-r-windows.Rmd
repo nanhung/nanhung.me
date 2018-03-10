@@ -44,7 +44,11 @@ Sys.setenv(BINPREF = "c:\\Rtools\\mingw_64/bin/")
 
 ```
 
-Then, use `system('g++ -v')` to check the function.
+Then, use following command to check the function.
+
+```{R, warning=FALSE}
+system('g++ -v')
+```
 
 If you use git as version control, you can put following files to `.gitignore`.
 
@@ -57,9 +61,7 @@ If you use git as version control, you can put following files to `.gitignore`.
 
 ## Make mod.exe
 
-The following step can compile the `simple.model` file and create the executable program 
-
-The testing model `simple.model` file looks like this:
+The following step can compile the `simple.model` file and create the executable program. The testing model `simple.model` file looks like this:
 
 ```
 #------------------------------------------------------------------------------
@@ -178,8 +180,6 @@ plot(out.2.2, log="x",type="b", which = c("y1", "y2", "y3"))
 ```
 
 # Compile the MCSim model file and solve by MCSim
-
-## sim
 
 ## Prepare in file
 
