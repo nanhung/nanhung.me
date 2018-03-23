@@ -199,23 +199,24 @@ class: center
 
 .pull-left[
 
-This is **TOP LEFT**
+### TAM Logo Box
 
-<img src="https://brandguide.tamu.edu/downloads/logos/TAM-LogoBox.png" width="40%">
+<img src="https://brandguide.tamu.edu/assets/downloads/logos/TAM-LogoBox.png" width="40%">
 
-This is **BOTTOM LEFT**
+### TAM Logo
 
-<img src="https://brandguide.tamu.edu/downloads/logos/TAM-Logo.png" width="40%">
+<img src="https://brandguide.tamu.edu/assets/downloads/logos/TAM-Logo.png" width="40%">
 ]
 
 .pull-right[
-This is **TOP RIGHT**
 
-<img src="https://brandguide.tamu.edu/downloads/logos/TAM-Logo.png" width="40%">
+### TAM Logo
 
-This is **BOTTOM RIGHT**
+<img src="https://brandguide.tamu.edu/assets/downloads/logos/TAM-Logo.png" width="40%">
 
-<img src="https://brandguide.tamu.edu/downloads/logos/TAM-LogoBox.png" width="40%">
+### TAM Logo Box
+
+<img src="https://brandguide.tamu.edu/assets/downloads/logos/TAM-LogoBox.png" width="40%">
 ]
 
 ---
