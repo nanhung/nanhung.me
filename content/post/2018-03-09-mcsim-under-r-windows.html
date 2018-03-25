@@ -85,11 +85,14 @@ Roots { # here we need inlining, otherwise &#39;gout&#39; will not be understood
 
 End.</code></pre>
 <p>{{% alert warning %}} Make sure that the <code>simple.model</code> and <code>mod</code> folder is put in the working directory! {{% /alert %}}</p>
+<p><strong>NOTE:</strong> In this case, we don't need to load libSBML. Therefore, check the <code>config.h</code> file in mod folder. We can see the line 26 in the config.h file like <a href="https://github.com/rbind/nanhung.me/blob/master/content/post/mod/config.h"><strong>THIS</strong></a>. 
+The <code>#define HAVE_LIBSBML 1 */</code> had been disabled due to there is the <code>/*</code> at the start of this line. It can prevent the problem when compile to the mod.exe file. (Thanks <strong>Yu-Sheng Lin</strong> for provding this issue; Mar. 23, 2018).</p>
 <pre class="r"><code>libSBML = &quot;&quot; # libSBML = &quot;-lsbml&quot; 
 # uncomment and execute if you have and want to use libSBML.
 
 # create mod.exe in &quot;mod&quot; folder
 system(paste(&quot;gcc -o ./mod/mod.exe ./mod/*.c &quot;, libSBML, sep = &quot;&quot;)) </code></pre>
+
 <p>Use model file to check it works.</p>
 <pre class="r"><code>mName &lt;- &quot;simple.model&quot;
 
