@@ -1,21 +1,3 @@
----
-title: MCSim under R (Windows)
-summary: The exercise of use GNU MCsim under R in Windows system 
-author: Nan-Hung Hsieh
-date: '2018-03-09'
-slug: mcsim-under-r-windows
-categories: []
-tags:
-  - mcsim
-  - R
-  - windows
-output:
-  blogdown::html_page:
-    toc: true
-    number_sections: true
-    toc_depth: 1  
----
-
 
 <div id="TOC">
 <ul>
@@ -86,9 +68,9 @@ Roots { # here we need inlining, otherwise &#39;gout&#39; will not be understood
 End.</code></pre>
 <p>{{% alert warning %}} Make sure that the <code>simple.model</code> and <code>mod</code> folder is put in the working directory! {{% /alert %}}</p>
 <pre class="r"><code>libSBML = &quot;&quot; # libSBML = &quot;-lsbml&quot; 
-# uncomment and execute if you have and want to use libSBML.
-
-# create mod.exe in &quot;mod&quot; folder
+# uncomment and execute if you have and want to use libSBML.</code></pre>
+<p>In this case, we don’t need to load libSBML. Therefore, check the <code>config.h</code> file in mod folder. We can see the line 26 in the config.h file like <a href="https://github.com/rbind/nanhung.me/blob/master/content/post/mod/config.h">THIS</a>. The <code>#define HAVE_LIBSBML 1 */</code> had been disabled due to there is the “/*&quot; at the start of this line. It can prevent the problem when compile to the mod.exe file. (Thanks <strong>Yu-Sheng Lin</strong> for provding this issue; Mar. 23, 2018).</p>
+<pre class="r"><code># create mod.exe in &quot;mod&quot; folder
 system(paste(&quot;gcc -o ./mod/mod.exe ./mod/*.c &quot;, libSBML, sep = &quot;&quot;)) </code></pre>
 <p>Use model file to check it works.</p>
 <pre class="r"><code>mName &lt;- &quot;simple.model&quot;
@@ -122,7 +104,7 @@ out.2.1 &lt;- ode(Y_init, times, func = &quot;derivs&quot;, parms = parms_init,
                initfunc = &quot;initmod&quot;, nout = 1, outnames = &quot;Sum&quot;)
 
 plot(out.2.1, log=&quot;x&quot;,type=&quot;b&quot;)</code></pre>
-<p><img src="/post/2018-03-09-mcsim-under-r-windows_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="2018-03-09-mcsim-under-r-windows_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>{{% alert note %}} We can’t find any change in the dynamic process. It is due to the all initial value equal to 0.<br />
 {{% /alert %}}</p>
 </div>
@@ -148,10 +130,10 @@ head(out.2.2)</code></pre>
 ## [6,] 4e+03 0.1831994 8.942298e-07 0.81679972   1</code></pre>
 <pre class="r"><code># Plotting
 plot(out.2.2, log=&quot;x&quot;,type=&quot;b&quot;)</code></pre>
-<p><img src="/post/2018-03-09-mcsim-under-r-windows_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="2018-03-09-mcsim-under-r-windows_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <pre class="r"><code># Use &quot;which&quot; to select specific variables
 plot(out.2.2, log=&quot;x&quot;,type=&quot;b&quot;, which = c(&quot;y1&quot;, &quot;y2&quot;, &quot;y3&quot;))</code></pre>
-<p><img src="/post/2018-03-09-mcsim-under-r-windows_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
+<p><img src="2018-03-09-mcsim-under-r-windows_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
 </div>
 </div>
 <div id="compile-the-mcsim-model-file-and-solve-by-mcsim" class="section level1">
@@ -230,6 +212,6 @@ lo = layout(t(matrix(1:4, ncol = 2)), respect = TRUE)
 plot(out.3[,1], out.3[,2], log=&quot;x&quot;,type=&quot;b&quot;, xlab = &quot;time&quot;, ylab = &quot;&quot;, main = &quot;y1&quot;)
 plot(out.3[,1], out.3[,3], log=&quot;x&quot;,type=&quot;b&quot;, xlab = &quot;time&quot;, ylab = &quot;&quot;, main = &quot;y2&quot;)
 plot(out.3[,1], out.3[,4], log=&quot;x&quot;,type=&quot;b&quot;, xlab = &quot;time&quot;, ylab = &quot;&quot;, main = &quot;y3&quot;)</code></pre>
-<p><img src="/post/2018-03-09-mcsim-under-r-windows_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="2018-03-09-mcsim-under-r-windows_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
 </div>
