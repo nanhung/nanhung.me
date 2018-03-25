@@ -109,7 +109,7 @@ libSBML = "" # libSBML = "-lsbml"
 ```
 
 In this case, we don't need to load libSBML. Therefore, check the `config.h` file in mod folder. We can see the line 26 in the config.h file like [THIS](https://github.com/rbind/nanhung.me/blob/master/content/post/mod/config.h ). The `#define HAVE_LIBSBML 1 */` had been disabled due to there is the "/*" at the start of this line. It can prevent the problem when compile to the mod.exe file. 
-(Thanks **Yu-Sheng Lin** for provding this issue).
+(Thanks **Yu-Sheng Lin** for provding this issue; Mar. 23, 2018).
 
 
 ```{R, warning=FALSE}
