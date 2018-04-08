@@ -40,3 +40,13 @@ table {
   border-top: 1px solid #666;
   border-bottom: 1px solid #666;
 }
+
+.shrink {
+  margin: auto;
+  width: 90%;
+}
+
+.enlarge{
+  margin: auto;
+  width: 110%;
+}
