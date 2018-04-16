@@ -131,14 +131,14 @@ out1 <- dede(Y, times, func="derivs", parms=parms, dllname="perc_delay",
 ```
 
 ## Setting 2: with constant dose
-Here, we assume the backgroud exposure dose = 1.
+Here, we assume the backgroud exposure dose = **1 mg**.
 
 {{% alert note %}}
 Noted, the unit of background dose is not ppm but mg. 
 {{% /alert %}}
 
 Therefore, we neet to do the unit transfer by using alveolar ventilation rate (Flow_alv), which is equal to 0.7 * total pulmonary flow (Flow_pul) 
-Hence, the total pulmonary flow (Flow_pul) is = 8 l/min. The Flow_alv = 8 * 0.7 = 5.6 l/min. The conversions of ppm and mg/l is 1 ppm = 0.006778 mg/l.
+Hence, the total pulmonary flow (Flow_pul) is = 8 l/min. The Flow_alv = 8 \* 0.7 = **5.6 l/min**. We also need the conversions of ppm and mg/l is 1 ppm = **0.006778 mg/l**.
 
 ```{R}
 mag2 <- 1 * 0.006778 * 5.6 
@@ -173,11 +173,11 @@ out2[,"Q_tot"][stop_point] / (240 * 5.6 * 0.006778)
 Plot and compare the simulation result
 
 ```{R}
-par(mfrow = c(3,5), mar = c(4,3,3,2))
+par(mfrow = c(3,5), mar = c(4,2,3,1))
 for(i in 2:ncol(out1)){
   plot(out2[,1], out2[,i], type="l", xlab = "Time", ylab="" , 
        col = 2, main = names(out1[3,i])) 
-  lines(out1[,1], out1[,i], type="l", col =3, lty = 2)
+  lines(out1[,1], out1[,i], type="l", col =3)
 }
 ```
 

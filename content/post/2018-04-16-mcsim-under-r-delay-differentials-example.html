@@ -131,9 +131,9 @@ out1 &lt;- dede(Y, times, func=&quot;derivs&quot;, parms=parms, dllname=&quot;pe
 </div>
 <div id="setting-2-with-constant-dose" class="section level2">
 <h2><span class="header-section-number">4.2</span> Setting 2: with constant dose</h2>
-<p>Here, we assume the backgroud exposure dose = 1.</p>
+<p>Here, we assume the backgroud exposure dose = <strong>1 mg</strong>.</p>
 <p>{{% alert note %}} Noted, the unit of background dose is not ppm but mg. {{% /alert %}}</p>
-<p>Therefore, we neet to do the unit transfer by using alveolar ventilation rate (Flow_alv), which is equal to 0.7 * total pulmonary flow (Flow_pul) Hence, the total pulmonary flow (Flow_pul) is = 8 l/min. The Flow_alv = 8 * 0.7 = 5.6 l/min. The conversions of ppm and mg/l is 1 ppm = 0.006778 mg/l.</p>
+<p>Therefore, we neet to do the unit transfer by using alveolar ventilation rate (Flow_alv), which is equal to 0.7 * total pulmonary flow (Flow_pul) Hence, the total pulmonary flow (Flow_pul) is = 8 l/min. The Flow_alv = 8 * 0.7 = <strong>5.6 l/min</strong>. We also need the conversions of ppm and mg/l is 1 ppm = <strong>0.006778 mg/l</strong>.</p>
 <pre class="r"><code>mag2 &lt;- 1 * 0.006778 * 5.6 
 ConstDose2 &lt;- rbind(c(min(times), mag2), c(max(times) + 1, 0))
 Forcings2 &lt;- list(PerDose, ConstDose2)
@@ -155,11 +155,11 @@ out2 &lt;- dede(Y, times, func=&quot;derivs&quot;, parms=parms, dllname=&quot;pe
 <div id="visualization" class="section level1">
 <h1><span class="header-section-number">5</span> Visualization</h1>
 <p>Plot and compare the simulation result</p>
-<pre class="r"><code>par(mfrow = c(3,5), mar = c(4,3,3,2))
+<pre class="r"><code>par(mfrow = c(3,5), mar = c(4,2,3,1))
 for(i in 2:ncol(out1)){
   plot(out2[,1], out2[,i], type=&quot;l&quot;, xlab = &quot;Time&quot;, ylab=&quot;&quot; , 
        col = 2, main = names(out1[3,i])) 
-  lines(out1[,1], out1[,i], type=&quot;l&quot;, col =3, lty = 2)
+  lines(out1[,1], out1[,i], type=&quot;l&quot;, col =3)
 }</code></pre>
 <p><img src="/post/2018-04-16-mcsim-under-r-delay-differentials-example_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p>The green dashed line is periodic exposure without constant exposure. The red solid line is periodic exposure with constant exposure. The simulation of delay output can obtain in <strong>old_Q_liv</strong>, <strong>Q_met</strong> and <strong>Pct_metabolized</strong>.</p>
