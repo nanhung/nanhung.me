@@ -159,7 +159,7 @@ out2 &lt;- dede(Y, times, func=&quot;derivs&quot;, parms=parms, dllname=&quot;pe
 for(i in 2:ncol(out1)){
   plot(out2[,1], out2[,i], type=&quot;l&quot;, xlab = &quot;Time&quot;, ylab=&quot;&quot; , 
        col = 2, main = names(out1[3,i])) 
-  lines(out1[,1], out1[,i], type=&quot;l&quot;, col =3)
+  lines(out1[,1], out1[,i], type = &quot;l&quot;, col = 3, lty = 2)
 }</code></pre>
 <p><img src="/post/2018-04-16-mcsim-under-r-delay-differentials-example_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p>The green dashed line is periodic exposure without constant exposure. The red solid line is periodic exposure with constant exposure. The simulation of delay output can obtain in <strong>old_Q_liv</strong>, <strong>Q_met</strong> and <strong>Pct_metabolized</strong>.</p>
