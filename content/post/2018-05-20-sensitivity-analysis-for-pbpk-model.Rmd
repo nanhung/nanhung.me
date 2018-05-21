@@ -10,26 +10,34 @@ tags:
   - sensitivity
   - R
   - ODE
-  - desolve
+  - deSolve
   - PBPK
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+    toc_depth: 1  
 ---
 
-In my previous post, I used python [**SALib**](https://nanhung.rbind.io/post/sensitivity-analysis-by-python-salib/) to conduct the sensitivity analysis for the simple example (Sobol model). Now, I want to take the more complicated case to understand how to apply sensitivity analysis in a dynamic model. Let's get started! 
+# Intro
+
+In my previous post, I used python [**SALib**](https://nanhung.rbind.io/post/sensitivity-analysis-by-python-salib/) to conduct the sensitivity analysis for the simple example (Sobol model). Now, I want to take the more complicated case to understand how to apply sensitivity analysis in a dynamic model. 
 
 I found an excellent example of the dynamic model, the physiological-based pharmacokinetic (PBPK) model provided from the book [*In silico Methods for Predicting Drug Toxicity*](https://www.springer.com/la/book/9781493936076) (chapter 3). This model was used to simulate the time-course of the concentration for the 1, 3-Butadiene in human body fluids and organs. The authors also provided the R source code to conduct the reproducible PBPK modeling.
 
-I think this is an opportunity to apply the sensitivity analysis for this model. Therefore, I choose the elementary effect-based Morris screening method ([**Morris 1991**](https://www.tandfonline.com/doi/abs/10.1080/00401706.1991.10484804)), which is also the advance local sensitivity analysis that change one-factor-at-a-time (OAT) to investigate the parameter impact on the model output. 
+I think this is an opportunity to apply the sensitivity analysis for this model. Therefore, I choose the elementary effect-based Morris screening method ([**Morris, 1991**](https://www.tandfonline.com/doi/abs/10.1080/00401706.1991.10484804)), which is also the advance local sensitivity analysis that change one-factor-at-a-time (OAT) to investigate the parameter impact on the model output. 
 
-Compare with variance-based sensitivity analysis, the Morris method has high computing stable (lower computational cost) and only need few sample number (lower computational resource) to reach the convergence. However, there are some disadvantages for the local method, e.g., the percentage of the output variation cannot be quantified. Due to this PBPK case study is running in the pure R with the deSolve package. To have better computational performance, I think the Morris method is the best candidate.
-
-The Morris method is an extension of the traditional OAT process, but over multiple points in the multi-dimensional parameter spaces as to provide global converge. For each parameter, the Morris approach can calculate the mean OAT sensitivities $\mu$ and its standard deviation $\sigma$, which represent the overall influence and the interacts/non-linear effects on the model output, respectively. 
+The Morris method is an extension of the traditional OAT process that provide global converge over multiple points in the multi-dimensional parameter spaces. For each parameter, the Morris approach can calculate the mean OAT sensitivities $\mu$ and its standard deviation $\sigma$, which represent the overall influence and the interacts/non-linear effects on the model output, respectively. 
 
 An improved elementary effect method was developed by [**Campolongo et al. (2007)**](https://dl.acm.org/citation.cfm?id=1238207). They improved both the reliability of the sensitivity measures (adding the mean absolute value of the OAT sensitives, denoted $\mu^*$) as well as the efficiency of the sampling strategy (generating a large number of proposed sampling trajectories and selecting a subset with the highest diversion across parameter space).
 
+Compare with variance-based sensitivity analysis, the Morris method has high computing stable (lower computational cost) and only need few sample number (lower computational resource) to reach the convergence. However, there are some disadvantages for the local method, e.g., the percentage of the output variation cannot be quantified. 
+
+Due to this PBPK case study is running in the pure R with the deSolve package. To have better computational performance, I think the Morris method is the best candidate. Let's get started! 
 
 # PBPK modeling
 
-Define and initialize the state variables. The used PBPK model was constructed from three tissue compartment (fat, well-perfused, and poorly-perfused tissues)
+First,, we need to define and initialize the state variables. The used PBPK model was constructed from three tissue compartment (fat, well-perfused, and poorly-perfused tissues).
 ```{r}
 y <- c("Q_fat" = 0, # Quantity of butadiene in fat (mg)
        "Q_wp" = 0, # ~ in well-perfused (mg)
@@ -38,7 +46,8 @@ y <- c("Q_fat" = 0, # Quantity of butadiene in fat (mg)
 ```       
    
 
-Define the model parameters (Volumes: liter, Time: minute, Flows: liter / minute)
+## Define the model parameters
+In this PBPK model the unit of volumes is liter, the unit of time is minute, and the unit of flows is liter per minute.
 ```{r}
 parameters <- c("BDM" = 73, # Body mass (kg)
                "Height" = 1.6, # Body height (m)
@@ -57,7 +66,8 @@ parameters <- c("BDM" = 73, # Body mass (kg)
                "Kmetwp" = 0.25) # Rate constant for metabolism
 ```
        
-Define the exposure function. I set the periodic exposure (8-hour exposure per day) in a week.
+## Define the exposure function.
+I set the periodic exposure (8-hour exposure per day) in a week.
 ```{r}
 min_per_week <- 60 * 24 * 7 
 
@@ -72,7 +82,7 @@ plot(C_inh(1:min_per_week), xlab = "Time (min)",
      ylab = "Butadiene air concentration (ppm)", type = "l")
 ```
 
-Define the PBPK model
+## Define the PBPK model
 ```{r}
 # Define the model equations
 bd.model = function(t, y, parameters) {
@@ -153,7 +163,7 @@ times <- seq(from = 0, to = min_per_week, by = 10) # A week
 results <- ode(times = times, func = bd.model, y = y, parms = parameters)
 ```
 
-Plot the results of the simulation
+Plot the model simulation results
 ```{r}
 plot(results, col="red")
 ```
@@ -166,7 +176,8 @@ Firstly, we use the Morris method which was provided from `sensitivity` package.
 library(sensitivity)
 ```
 
-Define the testing parameters. Twelve parameters were used in this test.
+## Define the testing parameters
+Twelve parameters were used in this test.
 ```{r}
 factors <- c("BDM", "Flow_pul", "Pct_Deadspace", "Vent_Perf", 
              "Pct_LBDM_wp", "Pct_Flow_fat", "Pct_Flow_pp", 
@@ -174,7 +185,7 @@ factors <- c("BDM", "Flow_pul", "Pct_Deadspace", "Vent_Perf",
              "Kmetwp")
 ```
 
-
+## Parameter uncertainty
 Then, we need to set up the uncertainty for each parameter. Here we set the 10% variation in the testing parameters.
 
 ```{r}
@@ -208,7 +219,7 @@ bsup <- c(parameters["BDM"]*UL,
           parameters["Kmetwp"]*UL)
 ```
 
-To check the convergence of the sensitivity index, we can set up the sequence of the sampling number. After that, we can apply the for-loop to do the morris sensitivity analysis and link with numerical analysis with deSolve::ode function. In this case, I examine the parameter sensitivity under the exposure time at 8-hour (stop point of the first exposure) and investigate the parameter sensitivity. Also, we only focused on the parameter effect on venous blood concentration.
+To check the convergence of the sensitivity index, we can set up the sequence of the sampling number. After that, we can apply the for-loop to do the morris sensitivity analysis and link with numerical analysis from `deSolve::ode` function. In this case, I examine the parameter sensitivity under the exposure time at 8-hour (stop point of the first exposure) and investigate the parameter sensitivity. Also, we only focused on the parameter effect on venous blood concentration.
 
 
 ```{r}
@@ -283,11 +294,10 @@ for (i in 1:length(sample)) {
 
 ```
 
-
 ## Number of repetitions and parameter sensitivity
-Through this plot, we can examine the variation and converge of the parameter. It seems that each sensitivity index of the parameter was stable across all sampling number. Also, we can find the fraction of pulmonary dead space is the most influential parameter.
+Through this plot, we can examine the variation and converge of the parameter. It seems that each sensitivity index of the parameter was stable across all sampling number. Also, we can find the fraction of pulmonary dead space `Pct_Deadspace` is the most influential parameter.
 
-```{r, fig.height=6, fig.width=9}
+```{r, warning=FALSE, fig.height=6, fig.width=9}
 # Manipulate the output result for plotting
 row.names(X) <- sample
 meltX <- reshape::melt(X)
@@ -316,12 +326,12 @@ abline(0,0.5, lty = 2) # monotonic
 abline(0,0.1, lty = 3) # almost linear
 legend("bottomright", legend = c("non-linear and/or non-monotonic",
                                  "monotonic",
-                                 "almost linear"), lty = c(1:3))
+                                 "linear"), lty = c(1:3))
 ```
 
-# Parameter variation and model output
+## Parameter variation and model output
 
-To investigate the parameter effect on the PBPK model outputs, we used the following visualization methods for all parameters and most influential parameter (Pct_Deadspace) and less influential parameter (PC_pp).   
+To investigate the parameter effect on the PBPK model outputs, we used the following visualization methods for all parameters and most influential parameter `Pct_Deadspace` and less influential parameter `PC_pp`.   
 
 For all parameters
 ```{r,fig.height=6}
@@ -332,9 +342,7 @@ for (i in 1:12){
 
 ```
 
-
-
-For most influential parameter (Pct_Deadspace)
+For most influential parameter `Pct_Deadspace`
 ```{r, warning=FALSE}
 library(ggplot2)
 library(plyr)
@@ -350,7 +358,7 @@ ggplot(sensiX, aes(x=Predict.conc, color=as.factor(Pct_Deadspace))) +
   theme_minimal()
 ```  
 
-For less influential parameter (PC_pp)
+For less influential parameter `PC_pp`
 ```{r}
 insensiX <- data.frame(x$X[,"PC_pp"], x$y)
 names(insensiX) <- c("PC_pp", "Predict.conc")
@@ -363,4 +371,4 @@ ggplot(insensiX, aes(x=Predict.conc, color=as.factor(PC_pp))) +
   theme_minimal()
 ```
 
-Through this method, we can quickly check the parameter sensitivity in PBPK model and check the parameter effects on model output. However, this is just the simple test case. To do the "complete" sensitivity analysis, we still need to find the reasonable parameter uncertainty and its range. However, this step-by-step method can provide the essential information for beginners to apply the sensitivity in the dynamic model.  
+Through this method, we can quickly check the parameter sensitivity in PBPK model and compare the parameter effects on model output. However, this is just the simple test case. To do the "complete" sensitivity analysis, we still need to find the reasonable parameter uncertainty and its range (the sensitivity may change if we revise the range of parameter uncertainty). However, this step-by-step method can provide the essential information for beginners to apply the sensitivity in the dynamic model. Also, the parameter sensitivity might change with time. It would be better to investigate the time-varying sensitivity index in the factor prioritization.
