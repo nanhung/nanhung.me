@@ -11,7 +11,7 @@ weight = 5
 [interests]
   interests = [
     "[**System Dynamics**](https://en.wikipedia.org/wiki/System_dynamics)",
-    "[**Pharmacometrics**](https://en.wikipedia.org/wiki/Pharmacometrics)",
+    "[**Sensitivity Analysis**](https://en.wikipedia.org/wiki/Sensitivity_analysis)",
     "[**Bayesian Statistics**](https://en.wikipedia.org/wiki/Bayesian_statistics)",
     "[**R**](https://www.r-project.org/)",
     "[**GNU MCSim**](https://www.gnu.org/software/mcsim/)"
