@@ -32,14 +32,10 @@ output:
 <li>R Studio (optional)</li>
 <li>MCSim</li>
 </ul>
-<p>This exercise was sourced from the file <a href="https://www.gnu.org/software/mcsim/mcsim_under_R.zip"><strong>MCSim under R</strong></a> in <a href="https://www.gnu.org/software/mcsim/"><strong>GNU MCSim</strong></a>. The testing operation system is <a href="https://lubuntu.net/"><strong>Lubuntu v17.10</strong></a> with MCSim v5.6.6 and R v3.4.0 installed.</p>
+<p>This exercise was sourced from the file <a href="https://www.gnu.org/software/mcsim/mcsim_under_R.zip"><strong>MCSim under R</strong></a> in <a href="https://www.gnu.org/software/mcsim/"><strong>GNU MCSim</strong></a>. The testing operation system is <a href="https://lubuntu.net/"><strong>Lubuntu v17.10</strong></a> with MCSim v5.6.6 and R v3.4.0 installed. <span class="math inline">\(\mu\)</span></p>
 <p>{{% alert warning %}} Be sure you’re in the right place. Check <code>.Platform$OS.type == &quot;unix&quot;</code> first! Windows user can read <a href="https://nanhung.rbind.io/post/mcsim-under-r-windows/"><strong>this instruction</strong></a>. {{% /alert %}}</p>
 <p>Also, we can use this method,</p>
-<pre class="r"><code>cat(system(&quot;lsb_release -a&quot;, intern = T), sep = &#39;\n&#39;)</code></pre>
-<pre><code>## Distributor ID:  Ubuntu
-## Description: Ubuntu 17.10
-## Release: 17.10
-## Codename:    artful</code></pre>
+<pre><code>cat(system(&quot;lsb_release -a&quot;, intern = T), sep = &#39;\n&#39;)</code></pre>
 <hr />
 </div>
 <div id="solve-ode-in-pure-r" class="section level1">
@@ -81,7 +77,7 @@ PD &lt;- matrix(nrow = 3, ncol = 3, data = 0)
 out.1 &lt;- ode(Y, times, model, parms = parms, jacfunc = jac)
 
 plot(out.1,type=&quot;b&quot;,log=&quot;x&quot;)</code></pre>
-<p><img src="/post/2018-03-08-mcsim-under-r-unix_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="/post/2018-03-08-mcsim-under-r-unix_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 </div>
 <div id="compile-the-mcsim-model-file-and-solve-by-desolve" class="section level1">
 <h1><span class="header-section-number">2</span> Compile the MCSim model file and solve by deSolve</h1>
@@ -150,7 +146,7 @@ out.2.1 &lt;- ode(Y_init, times, func = &quot;derivs&quot;, parms = parms_init,
                initfunc = &quot;initmod&quot;, nout = 1, outnames = &quot;Sum&quot;)
 
 plot(out.2.1, log=&quot;x&quot;,type=&quot;b&quot;)</code></pre>
-<p><img src="/post/2018-03-08-mcsim-under-r-unix_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="/post/2018-03-08-mcsim-under-r-unix_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>{{% alert note %}} We can’t find any change in the dynamic process. It is due to the all initial value equal to 0.<br />
 {{% /alert %}}</p>
 </div>
@@ -172,10 +168,10 @@ head(out.2.2)</code></pre>
 ## [6,] 4e+03 0.1831994 8.942298e-07 0.81679972   1</code></pre>
 <pre class="r"><code># Plotting
 plot(out.2.2, log=&quot;x&quot;,type=&quot;b&quot;)</code></pre>
-<p><img src="/post/2018-03-08-mcsim-under-r-unix_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="/post/2018-03-08-mcsim-under-r-unix_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <pre class="r"><code># Use &quot;which&quot; to select specific variables
 plot(out.2.2, log=&quot;x&quot;,type=&quot;b&quot;, which = c(&quot;y1&quot;, &quot;y2&quot;, &quot;y3&quot;))</code></pre>
-<p><img src="/post/2018-03-08-mcsim-under-r-unix_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<p><img src="/post/2018-03-08-mcsim-under-r-unix_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
 </div>
 </div>
 <div id="compile-the-mcsim-model-file-and-solve-by-mcsim" class="section level1">
@@ -242,6 +238,6 @@ lo = layout(t(matrix(1:4, ncol = 2)), respect = TRUE)
 plot(out.3[,1], out.3[,2], log=&quot;x&quot;,type=&quot;b&quot;, xlab = &quot;time&quot;, ylab = &quot;&quot;, main = &quot;y1&quot;)
 plot(out.3[,1], out.3[,3], log=&quot;x&quot;,type=&quot;b&quot;, xlab = &quot;time&quot;, ylab = &quot;&quot;, main = &quot;y2&quot;)
 plot(out.3[,1], out.3[,4], log=&quot;x&quot;,type=&quot;b&quot;, xlab = &quot;time&quot;, ylab = &quot;&quot;, main = &quot;y3&quot;)</code></pre>
-<p><img src="/post/2018-03-08-mcsim-under-r-unix_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="/post/2018-03-08-mcsim-under-r-unix_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
 </div>

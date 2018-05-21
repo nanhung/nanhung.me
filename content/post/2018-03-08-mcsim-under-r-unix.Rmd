@@ -22,7 +22,8 @@ output:
 - R Studio (optional)
 - MCSim 
 
-This exercise was sourced from the file [**MCSim under R**](https://www.gnu.org/software/mcsim/mcsim_under_R.zip) in [**GNU MCSim**](https://www.gnu.org/software/mcsim/). The testing operation system is [**Lubuntu v17.10**](https://lubuntu.net/) with MCSim v5.6.6 and R v3.4.0 installed.
+
+This exercise was sourced from the file [**MCSim under R**](https://www.gnu.org/software/mcsim/mcsim_under_R.zip) in [**GNU MCSim**](https://www.gnu.org/software/mcsim/). The testing operation system is [**Lubuntu v17.10**](https://lubuntu.net/) with MCSim v5.6.6 and R v3.4.0 installed. $\mu$
 
 {{% alert warning %}}
 Be sure you're in the right place. Check `.Platform$OS.type == "unix"` first! Windows user can read [**this instruction**](https://nanhung.rbind.io/post/mcsim-under-r-windows/).
@@ -30,7 +31,7 @@ Be sure you're in the right place. Check `.Platform$OS.type == "unix"` first! Wi
 
 Also, we can use this method,
 
-```{R}
+```
 cat(system("lsb_release -a", intern = T), sep = '\n')
 ```
 
