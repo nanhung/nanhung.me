@@ -104,8 +104,8 @@ PerExpo1
 ```
 Here, we can see the setting expoure is start at 0 and 1e10 then stop at 240 and 1e10, respectively.
 
-## Plot periodic exposure
-The periodic exposure can be visualized by following method,  
+## Plot exposure scenario
+The exposure scenario can be visualized by following method,  
 ```{R}
 plot(PerExpo1[1:2,], type = "s", xlim=c(0,maxtime), main = "C_inh", xlab = "Time (min)")
 ```
