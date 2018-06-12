@@ -22,7 +22,7 @@ output:
 <li><a href="#compiling-model"><span class="toc-section-number">1</span> Compiling Model</a></li>
 <li><a href="#define-parameters-and-variables"><span class="toc-section-number">2</span> Define Parameters and Variables</a></li>
 <li><a href="#create-the-exposure-matrix"><span class="toc-section-number">3</span> Create the Exposure Matrix</a></li>
-<li><a href="#build-constant-dose-matrix"><span class="toc-section-number">4</span> Build Constant Dose Matrix</a></li>
+<li><a href="#build-ingestion-dose-matrix"><span class="toc-section-number">4</span> Build Ingestion dose Matrix</a></li>
 <li><a href="#visualization"><span class="toc-section-number">5</span> Visualization</a></li>
 </ul>
 </div>
@@ -67,14 +67,14 @@ Y &lt;- initStates(parms=parms)</code></pre>
 </div>
 <div id="create-the-exposure-matrix" class="section level1">
 <h1><span class="header-section-number">3</span> Create the Exposure Matrix</h1>
-<p>The exposue matrix include two part: <strong>Periodic</strong> and <strong>Constant</strong>. We need to generate the list of exposure by combine these two exposure matricies.</p>
-<div id="build-periodic-exposure" class="section level2">
-<h2><span class="header-section-number">3.1</span> Build periodic exposure</h2>
-<p>We firstly set the periodic exposure scenario by using following step,</p>
+<p>The exposue matrix include two part: <strong>Inhalation</strong> and <strong>Ingestion</strong>. We need to generate the list of exposure by combine these two exposure matricies.</p>
+<div id="build-inhalation-exposure" class="section level2">
+<h2><span class="header-section-number">3.1</span> Build inhalation exposure</h2>
+<p>We firstly set the periodic inhalation exposure scenario by using following step,</p>
 <pre class="r"><code>mag &lt;- parms[&quot;InhMag&quot;] # Set input
 period &lt;- 1e10
 inittime &lt;- 0 # Exposure start from 0
-exposuretime &lt;- 240 # Exposure end at 4 hr
+exposuretime &lt;- 120 # Exposure end at 2 hr
 
 # The output time points
 times &lt;- c(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 239.99, 240, 250, 260, 270, 280, 290, 300, 310, 320, 330, 339.9, 340, 350) 
@@ -91,52 +91,50 @@ J &lt;- which(I %% 2 == 1)
 col1[J]  &lt;- col1[J] + (ceiling((J / 2)) - 1) * period
 J &lt;- which(I %% 2 == 0)
 col1[J] &lt;- col1[J-1] + exposuretime
-PerDose &lt;- cbind(col1, rep(c(mag,0), length(col1)/2))
+PerExpo1 &lt;- cbind(col1, rep(c(mag,0), length(col1)/2))
 
-# The matrix of periodic exposure
-PerDose</code></pre>
+# The matrix of inhalation exposure
+PerExpo1</code></pre>
 <pre><code>##           col1  
 ## InhMag 0.0e+00 1
-##        2.4e+02 0
+##        1.2e+02 0
 ## InhMag 1.0e+10 1
 ##        1.0e+10 0</code></pre>
 <p>Here, we can see the setting expoure is start at 0 and 1e10 then stop at 240 and 1e10, respectively.</p>
 </div>
-<div id="plot-periodic-exposure-dose" class="section level2">
-<h2><span class="header-section-number">3.2</span> Plot periodic exposure dose</h2>
-<p>The periodic exposure can be visualized by following method,</p>
-<pre class="r"><code>plot(PerDose[1:2,], type = &quot;s&quot;, xlim=c(0,maxtime), main = &quot;C_inh&quot;, xlab = &quot;Time (min)&quot;)</code></pre>
+<div id="plot-exposure-scenario" class="section level2">
+<h2><span class="header-section-number">3.2</span> Plot exposure scenario</h2>
+<p>The exposure scenario can be visualized by following method,</p>
+<pre class="r"><code>plot(PerExpo1[1:2,], type = &quot;s&quot;, xlim=c(0,maxtime), main = &quot;C_inh&quot;, xlab = &quot;Time (min)&quot;)</code></pre>
 <p><img src="/post/2018-04-16-mcsim-under-r-delay-differentials-example_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 </div>
 </div>
-<div id="build-constant-dose-matrix" class="section level1">
-<h1><span class="header-section-number">4</span> Build Constant Dose Matrix</h1>
-<div id="setting-1-without-constant-dose" class="section level2">
-<h2><span class="header-section-number">4.1</span> Setting 1: without constant dose</h2>
-<p>We also need to generate the matrix for constant exposure as periodic exposure,</p>
+<div id="build-ingestion-dose-matrix" class="section level1">
+<h1><span class="header-section-number">4</span> Build Ingestion dose Matrix</h1>
+<div id="setting-1-without-constant-exposure" class="section level2">
+<h2><span class="header-section-number">4.1</span> Setting 1: without constant exposure</h2>
+<p>Here we generate the matrix for ingestion dose,</p>
 <pre class="r"><code>mag1 &lt;- 0 # the backgroud exposure dose = 0
-ConstDose1 &lt;- rbind(c(min(times), mag1), c(max(times) + 1, 0))
-ConstDose1</code></pre>
+IngDose &lt;- rbind(c(min(times), mag1), c(max(times) + 1, 0))
+IngDose</code></pre>
 <pre><code>##      [,1] [,2]
 ## [1,]    0    0
 ## [2,]  351    0</code></pre>
-<p>As above, we can find that there is no given exposure dose from start to the end (0 to 351 min). We can generate the list of exposure by combine the <code>PerDose</code> and <code>ConsDose1</code>. After that, we can further apply the solver for delay differential equations <code>dede</code> from desolve package.</p>
+<p>As above, we can find that there is no given exposure dose from start to the end (0 to 351 min). We can generate the list of exposure by combine the <code>PerExpo</code> and <code>IngDose</code>. After that, we can further apply the solver for delay differential equations <code>dede</code> from desolve package.</p>
 <pre class="r"><code># Add code to implement in the inputs built into the model.
-Forcings1 &lt;- list(PerDose, ConstDose1)
+Forcings1 &lt;- list(PerExpo1, IngDose)
 out1 &lt;- dede(Y, times, func=&quot;derivs&quot;, parms=parms, dllname=&quot;perc_delay&quot;,
             initfunc=&quot;initmod&quot;, nout=length(Outputs), outnames=Outputs,
             initforc=&quot;initforc&quot;,
             fcontrol=list(method=&quot;constant&quot;, rule=1, f=0),
             forcings=Forcings1)</code></pre>
 </div>
-<div id="setting-2-with-constant-dose" class="section level2">
-<h2><span class="header-section-number">4.2</span> Setting 2: with constant dose</h2>
-<p>Here, we assume the backgroud exposure dose = <strong>1 mg</strong>.</p>
-<p>{{% alert note %}} Noted, the unit of background dose is not ppm but mg. {{% /alert %}}</p>
-<p>Therefore, we neet to do the unit transfer by using alveolar ventilation rate (Flow_alv), which is equal to 0.7 * total pulmonary flow (Flow_pul) Hence, the total pulmonary flow (Flow_pul) is = 8 l/min. The Flow_alv = 8 * 0.7 = <strong>5.6 l/min</strong>. We also need the conversions of ppm and mg/l is 1 ppm = <strong>0.006778 mg/l</strong>.</p>
-<pre class="r"><code>mag2 &lt;- 1 * 0.006778 * 5.6 
-ConstDose2 &lt;- rbind(c(min(times), mag2), c(max(times) + 1, 0))
-Forcings2 &lt;- list(PerDose, ConstDose2)
+<div id="setting-2-with-constant-exposure" class="section level2">
+<h2><span class="header-section-number">4.2</span> Setting 2: with constant exposure</h2>
+<p>Here, we assume the constant exposure concentration = <strong>0.2 ppm</strong>.</p>
+<pre class="r"><code>PerExpo2 &lt;- PerExpo1
+PerExpo2[2,2] &lt;- 0.2 # 0.2 ppm as constant exposure 
+Forcings2 &lt;- list(PerExpo2, IngDose)
 out2 &lt;- dede(Y, times, func=&quot;derivs&quot;, parms=parms, dllname=&quot;perc_delay&quot;,
             initfunc=&quot;initmod&quot;, nout=length(Outputs), outnames=Outputs,
             initforc=&quot;initforc&quot;,
@@ -144,12 +142,12 @@ out2 &lt;- dede(Y, times, func=&quot;derivs&quot;, parms=parms, dllname=&quot;pe
             forcings=Forcings2)</code></pre>
 <p>We can do the inspection to check the output result by total quantity as,</p>
 <pre class="r"><code>stop_point &lt;- which(out1[,&quot;time&quot;] == 240)</code></pre>
-<p>Then, check the periodic dose without constant dose. The output should approximate to 1 (ppm).</p>
+<p>Then, check the exposure dose without constant dose. The output should approximate to 0.5 (ppm).</p>
 <pre class="r"><code>out1[,&quot;Q_tot&quot;][stop_point] / (240 * 5.6 * 0.006778) </code></pre>
-<pre><code>## [1] 0.9999672</code></pre>
-<p>Check the periodic dose without constant dose. The output should approximate to 2 (ppm).</p>
+<pre><code>## [1] 0.4999836</code></pre>
+<p>Check the exposure dose with constant dose. The output should approximate to 0.6 (ppm).</p>
 <pre class="r"><code>out2[,&quot;Q_tot&quot;][stop_point] / (240 * 5.6 * 0.006778)</code></pre>
-<pre><code>## [1] 1.999967</code></pre>
+<pre><code>## [1] 0.5999803</code></pre>
 </div>
 </div>
 <div id="visualization" class="section level1">
@@ -162,5 +160,5 @@ for(i in 2:ncol(out1)){
   lines(out1[,1], out1[,i], type = &quot;l&quot;, col = 3, lty = 2)
 }</code></pre>
 <p><img src="/post/2018-04-16-mcsim-under-r-delay-differentials-example_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
-<p>The green dashed line is periodic exposure without constant exposure. The red solid line is periodic exposure with constant exposure. The simulation of delay output can obtain in <strong>old_Q_liv</strong>, <strong>Q_met</strong> and <strong>Pct_metabolized</strong>.</p>
+<p>The green dashed line is periodic exposure without constant level. The red solid line is periodic exposure with constant level The simulation of delay output can obtain in <strong>old_Q_liv</strong>, <strong>Q_met</strong> and <strong>Pct_metabolized</strong>.</p>
 </div>

@@ -70,16 +70,17 @@ Y <- initStates(parms=parms)
 ```
 
 # Create the Exposure Matrix
-The exposue matrix include two part: **Periodic** and **Constant**. We need to generate the list of exposure by combine these two exposure matricies.
+The exposue matrix include two part: **Inhalation** and **Ingestion**. 
+We need to generate the list of exposure by combine these two exposure matricies.
 
-## Build periodic exposure
-We firstly set the periodic exposure scenario by using following step,
+## Build inhalation exposure
+We firstly set the periodic inhalation exposure scenario by using following step,
 
 ```{R}
 mag <- parms["InhMag"] # Set input
 period <- 1e10
 inittime <- 0 # Exposure start from 0
-exposuretime <- 240 # Exposure end at 4 hr
+exposuretime <- 120 # Exposure end at 2 hr
 
 # The output time points
 times <- c(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 239.99, 240, 250, 260, 270, 280, 290, 300, 310, 320, 330, 339.9, 340, 350) 
@@ -96,33 +97,33 @@ J <- which(I %% 2 == 1)
 col1[J]  <- col1[J] + (ceiling((J / 2)) - 1) * period
 J <- which(I %% 2 == 0)
 col1[J] <- col1[J-1] + exposuretime
-PerDose <- cbind(col1, rep(c(mag,0), length(col1)/2))
+PerExpo1 <- cbind(col1, rep(c(mag,0), length(col1)/2))
 
-# The matrix of periodic exposure
-PerDose
+# The matrix of inhalation exposure
+PerExpo1
 ```
 Here, we can see the setting expoure is start at 0 and 1e10 then stop at 240 and 1e10, respectively.
 
-## Plot periodic exposure dose
-The periodic exposure can be visualized by following method,  
+## Plot exposure scenario
+The exposure scenario can be visualized by following method,  
 ```{R}
-plot(PerDose[1:2,], type = "s", xlim=c(0,maxtime), main = "C_inh", xlab = "Time (min)")
+plot(PerExpo1[1:2,], type = "s", xlim=c(0,maxtime), main = "C_inh", xlab = "Time (min)")
 ```
 
-# Build Constant Dose Matrix
-## Setting 1: without constant dose
-We also need to generate the matrix for constant exposure as periodic exposure,
+# Build Ingestion dose Matrix
+## Setting 1: without constant exposure
+Here we generate the matrix for ingestion dose,
 
 ```{R}
 mag1 <- 0 # the backgroud exposure dose = 0
-ConstDose1 <- rbind(c(min(times), mag1), c(max(times) + 1, 0))
-ConstDose1
+IngDose <- rbind(c(min(times), mag1), c(max(times) + 1, 0))
+IngDose
 ```
-As above, we can find that there is no given exposure dose from start to the end (0 to 351 min). We can generate the list of exposure by combine the `PerDose` and `ConsDose1`. After that, we can further apply the solver for delay differential equations `dede` from desolve package.
+As above, we can find that there is no given exposure dose from start to the end (0 to 351 min). We can generate the list of exposure by combine the `PerExpo` and `IngDose`. After that, we can further apply the solver for delay differential equations `dede` from desolve package.
 
 ```{R}
 # Add code to implement in the inputs built into the model.
-Forcings1 <- list(PerDose, ConstDose1)
+Forcings1 <- list(PerExpo1, IngDose)
 out1 <- dede(Y, times, func="derivs", parms=parms, dllname="perc_delay",
             initfunc="initmod", nout=length(Outputs), outnames=Outputs,
             initforc="initforc",
@@ -130,20 +131,13 @@ out1 <- dede(Y, times, func="derivs", parms=parms, dllname="perc_delay",
             forcings=Forcings1)
 ```
 
-## Setting 2: with constant dose
-Here, we assume the backgroud exposure dose = **1 mg**.
-
-{{% alert note %}}
-Noted, the unit of background dose is not ppm but mg. 
-{{% /alert %}}
-
-Therefore, we neet to do the unit transfer by using alveolar ventilation rate (Flow_alv), which is equal to 0.7 * total pulmonary flow (Flow_pul) 
-Hence, the total pulmonary flow (Flow_pul) is = 8 l/min. The Flow_alv = 8 \* 0.7 = **5.6 l/min**. We also need the conversions of ppm and mg/l is 1 ppm = **0.006778 mg/l**.
+## Setting 2: with constant exposure
+Here, we assume the constant exposure concentration = **0.2 ppm**.
 
 ```{R}
-mag2 <- 1 * 0.006778 * 5.6 
-ConstDose2 <- rbind(c(min(times), mag2), c(max(times) + 1, 0))
-Forcings2 <- list(PerDose, ConstDose2)
+PerExpo2 <- PerExpo1
+PerExpo2[2,2] <- 0.2 # 0.2 ppm as constant exposure 
+Forcings2 <- list(PerExpo2, IngDose)
 out2 <- dede(Y, times, func="derivs", parms=parms, dllname="perc_delay",
             initfunc="initmod", nout=length(Outputs), outnames=Outputs,
             initforc="initforc",
@@ -157,13 +151,13 @@ We can do the inspection to check the output result by total quantity as,
 stop_point <- which(out1[,"time"] == 240)
 ```
 
-Then, check the periodic dose without constant dose. The output should approximate to 1 (ppm).
+Then, check the exposure dose without constant dose. The output should approximate to 0.5 (ppm).
 
 ```{R}
 out1[,"Q_tot"][stop_point] / (240 * 5.6 * 0.006778) 
 ```
 
-Check the periodic dose without constant dose. The output should approximate to 2 (ppm).
+Check the exposure dose with constant dose. The output should approximate to 0.6 (ppm).
 
 ```{R}
 out2[,"Q_tot"][stop_point] / (240 * 5.6 * 0.006778)
@@ -181,4 +175,4 @@ for(i in 2:ncol(out1)){
 }
 ```
 
-The green dashed line is periodic exposure without constant exposure. The red solid line is periodic exposure with constant exposure. The simulation of delay output can obtain in **old_Q_liv**, **Q_met** and **Pct_metabolized**. 
+The green dashed line is periodic exposure without constant level. The red solid line is periodic exposure with constant level The simulation of delay output can obtain in **old_Q_liv**, **Q_met** and **Pct_metabolized**. 
