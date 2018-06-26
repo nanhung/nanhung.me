@@ -218,7 +218,7 @@ defaultContentLanguageInSubdir = false
   [[params.social]]
     icon = "envelope-open"
     icon_pack = "fa"
-    link = "mailto:mail@nanhung.pw"
+    link = "mailto:nhsieh@cvm.tamu.edu"
 
   [[params.social]]
     icon = "google-scholar"
