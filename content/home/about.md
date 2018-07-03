@@ -10,13 +10,14 @@ weight = 5
 # List your academic interests.
 [interests]
   interests = [
+    "[**Pharmacometrics**](https://en.wikipedia.org/wiki/Pharmacometrics)",
     "[**System Dynamics**](https://en.wikipedia.org/wiki/System_dynamics)",
     "[**Sensitivity Analysis**](https://en.wikipedia.org/wiki/Sensitivity_analysis)",
     "[**Bayesian Statistics**](https://en.wikipedia.org/wiki/Bayesian_statistics)",
     "[**R**](https://www.r-project.org/)",
     "[**GNU MCSim**](https://www.gnu.org/software/mcsim/)"
   ]
-
+  
 # List your qualifications (such as academic degrees).
 [[education.courses]]
   course = "PhD in Bioenvironmental Systems Engineering"
