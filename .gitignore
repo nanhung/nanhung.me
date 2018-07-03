@@ -4,7 +4,6 @@
 .Ruserdata
 public/*
 .DS_Store
-*.c
 *.o
 *.so
 *.exe
