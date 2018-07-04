@@ -14,8 +14,7 @@ weight = 5
     "[**System Dynamics**](https://en.wikipedia.org/wiki/System_dynamics)",
     "[**Sensitivity Analysis**](https://en.wikipedia.org/wiki/Sensitivity_analysis)",
     "[**Bayesian Statistics**](https://en.wikipedia.org/wiki/Bayesian_statistics)",
-    "[**R**](https://www.r-project.org/)",
-    "[**GNU MCSim**](https://www.gnu.org/software/mcsim/)"
+    "[**Probabilistic Programming**](https://en.wikipedia.org/wiki/Probabilistic_programming_language)",
   ]
   
 # List your qualifications (such as academic degrees).
