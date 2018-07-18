@@ -1,0 +1,221 @@
+---
+title: .small[Applying Global Sensitivity Analysis to Improve Computational Efficiency in Physiological-Based Pharmacokinetic Model]
+subtitle: "---"
+author: "**Nan-Hung Hsieh, PhD**"
+date: .small[Postdoctoral Research Associate @ Department of Veterinary Integrative Biosciences]
+output: 
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["default", "tamu.css", "tamu-fonts.css"]
+    nature:
+      highlightLines: true
+---
+
+# About Me
+
+### PhD in Bioenvironmental Systems Engineering
+
+--
+
+**My Research Area:** .bolder[Computational Toxicology] and .bolder[Risk Assessment]
+
+--
+
+**My Daily Work:**
+
+.center[
+<img src="http://whatmyfriendsthinkido.net/wp-content/uploads/2012/05/what-my-friends-think-I-do-what-i-actually-do-computer-programming.png" height="340px" />
+]
+
+---
+
+# What is Pharmacokinetics (PK)
+
+- Pharmacokinetics is the study of the fate of xenobiotics in a living organism.
+
+- A xenobiotic is a chemical substance found within an organism that is not naturally produced or expected to be present within the organism
+
+.center[![](https://media.springernature.com/original/springer-static/image/art%3A10.1007%2Fs00535-015-1061-4/MediaObjects/535_2015_1061_Fig1_HTML.gif)]
+
+???
+HISTORY OF PHARMACOKINETICS 
+
+Pharmacokinetics has been defined in a number of ways. Literally, the word means the
+application of kinetics to pharmakon, the Greek word for drugs and poisons. Kinetics is
+that branch of knowledge which involves the change of one or more variables as a
+function of time. 
+
+---
+
+background-image: url(http://www.mdpi.com/mca/mca-23-00027/article_deploy/html/images/mca-23-00027-g006.png)
+background-size: 320px
+background-position: 95% 5%
+
+# Pharmacokinetics Model
+
+- Pharmacokinetic modelling is performed to .large[.bolder["predict"]] the exposure  concentration in the .bolder[concentration-time] graph by constructing the .bolder[compartmental model].
+
+- Include indformation for <strong>dose (_D_), concentration (*C*), time (*T*), and rate constant (*k*)</strong> in simulation. 
+
+.shrink[
+![](https://ars.els-cdn.com/content/image/1-s2.0-S1021949816301946-fx1_lrg.jpg)
+]
+
+
+
+---
+
+## Physiological-Based Pharmacokinetic (PBPK) Model
+
+Mathematically transcribing .bolder[anatomical, physiological, physical, and chemical] descriptions of the phenomena involved in the complex ADME processes.
+
+.shrink[
+![](http://pharmguse.net/pkdm/pbpm.jpg)
+]
+
+
+---
+
+background-image: url(https://wol-prod-cdn.literatumonline.com/cms/attachment/87cce77b-8dd4-4928-869f-b230e0cffcc4/psp412134-fig-0003-m.jpg)
+background-size: 540px
+background-position: 90% 90%
+
+# Why Pharmacokinetics modeling
+
+- Pharmaceutical research
+
+- Drug development
+
+- Health risk assessment
+
+        .  
+        .  
+        .  
+
+---
+
+# Challenge
+
+.large[Currently, the **Bayesian Markov chain Monte Carlo algorithm** is a effective way to do PBPK model calibration. ]
+
+.xlarge[.bolder[BUT]]
+
+--
+
+.large[
+This method often have challenges in **"convergence"** with acceptable computational times due to the need to solve system equations in PBPK model. .bolder[(More parameters, More time!)]
+]
+
+.right[![](https://slides.yihui.name/gif/questions.gif)]
+
+---
+
+class: middle, center
+
+# Avaliable solution
+
+# .xlarge[Expert decision]
+
+# .xlarge[Global Sensitivity Analysis]
+
+
+
+---
+
+# What/Why Global Sensitivity Analysis?
+
+---
+
+class: middle
+
+# Hypothesis
+
+.large[
+.bolder[Global Sensitivity Analysis] can provide a systematic method to ascertain which PBPK model parameters have negligible influence on model outputs and can be fixed to improve computational speed in Bayesian parameter estimation with minimal bias.
+]
+
+---
+
+# Materials
+
+PBPK Model:
+
+Experiment Data: 
+
+---
+
+# Workflow
+
+
+
+---
+
+# Results
+
+
+---
+
+# Discussion
+
+Can we identify “non-influential” parameters that can be fixed in a Bayesian PBPK model while achieving similar degrees of accuracy and precision?
+
+---
+
+# Discussion
+
+Does fixing parameters using “expert judgment” lead to unintentional imprecision or bias?
+
+
+---
+
+# Conclusion
+
+---
+
+# Future Research
+
+---
+
+# Acknowledgements
+
+---
+
+# Reference
+
+https://pharmacy.umich.edu/pkcore/clinical-pk
+
+https://www.eupati.eu/glossary/pharmacokinetics/
+
+http://pharmguse.net/pkdm/prediction.html
+
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5080648/bin/PSP4-5-516-g002.jpg
+
+http://www.mdpi.com/2297-8747/23/2/27
+
+https://www.sciencedirect.com/science/article/pii/S1021949816301946#undfig1
+
+https://link.springer.com/article/10.1007/s00535-015-1061-4
+
+.![](https://slides.yihui.name/gif/finally.gif)
+
+---
+
+# Thanks!
+
+## This slides:  
+
+### Contact: 
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+<i class="fa fa-home"></i> https://nanhung.rbind.io
+
+<i class="fa fa-twitter"></i> [nanhung5](https://twitter.com/nanhung5)
+
+<i class="fa fa-github"></i> [nanhung](https://nanhung.github.io)
+
+???
+
+ENDENDENDENDENDENDENDENDENDENDENDENDENDENDENDENDENDENDENDENDENDEND

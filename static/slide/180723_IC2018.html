@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>.small[Applying Global Sensitivity Analysis to Improve Computational Efficiency in Physiological-Based Pharmacokinetic Model]</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Nan-Hung Hsieh, PhD" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="tamu.css" type="text/css" />
+    <link rel="stylesheet" href="tamu-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# .small[Applying Global Sensitivity Analysis to Improve Computational Efficiency in Physiological-Based Pharmacokinetic Model]
+## <hr />
+### <strong>Nan-Hung Hsieh, PhD</strong>
+### .small[Postdoctoral Research Associate @ Department of Veterinary Integrative Biosciences]
+
+---
+
+
+# About Me
+
+### PhD in Bioenvironmental Systems Engineering
+
+--
+
+**My Research Area:** .bolder[Computational Toxicology] and .bolder[Risk Assessment]
+
+--
+
+**My Daily Work:**
+
+.center[
+&lt;img src="http://whatmyfriendsthinkido.net/wp-content/uploads/2012/05/what-my-friends-think-I-do-what-i-actually-do-computer-programming.png" height="340px" /&gt;
+]
+
+---
+
+# What is Pharmacokinetics (PK)
+
+- Pharmacokinetics is the study of the fate of xenobiotics in a living organism.
+
+- A xenobiotic is a chemical substance found within an organism that is not naturally produced or expected to be present within the organism
+
+.center[![](https://media.springernature.com/original/springer-static/image/art%3A10.1007%2Fs00535-015-1061-4/MediaObjects/535_2015_1061_Fig1_HTML.gif)]
+
+???
+HISTORY OF PHARMACOKINETICS 
+
+Pharmacokinetics has been defined in a number of ways. Literally, the word means the
+application of kinetics to pharmakon, the Greek word for drugs and poisons. Kinetics is
+that branch of knowledge which involves the change of one or more variables as a
+function of time. 
+
+---
+
+background-image: url(http://www.mdpi.com/mca/mca-23-00027/article_deploy/html/images/mca-23-00027-g006.png)
+background-size: 320px
+background-position: 95% 5%
+
+# Pharmacokinetics Model
+
+- Pharmacokinetic modelling is performed to .large[.bolder["predict"]] the exposure  concentration in the .bolder[concentration-time] graph by constructing the .bolder[compartmental model].
+
+- Include indformation for &lt;strong&gt;dose (_D_), concentration (*C*), time (*T*), and rate constant (*k*)&lt;/strong&gt; in simulation. 
+
+.shrink[
+![](https://ars.els-cdn.com/content/image/1-s2.0-S1021949816301946-fx1_lrg.jpg)
+]
+
+
+
+---
+
+## Physiological-Based Pharmacokinetic (PBPK) Model
+
+Mathematically transcribing .bolder[anatomical, physiological, physical, and chemical] descriptions of the phenomena involved in the complex ADME processes.
+
+.shrink[
+![](http://pharmguse.net/pkdm/pbpm.jpg)
+]
+
+
+---
+
+background-image: url(https://wol-prod-cdn.literatumonline.com/cms/attachment/87cce77b-8dd4-4928-869f-b230e0cffcc4/psp412134-fig-0003-m.jpg)
+background-size: 540px
+background-position: 90% 90%
+
+# Why Pharmacokinetics modeling
+
+- Pharmaceutical research
+
+- Drug development
+
+- Health risk assessment
+
+        .  
+        .  
+        .  
+
+---
+
+# Challenge
+
+.large[Currently, the **Bayesian Markov chain Monte Carlo algorithm** is a effective way to do PBPK model calibration. ]
+
+.xlarge[.bolder[BUT]]
+
+--
+
+.large[
+This method often have challenges in **"convergence"** with acceptable computational times due to the need to solve system equations in PBPK model. .bolder[(More parameters, More time!)]
+]
+
+.right[![](https://slides.yihui.name/gif/questions.gif)]
+
+---
+
+class: middle, center
+
+# Avaliable solution
+
+# .xlarge[Expert decision]
+
+# .xlarge[Global Sensitivity Analysis]
+
+
+
+---
+
+# What/Why Global Sensitivity Analysis?
+
+---
+
+class: middle
+
+# Hypothesis
+
+.large[
+.bolder[Global Sensitivity Analysis] can provide a systematic method to ascertain which PBPK model parameters have negligible influence on model outputs and can be fixed to improve computational speed in Bayesian parameter estimation with minimal bias.
+]
+
+---
+
+# Materials
+
+PBPK Model:
+
+Experiment Data: 
+
+---
+
+# Workflow
+
+
+
+---
+
+# Results
+
+
+---
+
+# Discussion
+
+Can we identify “non-influential” parameters that can be fixed in a Bayesian PBPK model while achieving similar degrees of accuracy and precision?
+
+---
+
+# Discussion
+
+Does fixing parameters using “expert judgment” lead to unintentional imprecision or bias?
+
+
+---
+
+# Conclusion
+
+---
+
+# Future Research
+
+---
+
+# Acknowledgements
+
+---
+
+# Reference
+
+https://pharmacy.umich.edu/pkcore/clinical-pk
+
+https://www.eupati.eu/glossary/pharmacokinetics/
+
+http://pharmguse.net/pkdm/prediction.html
+
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5080648/bin/PSP4-5-516-g002.jpg
+
+http://www.mdpi.com/2297-8747/23/2/27
+
+https://www.sciencedirect.com/science/article/pii/S1021949816301946#undfig1
+
+https://link.springer.com/article/10.1007/s00535-015-1061-4
+
+.![](https://slides.yihui.name/gif/finally.gif)
+
+---
+
+# Thanks!
+
+## This slides:  
+
+### Contact: 
+
+
+
+&lt;i class="fa fa-home"&gt;&lt;/i&gt; https://nanhung.rbind.io
+
+&lt;i class="fa fa-twitter"&gt;&lt;/i&gt; [nanhung5](https://twitter.com/nanhung5)
+
+&lt;i class="fa fa-github"&gt;&lt;/i&gt; [nanhung](https://nanhung.github.io)
+
+???
+
+ENDENDENDENDENDENDENDENDENDENDENDENDENDENDENDENDENDENDENDENDENDEND
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+});
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -7,15 +7,18 @@ body { font-family: 'Open Sans'; }
 h1, h2, h3 { font-family: 'Oswald'; }
 
 .remark-code, .remark-inline-code { 
-  font-family: 'Inconsolata'; color: #500000; 
-  background-color: #f3f3f3;  font-size: 90%; 
+  font-family: 'Inconsolata'; color: #500000; font-size: 95%; 
 }
 
 .bolder { font-weight: bolder; color: #e4002b; }
 
 .large { font-size: 120%; }
 
+.xlarge { font-size: 140%; }
+
 .small { font-size: 80%; }
+
+.xsmall { font-size: 60%; }
 
 .footnote {
   position: absolute;
