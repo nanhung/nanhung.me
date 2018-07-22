@@ -23,7 +23,7 @@ class: center, middle, inverse, title-slide
 
 # About Me
 
-### PhD in Bioenvironmental Systems Engineering (National Taiwan University)
+### PhD in Bioenvironmental Systems Engineering @ National Taiwan University
 
 
 
@@ -55,36 +55,34 @@ class: center, middle, inverse, title-slide
 ]
 
 ???
-HISTORY OF PHARMACOKINETICS 
-
-Pharmacokinetics has been defined in a number of ways. Literally, the word means the
-application of kinetics to pharmakon, the Greek word for drugs and poisons. Kinetics is
-that branch of knowledge which involves the change of one or more variables as a
-function of time. 
+Pharmacokinetics is the application of kinetics to drug. Kinetics is that branch of knowledge which involves the change of one or more variables as a function of time. 
 
 ---
 
 background-image: url(http://www.mdpi.com/mca/mca-23-00027/article_deploy/html/images/mca-23-00027-g006.png)
 background-size: 320px
-background-position: 95% 5%
+background-position: 80% 34%
 
 # Pharmacokinetics Model
 
-- Pharmacokinetic modelling is performed to .large[.bolder["predict"]] the exposure  concentration in the .bolder[concentration-time] graph by constructing the .bolder[compartmental model].
+Pharmacokinetic modelling is performed to .large[.bolder["predict"]] the exposure  concentration in the .bolder[concentration-time] graph by constructing the .bolder[compartmental model].
 
-- Include indformation for &lt;strong&gt;dose (_D_), concentration (*C*), time (*T*), and rate constant (*k*)&lt;/strong&gt; in simulation. 
+&lt;br/&gt;
 
-.shrink[
-![](https://ars.els-cdn.com/content/image/1-s2.0-S1021949816301946-fx1_lrg.jpg)
+&lt;br/&gt;
+.center[
+&lt;img src="https://ars.els-cdn.com/content/image/1-s2.0-S1021949816301946-fx1_lrg.jpg" height="340px" /&gt;
 ]
 
-
+???
+It quantify the fate of drug, which is ADME
+The top-right diagram is a simple example of PK model 
 
 ---
 
 ## Physiological-Based Pharmacokinetic (PBPK) Model
 
-Mathematically transcribing .bolder[anatomical, physiological, physical, and chemical] descriptions of the phenomena involved in the complex ADME processes.
+Mathematically transcribing .bolder[anatomical, physiological, physical, and chemical] descriptions of the phenomena involved in the complex .bolder[ADME] processes.
 
 .shrink[
 ![](http://pharmguse.net/pkdm/pbpm.jpg)
@@ -97,7 +95,7 @@ background-image: url(https://wol-prod-cdn.literatumonline.com/cms/attachment/87
 background-size: 540px
 background-position: 90% 90%
 
-# Why Pharmacokinetics modeling
+# Why Pharmacokinetic Modeling
 
 - Pharmaceutical research
 
@@ -135,7 +133,7 @@ class: middle, center
 
 ---
 
-# Optimal solution - Parameter Fixing 
+# Optimal Solution - Parameter Fixing 
 
 .large[We usually fix the **"possible"** non-influential model parameters through **"expert judgment"**.]
 
@@ -206,8 +204,7 @@ class: middle
 
 background-image: url(https://i.imgur.com/JjqgWwg.gif)
 background-size: 320px
-background-position: 90% 90%
-
+background-position: 90% 80%
 
 # Materials
 
@@ -215,7 +212,12 @@ background-position: 90% 90%
 
 The simulation of the disposition of .bolder[acetaminophen (APAP)] and two of its key metabolites, .bolder[APAP-glucuronide (APAP-G)] and .bolder[APAP-sulfate (APAP-S)], in plasma, urine, and several pharmacologically and toxicologically relevant tissues.
 
-&lt;img src="https://i.imgur.com/uSCphVE.gif" height="350px" /&gt;
+&lt;img src="https://i.imgur.com/uSCphVE.gif" height="340px" /&gt;
+
+.footnote[
+APAP is used to treat mild to moderate pain (from headaches, toothaches, backaches, cold/flu aches and pains) and to reduce fever.
+]
+
 
 ---
 
@@ -281,6 +283,18 @@ Eight studies (n = 71) with single oral dose and three different given doses.
 
 # Materials
 
+### Experiment Data: 
+
+Eight studies (n = 71) with single oral dose and three different given doses.
+
+.center[
+&lt;img src="https://i.imgur.com/wuYl7Bk.png" height="420px" /&gt;
+]
+
+---
+
+# Materials
+
 ### Sensitivity Analysis: 
 
 **Local:** 
@@ -335,16 +349,18 @@ class: center
 
 ## Q1 - What is the best SA algorithm for PBPK model?
 
+--
+
 ### Time-spend in SA (min)
 
 .center[.xlarge[
 Morris (2.4) &lt; .bolder[EFAST (19.8)] `\(\approx\)` Jansen (19.8) &lt; Owen (59.4)
 ]]
 
-### Stability in SA (output variation)
+### Stability in SA (variation of sensitivity index)
 
 .center[.xlarge[
-Morris &lt; .bolder[EFAST] &lt; Jansen `\(\approx\)`  Owen
+Morris (2.3%) &lt; .bolder[EFAST (5.3%)] &lt; Jansen (8.0%) &lt;  Owen (15.9%)
 ]]
 
 ### Reliability in parameter detecting (correlation across 4 methods)
@@ -369,6 +385,8 @@ We found **20** influential parameters by using EFAST.
 
 ## Q2: Dose global SA better than "expert decision"?
 
+--
+
 - The .bolder[EFSAT] has better **precision** (high kurtosis) than expert decision
 - The **accuracy** (residual mean `\(\approx\)` 0) are very .bolder[similar] across three test methods
 
@@ -390,6 +408,8 @@ We found **20** influential parameters by using EFAST.
 ---
 
 ## Q3: Can global SA provide the effective way in model calibration?
+
+--
 
 - Summary of the time-cost for expert-judged parameters ([Zurlinden and Reisfeld, 2016](https://link.springer.com/article/10.1007%2Fs13318-015-0253-x), 21), all model parameters (this study, 58), and EFAST-judged parameters (this study, 20)
 
@@ -429,7 +449,9 @@ We found **20** influential parameters by using EFAST.
 
 # Take Home Message
 
+.large[
 If you want to do model calibration for PK or PBPK model, you can,
+]
 
 1. Use the .bolder[EFAST] to detect the **"influential"** model parameter.
 
@@ -437,15 +459,15 @@ If you want to do model calibration for PK or PBPK model, you can,
 
 1. Conduct model calibration for only the **“influential”** parameters.
 
-.xlarge[
-.bolder[And]
-]
-
 --
 
-Cite this reference ... &lt;i class="fa fa-smile-o"&gt;&lt;/i&gt;  
+&lt;br /&gt;
 
-Hsieh N-H, Reisfeld B, Bois FY and Chiu WA (2018) Applying a Global Sensitivity Analysis Workflow to Improve the Computational Efficiencies in Physiologically-Based Pharmacokinetic Modeling. Front. Pharmacol. 9:588. doi: 10.3389/fphar.2018.00588   
+.large[
+If you want more details, read this ... &lt;i class="fa fa-smile-o"&gt;&lt;/i&gt; 
+]
+
+Hsieh N-H, Reisfeld B, Bois FY and Chiu WA (2018) Applying a Global Sensitivity Analysis Workflow to Improve the Computational Efficiencies in Physiologically-Based Pharmacokinetic Modeling. *Front. Pharmacol.* 9:588. doi: 10.3389/fphar.2018.00588   
 [link](https://www.frontiersin.org/articles/10.3389/fphar.2018.00588/full)  
 
 .right[![](https://www.frontiersin.org/areas/journals/images/about-open-access.png)]
