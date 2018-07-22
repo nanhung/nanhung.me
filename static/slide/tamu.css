@@ -79,7 +79,17 @@ table {
   width: 90%;
 }
 
+.xshrink {
+  margin: auto;
+  width: 70%;
+}
+
 .enlarge{
   margin: auto;
   width: 110%;
+}
+
+.xenlarge{
+  margin: auto;
+  width: 130%;
 }

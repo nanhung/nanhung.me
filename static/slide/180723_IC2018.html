@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>.small[Applying Global Sensitivity Analysis to Improve Computational Efficiency in Physiological-Based Pharmacokinetic Model]</title>
+    <title>Applying Global Sensitivity Analysis to Improve Computational Efficiency in Physiological-Based Pharmacokinetic Model</title>
     <meta charset="utf-8">
     <meta name="author" content="Nan-Hung Hsieh, PhD" />
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
@@ -13,7 +13,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# .small[Applying Global Sensitivity Analysis to Improve Computational Efficiency in Physiological-Based Pharmacokinetic Model]
+# Applying Global Sensitivity Analysis to Improve Computational Efficiency in Physiological-Based Pharmacokinetic Model
 ## <hr />
 ### <strong>Nan-Hung Hsieh, PhD</strong>
 ### .small[Postdoctoral Research Associate @ Department of Veterinary Integrative Biosciences]
@@ -23,18 +23,20 @@ class: center, middle, inverse, title-slide
 
 # About Me
 
-### PhD in Bioenvironmental Systems Engineering
+### PhD in Bioenvironmental Systems Engineering (National Taiwan University)
+
+
 
 --
 
-**My Research Area:** .bolder[Computational Toxicology] and .bolder[Risk Assessment]
+**My Research:** .bolder[Computational Toxicology] &amp; .bolder[Risk Assessment]
 
 --
 
 **My Daily Work:**
 
 .center[
-&lt;img src="http://whatmyfriendsthinkido.net/wp-content/uploads/2012/05/what-my-friends-think-I-do-what-i-actually-do-computer-programming.png" height="340px" /&gt;
+&lt;img src="http://whatmyfriendsthinkido.net/wp-content/uploads/2012/05/what-my-friends-think-I-do-what-i-actually-do-computer-programming.png" height="360px" /&gt;
 ]
 
 ---
@@ -45,7 +47,12 @@ class: center, middle, inverse, title-slide
 
 - A xenobiotic is a chemical substance found within an organism that is not naturally produced or expected to be present within the organism
 
-.center[![](https://media.springernature.com/original/springer-static/image/art%3A10.1007%2Fs00535-015-1061-4/MediaObjects/535_2015_1061_Fig1_HTML.gif)]
+.center[![](https://media.springernature.com/original/springer-static/image/art%3A10.1007%2Fs00535-015-1061-4/MediaObjects/535_2015_1061_Fig1_HTML.gif)
+
+.large[
+**"PK"** focus on .bolder[DOSE] to .bolder[CONCENTRATION]
+]
+]
 
 ???
 HISTORY OF PHARMACOKINETICS 
@@ -122,17 +129,54 @@ This method often have challenges in **"convergence"** with acceptable computati
 
 class: middle, center
 
-# Avaliable solution
+### Sometimes, the result is bad ...
 
-# .xlarge[Expert decision]
+![](https://slides.yihui.name/gif/dump-computer.gif)
 
-# .xlarge[Global Sensitivity Analysis]
+---
 
+# Optimal solution - Parameter Fixing 
 
+.large[We usually fix the **"possible"** non-influential model parameters through **"expert judgment"**.]
+
+.xlarge[.bolder[BUT]]
+
+--
+
+.large[This approach might cause **bias** in parameter estimates and model predictions.]
+
+.center[![](http://reliawiki.org/images/3/35/Doe34.png)]
+
+---
+
+# Propose solution for parameter fixing 
+
+## "Global" Sensitivity Analysis
+
+![](https://i.imgur.com/FjJIl7s.png)
 
 ---
 
 # What/Why Global Sensitivity Analysis?
+
+**"Global"** sensitivity analysis calculates the contribution from the variety of all model parameters, including 
+
+- .bolder[Single parameter effects]
+- .bolder[Multiple parameter interactions]
+
+.pull-left[
+**Local** (One-at-a-time)
+![](http://evelynegroen.github.io/assets/images/fig11local.jpg)
+]
+
+.pull-right[
+**Global** (All-at-a-time)
+![](http://evelynegroen.github.io/assets/images/fig2global.jpg)
+]
+
+--
+
+.center[**Global sensitivity analysis is good at** .bolder[parameter fixing]]
 
 ---
 
@@ -141,88 +185,346 @@ class: middle
 # Hypothesis
 
 .large[
-.bolder[Global Sensitivity Analysis] can provide a systematic method to ascertain which PBPK model parameters have negligible influence on model outputs and can be fixed to improve computational speed in Bayesian parameter estimation with minimal bias.
+.bolder[Global Sensitivity Analysis] can provide a systematic method to ascertain which PBPK model parameters have **negligible influence** on model outputs and can be fixed to improve computational speed in Bayesian parameter estimation with **minimal bias**.
 ]
+
+
+.highlight[
+
+**Question:**
+
+1. .large[What] is the best sensitivity snalysis algorithm for PBPK model?
+
+2. .large[Dose] global sensitivity analysis better than "expert decision"?
+
+3. .large[Can] global sensitivity analysis provide the effective way in model calibration?
+
+]
+
+
+---
+
+background-image: url(https://i.imgur.com/JjqgWwg.gif)
+background-size: 320px
+background-position: 90% 90%
+
+
+# Materials
+
+### PBPK Model ([Zurlinden and Reisfeld, 2016](https://link.springer.com/article/10.1007%2Fs13318-015-0253-x)): 
+
+The simulation of the disposition of .bolder[acetaminophen (APAP)] and two of its key metabolites, .bolder[APAP-glucuronide (APAP-G)] and .bolder[APAP-sulfate (APAP-S)], in plasma, urine, and several pharmacologically and toxicologically relevant tissues.
+
+&lt;img src="https://i.imgur.com/uSCphVE.gif" height="350px" /&gt;
 
 ---
 
 # Materials
 
-PBPK Model:
+### Experiment Data: 
 
-Experiment Data: 
+Eight studies (n = 71) with single oral dose and three different given doses.
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Study &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Dose &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; No. of Subject &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 325 mg &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1000 mg &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1000 mg &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1000 mg &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 12 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20 mg/kg &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20 mg/kg &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20 mg/kg &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 11 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20 mg/kg &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 9 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 ---
 
-# Workflow
+# Materials
+
+### Sensitivity Analysis: 
+
+**Local:** 
+
+- Morris's algorithm
+
+**Global:**  
+
+- Extended Fourier Amplitude Sensitivity Testing (EFAST)
+
+- Jansen's algorithm 
+
+- Owen's algorithm
+
+
+---
+
+class: center
+
+# Sensitivity Analysis (SA) Workflow
+
+
+.large[Reproduce result from original paper (21 parameters)] 
+
+
+&lt;i class="fa fa-arrow-down"&gt;&lt;/i&gt;
+
+
+.large[Full model calibration (58 parameters)] 
+
+
+&lt;i class="fa fa-arrow-down"&gt;&lt;/i&gt;
+
+--
+
+.highlight[
+.large[Sensitivity Analysis using different sensitivity analysis algorithms]  
+.left[
+**Q1 - Compare the .bolder[time-cost and stability] under the same sample number**
+]]
+
+&lt;i class="fa fa-arrow-down"&gt;&lt;/i&gt;
+
+.highlight[
+.large[Model calibration by SA-judged influential parameters]   
+.left[
+**Q2 - Compare the .bolder[model performance] in accuracy and precision**  
+**Q3 - Compare the .bolder[time-cost] in model calibration**
+]]
+
+---
+
+## Q1 - What is the best SA algorithm for PBPK model?
+
+### Time-spend in SA (min)
+
+.center[.xlarge[
+Morris (2.4) &lt; .bolder[EFAST (19.8)] `\(\approx\)` Jansen (19.8) &lt; Owen (59.4)
+]]
+
+### Stability in SA (output variation)
+
+.center[.xlarge[
+Morris &lt; .bolder[EFAST] &lt; Jansen `\(\approx\)`  Owen
+]]
+
+### Reliability in parameter detecting (correlation across 4 methods)
+
+.center[.xlarge[
+.bolder[EFAST] `\(\approx\)` Jansen `\(\approx\)`  Owen &gt; Morris
+]]
+
+--
+
+.large[
+.center[
+.highlight[
+**Ans 1: .bolder[EFAST] gives the best result to detect parameter impact.**
+]
+We found **20** influential parameters by using EFAST.
+]]
 
 
 
 ---
 
-# Results
+## Q2: Dose global SA better than "expert decision"?
+
+- The .bolder[EFSAT] has better **precision** (high kurtosis) than expert decision
+- The **accuracy** (residual mean `\(\approx\)` 0) are very .bolder[similar] across three test methods
+
+.center[
+&lt;img src="https://i.imgur.com/PKKfVDM.png" height="450px" /&gt;  
+]
+
+---
+
+## Q2: Dose global SA better than "expert decision"?
+
+.center[
+&lt;img src="https://i.imgur.com/vtvoHAX.png" height="450px" /&gt;  
+
+.highlight[
+**Ans 2: .bolder[EFAST]  was more effective than "expert judgment” at identifying parameters that are influential, and led to a better fitted results.** 
+]]
+
+---
+
+## Q3: Can global SA provide the effective way in model calibration?
+
+- Summary of the time-cost for expert-judged parameters ([Zurlinden and Reisfeld, 2016](https://link.springer.com/article/10.1007%2Fs13318-015-0253-x), 21), all model parameters (this study, 58), and EFAST-judged parameters (this study, 20)
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Parameter group &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Time-cost in calibration (hr) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; All model parameters &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 104.6 (0.96) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; EFAST-judged parameters &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 42.1 (0.29) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Expert-judged parameters &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 40.8 (0.18) &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+- All time-cost value are shown with mean and standard deviation (n = 10).
+
+--
+
+.center[
+.highlight[
+**Ans 3: Dimensionality reduction of PBPK model parameters by .bolder[EFAST] can substantially reduce computational time-cost while showing little change in model performance**. 
+]]
+
+---
+
+# Take Home Message
+
+If you want to do model calibration for PK or PBPK model, you can,
+
+1. Use the .bolder[EFAST] to detect the **"influential"** model parameter.
+
+1. Fix the **“non-influential”** parameters that were judged by EFAST.
+
+1. Conduct model calibration for only the **“influential”** parameters.
+
+.xlarge[
+.bolder[And]
+]
+
+--
+
+Cite this reference ... &lt;i class="fa fa-smile-o"&gt;&lt;/i&gt;  
+
+Hsieh N-H, Reisfeld B, Bois FY and Chiu WA (2018) Applying a Global Sensitivity Analysis Workflow to Improve the Computational Efficiencies in Physiologically-Based Pharmacokinetic Modeling. Front. Pharmacol. 9:588. doi: 10.3389/fphar.2018.00588   
+[link](https://www.frontiersin.org/articles/10.3389/fphar.2018.00588/full)  
+
+.right[![](https://www.frontiersin.org/areas/journals/images/about-open-access.png)]
 
 
 ---
 
-# Discussion
+class: inverse, center
 
-Can we identify “non-influential” parameters that can be fixed in a Bayesian PBPK model while achieving similar degrees of accuracy and precision?
+## Acknowledgements
 
----
+**Supervisor**  
+.large[Weihsueh A. Chiu] 
 
-# Discussion
+**Principal investigator**  
+.large[Brad Reisfeld] 
 
-Does fixing parameters using “expert judgment” lead to unintentional imprecision or bias?
+**Software**  
+.large[Frederic Y. Bois]
 
+**PBPK model**  
+.large[Todd Zurlinden]
 
----
+&lt;br /&gt;
 
-# Conclusion
+### Fouder
 
----
-
-# Future Research
-
----
-
-# Acknowledgements
+&lt;img src="https://www.fda.gov/ucm/groups/fdagov-public/documents/image/ucm519147.png" height="80px" /&gt; 
 
 ---
 
 # Reference
 
-https://pharmacy.umich.edu/pkcore/clinical-pk
+**Model calibration**
 
-https://www.eupati.eu/glossary/pharmacokinetics/
+Bois, F. Y. (2009). GNU MCSim: Bayesian statistical inference for SBML-coded systems biology models. Bioinformatics 25, 1453–1454. doi: 10.1093/bioinformatics/btp162  
+[link](https://doi.org/10.1093/bioinformatics/btp162)
 
-http://pharmguse.net/pkdm/prediction.html
+**Idea of global SA-PBPK**
 
-https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5080648/bin/PSP4-5-516-g002.jpg
+McNally, K., Cotton, R., and Loizou, G. D. (2011). A workflow for global sensitivity analysis of PBPK models. Front. Pharmacol. 2:31. doi: 10.3389/fphar.2011.00031   
+[link](https://doi.org/10.3389/fphar.2011.00031)
 
-http://www.mdpi.com/2297-8747/23/2/27
+**APAP-PBPK model details**
 
-https://www.sciencedirect.com/science/article/pii/S1021949816301946#undfig1
+Zurlinden, T. J., and Reisfeld, B. (2016). Physiologically based modeling of the pharmacokinetics of acetaminophen and its major metabolites in humans using a Bayesian population approach. Eur. J. Drug Metab. Pharmacokinet. 41, 267–280. doi: 10.1007/s13318-015-0253-x   
+[link](https://doi.org/10.1007/s13318-015-0253-x)
 
-https://link.springer.com/article/10.1007/s00535-015-1061-4
+---
 
-.![](https://slides.yihui.name/gif/finally.gif)
+# Image source
+
+[My Daily Work](http://whatmyfriendsthinkido.net/)
+
+[What is Pharmacokinetics](https://link.springer.com/article/10.1007/s00535-015-1061-4)
+
+[Pharmacokinetics Model - 1](https://www.sciencedirect.com/science/article/pii/S1021949816301946#undfig1)
+
+[Pharmacokinetics Model - 2](http://www.mdpi.com/2297-8747/23/2/27)
+
+[Physiological-Based Pharmacokinetic (PBPK) Model](http://pharmguse.net/pkdm/prediction.html)
+
+[Why Pharmacokinetics modeling](https://ascpt.onlinelibrary.wiley.com/doi/abs/10.1002/psp4.12134)
+
+[Optimal solution - Parameter Fixing](http://reliawiki.org/index.php/Statistical_Background_on_DOE)
+
+["Global" Sensitivity Analysis](https://en.wikipedia.org/wiki/Sensitivity_analysis)
+
+[What/Why Global Sensitivity Analysis?](http://evelynegroen.github.io/introduction/Introduction.html)
+
+[GIF](https://yihui.name/)
 
 ---
 
 # Thanks!
 
-## This slides:  
+### More info: &lt;i class="fa fa-home"&gt;&lt;/i&gt; https://nanhung.me
 
-### Contact: 
-
-
-
-&lt;i class="fa fa-home"&gt;&lt;/i&gt; https://nanhung.rbind.io
-
-&lt;i class="fa fa-twitter"&gt;&lt;/i&gt; [nanhung5](https://twitter.com/nanhung5)
-
-&lt;i class="fa fa-github"&gt;&lt;/i&gt; [nanhung](https://nanhung.github.io)
+### Slides at  
 
 ???
 
