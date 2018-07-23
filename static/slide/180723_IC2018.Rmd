@@ -120,7 +120,7 @@ This method often have challenges to reach **"convergence"** with acceptable com
 
 class: middle, center
 
-### Sometimes, the result is bad ...
+## Sometimes, the result is bad ...
 
 ![](https://slides.yihui.name/gif/dump-computer.gif)
 
@@ -164,8 +164,6 @@ class: middle, center
 **Global** (All-at-a-time)
 ![](http://evelynegroen.github.io/assets/images/fig2global.jpg)
 ]
-
---
 
 .center[**Global sensitivity analysis is good at** .bolder[parameter fixing]]
 
