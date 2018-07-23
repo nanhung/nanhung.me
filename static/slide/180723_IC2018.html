@@ -5,7 +5,9 @@
     <meta charset="utf-8">
     <meta name="author" content="Nan-Hung Hsieh, PhD" />
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+    <script src="libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+    <script src="libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
     <link rel="stylesheet" href="tamu.css" type="text/css" />
     <link rel="stylesheet" href="tamu-fonts.css" type="text/css" />
   </head>
@@ -43,9 +45,9 @@ class: center, middle, inverse, title-slide
 
 # What is Pharmacokinetics (PK)
 
-- Pharmacokinetics is the study of the fate of xenobiotics in a living organism.
-
-- A xenobiotic is a chemical substance found within an organism that is not naturally produced or expected to be present within the organism
+.large[
+Pharmacokinetics is the study of the fate of chemical in a living organism through .bolder[ADME] process (**absorption**, **distribution**, **metabolism**, and **elimination**).
+]
 
 .center[![](https://media.springernature.com/original/springer-static/image/art%3A10.1007%2Fs00535-015-1061-4/MediaObjects/535_2015_1061_Fig1_HTML.gif)
 
@@ -61,17 +63,18 @@ Pharmacokinetics is the application of kinetics to drug. Kinetics is that branch
 
 background-image: url(http://www.mdpi.com/mca/mca-23-00027/article_deploy/html/images/mca-23-00027-g006.png)
 background-size: 320px
-background-position: 80% 34%
+background-position: 88% 34%
 
 # Pharmacokinetics Model
 
-Pharmacokinetic modelling is performed to .large[.bolder["predict"]] the exposure  concentration in the .bolder[concentration-time] graph by constructing the .bolder[compartmental model].
+Pharmacokinetic modelling is performed to .large[.bolder["predict"]] the exposure  concentration in the **concentration-time** graph by constructing the **compartmental model** or non-compartmental model.
 
 &lt;br/&gt;
 
 &lt;br/&gt;
+
 .center[
-&lt;img src="https://ars.els-cdn.com/content/image/1-s2.0-S1021949816301946-fx1_lrg.jpg" height="340px" /&gt;
+&lt;img src="https://ars.els-cdn.com/content/image/1-s2.0-S1021949816301946-fx1_lrg.jpg" height="330px" /&gt;
 ]
 
 ???
@@ -118,7 +121,7 @@ background-position: 90% 90%
 --
 
 .large[
-This method often have challenges in **"convergence"** with acceptable computational times due to the need to solve system equations in PBPK model. .bolder[(More parameters, More time!)]
+This method often have challenges to reach **"convergence"** with acceptable computational times  .bolder[(More parameters, More time!)]
 ]
 
 .right[![](https://slides.yihui.name/gif/questions.gif)]
@@ -141,7 +144,7 @@ class: middle, center
 
 --
 
-.large[This approach might cause **bias** in parameter estimates and model predictions.]
+.large[This approach might cause **"bias"** in parameter estimates and model predictions.]
 
 .center[![](http://reliawiki.org/images/3/35/Doe34.png)]
 
@@ -332,22 +335,21 @@ class: center
 
 .highlight[
 .large[Sensitivity Analysis using different sensitivity analysis algorithms]  
-.left[
-**Q1 - Compare the .bolder[time-cost and stability] under the same sample number**
-]]
+**Compare the .bolder[time-cost, stability, and consistency] under the same sample number (Q1)**
+]
 
 &lt;i class="fa fa-arrow-down"&gt;&lt;/i&gt;
 
 .highlight[
 .large[Model calibration by SA-judged influential parameters]   
-.left[
-**Q2 - Compare the .bolder[model performance] in accuracy and precision**  
-**Q3 - Compare the .bolder[time-cost] in model calibration**
-]]
+
+**Compare the .bolder[model performance] in accuracy and precision (Q2)**  
+**Compare the .bolder[time-cost] in model calibration (Q3)**
+]
 
 ---
 
-## Q1 - What is the best SA algorithm for PBPK model?
+## Q1: What is the best SA algorithm for PBPK model?
 
 --
 
@@ -363,7 +365,7 @@ Morris (2.4) &lt; .bolder[EFAST (19.8)] `\(\approx\)` Jansen (19.8) &lt; Owen (5
 Morris (2.3%) &lt; .bolder[EFAST (5.3%)] &lt; Jansen (8.0%) &lt;  Owen (15.9%)
 ]]
 
-### Reliability in parameter detecting (correlation across 4 methods)
+### Consistency in parameter detecting (correlation across 4 methods)
 
 .center[.xlarge[
 .bolder[EFAST] `\(\approx\)` Jansen `\(\approx\)`  Owen &gt; Morris
@@ -411,7 +413,7 @@ We found **20** influential parameters by using EFAST.
 
 --
 
-- Summary of the time-cost for expert-judged parameters ([Zurlinden and Reisfeld, 2016](https://link.springer.com/article/10.1007%2Fs13318-015-0253-x), 21), all model parameters (this study, 58), and EFAST-judged parameters (this study, 20)
+- Summary of the time-cost for all model parameters (this study, 58), EFAST-judged parameters (this study, 20), and expert-judged parameters ([Zurlinden and Reisfeld, 2016](https://link.springer.com/article/10.1007%2Fs13318-015-0253-x), 21)
 
 &lt;table&gt;
  &lt;thead&gt;
@@ -455,9 +457,9 @@ If you want to do model calibration for PK or PBPK model, you can,
 
 1. Use the .bolder[EFAST] to detect the **"influential"** model parameter.
 
-1. Fix the **“non-influential”** parameters that were judged by EFAST.
+1. Fix the **"non-influential"** parameters that were judged by .bolder[EFAST].
 
-1. Conduct model calibration for only the **“influential”** parameters.
+1. Conduct model calibration for only the **"influential"** parameters.
 
 --
 
