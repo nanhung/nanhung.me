@@ -93,3 +93,19 @@ table {
   margin: auto;
   width: 130%;
 }
+
+ /* Two-column layout */
+.left-column {
+  color: #777;
+  width: 20%;
+  height: 92%;
+  float: left;
+}
+.left-column h2:last-of-type, .left-column h3:last-child {
+  color: #e4002b;
+}
+.right-column {
+  width: 75%;
+  float: right;
+  padding-top: 1em;
+}

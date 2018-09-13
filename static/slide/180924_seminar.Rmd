@@ -1,0 +1,1313 @@
+---
+title: Applying a Global Sensitivity Analysis Workflow to Improve the Computational Efficiencies in Physiologically-Based Pharmacokinetic Modeling
+subtitle: "---"
+author: "**Nan-Hung Hsieh, PhD**"
+date: .small[Postdoctoral Research Associate]
+output: 
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["default", "tamu.css", "tamu-fonts.css"]
+    nature:
+      highlightLines: true
+
+---
+
+class: center, middle
+
+```{r setup, include=FALSE}
+library(sensitivity)
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+
+```
+
+.xxxlarge[
+**Why We Need to Do  
+.bolder[Computational Modeling]  
+in Toxicology/Pharmacology?**
+]
+
+---
+
+class: center, middle
+
+.xlarge[**Reduce the use of experimental animals**]
+
+--
+
+.xlarge[**Enable _in vitro_ to _in vivo_ extrapolation (IVIVE)**]
+
+--
+
+.xlarge[**Health risk assessment**
+
+        .  
+        .  
+        .  ]
+
+???
+
+in vitro-in vivo extrapolation ("IVIVE") of high throughput screening data (e.g., ToxCast) to real-world exposures via reverse dosimetry
+
+---
+
+class: middle
+
+.xlarge[
+>“The application of mathematical and computer models to predict adverse effects and to better understand the single or multiple mechanisms through which a given chemical induces harm."
+
+>-- US Environmental Protection Agency
+]
+
+---
+
+# What is Pharmacokinetics (PK)
+
+--
+
+.large[
+- The fate of chemical in a living organism
+- .bolder[ADME] process 
+
+.center[
+
+.bolder[A]bsorption - How will it get in?
+
+.bolder[D]istribution - Which tissue organ it will go?
+
+.bolder[M]etabolism - How is it broken down and transformation?
+
+.bolder[E]limination - How dose it leave the body?
+
+]
+]
+
+???
+Pharmacokinetics is the application of kinetics to drug. Kinetics is that branch of knowledge which involves the change of one or more variables as a function of time. 
+
+---
+
+background-image: url(https://image.ibb.co/jNZi4e/drug_concentration_time.png)
+background-size: 150px
+background-position: 80% 98%
+
+
+# What is Pharmacokinetics (PK)
+
+.large[
+- The fate of chemical in a living organism
+- .bolder[ADME] process
+
+.center[
+
+.bolder[A]bsorption - How will it get in?
+
+.bolder[D]istribution - Which tissue organ it will go?
+
+.bolder[M]etabolism - How is it broken down and transformation?
+
+.bolder[E]limination - How dose it leave the body?
+
+]
+]
+
+.large[
+- Kinetics: rates of change
+- PK is focus on .bolder[TIME (t)] and .bolder[CONCENTRATION (C)]
+]
+
+???
+
+---
+
+# Pharmacokinetics Model
+
+To .large[.bolder["predict"]] the exposure  concentration by constructing the **compartmental model** or non-compartmental model.
+
+.pull-left[
+<img src="http://www.mdpi.com/mca/mca-23-00027/article_deploy/html/images/mca-23-00027-g006.png" height="140px" />
+]
+
+.pull-right[
+<img src="https://image.ibb.co/nJTM7z/fitting.png" height="140px" />
+]
+
+$D$: Intake dose (mass)
+
+$C$: Concentration (mass/volumn)
+
+$k_a$: Absorption rate (1/time)
+
+$V_{max}$: Maximal metabolism rate
+
+$K_m$: Concentration of chemical achieve half $V_{max}$ (mass/volumn)
+
+$k_{el}$: elimination rate (/time)
+
+
+???
+It quantify the fate of drug, which is ADME
+The top-right diagram is a simple example of PK model 
+
+---
+
+## Physiological-Based Pharmacokinetic (PBPK) Model
+
+Mathematically transcribing .bolder[anatomical, physiological, physical, and chemical] descriptions of the phenomena involved in the complex .bolder[ADME] processes.
+
+.shrink[
+![](http://pharmguse.net/pkdm/pbpm.jpg)
+]
+
+---
+
+# Population PBPK
+
+.large[
+
+- Limited data (sparse data) for each individual within the population 
+
+- Characterize PK parameters for populations
+
+- Cross-species  comparisons of metabolism or absorption
+
+- Evaluating population variability 
+
+- Evaluating uncertainty
+
+]
+
+---
+
+
+class: center
+
+# Modeling Workflow
+
+.left[**Model calibration** (Bayesian hierarchical modeling)]
+
+Prior knowledge (expertise or historical data)  
+<img src="https://image.ibb.co/fATCee/Screen_Shot_2018_09_03_at_10_19_27_AM.png" height="80px" />
+
+<i class="fa fa-arrow-down"></i>
+
+.bolder[Markov Chain Monte Carlo algorithm]
+
+<i class="fa fa-arrow-down"></i>
+
+Posterior knowledge  
+<img src="https://image.ibb.co/fQuKQK/Screen_Shot_2018_09_03_at_3_32_28_PM.png" height="80px" />
+
+.left[**Model validation**]
+
+Compare the result of **in-silico simulation** and **in-vivo observation**
+
+---
+
+# Tools
+
+## [GNU MCSim](http://www.gnu.org/software/mcsim/)
+
+.large[
+- Design and run statistical or simulation models (e.g., differential equations)
+
+- Do parametric simulations (e.g., sensitivity analysis)
+
+- Perform Monte Carlo (stochastic) simulations
+
+.highlight[
+- Do Bayesian inference for hierarchical models through .bolder[Markov Chain Monte Carlo] simulations
+]
+]
+
+
+</br>
+
+[*] It can run under Unix/Linux, Windows, Mac OS
+---
+
+# Challenge
+
+.large[Currently, the **Bayesian Markov chain Monte Carlo algorithm** is a effective way to do PBPK model calibration. ]
+
+.xlarge[.bolder[BUT]]
+
+--
+
+.large[
+This method often have challenges to reach **"convergence"** with acceptable computational times .bolder[(More parameters, More time!)]
+]
+
+.right[![](https://slides.yihui.name/gif/questions.gif)]
+
+---
+
+class: middle, center
+
+## Sometimes, the result is bad ...
+
+![](https://slides.yihui.name/gif/dump-computer.gif)
+
+---
+
+class: center, middle
+
+.xxxlarge[**Our Problem Is ...**]
+
+--
+
+</br>
+
+.xxxlarge[**How to Improve the .bolder[Computational Efficiency]**]
+
+---
+
+# Project
+
+Funder: **Food and Drug Administration (FDA)**
+
+Project Start: **Sep-2016**
+
+Name: **Enhancing the reliability, efficiency, and usability of Bayesian population PBPK modeling**
+
+--
+
+  - Specific Aim 1: Develop, implement, and evaluate methodologies for parallelizing time-intensive calculations and enhancing a simulated tempering-based MCMC algorithm for Bayesian parameter estimation  
+  (.bolder[Revise algorithm in model calibration])
+
+--
+  
+  - Specific Aim 2: Create, implement, and evaluate a robust Global Sensitivity Analysis algorithm to reduce PBPK model parameter dimensionality  
+  (.bolder[Parameter fixing])
+
+--
+
+  - Specific Aim 3: Design, build, and test a user-friendly, open source computational platform for implementing an integrated approach for population PBPK modeling  
+  (.bolder[User friendly interface])
+
+---
+
+# Proposed Solution - Parameter Fixing 
+
+.large[We usually fix the **"possible"** non-influential model parameters through **"expert judgment"**.]
+
+.xlarge[.bolder[BUT]]
+
+--
+
+.large[This approach might cause **"bias"** in parameter estimates and model predictions.]
+
+.pull-left[
+.center[![](http://reliawiki.org/images/3/35/Doe34.png)]
+]
+
+.pull-right[
+<img src="https://njtierney.updog.co/gifs/narnia-dart-throw.gif" height="240px" />
+]
+
+---
+
+# Propose solution for parameter fixing 
+
+## Sensitivity Analysis
+
+</br>
+
+.large[
+>Sensitivity analysis is "the study of how the uncertainty in the output of a model (numerical or otherwise) can be apportioned to different sources of uncertainty in the model input." 
+
+> -- [Andrea Saltelli]((http://www.andreasaltelli.eu/file/repository/intro_v2b)
+
+]
+
+.footnote[[Saltelli A., 2002, Sensitivity Analysis for Importnace Assessment, Risk Analysis, 22 (3) 1-12.](http://www.andreasaltelli.eu/file/repository/intro_v2b)]
+
+---
+
+# When we need SA?
+
+--
+
+.xlarge[.bolder[Parameter Priorization]]
+
+</br>
+
+</br>
+
+.xlarge[.bolder[Parameter Fixing]]
+
+</br>
+
+</br>
+
+.xlarge[.bolder[Parameter Mapping]]
+
+---
+
+# Why we need SA?
+
+.xlarge[.bolder[Parameter Priorization]]
+
+- Identifying the most important factors
+
+- Reduce the uncertainty in the model response if it is too large (ie not acceptable)
+
+.xlarge[.bolder[Parameter Fixing]]
+
+</br>
+
+</br>
+
+.xlarge[.bolder[Parameter Mapping]]
+
+
+---
+
+# Why we need SA?
+
+.xlarge[.bolder[Parameter Priorization]]
+
+- Identifying the most important factors
+
+- Reduce the uncertainty in the model response if it is too large (ie not acceptable)
+
+.xlarge[.bolder[Parameter Fixing]]
+
+- Identifying the least important factors
+
+- Simplify the model if it has too many factors
+
+.xlarge[.bolder[Parameter Mapping]]
+
+--
+
+- Identify critical regions of the inputs that are responsible for extreme value of the model response
+
+---
+
+
+# Classification of SA Methods
+
+
+.pull-left[
+
+**Local** (One-at-a-time)
+
+<img src="http://evelynegroen.github.io/assets/images/fig11local.jpg" height="240px" />
+
+**"Local"** SA focus on sensitivity at a particular set of input parameters, usually using gradients or partial derivatives
+
+]
+
+--
+
+.pull-right[
+
+**Global** (All-at-a-time)
+
+<img src="http://evelynegroen.github.io/assets/images/fig2global.jpg" height="240px" />
+
+**"Global"** SA calculates the contribution from the variety of all model parameters, including .bolder[Single parameter effects] and .bolder[Multiple parameter interactions]
+
+]
+
+--
+
+.large[.center[**"Global" sensitivity analysis is good at** .bolder[parameter fixing]]]
+
+---
+
+class: center
+
+# Sensitivity index
+
+.xlarge[First order] $(S_i)$
+
+</br> 
+</br> 
+
+.xlarge[Interaction] $(S_{ij})$
+
+</br> 
+
+.xlarge[Total order] $(S_{T})$
+
+</br> 
+</br> 
+
+---
+
+class: center
+
+# Sensitivity index
+
+.xlarge[First order] $(S_i)$
+
+The output variance contributed by the specific parameter $x_i$,  
+also known as **main effect**
+
+.xlarge[Interaction] $(S_{ij})$
+
+</br> 
+
+.xlarge[Total order] $(S_{T})$
+
+</br> 
+</br> 
+
+---
+
+class: center
+
+# Sensitivity index
+
+.xlarge[First order] $(S_i)$
+
+The output variance contributed by the specific parameter $x_i$,  
+also known as **main effect**
+
+.xlarge[Interaction] $(S_{ij})$
+
+The output variance contributed by any pair of input parameter
+
+.xlarge[Total order] $(S_{T})$
+
+--
+
+The output variance contributed by the specific parameter and interaction,  
+also known as **total effect**
+
+--
+
+<hr/>
+
+.left[
+.bolder[“Local”] SA usually only addresses first order effects
+
+.bolder[“Global”] SA can address total effect that include main effect and interction
+]
+
+---
+
+# Challenges in GSA-PBPK modeling
+
+</br>
+
+.xxlarge[
+Too many algorithms have been develped, but we don't have knowlege to identify which one is the best
+]
+
+</br>
+
+.xxlarge[
+No suitable reference in parameter fixing for PBPK model
+]
+
+
+
+---
+
+class: middle
+
+# Hypothesis
+
+.large[
+.bolder[Global Sensitivity Analysis] can provide a systematic method to ascertain which PBPK model parameters have **negligible influence** on model outputs and can be fixed to improve computational speed in Bayesian parameter estimation with **minimal bias**.
+]
+
+--
+
+**Four Questions:**
+
+.highlight[
+.large[**What**] is the relative computational efficiency of convergence of various GSA algorithms?
+]
+
+--
+
+.highlight[
+.large[**Do**] different algorithms give consistent results as to direct and indirect parameter sensitivities?
+]
+
+--
+
+.highlight[
+.large[**Can**] we identify non-influential parameters that can be fixed in a Bayesian PBPK calibration while acheving similar degrees of accuracy and precision?
+]
+
+--
+
+.highlight[
+.large[**Does**] fixing parameters using "expert judgment" lead to unintentional imprecision or bias?
+]
+
+---
+
+# Materials - Chemical
+
+.center[
+<img src="https://image.ibb.co/e7eccz/JjqgWwg.gif" height="200px" />
+]
+
+.bolder[Acetaminophen] (APAP) is a widely used over the 
+counter (OTC) pain reliver and fever reducer.
+
+The therapeutic index (ratio of toxic to therapeutic doses) is 
+unusually small for an OTC medication.
+
+Phase I (.bolder[APAP to NAPQI]) is Toxicity pathway at high dose.
+
+Phase II (.bolder[APAP to APAP-G & APAP to APAP-S]) Major pathways at therapeutic dose.
+
+--
+
+.center[
+.highlight[
+A typical pharmacological agent with large amounts of 
+both human and animal data.  
+Well-constructed and studied PBPK model.
+]
+]
+
+
+---
+
+background-image: url(https://image.ibb.co/b9F8Ze/uSCphVE.gif)
+background-size: 500px
+background-position: 50% 80%
+
+# Materials - PBPK Model 
+
+The simulation of the disposition of .bolder[acetaminophen (APAP)] and two of its key metabolites, .bolder[APAP-glucuronide (APAP-G)] and .bolder[APAP-sulfate (APAP-S)], in plasma, urine, and several pharmacologically and toxicologically relevant tissues.
+
+.footnote[[Zurlinden, T.J. & Reisfeld, B. Eur J Drug Metab Pharmacokinet (2016) 41: 267. ](https://link.springer.com/article/10.1007%2Fs13318-015-0253-x)]
+
+???
+
+---
+
+# Parameters calibrated in previous study
+
+.large[
+
+.large[.bolder[2]] Acetaminophen absorption (Time constant)
+
+.large[.bolder[2]] Phase I metabolism: Cytochrome P450 (M-M constant)
+
+.large[.bolder[4]] Phase II metabolism: sulfation (M-M constant)
+
+.large[.bolder[4]] Phase II metabolism: glucuronidation (M-M constant)
+
+.large[.bolder[4]] Active hepatic transporters (M-M constant)
+
+.large[.bolder[2]] Cofactor synthesis (rate constant)
+
+.large[.bolder[3]] Clearance (rate constant)
+
+]
+
+---
+
+background-image: url(https://image.ibb.co/b9F8Ze/uSCphVE.gif)
+background-size: 300px
+background-position: 2% 98%
+
+#Absorption
+
+.left-column[
+
+]
+
+.right-column[
+
+Use Oral dose $(D_{oral})$ and bioavaliability $(F_A)$ and absorption parameters, we can estimate the amount of APAP absorbed into the blood stream as,
+
+$$\frac{dA_{abs}}{dt}=\frac{F_A\cdot D_{oral}\cdot[exp(\frac{-t}{T_G})-exp(\frac{-t}{T_P})]}{T_G-T_P}$$
+
+.highlight[
+$T_g$ : Gastric emptying time constant
+
+$T_p$ : Intestinal permeability time constant
+]
+
+]
+
+---
+
+background-image: url(https://image.ibb.co/e7eccz/JjqgWwg.gif)
+background-size: 280px
+background-position: 95% 5%
+
+# Metabolism
+
+.left-column[
+
+### Phase I
+
+]
+
+.right-column[
+
+Rate of phase I metabolism $(v_{cyp})$ can be estimated by concnetration of APAP in liver $(C^{APAP}_{liver})$ and 2 M-M parameters for APAP-G and APAP-S as, 
+
+
+$$v_{cyp} = \frac{V_{M-cyp}\cdot C^{APAP}_{liver}}{K^{{APAP}}_{M-cyp}+C^{APAP}_{liver}}$$
+
+</br>
+
+.highlight[
+$K^{{APAP}}_{M-cyp}$ : M-M constant $KM$ for Cytochrome P450
+
+$V_{M-cyp}$ : Maximum conversion rate $V_{max}$ for Cytochrome P450 
+]
+
+]
+
+---
+
+background-image: url(https://image.ibb.co/e7eccz/JjqgWwg.gif)
+background-size: 280px
+background-position: 95% 5%
+
+# Metabolism
+
+.left-column[
+
+### Phase I
+### Phase II
+]
+
+.right-column[
+
+The APAP conversion rate $(v_{conjugate})$ can be estimated by concnetration of APAP and fraction of cofactor in the liver $(\phi^{cf}_{liver})$ with 4 Michaelis-Menten parameters for APAP-G and APAP-S as,
+
+$$v_{conjugate} = \frac{V_{M-enz}\cdot C^{APAP}_{liver}\cdot \phi^{cf}_{liver}}{(K^{APAP}_{M-enz}+C^{APAP}_{liver}+\frac{(C^{APAP}_{liver})^2}{K_{I-enz}})(K^{cf}_{M-enz}+\phi^{cf}_{liver})}$$
+
+</br>
+
+.highlight[
+$V_{M-enz}$ : Enzyme-specific maximum rate of conversion
+
+$K^{APAP}_{M-enz}$ : M-M constant for APAP
+
+$K^{APAP}_{I-enz}$ : Inhibition constant
+
+$K^{cf}_{M-enz}$ : Michaelis-Menten constant for cofactor
+]
+]
+
+---
+
+background-image: url(https://image.ibb.co/e7eccz/JjqgWwg.gif)
+background-size: 280px
+background-position: 95% 5%
+
+# Cofactor synthesis
+
+.left-column[
+
+]
+
+.right-column[
+The fraction of cofactor in the liver $(A^{cf}_{liver})$ can be estimated by APAP conversion rate and a rate parameter as,
+
+$$\frac{d\phi^{cf}_{liver}}{dt}=-v_{conjugate}+k_{syn-cf}(1-\phi^{cf}_{liver})$$
+
+</br>
+
+.highlight[
+$k_{syn-cf}$ : rate of synthesis of the cofactor
+]
+
+]
+
+---
+
+background-image: url(https://image.ibb.co/b9F8Ze/uSCphVE.gif)
+background-size: 300px
+background-position: 2% 98%
+
+# Active hepatic transporters
+
+.left-column[
+
+]
+
+.right-column[
+Rate of hepatic transport $(v^{conj}_{mem})$ can be estimated by 2 M-M parameters for APAP-G and APAP-S as, 
+
+
+$$v^{conj}_{mem} = \frac{V^{conj}_{M-mem}\cdot C^{conj}_{hep}}{K^{{conj}}_{M-mem}+C^{conj}_{hep}}$$
+
+.highlight[
+$V^{conj}_{M-mem}$ : Maximum transport rate
+
+$K^{{conj}}_{M-mem}$ : Concentration of chemical achieve half Vmax
+]
+]
+
+---
+
+background-image: url(https://image.ibb.co/b9F8Ze/uSCphVE.gif)
+background-size: 300px
+background-position: 2% 98%
+
+# Clearance
+
+.left-column[
+
+]
+
+.right-column[
+The clearance rate can be used to estimate the amount of kidney elimination $(A^j_{KE})$
+
+$$\frac{dA^j_{KE}}{dt}=k^j_{R0}\cdot BW \cdot C^j_A$$
+
+</br>
+
+.highlight[
+$k^j_{R0}$ : rate of renal clearance of the chemical $j$ (represents APAP, APAP-G, and APAP-S)
+]
+]
+
+---
+
+# Parameters fixed in previous study
+
+$$\frac{dA^T_{j}}{dt}=V_T\frac{dC^j_T}{dt}=Q_T(C^j_A-\frac{C^j_T}{P_{T:blood}})$$
+
+</br>
+
+.pull-left[
+
+.large[**Physiological parameters**]
+
+1 cardiac output
+
+6 blood flow rate $(Q)$
+
+8 tissue volume $(V)$
+
+]
+
+.pull-right[
+
+.large[**Physicochemical parameters**]
+
+22 partition coefficient for APAP, APAP-G, and APAP-S $(P)$
+
+]
+
+---
+
+# Materials
+
+### Experiment Data: 
+
+Eight studies (n = 71) with single oral dose and three different given doses.
+
+```{r, echo=F, eval=T}
+Study <- c(1:8)
+Dose <- c("325 mg", "1000 mg", "1000 mg", "1000 mg", "20 mg/kg", "20 mg/kg", "20 mg/kg", "20 mg/kg")
+Subject <- c("8","6","5","12","8","6","11","9")
+df <- data.frame(Study, Dose, Subject)
+names(df) <- c("Study", "Dose", "No. of Subject")
+knitr::kable(df, format = 'html', align=c("l","c","c"))
+```
+
+---
+
+# Materials
+
+### Experiment Data: 
+
+Eight studies (n = 71) with single oral dose and three different given doses.
+
+.center[
+<img src="https://image.ibb.co/mfUD0K/wuYl7Bk.png" height="420px" />
+]
+
+---
+
+# Materials
+
+### Sensitivity Analysis: 
+
+**Local:** 
+
+- Morris screening
+
+**Global:**  
+
+- Extended Fourier Amplitude Sensitivity Testing (EFAST)
+
+- Jansen's algorithm 
+
+- Owen's algorithm
+
+---
+
+# Morris screening
+
+- Perform parameter sampling in Latin Hypercube following One-Step-At-A-Time
+
+- Can compute the importance $(\mu^*)$ and interaction $(\sigma)$ of the effects
+
+.pull-left[
+![](https://www.researchgate.net/profile/Valentine_Lafond/publication/280727281/figure/fig2/AS:391534521405440@1470360512078/Figure-C-2-Illustration-of-Morris-screening-method-of-factorial-space-This-figure.png)
+]
+
+.pull-right[
+```{r, echo=F, warning=FALSE, eval=T, fig.width = 4, fig.height = 3, dpi = 180, out.width = "600px"}
+set.seed(1111)
+x <- morris(model = ishigami.fun, factors = c("Factor A", "Factor B","Factor C"), r = 30,
+            binf = -pi, bsup = pi,
+            design = list(type = "oat", levels = 5, grid.jump = 3))
+par(mar=c(4,4,1,1))
+plot(x, xlim = c(5,20), ylim = c(5,10))
+```
+]
+
+--
+
+.highlight[
+**1. It is semi-quantitative – the factors are ranked on an interval scale**  
+**2. It is numerically efficient**  
+**3. Not very good for factor fixing**
+]
+
+---
+
+# Variance-based sensitivity analysis
+
+EFAST defines a .bolder[search curve] in the input space
+
+$$x_i=\frac{1}{2}+\frac{1}{\pi}\arcsin(\sin(\omega\cdot s+\phi_i))$$
+
+.pull-left[
+.center[
+![](https://upload.wikimedia.org/wikipedia/commons/6/64/Search_curve_1.gif)
+]
+]
+
+.pull-right[
+.center[
+![](https://upload.wikimedia.org/wikipedia/commons/2/29/Search_curve_3.gif)
+]
+]
+
+---
+
+# Variance-based sensitivity analysis
+
+Jansen generates .bolder[TWO] independent random sample with $N$ points in d dimensions.
+
+Owen combines .bolder[THREE] independent random sampling parameter matrix
+
+.pull-left[
+
+![](https://image.ibb.co/kvyPFK/mc_animation.gif)
+
+]
+
+.pull-right[
+```{r, echo=F, warning=FALSE, eval=T, fig.width = 6, fig.height = 5, dpi = 180}
+set.seed(1234)
+x <- fast99(model = ishigami.fun, factors = c("Factor A", "Factor B","Factor C"), n = 1000,
+            q = "qunif", q.arg = list(min = -pi, max = pi))
+par(mar=c(4,4,4,1))
+plot(x)
+```
+]
+
+--
+
+.highlight[
+1. **Full quantitative** 
+2. **The computational cost is more expensive**
+3. **Good for factor fixing**
+]
+
+---
+
+### The basic step to performing UA and SA
+
+1. Define the variable of interest $(y)$
+
+    - **APAP, APAP-G, APAP-S in serum**
+
+2. Identify model parameters $(x_i)$ which should be consider in GSA
+
+    - **Selected parameters in previous study & all model parameters**
+
+3. Characterise the uncertainty for each selected input factor
+
+    - **Prior knowledge for each parameter in PBPK model**
+    
+    - **Possible model simulation**
+
+4. Generate a sample of a given size from the previously defined probability distribution.
+
+    - **Sample number from $2^{10}$ to $2^{13}$**
+
+5. Estimate the sensitivity measures
+
+6. Set **cut-off** for parameter fixing
+
+---
+
+class: center
+
+# Sensitivity Analysis (SA) Workflow
+
+
+.large[Reproduce result from original paper (21 parameters)] 
+
+
+<i class="fa fa-arrow-down"></i>
+
+
+.large[Full model calibration (58 parameters)] 
+
+
+<i class="fa fa-arrow-down"></i>
+
+--
+
+.highlight[
+.large[Sensitivity Analysis using different sensitivity analysis algorithms] 
+
+**Compare the .bolder[time-cost, stability] under the same sample number (Q1)**  
+**Compare the .bolder[consistency] across different algorithms (Q2)**
+]
+
+
+--
+
+<i class="fa fa-arrow-down"></i>
+
+.highlight[
+.large[Model calibration by SA-judged influential parameters]   
+
+**Compare the .bolder[model performance] in accuracy and precision (Q3)**  
+**Exam the  .bolder[bias] for expert and SA-judged parameters (Q4)**
+]
+
+---
+
+### Q1: What is the relative computational efficiency of various GSA algorithms?
+
+--
+
+.center[
+<img src="https://image.ibb.co/mYWr5K/fig1.jpg" height="420px" />  
+]
+
+Time-spend in SA (min): Morris (2.4) < **EFAST (19.8)** $\approx$ Jansen (19.8) < Owen (59.4)
+
+Variation of SA index: Morris (2.3%) < **EFAST (5.3%)** < Jansen (8.0%) <  Owen (15.9%)
+
+---
+
+### Q1: What is the relative computational efficiency of various GSA algorithms?
+
+.center[
+<img src="https://image.ibb.co/mYWr5K/fig1.jpg" height="420px" />  
+]
+
+.center[
+.highlight[
+**Ans 1: The Morris method provided the most efficient computational performance and convergence result, followed by eFAST**
+]
+]
+
+---
+
+### Q2: Do different algorithms give consistent results as to direct parameter sensitivities?
+
+---
+
+.left-column[
+Original parameters
+### Local SA
+]
+
+.right-column[
+
+![](https://image.ibb.co/hnStpp/figS2.jpg)
+
+]
+
+---
+
+.left-column[
+Original parameters
+### Local SA
+### Global SA 
+]
+
+.right-column[
+<img src="https://image.ibb.co/jXozUp/figS4.jpg" height="600px" />  
+]
+
+---
+
+.left-column[
+Full parameters
+### Local SA
+]
+
+.right-column[
+<img src="https://image.ibb.co/fsCbQU/figS5.jpg" height="600px" />  
+]
+
+---
+
+.left-column[
+Full parameters
+### Local SA
+### Global SA (eFAST)
+]
+
+.right-column[
+<img src="https://image.ibb.co/jTM35U/figS6.jpg" height="600px" />  
+]
+
+---
+
+### Q2: Do different algorithms give consistent results as to direct parameter sensitivities? 
+
+.pull-left[
+![](https://image.ibb.co/jKtsnz/fig2_1.jpg)
+]
+
+.pull-right[
+![](https://image.ibb.co/mt11fK/fig2_2.jpg)
+]
+
+.center[
+.xlarge[
+.bolder[EFAST] $\approx$ Jansen $\approx$  Owen > Morris
+]
+]
+
+
+--
+
+.center[
+.highlight[
+**Ans 2: Local and global method give inconsistent results as to direct and indirect parameter sensitivities.**
+]]
+
+---
+
+### Q3: Can we identify non-influential parameters that can be fixed in a Bayesian PBPK model calibration while achieving similar degrees of accuracy and precision?
+
+--
+
+.center[
+<img src="https://www.frontiersin.org/files/Articles/363813/fphar-09-00588-HTML/image_m/fphar-09-00588-g003.jpg" height="500px" />  
+]
+
+.footnote[OIP: original influential parameters; OMP: original model parameters; FIP: full infliential parameter; FMP: full model parameters]
+
+---
+
+### The non-influential original parameters 
+
+.bolder[1] Absorption parameters - $T_p$
+
+.bolder[2] Phase I metabolism parameters - $K^{{APAP}}_{M-cyp}$ and $V_{M-cyp}$
+
+.bolder[2] Inhibition constants - $K^{APAP}_{I-enz}$ 
+
+.bolder[2] M-M constants for cofactor - $K^{cf}_{M-enz}$
+
+### The influential additional parameters 
+
+.bolder[1] physiological parameter - Cardiac output $(QCC)$
+
+.bolder[1] chemical-specific transport parameter - Blood:plasma ratio of APAP $(BP_{APAP})$
+
+.bolder[4] partition coefficients
+  - Fat:blood APAP
+  - Liver:blood APAP
+  - Muscle:blood APAP
+  - slowly perfused tissues:blood APAP [bone, heart, skin]
+
+---
+
+### Q3: Can we identify non-influential parameters that can be fixed in a Bayesian PBPK model calibration while achieving similar degrees of accuracy and precision?
+
+.center[
+<img src="https://image.ibb.co/g6EU4p/fig3.png" height="500px" />  
+]
+
+.footnote[OIP: original influential parameters; OMP: original model parameters; FIP: full infliential parameter; FMP: full model parameters]
+
+---
+
+### Q3: Can we identify non-influential parameters that can be fixed in a Bayesian PBPK model calibration while achieving similar degrees of accuracy and precision?
+
+.center[
+![](https://image.ibb.co/gUu1s9/fig5.jpg)
+]
+
+---
+
+
+### Q3: Can we identify non-influential parameters that can be fixed in a Bayesian PBPK model calibration while achieving similar degrees of accuracy and precision?
+
+- Summary of the time-cost for 
+    - All model parameters (this study, 58), 
+    - GSA-judged parameters (this study, 20),
+    - Expert-judged parameters ([Zurlinden and Reisfeld, 2016](https://link.springer.com/article/10.1007%2Fs13318-015-0253-x), 21)
+
+```{r, echo=F, eval=T}
+x <- c("All model parameters", "GSA-judged parameters", "Expert-judged parameters")
+y <- c("104.6 (0.96)", "42.1 (0.29)", "40.8 (0.18)")
+df <- data.frame(x,y)
+names(df) <- c("Parameter group","Time-cost in calibration (hr)")
+knitr::kable(df, format = 'html', align=c("l","c"))
+```
+
+- All time-cost value are shown with mean and standard deviation (n = 10).
+
+--
+
+<br/>
+
+.center[
+.highlight[
+**Ans 3: Restricting the MCMC simulations to the influential parameters with cut-off point at 0.01 can substantially reduce computational burden while showing little change in model performance.** 
+
+]]
+
+
+---
+
+### Q4: Does fixing parameters using "expert judgment" lead to unintentional imprecision or bias?
+
+--
+
+.center[
+<img src="https://www.frontiersin.org/files/Articles/363813/fphar-09-00588-HTML/image_m/fphar-09-00588-g006.jpg" height="400px" />  
+]
+
+.center[
+.highlight[
+**Ans 4: GSA was more effective than “expert judgment” at identifying parameters that are influential, and led to a better fit between predictions and data even though almost the same number of parameters were used.**
+]]
+
+---
+
+# Take Home Message
+
+- .bolder[Uncertainty and (global) sensitivity analysis] is an essential tool to reduce the dimensionality and improve the computational efficiency in model calibration.
+
+--
+
+- Use the .bolder[EFAST] estimator for parameter sensitivity, making sure to check convergence.
+
+--
+
+- Distinguish “influential” and “non-influential” parameters with .bolder[cut-off] from sensitivity index and check .bolder[accuracy] and .bolder[precision] to evulate model performance. 
+
+--
+
+.large[
+For more details, read this ... <i class="fa fa-smile-o"></i> 
+]
+
+Hsieh N-H, Reisfeld B, Bois FY and Chiu WA (2018) Applying a Global Sensitivity Analysis Workflow to Improve the Computational Efficiencies in Physiologically-Based Pharmacokinetic Modeling. *Front. Pharmacol.* 9:588. doi: 10.3389/fphar.2018.00588   
+[link](https://www.frontiersin.org/articles/10.3389/fphar.2018.00588/full)  
+
+.right[![](https://www.frontiersin.org/areas/journals/images/about-open-access.png)]
+
+
+---
+
+# What we might ignore in our study?
+
+--
+
+### How to applied this GSA workflow to other cases?
+
+</br>
+
+### Which external factors that might chenage GSA result?
+
+- Parameter distributions?
+
+- Different given doses? 
+
+</br>
+
+### How to determine the robust cut-off?
+
+---
+
+# Following Work
+
+Reproducible research
+- Software development 
+
+![](https://image.ibb.co/kWrZ9p/Screen_Shot_2018_09_10_at_2_37_38_PM.png)
+
+---
+
+class: inverse, center, middle
+
+## Acknowledgements
+
+**Supervisor**  
+.large[Weihsueh A. Chiu @TAMU]
+
+
+**Principal investigator**  
+.large[Brad Reisfeld @CSU] 
+
+
+**Software & tecnical support**  
+.large[Frederic Y. Bois @INERIS]
+
+
+**PBPK model**  
+.large[Todd Zurlinden @USEPA]
+
+
+<br />
+
+### Fouder
+
+<img src="https://www.fda.gov/ucm/groups/fdagov-public/documents/image/ucm519147.png" height="80px" /> 
+
+---
+
+# Reference
+
+**Model calibration technique**
+
+Bois, F. Y. (2009). GNU MCSim: Bayesian statistical inference for SBML-coded systems biology models. Bioinformatics 25, 1453–1454. doi: 10.1093/bioinformatics/btp162  
+[link](https://doi.org/10.1093/bioinformatics/btp162)
+
+**Idea of global SA-PBPK**
+
+McNally, K., Cotton, R., and Loizou, G. D. (2011). A workflow for global sensitivity analysis of PBPK models. Front. Pharmacol. 2:31. doi: 10.3389/fphar.2011.00031   
+[link](https://doi.org/10.3389/fphar.2011.00031)
+
+**APAP-PBPK model details**
+
+Zurlinden, T. J., and Reisfeld, B. (2016). Physiologically based modeling of the pharmacokinetics of acetaminophen and its major metabolites in humans using a Bayesian population approach. Eur. J. Drug Metab. Pharmacokinet. 41, 267–280. doi: 10.1007/s13318-015-0253-x   
+[link](https://doi.org/10.1007/s13318-015-0253-x)
+
+---
+
+class: inverse, middle, center
+
+# Thanks!
+
+Slides at: []()
+
+???
+
+ENDENDENDENDENDENDENDENDENDENDENDENDENDENDENDENDENDENDENDENDENDEND
