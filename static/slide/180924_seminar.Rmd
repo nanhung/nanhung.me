@@ -1306,7 +1306,7 @@ class: inverse, middle, center
 
 # Thanks!
 
-Slides at: []()
+Slides at: [bit.ly/180924_seminar]()
 
 ???
 
