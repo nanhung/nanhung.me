@@ -28,7 +28,7 @@ math = true
 
 +++
 
-### Assessing the prevalence and exacerbations risk of influenza-associated asthma
+### Dynamic modeling and analysis of air pollution-associated lung function exacerbations risk
 
 Abstract:  
 Air pollution has been recognized as the major environmental stimuli which may cause health effect of lung function decrement and asthma exacerbation. The researches for prediction and assessment of the air pollution impact on the respiratory system are also growing in recent years. Therefore, the purpose of this dissertation were: (i) to conduct an aerosol experiment in a constructed exposure system to understand the characteristics of the respiratory deposition for inhaled aerosols, (ii) to develop an integrated probabilistic risk approach to assess the risk of airborne dust- and ozone (O$_3$)-induced lung function decrement, (iii) to quantify the time-varying dynamics of air pollutants to correlate the relationships between fluctuations in air pollution and asthma hospital admission, and (iv) to predict asthma hospitalization trends in Taiwan by statistical indicators-based regression model.
