@@ -1,14 +1,14 @@
 a, a > code {
-  color: #2b5d7d;
+  color: #448ac9;
   font-weight: bold;
-  border-bottom: 1px dotted #2b5d7d;
+  border-bottom: 1px dotted #448ac9;
   text-decoration: none;
   transition: all .2s ease-in-out
 }
 
 a:hover { 
   font-size: 1.05em; 
-  border-bottom: 1px solid #2b5d7d;
+  border-bottom: 1px solid #448ac9;
 }
 
 .highlight {
