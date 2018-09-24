@@ -81,8 +81,6 @@ Some people here already know pharmacokinetic.
 
 It is used to describe the fate of the chemical in a living organism when chemical enter into the animal body. 
 
-Pharmacokinetics is the application of kinetics to the drug.
-
 ---
 
 background-image: url(https://image.ibb.co/jNZi4e/drug_concentration_time.png)
@@ -117,11 +115,9 @@ background-position: 80% 98%
 
 ???
 
-Kinetics is that branch of knowledge which involves the change of one or more variables as a function of time. 
+Kinetics is a branch of chemistry which describe the change of one or more variables as a function of time. 
 
-So we focus on the concentration that changes with time. 
-
-It’ll go up after intake then go down to eliminate outside the body.
+So we focus on the time and concentration. It’ll go up after intake the drug and then go down after reach the maximum concentration.
 
 ---
 
@@ -153,7 +149,7 @@ $k_{el}$: Elimination rate (1/time)
 ???
 But it’s difficult to realize the whole time-concentration relationship due to it will take a lot of time and money in the experiment. 
 
-Therefore, we need to use toxicokinetic modeling. The basic model is constructed by variables and parameters.
+Therefore, we need to use toxicokinetic modeling. The basic model is constructed by a single variable with few parameters.
 
 We can set up input dose and define the output such as chemical concentration in blood or other tissue organs. 
 
@@ -176,7 +172,7 @@ But the real world is not as simple as we think.
 
 Sometimes we need to consider the complex mechanism and factors that can help us make a good prediction. 
 
-So people developed the PBPK that include physiological and physicochemical parameters that correspond to the real-world situation and can describe the complex ADME processes.
+So people developed the PBPK that include physiological and physicochemical parameters that correspond to the real-world situation and can be used to describe the complex ADME processes.
 
 It can be applied to drug discovery and development and risk assessment.
 
@@ -230,7 +226,7 @@ So, the next step is to apply our model to make the prediction with our data.
 
 ---
 
-## Workflow (Bayesian hierarchical modeling)
+## Bayesian hierarchical modeling
 
 **Model calibration**
 
@@ -258,7 +254,7 @@ Before we apply this method, we need to have the prior knowledge for the model p
 
 This parameters usually have wide range, rough and low precise estimation. 
 
-Then we use the MCMC algorithm with experiment data as new evidence to find the precise estimation of model parameters.
+Then we use the MCMC algorithm with experiment data to find the precise estimation of model parameters.
 
 --
 
@@ -299,7 +295,7 @@ To do this model calibration, we need to have a tool to help our research.
 
 .large[Currently, the **Bayesian Markov chain Monte Carlo (MCMC) algorithm** is a effective way to do population PBPK model calibration. ]
 
-.xlarge[.bolder[BUT]]
+.xlarge[.bolder[**BUT**]]
 
 ???
 But, we have a challenge in our calibration process.
@@ -351,9 +347,11 @@ Based on these reasons, we started this project.
   (.bolder[Revise algorithm in model calibration])
 
 --
-  
+
+.highlight[
   - Specific Aim 2: Create, implement, and evaluate a robust Global Sensitivity Analysis algorithm to reduce PBPK model parameter dimensionality  
   (.bolder[Parameter fixing])
+]  
 
 --
 
@@ -1345,7 +1343,7 @@ It takes about 4 days to do the model calibration for full parameters, and we ca
 ???
 We examined the distribution for the testing parameter that was fixed in the previous study and determined whether the estimated maximum likelihood is different with the fixed value. 
 
-But we found when we used cut-off at .01 for full parameter set. It can produce the similar likelihood with full parameter set. 
+In addition, we found when we used cut-off at .01 for full parameter set. It can produce the similar likelihood with full parameter set. 
 
 --
 
