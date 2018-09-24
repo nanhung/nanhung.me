@@ -34,8 +34,11 @@ in Toxicology?**
 ]
 
 ???
+I think most people here are very experienced in laboratory experiments like in-vivo or in-vitro.  
 
-Most people here are doing a lot of in-vivo or in-vitro experiment.
+But I have no idea how many people understand why we need to do computational modeling in our study.  
+
+So I used this question in the beginning.
 
 ---
 
@@ -47,9 +50,13 @@ class: center, middle
 ]]
 
 ???
+We want to use this mathematical or statistical model to make some prediction with experimental data. 
 
-Reduce the use of experimental animals, Enable _in vitro_ to _in vivo_ extrapolation (IVIVE), Health risk assessment
-in vitro-in vivo extrapolation ("IVIVE") of high throughput screening data (e.g., ToxCast) to real-world exposures via reverse dosimetry
+Some people use the model to do "in-vitro in-vivo extrapolation". 
+
+Some people use the model to estimate the chemical cumulation in the animal body and predict health effect. 
+
+Also, we can integrate the chemical exposure and health effect to assess human health risk. 
 
 ---
 
@@ -73,7 +80,14 @@ in vitro-in vivo extrapolation ("IVIVE") of high throughput screening data (e.g.
 ]
 
 ???
-Pharmacokinetics is the application of kinetics to drug. Kinetics is that branch of knowledge which involves the change of one or more variables as a function of time. 
+
+Now, we can move on to the today’s first topic. 
+
+Some people here already know pharmacokinetic. 
+
+It is used to describe the fate of the chemical in a living organism when chemical enter into the animal body. 
+
+Pharmacokinetics is the application of kinetics to the drug.
 
 ---
 
@@ -101,12 +115,19 @@ background-position: 80% 98%
 ]
 ]
 
+
 .large[
 - Kinetics: rates of change
 - PK is focus on .bolder[TIME (t)] and .bolder[CONCENTRATION (C)]
 ]
 
 ???
+
+Kinetics is that branch of knowledge which involves the change of one or more variables as a function of time. 
+
+So we focus on the concentration that changes with time. 
+
+It’ll go up after intake then go down to eliminate outside the body.
 
 ---
 
@@ -136,15 +157,17 @@ To .large[.bolder["predict"]] the **cumulative does** by constructed **compartme
 
 
 ???
-It quantifies the fate of drug, which is ADME
-The top-right diagram is a simple example of PK model 
+But it’s difficult to realize the whole time-concentration relationship due to it will take a lot of time and money in the experiment. 
 
-MM constant
-rate constant
+Therefore, we need to use toxicokinetic modeling. The basic model is constructed by variables and parameters.
+
+We can set up input dose and define the output such as chemical concentration in blood or other tissue organs. 
+
+Then, we can set up the parameters such as absorption,elimination  rate constant. We can also used Michaelis-Menten kinetics constants to define the concentration-dependent rate constant for metabolism.
 
 ---
 
-## Physiological-Based Pharmacokinetic (PBPK) Model
+## Physiologically-Based Pharmacokinetic (PBPK) Model
 
 Mathematically transcribe .bolder[physiological] and .bolder[physicochemical] descriptions of the phenomena involved in the complex .bolder[ADME] processes.
 
@@ -154,6 +177,15 @@ Mathematically transcribe .bolder[physiological] and .bolder[physicochemical] de
 
 .footnote[Img: http://pharmguse.net/pkdm/prediction.html]
 
+???
+But the real world is not as simple as we think. 
+
+Sometimes we need to consider the complex mechanism and factors that can help us make a good prediction. 
+
+So people developed the PBPK that include physiological and physicochemical parameters that correspond to the real-world situation and can describe the complex ADME processes.
+
+It can be applied to drug discovery and development and risk assessment.
+
 ---
 
 class: center
@@ -162,11 +194,11 @@ class: center
 
 .large[
 
-Cross-species comparisons of metabolism
-
 Characterizing PK parameters for populations
 
 Evaluating variability and uncertainty
+
+Cross-species comparisons of metabolism
 
 ]
 
@@ -175,7 +207,7 @@ Evaluating variability and uncertainty
 .footnote[[Chiu et al. 2009.  https://doi.org/10.1016/j.taap.2009.07.032](https://www.sciencedirect.com/science/article/pii/S0041008X09003238#fig3)]
 
 ???
-https://www.epa.gov/expobox/uncertainty-and-variability
+The advantage of PBPK model is we can use this model to make additional application such as population PBPK modeling. 
 
 ---
 
@@ -197,10 +229,12 @@ class: center, middle
 
 ]
 
+???
+We have population PK data and we also construct the PBPK model. 
+
+So, the next step is to apply our model to make the prediction with our data.
 
 ---
-
-
 
 ## Workflow (Bayesian hierarchical modeling)
 
@@ -223,6 +257,15 @@ Posterior knowledge
 
 ]
 
+???
+Usually, we used the Bayesian hierarchical modeling approach to do the model calibration. 
+
+Before we apply this method, we need to have the prior knowledge for the model parameters. 
+
+This parameters usually have wide range, rough and low precise estimation. 
+
+Then we use the MCMC algorithm with experiment data as new evidence to find the precise estimation of model parameters.
+
 --
 
 .left[**Model validation**]
@@ -237,7 +280,7 @@ Compare the result of **"in-silico simulation"** and **"in-vivo observation"**
 
 class: middle
 
-# Tools
+# Tool (software)
 
 ## [GNU MCSim](http://www.gnu.org/software/mcsim/)
 
@@ -253,6 +296,9 @@ class: middle
 ]
 ]
 
+???
+To do this model calibration, we need to have a tool to help our research.
+
 ---
 
 # Challenge
@@ -260,6 +306,9 @@ class: middle
 .large[Currently, the **Bayesian Markov chain Monte Carlo (MCMC) algorithm** is a effective way to do population PBPK model calibration. ]
 
 .xlarge[.bolder[BUT]]
+
+???
+But, we have a challenge in our calibration process.
 
 --
 
@@ -299,6 +348,9 @@ Project Start: **Sep-2016**
 
 Name: **Enhancing the reliability, efficiency, and usability of Bayesian population PBPK modeling**
 
+???
+Based on these reasons, we started this project.
+
 --
 
   - Specific Aim 1: Develop, implement, and evaluate methodologies for parallelizing time-intensive calculations and enhancing a simulated tempering-based MCMC algorithm for Bayesian parameter estimation  
@@ -321,6 +373,13 @@ Name: **Enhancing the reliability, efficiency, and usability of Bayesian populat
 .large[We usually fix the "possible" non-influential model parameters through **"expert judgment"**.]
 
 .xlarge[.bolder[BUT]]
+
+???
+Actually, we already applied the concept of parameter fixing to improve the computational time. 
+
+But,
+
+This is why we need an alternative way to fix the unimportant parameter. So we chose sensitivity analysis.
 
 --
 
@@ -350,6 +409,9 @@ class: middle
 ]
 
 .footnote[[Saltelli A., 2002, Sensitivity Analysis for Importance Assessment, Risk Analysis, 22 (3) 1-12.](http://www.andreasaltelli.eu/file/repository/intro_v2b)]
+
+???
+This is a brief definition of sensitivity analysis.
 
 ---
 
@@ -414,7 +476,6 @@ class: middle
 
 ---
 
-
 # Classification of SA Methods
 
 
@@ -427,6 +488,13 @@ class: middle
 **"Local"** SA focus on sensitivity at a particular set of input parameters, usually using gradients or partial derivatives
 
 ]
+
+???
+Usually, some people have experience in modeling they have the knowledge in local sensitivity analysis. 
+
+This method is very simple. You move one parameter and fix other parameters then check the change of model outputs. 
+
+On the other side, some researcher also developed the approach that moves all parameters at a time and checks the change of model output. We call it Global sensitivity analysis or variance-based sensitivity analysis.
 
 --
 
@@ -453,6 +521,15 @@ background-size: contain
 Img: [Unsplash](https://unsplash.com/photos/jcLcWL8D7AQ)
 ]
 
+???
+Here I want to use an example to explain what sensitivity analysis looks like. 
+
+You can imagine you’re making a mixing juice to your friend. 
+
+You can put different fruits in your glass, like apple, orange, lemon, strawberry etc. 
+
+These fruits are your parameters. But what is your model output?
+
 ---
 
 background-image: url(https://image.ibb.co/dcgqe9/adult_beard_expression_1054048.jpg)
@@ -461,6 +538,9 @@ background-size: contain
 .footnote[
 Img: [Pexels](https://www.pexels.com/photo/man-in-black-crew-neck-top-1054048/)
 ]
+
+???
+This is your model output.
 
 ---
 
@@ -481,6 +561,9 @@ class: center
 
 &lt;/br&gt; 
 &lt;/br&gt; 
+
+???
+This is the quantification of the impact of the model parameter. 
 
 ---
 
@@ -501,6 +584,9 @@ also known as **main effect**
 
 &lt;/br&gt; 
 &lt;/br&gt; 
+
+???
+First order just like how your friend's face looks like when he tastes the specific fruit.
 
 ---
 
@@ -518,6 +604,9 @@ also known as **main effect**
 The output variance contributed by any pair of input parameter
 
 .xlarge[Total order] `\((S_{T})\)`
+
+???
+The Interaction just like the mixing flavors from two or more fruits. 
 
 --
 
@@ -558,6 +647,9 @@ class: middle, center
 
 .bolder[**Global Sensitivity Analysis**]
 ]
+
+???
+Now, we have the idea of global sensitivity analysis. But how do we apply GSA with population PBPK modeling?
 
 ---
 
@@ -677,6 +769,15 @@ Well-constructed and studied PBPK model.
 ]
 ]
 
+???
+I'll move on to our materials, the first one is the PBPK model. 
+
+In this study, we used acetaminophen, which is a widely used medication. 
+
+It includes two types of metabolic pathways that can have therapeutic and toxicity effects. 
+
+But the most important thing is that acetaminophen has a large amount of PK data for both human and other animals. And we also had a well-constructed and studied PBPK model.
+
 ---
 
 background-image: url(https://image.ibb.co/b9F8Ze/uSCphVE.gif)
@@ -690,6 +791,11 @@ The simulation of the disposition of .bolder[acetaminophen (APAP)] and two of it
 .footnote[[Zurlinden, T.J. &amp; Reisfeld, B. Eur J Drug Metab Pharmacokinet (2016) 41: 267. ](https://link.springer.com/article/10.1007%2Fs13318-015-0253-x)]
 
 ???
+The acetaminophen-PBPK model is constructed with several tissue compartments such as Fat muscle, liver, and kidney. 
+
+It can be used to simulate and predict the concentration of its two metabolites in plasma and urine. 
+
+  Also, it can be used to describe the different dosing method include oral and intravenous.
 
 ---
 
@@ -719,6 +825,18 @@ background-position: 95% 95%
 
 ]
 
+.footnote[
+M-M: Michaelis–Menten
+]
+
+
+???
+In the previous study, they only choose 21 parameters to do the model calibration. 
+
+These parameters can be simply classified into four types, which includes
+
+You can see most parameters are Michaelis–Menten constant that determined the metabolism of acetaminophen.
+
 ---
 
 # Parameters fixed in previous study
@@ -747,6 +865,13 @@ background-position: 95% 95%
 
 ]
 
+???
+On the other side, we found 37 parameters that were be fixed in the previous study that include cardiac output, blood flow rate, and tissue volume in physiological parameters.
+
+In physicochemical parameters, we also tested the sensitivity of partition coefficients acetaminophen and its conjugates.
+
+We further used these parameters and gave the uncertainty to do the calibration. 
+
 ---
 
 # Materials (2/3) - Population PK Data
@@ -759,6 +884,15 @@ Eight studies (n = 71) with single oral dose and three different given doses.
 .center[
 &lt;img src="https://image.ibb.co/mfUD0K/wuYl7Bk.png" height="420px" /&gt;
 ]
+
+???
+Also, experiment data is very important in our model calibration.
+
+We used the PK data from eight studies. This data included 71 subjects. 
+
+All these subjects are administrated with single oral dose. 
+
+The given dose levels were from 325 mg in group A to 80 mg/kg in group H.
 
 ---
 
@@ -780,6 +914,9 @@ Eight studies (n = 71) with single oral dose and three different given doses.
 
 ]
 
+???
+Finally, we used four sensitivity analysis algorithms as candidates and compared the final result with each other.
+
 ---
 
 # Morris screening
@@ -796,6 +933,15 @@ Eight studies (n = 71) with single oral dose and three different given doses.
 &lt;img src="180924_seminar_files/figure-html/unnamed-chunk-1-1.png" width="600px" /&gt;
 ]
 
+???
+The first one is the Morris method. 
+
+Morris can be classified into the local sensitivity analysis. But it is an unusual local approach. 
+
+Unlike the traditional local method, it can also estimate the interaction in sensitivity index. 
+
+On the right-hand side is an example of  Morris screening.
+
 --
 
 .highlight[
@@ -808,9 +954,9 @@ Eight studies (n = 71) with single oral dose and three different given doses.
 
 # Variance-based sensitivity analysis
 
-eFAST defines a .bolder[search curve] in the input space
-
-`$$x_i=\frac{1}{2}+\frac{1}{\pi}\arcsin(\sin(\omega\cdot s+\phi_i))$$`
+- eFAST defines a .bolder[search curve] in the input space.
+- Jansen generates .bolder[TWO] independent random sampling parameter matrices.
+- Owen combines .bolder[THREE] independent random sampling parameter matrices.
 
 .pull-left[
 .center[
@@ -824,13 +970,20 @@ eFAST defines a .bolder[search curve] in the input space
 ]
 ]
 
+???
+The main difference in our global methods is they used the different ways to do parameter sampling.
+
+The eFAST method is using the generated search curve and samples the parameters on this curve. 
+
+Jansen and Owen are used Monte Carlo-based method to sample the parameters in the parameter space. 
+
 ---
 
 # Variance-based sensitivity analysis
 
-Jansen generates .bolder[TWO] independent random sample with `\(N\)` points in d dimensions.
-
-Owen combines .bolder[THREE] independent random sampling parameter matrix
+- eFAST defines a .bolder[search curve] in the input space.
+- Jansen generates .bolder[TWO] independent random sampling parameter matrices.
+- Owen combines .bolder[THREE] independent random sampling parameter matrices.
 
 .pull-left[
 
@@ -842,6 +995,11 @@ Owen combines .bolder[THREE] independent random sampling parameter matrix
 ![](180924_seminar_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
 ]
 
+???
+On the left-hand side is how the Monte-Carlo sampling.
+
+On the right-hand side is an example of variance-based sensitivity analysis' result.
+
 --
 
 .highlight[
@@ -849,6 +1007,9 @@ Owen combines .bolder[THREE] independent random sampling parameter matrix
 2. **The computational cost is more expensive**
 3. **Good for factor fixing**
 ]
+
+???
+Compare to Morris; the global methods have these characteristics.
 
 ---
 
@@ -868,6 +1029,9 @@ class: center
 
 &lt;i class="fa fa-arrow-down"&gt;&lt;/i&gt;
 
+???
+Our workflow started by reproducing the result from the previous study.
+
 --
 
 .highlight[
@@ -885,7 +1049,7 @@ class: center
 .highlight[
 .large[Bayesian model calibration by SA-judged influential parameters]   
 
-**Compare the model .bolder[performance] under the setting cut-off (Q3)**  
+**Compare the model .bolder[performance] under the setting "cut-off" (Q3)**  
 **Exam the  .bolder[bias] for expert and SA-judged parameters (Q4)**
 ]
 
@@ -903,6 +1067,15 @@ Time-spend in SA (min): Morris (2.4) &lt; **eFAST (19.8)** `\(\approx\)` Jansen 
 
 Variation of SA index: Morris (2.3%) &lt; **eFAST (5.3%)** &lt; Jansen (8.0%) &lt;  Owen (15.9%)
 
+???
+In our result, we’ll answer the four questions. 
+
+We tested the computer time under the sample number from 1000 to 8000 and checked the variation of sensitivity index. 
+
+As expected, Morris is the fastest approach that can rapidly compute the result under the same sample number with the lowest variability.
+
+But if we focus on the variance-based method, we can find that eFAST shows better performance than Jansen and Owen.
+
 ---
 
 ### Q1: What is the relative computational efficiency of various GSA algorithms?
@@ -916,6 +1089,9 @@ Variation of SA index: Morris (2.3%) &lt; **eFAST (5.3%)** &lt; Jansen (8.0%) &l
 **Ans 1: The Morris method provided the most efficient computational performance and convergence result, followed by eFAST.**
 ]
 ]
+
+???
+The answer to the first question is….
 
 ---
 
@@ -938,6 +1114,15 @@ Variation of SA index: Morris (2.3%) &lt; **eFAST (5.3%)** &lt; Jansen (8.0%) &l
 ]
 
 .footnote[Grey: first-order; Red: interaction]
+
+???
+We correlated the sensitivity index across four algorithms by using the results of original and all model parameters. 
+
+The grey and red color are the correlation plot for first-order and interaction. 
+
+We found that all global methods can provide the consistent sensitivity index. 
+
+However, Morris cannot produce the similar results with other algorithms. 
 
 ---
 
@@ -1001,6 +1186,17 @@ Full influential parameters
 
 ]
 
+???
+Moving on to the third question.
+
+The crucial factor in this part is how do we set up the cut-off for the sensitivity index that can be used to distinguish the influential and non-influential parameters. 
+
+Then we can use the selected parameter sets to do the further model calibration.
+
+To determine the reliable cut-off, we used both parameter sets from original and the full parameter set. 
+
+After the sensitivity analysis, we set the cut-off and do the model calibration and validation to see which cut-off can provide the better trade-off between computer time and model performance. 
+
 ---
 
 .center[
@@ -1009,6 +1205,14 @@ Full influential parameters
 
 .footnote[OIP: original influential parameters; OMP: original model parameters; FIP: full influential parameter; FMP: full model parameters]
 
+???
+Firstly, we used the cut-off at .05, which means if the parameter can not provide the impact for output variance over 5%, we’ll drop-off this parameter.
+
+We found 11 influential parameters and 10 non-influential parameters in this original parameter set.
+
+However, when we used the cut-off at .05, we can only screen 10 parameters in the full model set.
+
+So we further used the cut-off at .01 to choose additional 10 parameters to do the model calibration.
 ---
 
 .pull-left[
@@ -1047,6 +1251,13 @@ Full influential parameters
 
 ]
 
+???
+Here is the summary of the number of parameters that were be classified to the non-influential parameter in original parameter setting. 
+
+These parameters are from absorption and metabolism.
+
+In addition, we found 6 parameters that were fixed in the previous study.
+
 ---
 
 ### Q3: Can we identify non-influential parameters that can be fixed in a Bayesian PBPK model calibration while achieving similar degrees of accuracy and precision?
@@ -1057,6 +1268,13 @@ Full influential parameters
 
 .footnote[OIP: original influential parameters; OMP: original model parameters; FIP: full influential parameter; FMP: full model parameters]
 
+???
+We compared the observed human experiment data, and the predicted values then summarized the residual. 
+
+We can see the full influential parameter with the cut-off at .01 that only used 1/3 of full model parameters can provide the similar result with full parameter sets. 
+
+Also, using the cut-off at .05 that only used 10 parameters can generate the similar result with original parameter sets.    
+
 ---
 
 ### Q3: Can we identify non-influential parameters that can be fixed in a Bayesian PBPK model calibration while achieving similar degrees of accuracy and precision?
@@ -1065,8 +1283,16 @@ Full influential parameters
 ![](https://image.ibb.co/gUu1s9/fig5.jpg)
 ]
 
----
+???
+We also used the determination coefficient to compare the validation result among each study. 
 
+You can see the if the given dose over 20 mg/kg. The estimated R2 will be very similar. 
+
+However, in the lower dose such as group A. We can see the difference estimation of model performance across these parameters sets.
+
+But the selected parameters from global sensitivity analysis still have better accuracy and precision with full parameter set.
+
+---
 
 ### Q3: Can we identify non-influential parameters that can be fixed in a Bayesian PBPK model calibration while achieving similar degrees of accuracy and precision?
 
@@ -1098,7 +1324,10 @@ Full influential parameters
 &lt;/tbody&gt;
 &lt;/table&gt;
 
-- All time-cost value are shown with mean and standard deviation (n = 10).
+???
+This is the result of the time-cost by using the full parameters, GSA-judged and expert judged parameters. 
+
+It takes about 4 days to do the model calibration for full parameters, and we can only spend halftime if we fixed the parameter and do the further calibration.
 
 --
 
@@ -1121,24 +1350,38 @@ Full influential parameters
 &lt;img src="https://image.ibb.co/cmHcKz/fig6.jpg" height="400px" /&gt;  
 ]
 
+???
+We examined the distribution for the testing parameter that was fixed in the previous study and determined whether the estimated maximum likelihood is different with the fixed value. 
+
+But we found when we used cut-off at .01 for full parameter set. It can produce the similar likelihood with full parameter set. 
+
+--
+
 .center[
 .highlight[
-**Ans 4: GSA was more effective than “expert judgment” at identifying parameters that are influential, and led to a better fit between predictions and data even though almost the same number of parameters were used.**
+**Ans 4: Using "expert judgment" to fix model parameters has the potential lead to imprecision and bias. GSA was more effective at identifying parameters that are influential and led to a better fit between predictions and data.**
 ]]
 
 ---
 
+class: middle 
+
 # Take Home Message
 
-  - .bolder[Global sensitivity analysis] can be an essential tool to reduce the dimensionality and improve the computational efficiency in Bayesian PBPK model calibration.
+For people who have no experience in modeling...
 
+.highlight[
+- .bolder[Global sensitivity analysis] can be an essential tool to reduce the dimensionality and improve the computational efficiency in Bayesian PBPK model calibration.
+]
+
+
+For people who have experience in sensitivity analysis...
+.highlight[
 - Use the .bolder[eFAST] for parameter sensitivity, making sure to check "convergence".
-
 - Distinguish “influential” and “non-influential” parameters with .bolder[cut-off] from sensitivity index and check .bolder[accuracy] and .bolder[precision] to evaluate model performance. 
+]
 
 --
-
-&lt;/br&gt;
 
 .large[
 For more details, read this ...  
@@ -1154,21 +1397,23 @@ Hsieh N-H, Reisfeld B, Bois FY and Chiu WA (2018) Applying a Global Sensitivity 
 
 # What we might ignore in our study?
 
+???
+Now we successfully applied the global sensitivity workflow in our study. 
+But what we might ignore?
+
 --
 
-### How to applied this GSA workflow to other cases?
+&lt;/br&gt;
+
+## - How to applied this GSA workflow to other cases?
 
 &lt;/br&gt;
 
-### Which external factors that might change GSA result?
-
-- Parameter distributions?
-
-- Different given doses? 
+## - Which external factors that may change GSA result?
 
 &lt;/br&gt;
 
-### How to determine the robust cut-off?
+## - How to determine the robust cut-off?
 
 ---
 
