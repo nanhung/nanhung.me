@@ -51,7 +51,7 @@ defaultContentLanguageInSubdir = false
 
   # Your details.
   name = "Nan-Hung Hsieh"
-  role = "Computational Toxicology"
+  role = "Ph.D."
 
   # Organizations/Affiliations.
   #   Separate multiple entries with a comma, using the form: `[ {name="Org1", url=""}, {name="Org2", url=""} ]`.
@@ -272,13 +272,18 @@ defaultContentLanguageInSubdir = false
   weight = 3
 
 [[menu.main]]
-  name = "Talks"
-  url = "#talks"
+  name = "Publications"
+  url = "#publications"
   weight = 4
 
 [[menu.main]]
-  name = "Publications"
-  url = "#publications"
+  name = "Softwares"
+  url = "#softwares"
+  weight = 5
+
+[[menu.main]]
+  name = "Talks"
+  url = "#talks"
   weight = 5
 
 # Taxonomies.
