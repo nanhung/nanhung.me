@@ -33,7 +33,7 @@
 <meta property="og:title" content="Install MCSim — install_mcsim" />
 
 <meta property="og:description" content="Download the latest or specific version of MCSim from the official website
-https://www.gnu.org/software/mcsim/ and install it to the system directory." />
+(https://www.gnu.org/software/mcsim/) and install it to the system directory." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -109,7 +109,7 @@ https://www.gnu.org/software/mcsim/ and install it to the system directory." />
     <div class="ref-description">
     
     <p>Download the latest or specific version of MCSim from the official website
-<a href='https://www.gnu.org/software/mcsim/'>https://www.gnu.org/software/mcsim/</a> and install it to the system directory.</p>
+(<a href='https://www.gnu.org/software/mcsim/'>https://www.gnu.org/software/mcsim/</a>) and install it to the system directory.</p>
     
     </div>
 
@@ -124,7 +124,7 @@ https://www.gnu.org/software/mcsim/ and install it to the system directory." />
     </tr>
     <tr>
       <th>directory</th>
-      <td><p>a character to assign the directory to put the MCSim sourced folder.</p></td>
+      <td><p>a character to assign the directory to put the MCSim files.</p></td>
     </tr>
     <tr>
       <th>mxstep</th>
@@ -133,19 +133,17 @@ allowed during one call to the solver.</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>The default <code>mxstp</code> is setting to 500.
-The user can increase mxstep to avoid possible error return.
-The default <code>directory</code> to install MCSim is under <code>/home/username</code> (Linux), <code>/Users/username</code> (MacOS),
-and <code>C:/Users/</code> (windows).</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This function aims to help you install MCSim more easily.
+    <p>This function aims to help users install MCSim more easily.
 However, if you can not install it through this function.
 You might need to follow the instruction of MCSim and install it,
 manually: <a href='https://www.gnu.org/software/mcsim/mcsim.html#Installation'>https://www.gnu.org/software/mcsim/mcsim.html#Installation</a></p>
+<p>The default <code>mxstp</code> is setting to 500.
+The user can increase <code>mxstp</code> to avoid possible error return.
+If you meet any error when conduct sensitivity analysis, you can this function to reinstall MCSim and set the higher <code>mxstp</code>.
+The default <code>directory</code> to install MCSim is under <code>/home/username</code> (Linux), <code>/Users/username</code> (MacOS),
+and <code>C:/Users/</code> (windows).</p>
 <p>To install MCSim in Windows, be sure to install Rtools or MinGW first.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
@@ -165,8 +163,6 @@ install_mcsim(version = 6.0.1, mxstep = 10000)
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
 
       <li><a href="#references">References</a></li>

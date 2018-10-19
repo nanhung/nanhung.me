@@ -32,9 +32,8 @@
 
 <meta property="og:title" content="Solve PK Model Through MCSim — solve_mcsim" />
 
-<meta property="og:description" content="The solve_mcsim solves for the differential equations of time-dependent quantity/concentration in different tissues/compartments
-through MCSim.
-The output result is the 4-dimension array with c(model evaluations, replications, time-points, output variables)." />
+<meta property="og:description" content="The solve_mcsim can solve the differential equations of time-dependent quantity/concentration in different tissues/compartments
+through MCSim." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -109,9 +108,8 @@ The output result is the 4-dimension array with c(model evaluations, replication
 
     <div class="ref-description">
     
-    <p>The <code>solve_mcsim</code> solves for the differential equations of time-dependent quantity/concentration in different tissues/compartments
-through MCSim.
-The output result is the 4-dimension array with c(model evaluations, replications, time-points, output variables).</p>
+    <p>The <code>solve_mcsim</code> can solve the differential equations of time-dependent quantity/concentration in different tissues/compartments
+through MCSim.</p>
     
     </div>
 
@@ -184,6 +182,11 @@ The output result is the 4-dimension array with c(model evaluations, replication
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>The output result is the 4-dimension array with
+c(model evaluations, replications, time-points, output variables).</p>
+    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This function allows users to use external data file that assigned in <code>setpoint.name</code> as parameter matrix.
@@ -197,16 +200,52 @@ If you want to use it, be sure to define <code>n</code> and <code>setpoint.name<
 </ul>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='no'>url</span> <span class='kw'>&lt;-</span> <span class='st'>"https://raw.githubusercontent.com/nanhung/pksensi/master/tests/1cpt.model"</span>
+<span class='no'>destfile</span> <span class='kw'>&lt;-</span> <span class='fu'>paste0</span>(<span class='fu'>getwd</span>(),<span class='st'>"/1cpt.model"</span>)
+<span class='fu'>download.file</span>(<span class='no'>url</span>, <span class='no'>destfile</span>)
+<span class='no'>mName</span> <span class='kw'>&lt;-</span> <span class='st'>"1cpt"</span>
+<span class='fu'><a href='compile_model.html'>compile_model</a></span>(<span class='no'>mName</span>)</div><div class='output co'>#&gt; * Created executable file 'mcsim.1cpt'.</div><div class='input'>
+<span class='no'>q</span> <span class='kw'>&lt;-</span> <span class='st'>"qunif"</span>
+<span class='no'>q.arg</span> <span class='kw'>&lt;-</span> <span class='fu'>list</span>(<span class='fu'>list</span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0.6</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>1.0</span>),
+   <span class='fu'>list</span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>1.5</span>),
+   <span class='fu'>list</span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0.02</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>0.3</span>),
+   <span class='fu'>list</span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>60</span>))
+
+<span class='no'>params</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"Fgutabs"</span>,<span class='st'>"k_a"</span>,<span class='st'>"k_e"</span>,<span class='st'>"V_dist"</span>)
+
+<span class='fu'>set.seed</span>(<span class='fl'>1234</span>)
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='rfast99.html'>rfast99</a></span>(<span class='kw'>params</span> <span class='kw'>=</span> <span class='no'>params</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>200</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='no'>q</span>, <span class='kw'>q.arg</span> <span class='kw'>=</span> <span class='no'>q.arg</span>, <span class='kw'>rep</span> <span class='kw'>=</span> <span class='fl'>20</span>)
+
+<span class='no'>infile.name</span> <span class='kw'>&lt;-</span> <span class='st'>"example.in"</span>
+<span class='no'>outfile.name</span> <span class='kw'>&lt;-</span> <span class='st'>"example.csv"</span>
+<span class='no'>vars</span> <span class='kw'>&lt;-</span> <span class='st'>"C_rest"</span>
+
+<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>seq</span>(<span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>0.25</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>12.25</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='fl'>0.5</span>)
+
+<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'>solve_mcsim</span>(<span class='no'>x</span>, <span class='kw'>mName</span> <span class='kw'>=</span> <span class='no'>mName</span>, <span class='kw'>infile.name</span> <span class='kw'>=</span> <span class='no'>infile.name</span>,
+<span class='kw'>setpoint.name</span> <span class='kw'>=</span> <span class='st'>"setpoint.dat"</span>,
+<span class='kw'>outfile.name</span> <span class='kw'>=</span> <span class='no'>outfile.name</span>, <span class='kw'>params</span> <span class='kw'>=</span> <span class='no'>params</span>, <span class='kw'>vars</span> <span class='kw'>=</span> <span class='no'>vars</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='no'>t</span>,
+<span class='kw'>condition</span> <span class='kw'>=</span> <span class='st'>"IngDose = 1"</span>)
+
+<span class='fu'><a href='pksim.html'>pksim</a></span>(<span class='no'>y</span>)</div><div class='img'><img src='solve_mcsim-1.png' alt='' width='700' height='433' /></div><div class='input'>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#value">Value</a></li>
+
       <li><a href="#details">Details</a></li>
 
       <li><a href="#functions">Functions</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

@@ -32,8 +32,9 @@
 
 <meta property="og:title" content="Pharmacokinetic Simulation from Sampling Parameter — pksim" />
 
-<meta property="og:description" content="Pharmacokinetic plot of the output result based on the given parameter (Uncertainty analysis).
-The first model variable is the default output." />
+<meta property="og:description" content="Pharmacokinetic plot of the output results based on the given parameter (Uncertainty analysis).
+If the user define the multiple output in model, the generated result will based on
+first model variable (default)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -108,8 +109,9 @@ The first model variable is the default output." />
 
     <div class="ref-description">
     
-    <p>Pharmacokinetic plot of the output result based on the given parameter (Uncertainty analysis).
-The first model variable is the default output.</p>
+    <p>Pharmacokinetic plot of the output results based on the given parameter (Uncertainty analysis).
+If the user define the multiple output in model, the generated result will based on
+first model variable (default).</p>
     
     </div>
 
@@ -120,15 +122,15 @@ The first model variable is the default output.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>y</th>
-      <td><p>a numeric array created from <code>solve_fun</code> function.</p></td>
+      <td><p>a numeric array created from <code>solve_fun</code> or <code>solve_mcsim</code> function.</p></td>
     </tr>
     <tr>
       <th>vars</th>
-      <td><p>a logical value or character to specific the display variable in simulation.</p></td>
+      <td><p>a logical value or character to specific the display variable in simulation (default 1).</p></td>
     </tr>
     <tr>
       <th>log</th>
-      <td><p>a logical value to transform the y-axis to log scale (default is set to FALSE).</p></td>
+      <td><p>a logical value to transform the y-axis to log scale.</p></td>
     </tr>
     <tr>
       <th>legend</th>
@@ -140,13 +142,19 @@ The first model variable is the default output.</p>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A pharmacokinetic plot with median and the range of min-max, 10<!-- %-90%, and 25%-75%. --></p>
+    
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#value">Value</a></li>
+          </ul>
 
   </div>
 </div>

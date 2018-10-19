@@ -32,8 +32,8 @@
 
 <meta property="og:title" content="About <span class="pkg">pksensi</span> package — about-pksensi" />
 
-<meta property="og:description" content="Reduce parameter dimensionality in pharmacokinetic modeling
-and evaluate the robustness of global sensitivity analysis algorithm." />
+<meta property="og:description" content="Applying a global sensitivity analysis approach to reduce parameter dimensionality in
+pharmacokinetic modeling and evaluate the robustness of the algorithm under the given sampling number." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -108,19 +108,21 @@ and evaluate the robustness of global sensitivity analysis algorithm." />
 
     <div class="ref-description">
     
-    <p>Reduce parameter dimensionality in pharmacokinetic modeling
-and evaluate the robustness of global sensitivity analysis algorithm.</p>
+    <p>Applying a global sensitivity analysis approach to reduce parameter dimensionality in
+pharmacokinetic modeling and evaluate the robustness of the algorithm under the given sampling number.</p>
     
     </div>
 
         
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The "extended Fourier amplitude sensitivity testing (eFAST)" method,
-a variance-based sensitivity analysis method is used to estimate the parameter impact on model output
+    <p>The "extended Fourier amplitude sensitivity testing (eFAST)" method, a variance-based sensitivity analysis
+method is used to estimate the parameter impact on model output
 (Saltelli et al., 1999).
-The eFAST is the effective algorithm to determine the influential parameter
-in physiologically-based pharmacokinetic model calibration (Hsieh et al., 2018).</p>
+The eFAST is the effective algorithm to determine the influential parameter in
+physiologically-based pharmacokinetic model calibration (Hsieh et al., 2018).
+The eFAST algorithm is sourced from <span class="pkg">sensitivity</span> package
+but implemented the random-phase shift to evaluating the robustness of sensitivity measurement under the given sample size.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 

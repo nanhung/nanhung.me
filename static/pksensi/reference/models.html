@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Test PK Model for Sensitivity Analysis — pk_model • pksensi</title>
+<title>Example PK Model for Sensitivity Analysis — pk_model • pksensi</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,13 @@
 
 
 
-<meta property="og:title" content="Test PK Model for Sensitivity Analysis — pk_model" />
+<meta property="og:title" content="Example PK Model for Sensitivity Analysis — pk_model" />
 
-<meta property="og:description" content="The example test model is Flip-flop kinetics (FFPK)." />
+<meta property="og:description" content="The example test model is Flip-flop kinetics (FFPK). The time-dependent concentration can be written as:
+$$C(t) = \frac{F \cdot D \cdot k_a}{(k_a-k_e)V} (e^{-k_et}-e^{-k_at})$$
+where \(F\) is the fraction or percentage of the administrated dose that can reach the general circulation,
+\(k_a\) is the first-order absorption rate constant (/time),
+\(k_e\) is the first-order elimination rate constant (/time), and \(V\) is the distribution volume." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -100,24 +104,28 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Test PK Model for Sensitivity Analysis</h1>
+    <h1>Example PK Model for Sensitivity Analysis</h1>
     <small class="dont-index">Source: <a href='https://github.com/nanhung/pksensi/blob/master/R/models.R'><code>R/models.R</code></a></small>
     <div class="hidden name"><code>models.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>The example test model is Flip-flop kinetics (FFPK).</p>
+    <p>The example test model is Flip-flop kinetics (FFPK). The time-dependent concentration can be written as:
+$$C(t) = \frac{F \cdot D \cdot k_a}{(k_a-k_e)V} (e^{-k_et}-e^{-k_at})$$
+where \(F\) is the fraction or percentage of the administrated dose that can reach the general circulation,
+\(k_a\) is the first-order absorption rate constant (/time),
+\(k_e\) is the first-order elimination rate constant (/time), and \(V\) is the distribution volume.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>FFPK</span>(<span class='no'>parameters</span>, <span class='no'>time</span>, <span class='kw'>dose</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
+    <pre class="usage"><span class='fu'>FFPK</span>(<span class='no'>params</span>, <span class='no'>time</span>, <span class='kw'>dose</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>parameters</th>
+      <th>params</th>
       <td><p>a parameter matrix containing the input sample.</p></td>
     </tr>
     <tr>
@@ -131,12 +139,20 @@
     </table>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>params</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='kw'>F</span> <span class='kw'>=</span> <span class='fl'>0.9</span>, <span class='kw'>KA</span> <span class='kw'>=</span> <span class='fl'>1.2</span>, <span class='kw'>KE</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>V</span> <span class='kw'>=</span> <span class='fl'>1.5</span>)
+<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>seq</span>(<span class='fl'>0</span>, <span class='fl'>12</span>, <span class='fl'>0.1</span>)
+<span class='no'>C</span> <span class='kw'>&lt;-</span><span class='fu'>FFPK</span>(<span class='kw'>params</span> <span class='kw'>=</span> <span class='no'>params</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='no'>t</span>)
+<span class='fu'>plot</span>(<span class='no'>t</span>, <span class='no'>C</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"l"</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"time"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"concentration"</span>)</div><div class='img'><img src='models-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+            
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
