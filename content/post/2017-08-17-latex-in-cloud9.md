@@ -39,7 +39,7 @@ apt list --installed
 
 Here is the total list of the install packages
 
-![Imgur](http://i.imgur.com/82wDFGh.png)
+![Imgur](https://i.imgur.com/82wDFGh.png)
 
 
 ## 5. Now, create the simple test.tex file to test
@@ -56,7 +56,7 @@ Hello!                  % The content
 \end{document}
 ```
 
-![Imgur](http://i.imgur.com/nkScMg6.png)
+![Imgur](https://i.imgur.com/nkScMg6.png)
 
 ## 6. Then type following command in the terminal
 ```
@@ -64,7 +64,7 @@ pdflatex test
 ```
 
 And we can "preview" the pdf file like this
-![Imgur](http://i.imgur.com/SI1028c.png)
+![Imgur](https://i.imgur.com/SI1028c.png)
 
 Also, we can use git to do version control for our documents.
 
