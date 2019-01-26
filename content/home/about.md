@@ -10,7 +10,7 @@ weight = 5
 # List your academic interests.
 [interests]
   interests = [
-    "**Open Source Software**"
+    "**Open Source Software**",
     "**Bayesian Statistics**",
     "**Computational Toxicology**",
     "**Risk Assessment**"
