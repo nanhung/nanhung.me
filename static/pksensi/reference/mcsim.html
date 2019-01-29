@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • pksensi</title>
+<title>Install MCSim — mcsim_install • pksensi</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,7 +30,10 @@
 
 
 
-<meta property="og:title" content="Changelog" />
+<meta property="og:title" content="Install MCSim — mcsim_install" />
+
+<meta property="og:description" content="Download the latest or specific version of GNU MCSim from the official website
+(https://www.gnu.org/software/mcsim/) and install it to the system directory." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -49,7 +52,7 @@
   </head>
 
   <body>
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -115,98 +118,88 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/nanhung/pksensi/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+    <h1>Install MCSim</h1>
+    <small class="dont-index">Source: <a href='https://github.com/nanhung/pksensi/blob/master/R/install.R'><code>R/install.R</code></a></small>
+    <div class="hidden name"><code>mcsim.Rd</code></div>
     </div>
 
-    <div id="pksensi-101" class="section level1">
-<h1 class="page-header">
-<a href="#pksensi-101" class="anchor"></a>pksensi 1.0.1<small> 2019-01-29 </small>
-</h1>
-<div id="new-vignette" class="section level3">
-<h3 class="hasAnchor">
-<a href="#new-vignette" class="anchor"></a>New vignette:</h3>
-<ul>
-<li>Add “PBTK 1-compartment model”</li>
-<li>Add “Acetaminophen-PBPK model”</li>
-</ul>
-</div>
-<div id="new-example" class="section level3">
-<h3 class="hasAnchor">
-<a href="#new-example" class="anchor"></a>New example:</h3>
-<ul>
-<li>Update example in <code><a href="../reference/solve_mcsim.html">solve_mcsim()</a></code>
-</li>
-</ul>
-</div>
-<div id="new-function" class="section level3">
-<h3 class="hasAnchor">
-<a href="#new-function" class="anchor"></a>New function:</h3>
-<ul>
-<li>Add <code><a href="../reference/models.html">pbtk1cpt_model()</a></code>
-</li>
-<li>Add <code><a href="../reference/models.html">pbpk_apap_model()</a></code>
-</li>
-<li>Add function <code><a href="../reference/mcsim.html">mcsim_version()</a></code>
-</li>
-</ul>
-</div>
-<div id="new-dataset" class="section level3">
-<h3 class="hasAnchor">
-<a href="#new-dataset" class="anchor"></a>NEW dataset</h3>
-<ul>
-<li>Add <code>APAP</code> dataset</li>
-</ul>
-</div>
-<div id="fix-bug" class="section level3">
-<h3 class="hasAnchor">
-<a href="#fix-bug" class="anchor"></a>Fix Bug:</h3>
-<ul>
-<li>Fix the <code>order</code> argument in <code><a href="../reference/check.html">heat_check()</a></code>
-</li>
-<li>Add message in <code><a href="../reference/solve_mcsim.html">generate_infile()</a></code>
-</li>
-</ul>
-</div>
-<div id="update-function" class="section level3">
-<h3 class="hasAnchor">
-<a href="#update-function" class="anchor"></a>Update function</h3>
-<ul>
-<li>Remove argument <code>params</code> in <code><a href="../reference/solve_fun.html">solve_fun()</a></code>
-</li>
-<li>No need to define <code>infile.name</code> and <code>outfile.name</code> in <code><a href="../reference/solve_mcsim.html">solve_mcsim()</a></code>
-</li>
-</ul>
-</div>
-<div id="change" class="section level3">
-<h3 class="hasAnchor">
-<a href="#change" class="anchor"></a>Change:</h3>
-<ul>
-<li>Change function’s name <code>install_mcsim()</code> to <code><a href="../reference/mcsim.html">mcsim_install()</a></code>
-</li>
-</ul>
-</div>
-</div>
-    <div id="pksensi-100" class="section level1">
-<h1 class="page-header">
-<a href="#pksensi-100" class="anchor"></a>pksensi 1.0.0<small> 2018-10-30 </small>
-</h1>
-<ul>
-<li>Initial release in CRAN</li>
-</ul>
-</div>
-  </div>
+    <div class="ref-description">
+    
+    <p>Download the latest or specific version of GNU MCSim from the official website
+(<a href='https://www.gnu.org/software/mcsim/'>https://www.gnu.org/software/mcsim/</a>) and install it to the system directory.</p>
+    
+    </div>
 
+    <pre class="usage"><span class='fu'>mcsim_install</span>(<span class='kw'>version</span> <span class='kw'>=</span> <span class='st'>"6.0.1"</span>, <span class='kw'>directory</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>mxstep</span> <span class='kw'>=</span> <span class='fl'>500</span>)
+
+<span class='fu'>mcsim_version</span>()</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>version</th>
+      <td><p>a character of MCSim version number.</p></td>
+    </tr>
+    <tr>
+      <th>directory</th>
+      <td><p>a character to assign the directory to put the GNU MCSim files.</p></td>
+    </tr>
+    <tr>
+      <th>mxstep</th>
+      <td><p>a numeric value to assign the maximum number of (internally defined) steps
+allowed during one call to the solver.</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This function aims to help users install GNU MCSim more easily.
+However, if you can not install it through this function.
+You might need to follow the instruction of GNU MCSim and install it,
+manually: <a href='https://www.gnu.org/software/mcsim/mcsim.html#Installation'>https://www.gnu.org/software/mcsim/mcsim.html#Installation</a></p>
+<p>The default <code>mxstp</code> is setting to 500.
+The user can increase <code>mxstp</code> to avoid possible error return.
+If you meet any error when conduct sensitivity analysis, you can this function to reinstall GNU MCSim and set the higher <code>mxstp</code>.
+The default <code>directory</code> to install MCSim is under <code>/home/username</code> (Linux), <code>/Users/username</code> (MacOS),
+and <code>C:/Users/</code> (windows). To install MCSim in Windows, be sure to install Rtools or MinGW first.</p>
+    
+    <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
+
+    <ul>
+<li><p><code>mcsim_version</code>: Return the version number of GNU MCSim.</p></li>
+</ul>
+    
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>F.Y. Bois, and D. Maszle, 1997,
+MCSim: A Monte Carlo Simulation Program,
+<em>Journal of Statistical Software</em>, 2(9): 1–60.</p>
+<p><a href='https://www.gnu.org/software/mcsim/'>https://www.gnu.org/software/mcsim/</a></p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"># NOT RUN {
+mcsim_install(version = 6.0.1, mxstep = 10000)
+# }
+<div class='input'>
+</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#pksensi-101">1.0.1</a></li>
-        <li><a href="#pksensi-100">1.0.0</a></li>
-      </ul>
-    </div>
-  </div>
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#details">Details</a></li>
 
+      <li><a href="#functions">Functions</a></li>
+
+      <li><a href="#references">References</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
+
+  </div>
 </div>
 
       <footer>

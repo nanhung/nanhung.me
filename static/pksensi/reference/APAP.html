@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Install MCSim — install_mcsim • pksensi</title>
+<title>Pharmacokinetics of Acetaminophen — APAP • pksensi</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,10 +30,12 @@
 
 
 
-<meta property="og:title" content="Install MCSim — install_mcsim" />
+<meta property="og:title" content="Pharmacokinetics of Acetaminophen — APAP" />
 
-<meta property="og:description" content="Download the latest or specific version of MCSim from the official website
-(https://www.gnu.org/software/mcsim/) and install it to the system directory." />
+<meta property="og:description" content="The APAP dataset contains a human experiment of pharmacokinetic data
+for acetaminophen, and it's major metabolites." />
+
+<meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -62,7 +64,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pksensi</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.1</span>
       </span>
     </div>
 
@@ -76,6 +78,21 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/pbpk_apap.html">Acetaminophen-PBPK model</a>
+    </li>
+    <li>
+      <a href="../articles/pbtk1cpt.html">One-compartment PBTK model</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -101,74 +118,49 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Install MCSim</h1>
-    <small class="dont-index">Source: <a href='https://github.com/nanhung/pksensi/blob/master/R/install.R'><code>R/install.R</code></a></small>
-    <div class="hidden name"><code>install_mcsim.Rd</code></div>
+    <h1>Pharmacokinetics of Acetaminophen</h1>
+    <small class="dont-index">Source: <a href='https://github.com/nanhung/pksensi/blob/master/R/data.R'><code>R/data.R</code></a></small>
+    <div class="hidden name"><code>APAP.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Download the latest or specific version of MCSim from the official website
-(<a href='https://www.gnu.org/software/mcsim/'>https://www.gnu.org/software/mcsim/</a>) and install it to the system directory.</p>
+    <p>The APAP dataset contains a human experiment of pharmacokinetic data
+for acetaminophen, and it's major metabolites.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>install_mcsim</span>(<span class='kw'>version</span> <span class='kw'>=</span> <span class='st'>"6.0.1"</span>, <span class='kw'>directory</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>mxstep</span> <span class='kw'>=</span> <span class='fl'>500</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>version</th>
-      <td><p>a character of MCSim version number.</p></td>
-    </tr>
-    <tr>
-      <th>directory</th>
-      <td><p>a character to assign the directory to put the MCSim files.</p></td>
-    </tr>
-    <tr>
-      <th>mxstep</th>
-      <td><p>a numeric value to assign the maximum number of (internally defined) steps
-allowed during one call to the solver.</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <pre class="usage"><span class='no'>APAP</span></pre>
+        
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>This function aims to help users install MCSim more easily.
-However, if you can not install it through this function.
-You might need to follow the instruction of MCSim and install it,
-manually: <a href='https://www.gnu.org/software/mcsim/mcsim.html#Installation'>https://www.gnu.org/software/mcsim/mcsim.html#Installation</a></p>
-<p>The default <code>mxstp</code> is setting to 500.
-The user can increase <code>mxstp</code> to avoid possible error return.
-If you meet any error when conduct sensitivity analysis, you can this function to reinstall MCSim and set the higher <code>mxstp</code>.
-The default <code>directory</code> to install MCSim is under <code>/home/username</code> (Linux), <code>/Users/username</code> (MacOS),
-and <code>C:/Users/</code> (windows).</p>
-<p>To install MCSim in Windows, be sure to install Rtools or MinGW first.</p>
+    <p>A data frame containing the following columns:</p><ul>
+<li><p>Wt: averaged weight of the study population (kg).</p></li>
+<li><p>Dose: given oral dose of acetaminophen administered (mg/kg).</p></li>
+<li><p>Time: time after drug administration (hr).</p></li>
+<li><p>APAP: concentration of acetaminophen in the sample (mg/L).</p></li>
+<li><p>AG: concentration of acetaminophen-glucuronide in the sample (mg/L).</p></li>
+<li><p>AS: concentration of acetaminophen-sulfate in the sample (mg/L).</p></li>
+<li><p>Study: Sourced reference.</p></li>
+</ul>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p><a href='https://www.gnu.org/software/mcsim/'>https://www.gnu.org/software/mcsim/</a></p>
+    <p>T. J. Zurlinden and B. Reisfeld, 2016,
+Physiologically based modeling of the pharmacokinetics of acetaminophen
+and its major metabolites in humans using a Bayesian population approach,
+<em>European Journal of Drug Metabolism and Pharmacokinetics</em>, 79(4), 1-26.</p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"># NOT RUN {
-install_mcsim(version = 6.0.1, mxstep = 10000)
-# }
-<div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#details">Details</a></li>
+      <li><a href="#format">Format</a></li>
 
       <li><a href="#references">References</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
   </div>
 </div>
