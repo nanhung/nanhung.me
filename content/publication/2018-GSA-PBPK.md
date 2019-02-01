@@ -47,7 +47,7 @@ url_source = "https://www.frontiersin.org/articles/10.3389/fphar.2018.00588/full
 
 # Custom links (optional).
 #   Uncomment line below to enable. For multiple links, use the form `[{...}, {...}, {...}]`.
-#url_custom = [{name = "Custom Link", url = "http://example.org"}]
+url_custom = [{name = "BibTeX", url = "https://scholar.googleusercontent.com/scholar.bib?q=info:llWqMAOLfsQJ:scholar.google.com/&output=citation&scisig=AAGBfm0AAAAAXFRQm9igByOx_kGMdmjgYmy_7PIUq1Fu&scisf=4&ct=citation&cd=-1&hl=en"}]
 
 # Does the content use math formatting?
 math = true
