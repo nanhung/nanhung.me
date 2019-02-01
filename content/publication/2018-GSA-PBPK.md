@@ -47,7 +47,7 @@ url_source = "https://www.frontiersin.org/articles/10.3389/fphar.2018.00588/full
 
 # Custom links (optional).
 #   Uncomment line below to enable. For multiple links, use the form `[{...}, {...}, {...}]`.
-url_custom = [{name = "BibTeX", url = "https://http://nanhung.netlify.com/bibtex/hsieh2018applying.html"}]
+url_custom = [{name = "BibTeX", url = "https://nanhung.netlify.com/bibtex/hsieh2018applying.html"}]
 
 # Does the content use math formatting?
 math = true
