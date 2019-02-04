@@ -17,10 +17,10 @@ weight = 50
 
 ### As creator
 
-[:package: **pksensi**](https://nanhung.netlify.com/pksensi/)  
+[:package: **pksensi**](https://nanhung.netlify.com/pksensi)  
 An R package to apply sensitivity analysis for pharmacokinetic model
 
 #### As contributor
 
-[:package: **xaringan**](https://nanhung.netlify.com/xaringan/)  
+[:package: **xaringan**](https://github.com/yihui/xaringan)  
 An R package for creating slideshows with remark.js through R Markdown. 
