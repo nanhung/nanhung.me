@@ -12,7 +12,7 @@ weight = 5
   interests = [
     "**Open Source Software**",
     "**Bayesian Statistics**",
-    "**Computational Toxicology**",
+    "**Sensitivity Analysis**",
     "**Risk Assessment**"
   ]
   
