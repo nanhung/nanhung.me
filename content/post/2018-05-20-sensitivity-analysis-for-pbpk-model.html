@@ -8,7 +8,7 @@ categories: []
 math: true
 tags:
   - sensitivity
-  - R
+  - Morris
   - ODE
   - deSolve
   - PBPK
@@ -40,7 +40,7 @@ output:
 </div>
 <div id="pbpk-modeling" class="section level1">
 <h1><span class="header-section-number">2</span> PBPK modeling</h1>
-<p>First,, we need to define and initialize the state variables. The used PBPK model was constructed from three tissue compartment (fat, well-perfused, and poorly-perfused tissues).</p>
+<p>First, we need to define and initialize the state variables. The used PBPK model was constructed from three tissue compartment (fat, well-perfused, and poorly-perfused tissues).</p>
 <pre class="r"><code>y &lt;- c(&quot;Q_fat&quot; = 0, # Quantity of butadiene in fat (mg)
        &quot;Q_wp&quot; = 0, # ~ in well-perfused (mg)
        &quot;Q_pp&quot; = 0, # ~ in poorly-perfused (mg)
