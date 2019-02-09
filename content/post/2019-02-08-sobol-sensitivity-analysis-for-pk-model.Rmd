@@ -1,0 +1,220 @@
+---
+title: 'Sobol sensitivity analysis for PK model'
+summary: 'Convergence assessment of Sobol sensitivity analysis in pharmacokinetic modeling'
+author: 'Nan-Hung Hsieh'
+date: '2019-02-08'
+slug: sobol-sensitivity-analysis-for-pk-model
+categories: []
+tags:
+  - sobol
+  - sensitivity
+  - mrgsolve
+  - convergence
+  - pharmacokinetics
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+    toc_depth: 1
+---
+
+## Prerequisites - packages
+
+The list of R packages should be installed first to do the following testing. The related functions are also listed.
+
+```{r, message=F}
+library(tidyverse) 
+library(mrgsolve) # mrgsim_ei
+library(PKPDmisc) # auc_partial	
+library(sensitivity) # sobol2007
+library(randtoolbox) # sobol
+library(reshape2) # melt
+library(LSD) # heatscatter
+```
+
+---
+
+# Reproducibile analysis
+
+This section is used to reproduce the result in previous post.
+
+## The sunitinib PK model
+```{r}
+mod <- mread("sunit", "models") %>% 
+  update(end = 24, delta = 1) %>% zero_re
+```
+
+```{r}
+see(mod)
+```
+
+## Sunitinib dosing 
+```{r}
+sunev <- function(amt = 50,...) ev(amt = amt, ...)
+```
+
+## Generate samples
+```{r}
+gen_samples<- function(n, l, which = names(l), factor = c(0.01,100)) {
+  vars <- select_vars(names(l), !!(enquo(which)))
+  l <- as.list(l)[vars]
+  l <- lapply(l, function(x) {
+    x*factor  
+  })
+  n <- length(l)*n*2
+  df <- as.data.frame(l)
+  len <- length(df)
+  X <- matrix(ncol=len, nrow=n)
+  colnames(X) <- names(df)
+  Y <- X
+  for(i in seq(len)){
+    r <- runif(n, df[1,i], df[2,i])
+    X[,i] <- r
+    r <- runif(n, df[1,i], df[2,i])
+    Y[,i] <- r
+  }
+  return(list(x1 = as.data.frame(X), x2 = as.data.frame(Y)))
+} 
+```
+
+## A bunch of helper functions
+
+Simulate one chunk of data; not absolutely needed for 
+this; but we might use it if we expand this to run in 
+parallel.  Ill keep it around for now.
+
+```{r}
+sim_chunk <- function(mod, x) {
+  mrgsim_ei(x = mod, ev = sunev(), idata = x, obsonly = TRUE) %>% as_data_frame
+}
+```
+
+Simulate a batch of data.  The summary is AUC for each individual.
+```{r}
+batch_run <- function(x) {
+  out <- sim_chunk(mod,x)
+  out <- 
+    group_by(out,ID) %>% 
+    summarise(AUC = auc_partial(time,CP))
+  return(out$AUC)
+}
+```
+
+# Run the analysis
+
+## First, generate the samples
+```{r}
+samp <- gen_samples(10000, param(mod), TVCL:TVVP)
+head(samp$x1)
+```
+
+
+## Then, run `sensitivity::sobol2007`
+```{r}
+#x <- sobol2007(batch_run, X1=samp$x1, X2=samp$x2, nboot=100)
+```
+
+# Results
+
+```{r}
+#plot(x)
+```
+
+```{r}
+#x
+```
+
+
+# Log-Uniform & Quasi-Monte Carlo sampling
+
+
+##
+
+### Monte-Carlo with log-uniform parameter distribution
+
+```{r}
+gen_samples_1 <- function(n, l, which = names(l), factor = c(0.01,100)) {
+  vars <- select_vars(names(l), !!(enquo(which)))
+  l <- as.list(l)[vars]
+  l <- lapply(l, function(x) {x*factor})
+  xx <- log(factor, 10)[2] - log(factor, 10)[1]
+  len <- length(vars)
+  X <- matrix(runif(len * length(l)*n*2), ncol = len)
+  Y <- matrix(runif(len * length(l)*n*2), ncol = len)
+  for(i in seq(len)){
+    X[,i] <- l[[i]][[1]] * 10^(X[,i] * xx)
+    Y[,i] <- l[[i]][[1]] * 10^(Y[,i] * xx)
+    colnames(X) <- colnames(Y) <- vars 
+  }
+  return(list(x1 = as.data.frame(X), x2 = as.data.frame(Y)))
+}
+```
+
+### Quasi Monte-Carlo with log-uniform parameter distribution
+
+```{r}
+gen_samples_2 <- function(n, l, which = names(l), factor = c(0.01,100)) {
+  vars <- select_vars(names(l), !!(enquo(which)))
+  l <- as.list(l)[vars]
+  l <- lapply(l, function(x) {x*factor})
+  xx <- log(factor, 10)[2] - log(factor, 10)[1]
+  len <- length(vars)
+  
+  X <- sobol(n = length(l)*n*2, dim = 5)
+  Y <- sobol(n = length(l)*n*2, dim = 5, seed = 2345, scrambling = 3)
+  
+  for(i in seq(len)){
+    X[,i] <- l[[i]][[1]] * 10^(X[,i] * xx)
+    Y[,i] <- l[[i]][[1]] * 10^(Y[,i] * xx)
+    colnames(X) <- colnames(Y) <- vars 
+  }
+  return(list(x1 = as.data.frame(X), x2 = as.data.frame(Y)))
+}
+```
+
+
+
+```{r}
+set.seed(88771); samp <- gen_samples(1000, param(mod), TVCL:TVVP)
+set.seed(88771); samp1 <- gen_samples_1(1000, param(mod), TVCL:TVVP)
+set.seed(88771); samp2 <- gen_samples_2(1000, param(mod), TVCL:TVVP)
+```
+
+```{r}
+head(samp$x1)
+head(samp1$x1)
+head(samp2$x1)
+```
+
+
+```{r}
+i <- "TVCL"
+```
+
+```{r}
+range(samp$x1[,i])
+range(samp1$x1[,i])
+range(samp2$x1[,i])
+```
+
+```{r}
+par(mar = c(2,2,1,1))
+samp$x1[,i] %>% density() %>% plot(main = "MC")
+samp1$x1[,i] %>% density() %>% plot(main = "Log MC")
+samp1$x1[,i] %>% log(10) %>% density() %>% plot(main = "Log MC")
+samp2$x1[,i] %>% log(10) %>% density() %>% plot(main = "Log QMC")
+samp$x1[,i] %>% log(10) %>% density() %>% plot(main = "MC")
+```
+
+
+```{r}
+par(mar = c(4,4,1,1))
+heatscatter(samp$x1[,1], samp$x1[,2], add.contour=T, nlevels=3, xlab = "TVCL", ylab = "TVKA")
+heatscatter(samp1$x1[,1], samp1$x1[,2], add.contour=T, nlevels=3, xlab = "TVCL", ylab = "TVKA")
+heatscatter(log(samp1$x1[,1]), log(samp1$x1[,2]), add.contour=T, nlevels=3, xlab = "TVCL", ylab = "TVKA")
+heatscatter(log(samp2$x1[,1]), log(samp2$x1[,2]), add.contour=T, nlevels=3, xlab = "TVCL", ylab = "TVKA")
+heatscatter(log(samp$x1[,1]), log(samp$x1[,2]), add.contour=T, nlevels=3, xlab = "TVCL", ylab = "TVKA")
+```
+
+
+
