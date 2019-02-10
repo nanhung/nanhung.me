@@ -1,5 +1,5 @@
 ---
-title: 'Sobol sensitivity analysis for PK model'
+title: 'Sobol Sensitivity Analysis for PK Model'
 summary: 'Convergence assessment of Sobol sensitivity analysis in pharmacokinetic modeling'
 author: 'Nan-Hung Hsieh'
 date: '2019-02-08'
@@ -123,7 +123,7 @@ x
 ```
 
 # Methods and defined functions 
-## Log-Uniform & quasi-Monte Carlo sampling
+## Log-uniform & quasi-Monte Carlo sampling
 
 Based on the `gen_samples()` above, I further create two functions. The first one sample the parameters under the log-transformed parameter range. The main reason to develop this function is that the setting range of model parameters are extremely large in this example. The original example generated uniform samples from a 100 fold decrease to 100 fold increase based on the nominal parameter value. It might cause an unexpected sampling bias. Therefore, the new function aims to solve this problem.
 
