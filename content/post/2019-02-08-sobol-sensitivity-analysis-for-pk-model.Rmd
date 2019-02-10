@@ -18,11 +18,12 @@ output:
     toc_depth: 1
 ---
 
-I find a great [example](https://github.com/mrgsolve/gallery/blob/master/application/sobol.md) about performing Sobol sensitivity analyses within pharmacokinetic modeling through [mrgsolve](https://mrgsolve.github.io/) and [PKPDmisc](https://dpastoor.github.io/PKPDmisc/). Actually, I didn't have any experience to use these packages in my study. But this is a good opportunity to understand how they work, since I have a prior knowledge in sensitivity analysis. I was lucky to having a chance to participate [the 10th summer school on Sensitivity Analysis of Model Output](https://ec.europa.eu/jrc/en/event/training-course/samo-2018) (SAMO 2018) last year. It was fantastic! Here I want to apply some techniques that I learned in this summer school and it might be helpful to apply Sobol sensitivity analysis in pharmacokinetic modeling. Maybe in the future I can integrate this approach in [pksensi](https://nanhung.rbind.io/pksensi/index.html).
+I find a great [example](https://github.com/mrgsolve/gallery/blob/master/application/sobol.md) about performing Sobol sensitivity analysis within pharmacokinetic modeling through [mrgsolve](https://mrgsolve.github.io/) and [PKPDmisc](https://dpastoor.github.io/PKPDmisc/). I didn't have any experience to use these packages in my study. But this is a good opportunity to understand how they work, since I have prior knowledge in sensitivity analysis. Last year, I was lucky to have a chance to participate in [the 10th summer school on Sensitivity Analysis of Model Output](https://ec.europa.eu/jrc/en/event/training-course/samo-2018) (SAMO 2018). It was fantastic!  
+Here I want to apply some techniques that I learned in this SAMO summer school, and it might be helpful to apply Sobol sensitivity analysis in pharmacokinetic modeling. Maybe in the future, I can integrate this approach in [pksensi](https://nanhung.rbind.io/pksensi/index.html).
 
 ## Prerequisites - packages
 
-The list of R packages should be installed first to do the following testing. The related functions are also listed behind.
+The list of R packages should be installed first to do the following testing. The related functions are also listed behind the package.
 
 ```{r, message=F}
 library(tidyverse) 
@@ -97,7 +98,7 @@ batch_run <- function(x) {
 ```
 
 ## Sobol sensitivity analysis
-The sampling method is based on this [example](https://github.com/metrumresearchgroup/pbpk-qsp-mrgsolve/blob/master/docs/global_sensitivity_analysis.md), because I want to fully reproduce the same result.
+The sampling method is based on this [example](https://github.com/metrumresearchgroup/pbpk-qsp-mrgsolve/blob/master/docs/global_sensitivity_analysis.md). Therefore I can adequately reproduce the same output.
 
 ```{r}
 set.seed(88771)
@@ -115,6 +116,8 @@ x <- sobol2007(batch_run, X1=samp$x1, X2=samp$x2, nboot=100)
 plot(x)
 ```
 
+The result shows that only TVCL and TVVC can significantly dominate the output result. Also, it's difficult to determine the influence of TVKA, TVQ, and TVVP. 
+
 ```{r}
 x
 ```
@@ -122,7 +125,7 @@ x
 # Methods and defined functions 
 ## Log-Uniform & quasi-Monte Carlo sampling
 
-Based on the `gen_samples()` above, I further create two functions the first one sample the parameters under the log-transformed parameter range. The issue I found in this example is that the setting range of the parameter is extremely large. The original example generated uniform samples from a 100 fold decrease to 100 fold increase based the nominal parameter value. It might cause the unexpected sampling bias. Therefore, the new function aim to solve this problem. 
+Based on the `gen_samples()` above, I further create two functions. The first one sample the parameters under the log-transformed parameter range. The main reason to develop this function is that the setting range of model parameters are extremely large in this example. The original example generated uniform samples from a 100 fold decrease to 100 fold increase based on the nominal parameter value. It might cause an unexpected sampling bias. Therefore, the new function aims to solve this problem.
 
 Let's call this function as `gen_samples_1()`.
 
@@ -144,7 +147,7 @@ gen_samples_1 <- function(n, l, which = names(l), factor = c(0.01,100)) {
 }
 ```
 
-The second one, instead of the log-transformed parameter sampling, I further used [quasi-Monte Carlo method](https://en.wikipedia.org/wiki/Quasi-Monte_Carlo_method). Generally, this method can create the relative "uniform" parameter condition than random method. Let's call this function as `gen_samples_1()`.
+Instead of the log-transformed parameter sampling, I further used [quasi-Monte Carlo method](https://en.wikipedia.org/wiki/Quasi-Monte_Carlo_method) (QMC) in the second new function. Generally, this method can create a relative uniformly parameter condition than the random method. Let’s call this function as `gen_samples_2()`.
 
 ```{r}
 gen_samples_2 <- function(n, l, which = names(l), factor = c(0.01,100)) {
@@ -168,7 +171,7 @@ gen_samples_2 <- function(n, l, which = names(l), factor = c(0.01,100)) {
 
 ## Convergence analysis
 
-This is one of the important step in sensitivity analysis, more details can be find in my published paper in [Frontiers in Pharmacology](https://www.frontiersin.org/articles/10.3389/fphar.2018.00588/full).
+This is one of the critical steps in sensitivity analysis. More details can be found in my published paper in [Frontiers in Pharmacology](https://www.frontiersin.org/articles/10.3389/fphar.2018.00588/full). Here I create a function called `sample_converge()`, which can generate the convergence index based on the values of the given sample number. The drawback of this function is time-consuming. Because it estimates the convergence index at each sample number and each defined sampling function.
 
 ```{r}
 sample_converge <- function(n, l, which = names(l)){
@@ -197,7 +200,7 @@ sample_converge <- function(n, l, which = names(l)){
 
 # Results
 
-The first step in this section is using three defined function to generate the testing parameter sets. The sampling number is 1000 for 5 parameter of TVCL, TVVC, TVKA, TVQ, and TVVP.
+The first step in this section is using three defined functions to generate the testing parameter sets. The sampling number is 1000 for 5 parameters of TVCL, TVVC, TVKA, TVQ, and TVVP.
 
 ```{r}
 set.seed(88771) 
@@ -226,7 +229,7 @@ range(samp1$x1[,i])
 range(samp2$x1[,i])
 ```
 
-The probability distribution of TVCL look like this.
+The probability distributions of TVCL look like this.
 
 ```{r}
 par(mfrow = c(3,2), mar = c(2,2,1,1))
@@ -237,7 +240,7 @@ samp2$x1[,i] %>% log(10) %>% density() %>% plot(main = "Log QMC")
 samp$x1[,i] %>% log(10) %>% density() %>% plot(main = "MC")
 ```
 
-It's easy to understand how different sampling method that cause the difference of parameter sampling result.
+Although the sampling ranges are nearly the same, we can easily understand how different sampling method that cause the difference of parameter sampling result.
 
 ```{r}
 j <- "TVKA"
@@ -254,11 +257,11 @@ heatscatter(log(samp$x1[,i]), log(samp$x1[,j]), add.contour=T,
             nlevels=3, xlab = i, ylab = j, main = "MC")
 ```
 
-Here, we can see the devil in the detail. The uniform sampling in the parameter range without log-transformed ignore the lowest value that might cause bias in sampling.
+Here, we can find the devil in detail. The uniform sampling in the parameter range without log-transformed ignore the lowest value that might cause bias in sampling.
 
 ## Sobol sensitivity analysis
 
-Run `Sobol2007()` with sampling parameters 
+Now, let's run `Sobol2007()` with sampling parameter sets that were generated above
 
 ```{r warning=F}
 x <- sobol2007(batch_run, X1=samp$x1, X2=samp$x2, nboot=100)
@@ -283,9 +286,9 @@ plot(x1, main = "Log MC")
 plot(x2, main = "Log QMC")
 ```
 
-We can find that only TVCL and TVVC have obvious influence for the model output in previous method. However, the proposed methods can easily rank the influence of parameters in this case.
+Same as above, we can find that only TVCL and TVVC have an obvious influence on the model output in the previous sampling method. However, the proposed methods can easily rank the importance of parameters in this case.
 
-The parameter vs. model output results look like this 
+The results of the parameter vs. model output look like this. 
 
 ```{r}
 par(mfrow = c(3,2), mar = c(2,2,4,1))
@@ -294,7 +297,7 @@ for (i in 1:5){
 }
 ```
 
-This is the result of sampling in log-transformed parameter range
+This is the result of sampling in the log-transformed parameter range.
 
 ```{r}
 par(mfrow = c(3,2), mar = c(2,2,4,1))
@@ -303,11 +306,11 @@ for (i in 1:5){
 }
 ```
 
-It's the efficient way to see the relationship between parameter value and model output. The high impact parameter has relative concentrated contour than other parameters.
+It's an efficient way to see the relationship between parameter value and model output. The high impact parameter has relatively concentrated contour than other parameters.
 
 ## Convergence assessment
 
-The convergence index can simply calculate through the 95% CI of sensitivity index that is estimated from bootstrapping in Sobol method. Here is the result of convergence in index under the sample number of 1000 from above section.
+The convergence index can simply calculate through the 95% CI of sensitivity index that is estimated from bootstrapping in the Sobol method. Here is the result of the convergence index under the sample number of 1000 from the above section.
 
 ```{r}
 x$T[,"max. c.i."] - x$T[,"min. c.i."]
@@ -315,7 +318,7 @@ x1$T[,"max. c.i."] - x1$T[,"min. c.i."]
 x2$T[,"max. c.i."] - x2$T[,"min. c.i."]
 ```
 
-In this part, the sample number were set at 500, 1000, 2000, 4000, and 8000. It will take a couple of minutes to run `sample_converg()`
+In this part, the values of the sample number were set at 500, 1000, 2000, 4000, and 8000. It will take a couple of minutes to run `sample_converge()`
 
 ```{r}
 sample <- c(500, 1000, 2000, 4000, 8000)
@@ -330,7 +333,7 @@ df <- do.call(rbind, list(converge_list[[1]] %>% melt() %>% cbind(type = "MC"),
                           converge_list[[3]] %>% melt() %>% cbind(type = "log_QMC")))
 ```
 
-Finally, visualizing the result to see the convergence of each parameter. Both quasi-Monte Carlo and Monte Carlo random sampling showed the similar result. Each parameter was approach or below the threshold of 0.05. However, it's hard to conclude that the quasi-Monte Carlo can provide the best way for Sobol sensitivity analysis in pharmacokinetic modeling. 
+Finally, visualizing the result to see the convergence of each parameter. Both QMC and MC random sampling showed a similar result. Each parameter was close or below the threshold of 0.05. However, it's hard to conclude that the QMC can provide the best way for Sobol sensitivity analysis in pharmacokinetic modeling. 
 
 ```{r}
 theme_set(theme_light())
@@ -346,7 +349,9 @@ df %>% `colnames<-`(c("sample.no", "parameter", "index", "type")) %>%
 
 1. Always plot the data. Because the devil might in the detail and your data might look likes a dinosaur.
 
-2. Rethinking about the sampling. If the sampling range is too wide, try using log-transformed method.
+2. Rethinking about the sampling. If the sampling range is too wide, try using the log-transformed method.
+
+3. Try Quasi-Monte Carlo. The QMC method can generate distribution than random MC sampling uniformly. Unfortunately, QMC didn't show the best result in convergence assessment in this case.  
 
 ```{r}
 devtools::session_info()
