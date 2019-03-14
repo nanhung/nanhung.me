@@ -10,7 +10,7 @@ weight = 5
 # List your academic interests.
 [interests]
   interests = [
-    "**Biological modeling**",
+    "**Biological Modeling**",
     "**Computational Toxicology**",
     "**Open Source Software**"
   ]
@@ -35,8 +35,6 @@ weight = 5
 
 # Biography
 
-Howdy! My name is Nan-Hung Hsieh (謝男鴻). I'm a postdoc at Texas A&M University [**Toxicology Program**](https://toxicology.tamu.edu/). My research is focus on the [**pharmacokinetics**](https://en.wikipedia.org/wiki/Pharmacokinetics) and [**Bayesian hierarchical modeling**](https://en.wikipedia.org/wiki/Bayesian_hierarchical_modeling), designing the mathematical model with experimental data that can be used to describe and predict the chemical (or drug) behavior in human (or experiment animal) population.  
-
-I love  [**open source software**](https://opensource.com/resources/what-open-source) and  [**open science**](https://opensource.com/resources/open-science). I believe that science can be more transparent, so people can easily share and acquire more knowledge through these ways. 
+Howdy! My name is Nan-Hung Hsieh (謝男鴻). I'm a postdoc at Texas A&M University [**Toxicology Program**](https://toxicology.tamu.edu/). My research is focus on the [**pharmacokinetics**](https://en.wikipedia.org/wiki/Pharmacokinetics) and [**Bayesian hierarchical modeling**](https://en.wikipedia.org/wiki/Bayesian_hierarchical_modeling), designing the mathematical model with experimental data that can be used to describe and predict the chemical (or drug) behavior in human (or experiment animal) population. I love [**open source software**](https://opensource.com/resources/what-open-source) and [**open science**](https://opensource.com/resources/open-science). I believe that science can be more transparent, so people can easily share and acquire more knowledge through these ways. 
 
 A copy of my CV can be found [**HERE**](/post/CV_(NHsieh).pdf). (Latest update: Mar. 2019)
