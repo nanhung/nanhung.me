@@ -1,5 +1,5 @@
 ---
-title: "Tutorial 0: MCSim Introductory"
+title: "Tutorial 0: GNU MCSim Introductory"
 subtitle: "<html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>"
 author: "Nan-Hung Hsieh"
 date: "April 18, 2019"
@@ -19,7 +19,7 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 knitr::opts_chunk$set(echo = TRUE)
 #knitr::opts_knit$set(root.dir = "C:/MinGW/msys/1.0/home/nhsieh/MCSim_under_R")
 #knitr::opts_knit$set(root.dir = "C:/Users/lenovo/MCSim_under_R")
-knitr::opts_knit$set(root.dir =  "/home/nanhung/MCSim_under_R")
+knitr::opts_knit$set(root.dir =  "/Users/nanhung/Rproj/MCSim_under_R")
 ```
 
 # Outline
