@@ -1817,3 +1817,7 @@ Meet problem? Please submit it to
 - MCSim under R GitHub issues https://github.com/nanhung/MCSim_under_R/issues
 - My email: nhsieh@cvm.tamu.edu
 
+.footnote[
+Slide at: [bit.ly/190418_mcsim]()
+]
+
