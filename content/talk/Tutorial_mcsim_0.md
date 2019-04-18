@@ -6,7 +6,7 @@ time_start = 2019-04-18T12:00:00
 #time_end = 2018-07-23T10:10:00
 abstract = ""
 abstract_short = ""
-event = "Webinar"
+event = "CalEPA Webinar"
 event_url = ""
 location = ""
   
