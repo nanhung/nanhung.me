@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Tutorial 1: Walk-through of working models</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Nan-Hung Hsieh" />
+    <meta name="date" content="2019-04-25" />
+    <link rel="stylesheet" href="libs/remark-css-0.0.1/default.css" type="text/css" />
+    <link rel="stylesheet" href="libs/remark-css-0.0.1/metropolis.css" type="text/css" />
+    <link rel="stylesheet" href="libs/remark-css-0.0.1/metropolis-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Tutorial 1: Walk-through of working models
+## <html>
+<div style="float:left">
+
+</div>
+<hr color='#EB811B' size=1px width=796px>
+</html>
+### Nan-Hung Hsieh
+### April 25, 2019
+
+---
+
+
+# Outline
+
+## 1. Model file (`*.model.R`)
+
+## 2. Input/Simulation file (`*.in.R`)
+
+## 3. Tetrachloroethylene PBPK
+
+## 4. Ethylbenzene PBPK
+
+## 5. Demo &amp; Exercise
+
+---
+
+class:inverse, center, middle
+
+# Model
+
+---
+
+# Syntax 
+
+.code80[
+
+```r
+# Model description file (this is a comment)
+
+&lt;Global variable specifications&gt;
+
+* States = { 
+  &lt;state variables for the model, such as quantity&gt; 
+}
+* Outputs = { 
+  &lt;output variables, such as concentration&gt; 
+}
+* Inputs = { 
+  &lt;input variables, such as exposure dose&gt;
+}
+Initialize {
+  &lt;Equations for initializing or scaling model parameters&gt;
+}
+Dynamics {
+  &lt;Equations for computing derivatives of the state variables&gt;
+}
+CalcOutputs {
+  &lt;Equations for computing output variables&gt;
+}
+End. # mandatory ending keyword
+```
+]
+
+---
+
+background-image: url(https://i.ibb.co/hcd45Ly/Screen-Shot-2019-04-23-at-9-41-44-AM.png)
+background-size: 190px
+background-position: 90% 5% 
+
+# # Comments
+
+- Brief description of this model
+- What is the version number
+- When you create this model
+- Summarize the unit used in this model
+
+```r
+## Description ####
+# 1-compartment model with 1st-order absorption rate and 
+# linear elimination 
+#
+# version: 1
+#
+# Date: 04-25-2019
+# 
+# Units: 
+# - time in hr
+# - volumes in L
+# - masses of substances in mg
+# - concentrations of substances in mg/L
+```
+
+---
+
+# States 
+
+### `States` are variables for which a first-order differential equation is defined in the `Dynamics{}` section
+
+&lt;/br&gt;
+
+```r
+States = {A_central,  # Quantity in central compartment (mg)
+          A_elim};    # ~        eliminated
+```
+
+---
+
+# Outputs
+
+### `Outputs` are dependent model variables (obtainable at any time as analytical functions of the states, inputs or parameters) that do not have dynamics. 
+
+### They must receive assignments in either the `Dynamics{}` or `CalcOutputs{}` sections.
+
+&lt;/br&gt;
+
+```r
+Outputs = {C_central, # Concentration in central compartment (mg/l)
+           A_total};  # Total quantity for mass balance
+```
+  
+---
+
+# Inputs
+
+### `Inputs` are variables independent of the others variables, but eventually varying with time (for example an exposure concentration to a chemical).
+
+&lt;/br&gt;
+
+```r
+Inputs = {Oral_input}; # Chemical input (mg)
+```
+
+---
+
+class:clear
+
+Global variable specifications
+
+
+```r
+# Chemical-specific parameter
+Ke = 0.1;             # Elimination rate constant (1/h)
+Pct_M_central = 0.05; # % body weight, fractional volume of distribution 
+
+# Physiological-specific parameter
+BW = 60; # Body weight (kg) 
+
+# Exposure parameter
+OralDose   = 100;  # Oral dose (mg/kg)
+Period     = 12.0; # period of the exposure/no exposure cycle (h)
+Tlag       = 0.0;  # Absorption lagtime (h)
+Ka         = 0.1;  # Intestinal absorption rate constant (1/h)
+
+# Scale parameter computed in Initialize
+V_central; # Distribution volume of central compartment (L)
+IngDose;   # Ingested dose (mg)
+
+* Oral_input = PerExp (IngDose, Period, Tlag, Ka);
+```
+
+[*] The `Oral_input` can be defined in input file
+
+---
+
+# Initialize{}
+
+### The equations given in this section will define a function (subroutine) that will be called by *GNU MCSim* after the assignments specified in each Simulation section are done.
+
+&lt;/br&gt;
+
+```r
+Initialize {  
+  IngDose = BW * OralDose;
+  V_central = BW * Pct_M_central; 
+}
+```
+
+---
+
+# Dynamics{}
+
+### The equations given in this section will be called by the integration routines at each integration step.
+
+&lt;/br&gt;
+
+```r
+Dynamics {
+  dt (A_elim)    = Ke * A_central;
+  dt (A_central) = Ka * Oral_input - Ke * A_central;
+}
+
+```
+
+---
+
+# CalcOutputs{}
+
+### The equations given in this section will be called by the simulation program at each output time.
+
+&lt;/br&gt;
+
+```r
+CalcOutputs {
+  C_central = A_central / V_central;
+  A_total   = A_central + A_elim;
+}
+```
+---
+
+# Common pitfalls
+
+```r
+*** Error: End keyword is missing in file modeling/one.model.R.
+One or more fatal errors: Exiting...
+```
+
+```r
+*** Error: State variable 'A_central' has no dynamics.
+
+State equations missing.
+
+One or more fatal errors: Exiting...
+```
+
+```r
+*** Error: Output variable 'A_total' is not computed anywhere.
+
+Output equations missing.
+
+One or more fatal errors: Exiting...
+```
+
+```r
+*** Error: line 37: Undefined identifier 'Period'.
+One or more fatal errors: Exiting...
+```
+
+```r
+*** Error: Output variable 'l' is not computed anywhere.
+
+Output equations missing.
+
+One or more fatal errors: Exiting...
+```
+
+---
+
+class:inverse, center, middle
+
+# Input / Simulation
+
+---
+
+# Syntax
+
+```r
+# Input-file (text after # are comments)
+&lt;Global assignments and specifications&gt;
+Simulation {
+  &lt;Local assignments and specifications&gt;
+  &lt;Specifications for first simulation&gt;
+}
+Simulation {
+  &lt;Local assignments and specifications&gt;
+  &lt;Specifications for second simulation&gt;
+}
+# Unlimited number of simulation specifications
+End. # Mandatory End keyword. Everything after this line is ignored
+```
+
+???
+
+Moving back to the MCSim syntax, this is an example of basic simulation. The only thing you need to do is provide the given condition in your simulation, which is the output time points and the output variables. 
+
+You can also use multiple sections to define your simulation. For example, the simulation one can be used to specify the low dose exposure scenario and the second section can be used to specified the high dose exposure scenario.  
+
+---
+
+# Input functions
+
+These functions can use to different exposure types
+
+.code60[
+```r
+- PerDose(): # specifies a periodic input of constant
+
+    PerDose(&lt;magnitude&gt;, &lt;period&gt;, &lt;initial-time&gt;, &lt;exposure-time&gt;);
+
+  
+- PerExp(): # specifies a periodic exponential input.
+
+    PerExp(&lt;magnitude&gt;, &lt;period&gt;, &lt;initial-time&gt;, &lt;decay-constant&gt;);  
+
+  
+- PerTransit(): models a delayed input mechanism  
+
+    PerTransit(&lt;magnitude&gt;, &lt;period&gt;, &lt;initial-time-in-period&gt;, 
+              &lt;decay-constant&gt;, &lt;number-of-input-compartments&gt;);  
+    
+              
+- NDoses(): specifies a number of stepwise inputs of variable magnitude and their starting times
+    
+    NDoses(&lt;n&gt;, &lt;list-of-magnitudes&gt;, &lt;list-of-initial-times&gt;);
+
+
+- Spikes(): specifies a number of instantaneous inputs of variable magnitude and their exact times of occurrence.
+    
+    Spikes(&lt;n&gt;, &lt;list-of-magnitudes&gt;, &lt;list-of-times&gt;);
+
+```
+]
+
+???
+
+Here is the list of supported input function in MCSim that can be used to describe the different exposure type. For example, the first one PerDose can be used to describe the periodic intake of the specific compound, so we can use this method to predict the steady state under the particular exposure scenario. 
+
+Besides, the NDoses function can let you used the different level of exposure and the starting time points based on the exposure scenario. Also, in pharmacology research, the spikes function can be used to describe the intravenous PK data. 
+
+---
+
+# Example: One-compartment model
+
+```r
+# ./mcsim.one.model.R.exe one.in.R
+
+Integrate (Lsodes, 1e-12, 1e-15, 1);
+
+Period  = 1E6;  # One-time dose
+Ka      = 1.3;  
+Pct_M_central = 1;
+
+Simulation { # 1
+  OralDose = 100; 
+  BW = 60;
+  PrintStep (Oral_input, A_central, A_elim, A_total, C_central, 0, 96, 0.5);
+}
+
+Simulation { # 2
+  OralDose = 150;
+  BW = 80;
+  PrintStep (Oral_input, A_central, A_elim, A_total, C_central, 0, 96, 0.5);
+}
+
+End.
+```
+
+---
+
+# Common pitfalls
+
+```r
+Error: line 10: Expected &lt;model-variable&gt; before 'Kb'
+Reading experiment 1.
+Error: line 14: Bad definition of experiment 1
+```
+
+```r
+Error: line 11: Expected ';' before 'S'.
+Error: line 15: Unclosed level statement
+
+Fatal errors.  Exiting.
+```
+
+---
+
+class:inverse, middle, center
+# Toxicokinetic Modeling of Tetrachloroethylene
+
+.footnote[
+.left[
+Bois et al. (1996) - [Population toxicokinetics of tetrachloroethylene](https://link.springer.com/article/10.1007/s002040050284)  
+Chiu and Bois (2006) - [Revisiting the population toxicokinetics of tetrachloroethylene](https://link.springer.com/article/10.1007/s00204-006-0061-9)
+]]
+
+---
+
+class:inverse, middle, center
+
+# Toxicokinetic Modeling of Ethylbenzene
+
+---
+
+class:inverse, middle, center
+
+# Demo &amp; Exercise
+
+---
+
+## Exercise 1
+
+### Run EB-PBPK model under 100 ppm exposure for 4 hours and plot the time-course of blood concentration from 0 to 6 hour.
+
+&lt;/br&gt;
+
+Input file: `EB_exercise_1.in.R`
+
+.code60[
+
+```r
+# ./mcsim.EB.model.R.exe EB_exercise_1.in.R
+
+Integrate (Lsodes, 1e-9, 1e-11 , 1);
+
+Simulation { 
+  # Inhalation concentration in ppm
+  Cppm = NDoses (2, 100, 0, 0, 4 ); 
+  PrintStep(Cvtot, 0, 6, 0.01);  
+} 
+
+End.
+
+```
+
+]
+
+---
+
+## Exercise 2
+
+### Estimate the steady-state of arterial and venous blood concentrations associated with EB exposures (0.1 ppm to 1000 ppm).
+
+---
+
+class:clear
+
+Input file: `EB_exercise_2.in.R`
+
+.code60[
+
+```r
+# ./mcsim.EB.model.R.exe EB_exercise_2.in.R
+
+Integrate (Lsodes, 1e-9, 1e-11 , 1);
+
+Simulation { # 1 1 ppm
+  # Inhalation concentration in ppm
+  Cppm = NDoses (2, 1, 0, 0, 96 ); 
+  PrintStep(Cart, Cvtot, 0, 96, 1);  
+} 
+
+Simulation { # 2 10 ppm
+  # Inhalation concentration in ppm
+  Cppm = NDoses (2, 10, 0, 0, 96 ); 
+  PrintStep(Cart, Cvtot, 0, 96, 1);  
+} 
+
+Simulation { # 3 100 ppm
+  # Inhalation concentration in ppm
+  Cppm = NDoses (2, 100, 0, 0, 96 ); 
+  PrintStep(Cart, Cvtot, 0, 96, 1);  
+} 
+
+Simulation { # 4 1000 ppm
+  # Inhalation concentration in ppm
+  Cppm = NDoses (2, 1000, 0, 0, 96 ); 
+  PrintStep(Cart, Cvtot, 0, 96, 1);  
+} 
+
+End.
+
+```
+]
+
+---
+
+## Exercise 3
+
+### Construct the relationships for the estimated inhalation exposure level and the fraction of EB metabolized after 8-hr continuous exposure (0.1 ppm to 1000 ppm). 
+
+### In addition, estimate the percentage metabolized from **liver**, **lung**, and **richly perfused tissue**.
+
+---
+
+**Hint:** Add following information in model file:
+
+```r
+Amet_Rl, # Amount metabolized in liver (moles)
+Amet_Rlu, # Amount metabolized in lung (moles)
+Amet_Rvrg # Amount metabolized in richly perfused tissue (moles)
+
+dt(Amet_Rl) = Rl;
+dt(Amet_Rlu) = Rlu;
+dt(Amet_Rvrg) = Rvrg;
+```
+
+---
+
+class:clear
+
+.code60[
+
+Input file: `EB_exercise_3.in.R`
+
+```r
+# ./mcsim.EB.model.R.exe EB_exercise_3.in.R
+
+Integrate (Lsodes, 1e-9, 1e-11 , 1);
+
+Simulation { # 1 1 ppm
+  # Inhalation concentration in ppm
+  Cppm = NDoses (2, 1, 0, 0, 8 ); 
+  PrintStep(Ain, Amet_Rl, Amet_Rlu, Amet_Rvrg, Amet, 0, 8, 0.5);  
+} 
+
+Simulation { # 2 10 ppm
+  # Inhalation concentration in ppm
+  Cppm = NDoses (2, 10, 0, 0, 8 ); 
+  PrintStep(Ain, Amet_Rl, Amet_Rlu, Amet_Rvrg, Amet, 0, 8, 0.5);  
+} 
+
+Simulation { # 3 100 ppm
+  # Inhalation concentration in ppm
+  Cppm = NDoses (2, 100, 0, 0, 8 ); 
+  PrintStep(Ain, Amet_Rl, Amet_Rlu, Amet_Rvrg, Amet, 0, 8, 0.5);  
+} 
+
+Simulation { # 4 1000 ppm
+  # Inhalation concentration in ppm
+  Cppm = NDoses (2, 1000, 0, 0, 8 ); 
+  PrintStep(Ain, Amet_Rl, Amet_Rlu, Amet_Rvrg, Amet, 0, 8, 0.5);  
+} 
+
+End.
+
+```
+]
+
+---
+
+## Exercise 4
+
+### Add additional exposure routes include oral ingestion in the EB-PBPK model and estimate the Cmax and Tmax after received a single gavage dose of 180 mg/kg.
+
+---
+
+**Hint:** Add following information in model file:
+
+```r
+Oral_input
+
+PO_dose    = 0.0; # Ingested dose (mg/kg)
+Oral_dose;        # Oral dose (mg)
+Period     = 1e2; # Period of the exposure/no exposure cycle (h)
+Tlag       = 0.0; # Absorption lagtime (h)
+Ka         = 1.0; # Intestinal absorption rate constant (1/h)
+Oral_input = PerExp (Oral_dose, Period, Tlag, Ka);
+
+Oral_dose = PO_dose * BW;
+
+dt(Al) = Oral_input + Ql*(Cart - Cvl) - Rl;
+
+```
+
+---
+
+.code60[
+
+Input file: `EB_exercise_4.in.R`
+
+```r
+# ./mcsim.EB.model.R.exe EB_exercise_4.in.R
+
+Integrate (Lsodes, 1e-9, 1e-11 , 1);
+
+Simulation { # 1 
+  PO_dose = 180;
+  Ka = 0.6;
+  PrintStep(Oral_input, Cvtot, 0, 24, 0.1);  
+} 
+
+End.
+
+```
+
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,8 +1,8 @@
 +++
 date = 2018-09-24T00:00:00  # Schedule page publish date.
   
-title = "GNU MCSim tutorial 0 - Introductory"
-time_start = 2019-04-18T12:00:00
+title = ""GNU MCSim tutorial 1 - Walk-through of working models""
+time_start = 2019-04-25T12:00:00
 #time_end = 2018-07-23T10:10:00
 abstract = ""
 abstract_short = ""
@@ -20,7 +20,7 @@ selected = false
   
 # Links (optional).
 url_pdf = ""
-url_slides = "/slide/190418_tutorial.html"
+url_slides = "/slide/190425_tutorial.html"
 url_video = ""
 url_code = ""
   
@@ -38,4 +38,4 @@ caption = "My caption :smile:"
   
 +++
     
-<iframe src="/slide/190418_tutorial.html#1" width="672" height="400px"></iframe>
+<iframe src="/slide/190425_tutorial.html#1" width="672" height="400px"></iframe>
