@@ -169,6 +169,19 @@ background-position: 90% 90%
 
 ---
 
+class:clear, middle
+
+<center>
+--- Application ---
+## If you have *known* "parameters"
+## ------------------------------------>
+## <font color="red"> Parameters / Model / Data</font>
+## <------------------------------------
+## If you have *known* "data" 
+--- Calibration ---
+
+---
+
 background-image: url(https://ars.els-cdn.com/content/image/1-s2.0-S0300483X10002623-gr5.jpg)
 background-size: 400px
 background-position: 70% 50% 
@@ -237,19 +250,6 @@ ggplot(Theoph, aes(x = Time, y =conc, color = Subject)) +
   geom_point() + geom_line() + 
   labs(x = "Time (hr)", y = "Concentration (mg/L)")
 ```
-
----
-
-class:clear, middle
-
-<center>
---- Application ---
-## If you have *known* "parameters"
-## ------------------------------------>
-## <font color="red"> Parameters / Model / Data</font>
-## <------------------------------------
-## If you have *known* "data" 
---- Calibration ---
 
 ---
 
