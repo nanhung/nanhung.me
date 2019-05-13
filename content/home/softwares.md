@@ -18,7 +18,7 @@ weight = 50
 ### As creator
 
 [:package: **pksensi**](https://nanhung.netlify.com/pksensi)  
-An R package to apply sensitivity analysis for pharmacokinetic model  
+An R package to apply global sensitivity analysis in physiologically based kinetic modeling  
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version-last-release/pksensi)](https://cran.r-project.org/package=pksensi)
 
 </br>
@@ -26,5 +26,5 @@ An R package to apply sensitivity analysis for pharmacokinetic model
 #### As contributor
 
 [:package: **xaringan**](https://github.com/yihui/xaringan)  
-An R package for creating slideshows with remark.js through R Markdown. 
+An R package for creating slideshows with remark.js through R Markdown  
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version-last-release/xaringan)](https://cran.r-project.org/package=xaringan)
