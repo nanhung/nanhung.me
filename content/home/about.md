@@ -37,7 +37,7 @@ weight = 5
 
 Howdy! My name is Nan-Hung Hsieh (謝男鴻). I'm a postdoc at Texas A&M University [**Toxicology Program**](https://toxicology.tamu.edu/). 
 
-My research interests include computational toxicology and risk assessment, especially [**pharmacokinetics**](https://en.wikipedia.org/wiki/Pharmacokinetics) and [**Bayesian hierarchical modeling**](https://en.wikipedia.org/wiki/Bayesian_hierarchical_modeling), designing the mathematical model with experimental data that can be used to describe and predict the chemical (or drug) behavior in human (or experiment animal) population. 
+My research interests include computational toxicology and risk assessment, especially [**uncertainty**](https://en.wikipedia.org/wiki/Uncertainty_quantification) and [**sensitivity analysis**](https://en.wikipedia.org/wiki/Sensitivity_analysis) in Bayesian physiologically based kinetic modeling.
 
 I also focus on [open source software](https://opensource.com/resources/what-open-source), [open science](https://opensource.com/resources/open-science), and [reproducible research](https://en.wikipedia.org/wiki/Reproducibility). I believe that science can be more transparent, so people can easily share and acquire more knowledge through these ways. 
 
