@@ -187,6 +187,7 @@ Distrib(<parameter identifier>, <distribution-name>, [<shape parameters>]);
 Here are some examples:
 
 `LogUniform`, with two shape parameters: the minimum and the maximum of the sampling range in natural space. 
+
 `Uniform`, with two shape parameters: the minimum and the maximum of the sampling range. 
 
 `Normal_cv,` is the normal distribution with the coefficient of variation instead of the standard deviation as second parameter. 
