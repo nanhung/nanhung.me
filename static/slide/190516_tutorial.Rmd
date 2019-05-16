@@ -224,12 +224,6 @@ End.
 
 ---
 
-class:inverse, center, middle
-
-# SetPoints ()
-
----
-
 # SetPoints()
 
 This command specifies an output filename, the name of a text file containing (1) the chosen parameter values, (2) the number of simulations to perform and (3) a list of model parameters to read in. It has the following syntax:
@@ -273,6 +267,12 @@ background-image: url(https://i.ibb.co/dcm90HB/Screen-Shot-2019-04-30-at-8-48-27
 background-size: contain
 
 # Uncertainty & sensitivity analysis
+
+---
+
+class:inverse, center, middle
+
+# Sensitivity Analysis
 
 ---
 
