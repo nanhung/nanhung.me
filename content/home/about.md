@@ -10,8 +10,7 @@ weight = 5
 # List your academic interests.
 [interests]
   interests = [
-    "**Computational Toxicology**",
-    "**Risk Assessment**",
+    "**Biological modeling**",
     "**Open Source Software**"
   ]
   
@@ -35,10 +34,8 @@ weight = 5
 
 # Biography
 
-Howdy! My name is Nan-Hung Hsieh (謝男鴻). I'm a postdoc at Texas A&M University [**Toxicology Program**](https://toxicology.tamu.edu/). 
+Howdy! My name is Nan-Hung Hsieh (謝男鴻). I'm a postdoc at Texas A&M University [Toxicology Program](https://toxicology.tamu.edu/). My research focus on computational toxicology and risk assessment, especially [uncertainty](https://en.wikipedia.org/wiki/Uncertainty_quantification) and [sensitivity analysis](https://en.wikipedia.org/wiki/Sensitivity_analysis) in Bayesian physiologically based kinetic modeling.
 
-My research interests include computational toxicology and risk assessment, especially [**uncertainty**](https://en.wikipedia.org/wiki/Uncertainty_quantification) and [**sensitivity analysis**](https://en.wikipedia.org/wiki/Sensitivity_analysis) in Bayesian physiologically based kinetic modeling.
-
-I also focus on [open source software](https://opensource.com/resources/what-open-source), [open science](https://opensource.com/resources/open-science), and [reproducible research](https://en.wikipedia.org/wiki/Reproducibility). I believe that science can be more transparent, so people can easily share and acquire more knowledge through these ways. 
+I'm also interested in [open science](https://opensource.com/resources/open-science) and [reproducible research](https://en.wikipedia.org/wiki/Reproducibility). I believe that science can be more transparent, so people can easily share and acquire more knowledge through these ways. 
 
 A copy of my CV can be found [**HERE**](/post/CV_(NHsieh).pdf). (Latest update: May 2019)
