@@ -2,7 +2,7 @@
 title: "Tutorial 0: GNU MCSim Introductory"
 subtitle: "<html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>"
 author: "Nan-Hung Hsieh"
-date: "April 18, 2019"
+date: "2019/04/18 (update: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     css: ["libs/remark-css-0.0.1/default.css", "libs/remark-css-0.0.1/metropolis.css", "libs/remark-css-0.0.1/metropolis-fonts.css"]
@@ -1314,7 +1314,7 @@ Here is the simulation output:
 ]
 .code60[
 ```{R eval = T, warning=FALSE}
-mcsim(model = "digoxin.model.R", input = "digoxin.in.R")
+mcsim(model = "digoxin.model.R", input = "digoxin.in.R", dir = "modeling/digoxin")
 ```
 ]
 
@@ -1330,16 +1330,16 @@ In addition, you can see I put some comment on the top, the first line is to spe
 
 # Example of (simulation) input-file
 
-.code70[
+.code60[
 ```r
-# File name: dogoxin.mcmc.in.R
-# ./mcsim.digoxin dogoxin.mcmc.in.R
+# File name: dogoxin_mcmc.in.R
+# ./mcsim.digoxin dogoxin_mcmc.in.R
 
-MCMC("sim.out","", # name of output and restart file
-     "",           # name of data file
-     2000,0,      # iterations, simTypeFlag,
-     10,2000,     # printing frequency, iters to print
-     10101010);    # random seed (default)
+MCMC ("MCMC_default.out","", # name of output and restart file
+      "",                    # name of data file
+      2000,0,                # iterations, simTypeFlag,
+      10,2000,               # printing frequency, iters to print
+      10101010);             # random seed (default)
 
 Level { # top level
   Distrib(k_12, LogUniform, 0.01, 10);
@@ -1378,7 +1378,7 @@ class:clear
 
 .font70[
 ```{R eval = T, warning=FALSE}
-out <- mcsim(model = "digoxin.model.R", input = "digoxin.mcmc.in.R")
+out <- mcsim(model = "digoxin.model.R", input = "digoxin_mcmc.in.R", dir = "modeling/digoxin")
 head(out)
 tail(out)
 ```
@@ -1466,18 +1466,27 @@ Besides, the NDoses function can let you used the different level of exposure an
 Here are the R functions that can help you run GNU MCSim more easily. All R functions are defined in `function.R` in MCSim folder.
 
 ```{r, eval=F}
-makemcsim(model, deSolve = F)
+makemcsim(model, dir = "modeling", deSolve = F)
 ```
 
 - Preprocessing and compiling the model-file to the executable file as `makemcsim` in GNU MCSim. The `model` assignment is a string giving the name of the model-file (e.g., `"pbpk.model.R"`). The `deSolve` assignment is a logical factor to use **deSolve** package as an ODE solver. 
 
+- The default location of modeling files are setting at `modeling` folder. The loaction can change by re-assign `dir`. 
+
+
+---
+
+# Main functions
+
 ```{r, eval=F}
-mcsim(model, input)
+mcsim(model, input, dir = "modeling", parallel = F)
 ```
 
 - Using the compiled program with the input-file to run the simulation. The `input` assignment is a string giving the name of the input-file (e.g., `"pbpk.in.R"`)
 
 - This function can also automatically compile the model, if you forgot to use `makemcsim()` to create model program.
+
+- Can use `parallel = T` if using parallel computing in MCMC model calibration.
 
 ???
 
@@ -1515,8 +1524,10 @@ out
 
 .pull-right[
 MCSim
-```{r}
-mcsim("digoxin.model.R", "digoxin.in.R")
+```{r, message=F, warning=F}
+mcsim(model = "digoxin.model.R", 
+      input = "digoxin.in.R", 
+      dir = "modeling/digoxin")
 ```
 ]
 
@@ -1664,21 +1675,27 @@ Based on the default setting, the output data will be stored under the text form
 Visualization the simulation result by R base plot and ggplot
 
 .pull-left[
+
 .code60[
+
 ```{R eval=T, fig.height=5, fig.width=5, warning=FALSE}
 plot(x=out$Time, y=out$y)
 abline(a=1, b=2)
 ```
+
 ]]
 
 .pull-right[
+
 .code60[
-```{R eval=T, fig.height=5, fig.width=5, warning=FALSE}
+
+```{R eval=T, fig.height=5, fig.width=5, message=FALSE, warning=FALSE}
 library(ggplot2)
 ggplot(out, aes(x=Time, y=y)) + 
   geom_point() +
   geom_abline(intercept = 1, slope = 2)
 ```
+
 ]]
 
 ???
@@ -1745,23 +1762,6 @@ Some example R scripts will put into the `example` folder. To run *GNU MCSim* in
 [&ast;] You don't need to move your model- or input-file to *modeling* folder, manually.   
 Just run `mcsim(model-file, input-file)` after you finish your code, then they will be moved to **modeling** folder.
 ]
-
-
-```
-├── MCSim
-├── doc
-├── examples
-│   ├── linear.R
-│   └── test_script.R
-├── modeling
-│   ├── digoxin.mcmc.in.R
-│   ├── digoxin.model.R
-│   ├── linear.in.R
-│   ├── linear.mcmc.in.R
-│   ├── linear.model.R
-│   ├── simple.in.R
-│   └── simple.model.R
-```
 
 ???
 

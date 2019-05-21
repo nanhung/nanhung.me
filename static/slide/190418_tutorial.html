@@ -4,12 +4,11 @@
     <title>Tutorial 0: GNU MCSim Introductory</title>
     <meta charset="utf-8" />
     <meta name="author" content="Nan-Hung Hsieh" />
-    <meta name="date" content="2019-04-18" />
-    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
     <link href="190418_tutorial_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
     <link href="190418_tutorial_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+    <link rel="stylesheet" href="libs/remark-css-0.0.1/default.css" type="text/css" />
+    <link rel="stylesheet" href="libs/remark-css-0.0.1/metropolis.css" type="text/css" />
+    <link rel="stylesheet" href="libs/remark-css-0.0.1/metropolis-fonts.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -23,7 +22,7 @@ class: center, middle, inverse, title-slide
 <hr color='#EB811B' size=1px width=796px>
 </html>
 ### Nan-Hung Hsieh
-### April 18, 2019
+### 2019/04/18 (update: 2019-05-20)
 
 ---
 
@@ -1324,7 +1323,11 @@ Here is the simulation output:
 .code60[
 
 ```r
-mcsim(model = "digoxin.model.R", input = "digoxin.in.R")
+mcsim(model = "digoxin.model.R", input = "digoxin.in.R", dir = "modeling/digoxin")
+```
+
+```
+## Execute: ./mcsim.digoxin.model.R.exe modeling/digoxin/digoxin.in.R
 ```
 
 ```
@@ -1354,16 +1357,16 @@ In addition, you can see I put some comment on the top, the first line is to spe
 
 # Example of (simulation) input-file
 
-.code70[
+.code60[
 ```r
-# File name: dogoxin.mcmc.in.R
-# ./mcsim.digoxin dogoxin.mcmc.in.R
+# File name: dogoxin_mcmc.in.R
+# ./mcsim.digoxin dogoxin_mcmc.in.R
 
-MCMC("sim.out","", # name of output and restart file
-     "",           # name of data file
-     2000,0,      # iterations, simTypeFlag,
-     10,2000,     # printing frequency, iters to print
-     10101010);    # random seed (default)
+MCMC ("MCMC_default.out","", # name of output and restart file
+      "",                    # name of data file
+      2000,0,                # iterations, simTypeFlag,
+      10,2000,               # printing frequency, iters to print
+      10101010);             # random seed (default)
 
 Level { # top level
   Distrib(k_12, LogUniform, 0.01, 10);
@@ -1403,11 +1406,11 @@ class:clear
 .font70[
 
 ```r
-out &lt;- mcsim(model = "digoxin.model.R", input = "digoxin.mcmc.in.R")
+out &lt;- mcsim(model = "digoxin.model.R", input = "digoxin_mcmc.in.R", dir = "modeling/digoxin")
 ```
 
 ```
-## * Create 'chk.out' from the last iteration.
+## * Create 'MCMC.check.out' from the last iteration.
 ```
 
 ```r
@@ -1415,20 +1418,20 @@ head(out)
 ```
 
 ```
-##   iter  k_12.1.  k_21.1.  k_10.1. V_central.1. Ve_C_central.1.   LnPrior
-## 1    0 0.512176 1.591910 4.578250      47.3817        0.197833 -8.507159
-## 2   10 0.663034 1.053850 0.920288      53.8313        0.455026 -7.737837
-## 3   20 0.432514 0.157149 0.831279      55.2544        0.329552 -5.241873
-## 4   30 0.527456 0.141271 0.772024      59.0265        0.471704 -6.695875
-## 5   40 1.052430 0.394778 0.772024      51.4652        0.443793 -6.766683
-## 6   50 0.744651 0.499311 0.772024      49.3481        0.405070 -6.529911
-##        LnData LnPosterior
-## 1 -322.241700 -330.748900
-## 2   -5.697733  -13.435570
-## 3   -8.420752  -13.662630
-## 4   -6.748264  -13.444140
-## 5   -4.156501  -10.923180
-## 6   -3.172368   -9.702279
+##   iter k_12.1.  k_21.1.  k_10.1. V_central.1. Ve_C_central.1.    LnPrior
+## 1    0 6.64722 0.129407 0.502689      47.0794       0.0229435  -4.230709
+## 2    1 4.79799 5.399190 0.502689      59.0430       0.1728790 -11.120220
+## 3    2 4.79799 4.628840 0.502689      59.0430       0.1912030 -11.067020
+## 4    3 4.97568 4.628840 0.502689      59.7788       0.4458630 -12.227060
+## 5    4 4.97568 4.628840 0.502689      59.7788       0.4742960 -12.288880
+## 6    5 4.97568 4.628840 0.995924      55.3041       0.4742960 -11.622740
+##         LnData  LnPosterior
+## 1 -26741.57000 -26745.80000
+## 2    -67.17588    -78.29610
+## 3    -52.92462    -63.99163
+## 4    -12.06065    -24.28771
+## 5    -11.40549    -23.69437
+## 6    -10.25240    -21.87513
 ```
 
 ```r
@@ -1436,20 +1439,20 @@ tail(out)
 ```
 
 ```
-##     iter k_12.1.  k_21.1.  k_10.1. V_central.1. Ve_C_central.1.   LnPrior
-## 196 1950 1.08731 0.182626 0.197338      59.1769       0.0271477 -3.511598
-## 197 1960 1.08333 0.171446 0.184968      59.6128       0.0277980 -3.567542
-## 198 1970 1.08763 0.171331 0.170108      59.8496       0.0355800 -3.826062
-## 199 1980 1.08763 0.172720 0.183829      59.0764       0.0262816 -3.316123
-## 200 1990 1.09268 0.176052 0.183829      59.4927       0.0270974 -3.525014
-## 201 2000 1.09235 0.172909 0.183829      59.3599       0.0375671 -3.783332
-##       LnData LnPosterior
-## 196 19.32131    15.80971
-## 197 21.13345    17.56590
-## 198 20.37592    16.54985
-## 199 18.81788    15.50176
-## 200 20.96801    17.44300
-## 201 20.56532    16.78199
+##      iter k_12.1.  k_21.1.  k_10.1. V_central.1. Ve_C_central.1.   LnPrior
+## 1996 1995 1.13399 0.174051 0.166272      58.9999       0.0335678 -3.482208
+## 1997 1996 1.13399 0.174648 0.166272      58.9999       0.0335678 -3.485633
+## 1998 1997 1.13399 0.174648 0.166272      58.9999       0.0335678 -3.485633
+## 1999 1998 1.13399 0.175221 0.166272      58.9999       0.0335678 -3.488911
+## 2000 1999 1.13008 0.175221 0.166272      58.9999       0.0335678 -3.485460
+## 2001 2000 1.13008 0.175221 0.166272      58.9999       0.0335678 -3.485460
+##        LnData LnPosterior
+## 1996 18.93835    15.45614
+## 1997 18.78842    15.30278
+## 1998 18.78842    15.30278
+## 1999 18.60444    15.11553
+## 2000 18.64880    15.16334
+## 2001 18.64880    15.16334
 ```
 
 ]
@@ -1536,19 +1539,28 @@ Here are the R functions that can help you run GNU MCSim more easily. All R func
 
 
 ```r
-makemcsim(model, deSolve = F)
+makemcsim(model, dir = "modeling", deSolve = F)
 ```
 
 - Preprocessing and compiling the model-file to the executable file as `makemcsim` in GNU MCSim. The `model` assignment is a string giving the name of the model-file (e.g., `"pbpk.model.R"`). The `deSolve` assignment is a logical factor to use **deSolve** package as an ODE solver. 
 
+- The default location of modeling files are setting at `modeling` folder. The loaction can change by re-assign `dir`. 
+
+
+---
+
+# Main functions
+
 
 ```r
-mcsim(model, input)
+mcsim(model, input, dir = "modeling", parallel = F)
 ```
 
 - Using the compiled program with the input-file to run the simulation. The `input` assignment is a string giving the name of the input-file (e.g., `"pbpk.in.R"`)
 
 - This function can also automatically compile the model, if you forgot to use `makemcsim()` to create model program.
+
+- Can use `parallel = T` if using parallel computing in MCMC model calibration.
 
 ???
 
@@ -1604,7 +1616,9 @@ out
 MCSim
 
 ```r
-mcsim("digoxin.model.R", "digoxin.in.R")
+mcsim(model = "digoxin.model.R", 
+      input = "digoxin.in.R", 
+      dir = "modeling/digoxin")
 ```
 
 ```
@@ -1734,6 +1748,13 @@ A simple way to store the results in the output variable and check it,
 
 ```r
 out &lt;- mcsim(model = "linear.model.R", input = "linear.in.R")
+```
+
+```
+## Execute: ./mcsim.linear.model.R.exe modeling/linear.in.R
+```
+
+```r
 out
 ```
 
@@ -1801,7 +1822,9 @@ Based on the default setting, the output data will be stored under the text form
 Visualization the simulation result by R base plot and ggplot
 
 .pull-left[
+
 .code60[
+
 
 ```r
 plot(x=out$Time, y=out$y)
@@ -1809,10 +1832,13 @@ abline(a=1, b=2)
 ```
 
 ![](190418_tutorial_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+
 ]]
 
 .pull-right[
+
 .code60[
+
 
 ```r
 library(ggplot2)
@@ -1822,6 +1848,7 @@ ggplot(out, aes(x=Time, y=y)) +
 ```
 
 ![](190418_tutorial_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+
 ]]
 
 ???
@@ -1888,23 +1915,6 @@ Some example R scripts will put into the `example` folder. To run *GNU MCSim* in
 [&amp;ast;] You don't need to move your model- or input-file to *modeling* folder, manually.   
 Just run `mcsim(model-file, input-file)` after you finish your code, then they will be moved to **modeling** folder.
 ]
-
-
-```
-├── MCSim
-├── doc
-├── examples
-│   ├── linear.R
-│   └── test_script.R
-├── modeling
-│   ├── digoxin.mcmc.in.R
-│   ├── digoxin.model.R
-│   ├── linear.in.R
-│   ├── linear.mcmc.in.R
-│   ├── linear.model.R
-│   ├── simple.in.R
-│   └── simple.model.R
-```
 
 ???
 
