@@ -227,14 +227,19 @@ defaultContentLanguageInSubdir = false
     link = "https://scholar.google.com/citations?user=AM1YgJAAAAAJ&hl=en&oi=sra"
 
     [[params.social]]
-    icon = "researchgate"
-    icon_pack = "ai"
-    link = "https://www.researchgate.net/profile/Nan-Hung_Hsieh"  
-    
-    [[params.social]]
     icon = "publons"
     icon_pack = "ai"
     link = "https://publons.com/author/435686/nan-hung-hsieh"  
+    
+    [[params.social]]
+    icon = "impactstory"
+    icon_pack = "ai"
+    link = "https://impactstory.org/u/0000-0003-0163-2766"
+    
+    [[params.social]]
+    icon = "orcid"
+    icon_pack = "ai"
+    link = "http://orcid.org/0000-0003-0163-2766"
       
     [[params.social]]
     icon = "github"
@@ -245,8 +250,6 @@ defaultContentLanguageInSubdir = false
     icon = "linkedin"
     icon_pack = "fa"
     link = "//www.linkedin.com/in/nhsie/"
-
-
 
 # Navigation Links
 #   To link a homepage widget, specify the URL as a hash `#` followed by the filename of the
@@ -277,14 +280,14 @@ defaultContentLanguageInSubdir = false
   weight = 4
 
 [[menu.main]]
-  name = "Softwares"
-  url = "#softwares"
-  weight = 5
-
-[[menu.main]]
   name = "Talks"
   url = "#talks"
   weight = 5
+
+[[menu.main]]
+  name = "Softwares"
+  url = "#softwares"
+  weight = 6
 
 # Taxonomies.
 [taxonomies]

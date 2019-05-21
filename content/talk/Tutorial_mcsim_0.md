@@ -22,8 +22,8 @@ selected = false
 url_pdf = ""
 url_slides = "/slide/190418_tutorial.html"
 url_video = ""
-url_code = ""
-  
+url_code = "http://rpubs.com/Nanhung/MCSim_with_RStudio"
+
 # Does the content use math formatting?
 math = true
   
