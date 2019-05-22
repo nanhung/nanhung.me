@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>GNU MCSim Tutorial 3</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Nan-Hung Hsieh" />
+    <meta name="date" content="2019-05-23" />
+    <link rel="stylesheet" href="libs/remark-css-0.0.1/default.css" type="text/css" />
+    <link rel="stylesheet" href="libs/remark-css-0.0.1/metropolis.css" type="text/css" />
+    <link rel="stylesheet" href="libs/remark-css-0.0.1/metropolis-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# GNU MCSim Tutorial 3
+## Markov Chain Monte Carlo Calibration
+<html>
+<div style="float:left">
+
+</div>
+<hr color='#EB811B' size=1px width=796px>
+</html>
+### Nan-Hung Hsieh
+### May 23, 2019
+
+---
+
+
+
+
+
+
+
+# Outline
+
+## 1. Markov Chain Monte Carlo
+
+- Principle
+
+- Workflow
+
+## 2. `MCMC()`
+
+- Working with **GNU MCSim** &amp; **R**
+
+- Example: linear model
+
+## 3. Demo
+
+- Individual modeling - Ethylbenzene PBPK
+
+- Population modeling - Tetrachloroethylene PBPK
+
+---
+
+# General workflow
+
+### 1 Model constructing or translating
+
+### 2 Verify modeling result
+
+- **Compare with published result**
+- **Mass balance** 
+
+### 3 Uncertainty and sensitivity analysis
+
+- **Morris elementary effects screening** 
+- **Fourier amplitude sensitivity test**
+
+### 4 Model calibration and validation
+
+- **Markov chain Monte Carlo** 
+  - Diagnostics (Goodness-of-fit, convergence)
+
+---
+
+# MC &amp; MCMC
+
+## Monte Carlo
+
+### - Generate the probability distribution based on the given condition
+
+&lt;/br&gt;
+
+## Markov Chain Monte Carlo
+
+### - Iterative update the probability distribution, if the new proposed distribution is accepted. 
+
+---
+
+# Bayes' rule
+
+.font200[
+$$ p(\theta|y) = \frac{p(\theta) p(y|\theta) }{p(y)}$$
+]
+
+`\(y\)`: **Observed data**
+
+`\(\theta\)`: **Observed or unobserved parameter**
+
+&lt;/br&gt;
+
+`\(p(\theta)\)`: *Prior distribution* of model parameter
+
+`\(p(y|\theta)\)`: *Likelihood* of the experiment data given by a parameter vector
+
+`\(p(\theta|y)\)`: *Posterior distribution*
+
+`\(p(y)\)`: *Likelihood* of data
+
+---
+
+# Monty Hall Problem
+
+&gt; Suppose you’re on a game show, and you’re given the choice of three doors. Behind one door is a car, behind the others, goats. You pick a door, say number 1, and the host, who knows what’s behind the doors, opens another door, say number 3, which has a goat. He says to you, ”Do you want to pick door number 2?” Is it to your advantage to switch your choice of doors?
+
+&gt; Marilyn vos Savant. 1990. Ask Marilyn. *Parade Magazine*: 16.
+
+.pull-right[
+
+![](190523_tutorial_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+
+]
+
+---
+
+# Markov Chain Monte Carlo
+
+.font120[
+- **Metropolis-Hastings sampling algorithm**
+]
+
+The algorithm was named for Nicholas Metropolis (physicist) and Wilfred Keith Hastings (statistician). The algorithm proceeds as follows.
+
+**Initialize**
+
+1. Pick an initial parameter sets `\(\theta_{t=0} = \{\theta_1, \theta_2, ... \theta_n\}\)`
+
+**Iterate**
+
+1. *Generate*: randomly generate a candidate parameter state `\(\theta^\prime\)` for the next sample by picking from the conditional distribution  `\(J(\theta^\prime|\theta_t)\)`
+2. *Compute*:  compute the acceptance probability 
+`\(A\left(\theta^{\prime}, \theta_{t}\right)=\min \left(1, \frac{P\left(\theta^{\prime}\right)}{P\left(\theta_{t}\right)} \frac{J\left(\theta_{t} | \theta^{\prime}\right)}{J\left(\theta^{\prime} | \theta_{t}\right)}\right)\)`
+2. *Accept or Reject*:
+  1. generate a uniform random number `\(u \in[0,1]\)`
+  2. if `\(u \leq A\left(x^{\prime}, x_{t}\right)\)` accept the new state and set `\(\theta_{t+1}=\theta^{\prime}\)`, otherwise reject the new state, and copy the old state forward `\(\theta_{t+1}=\theta_{t}\)`
+
+???
+
+Markov chain Monte Carlo is a general method based on drawing values of theta from approximate distributions and then correcting those draws to better approximate target posterior p(theta|y).
+
+---
+
+class: middle
+
+.font200[
+## The product of output is not ~~best-fit~~, but "prior" and "posterior".
+]
+
+---
+
+# log-likelihood
+
+The log-likelihood function was used to assess the **goodness-of-fit** of the model to the data ([Woodruff and Bois, 1993](https://www.sciencedirect.com/science/article/pii/0378427493901035?via%3Dihub), [Hsieh et al., 2018](https://www.frontiersin.org/articles/10.3389/fphar.2018.00588/full#B43))
+
+`$$L L=\sum_{i=1}^{N}-\frac{1}{2} \cdot \frac{\left(y_{i}-\widehat{y}_{i}\right)^{2}}{S_{j[i]}^{2}}-\frac{1}{2} \ln \left(2 \pi s_{j[i]}^{2}\right)$$`
+
+`\(N\)`: the total number of the data points 
+
+`\(y_i\)`: experimental observed
+
+`\(\hat{y}_i\)`: model predicted value
+
+`\(j[i]\)`: data type of data point `\(i\)`
+
+`\(S_{j[i]}^{2}\)`: the variance for data type `\(j\)`
+
+---
+
+# Calibration &amp; evaluation
+
+###  Prepare model and input files 
+  - Need at least 4 chains in simulation
+
+### Check convergence &amp; graph the output result
+  - **Parameter**, **log-likelihood of data**
+  - Trace plot, density plot, correlation matrix, auto-correlation, running mean, ...
+  - Gelman–Rubin convergence diagnostics
+
+### Evaluate the model fit
+  - Global evaluation
+  - Individual evaluation 
+
+---
+
+# Example: linear modeling
+
+.code60[
+
+.pull-left[
+
+**model-file**
+
+```r
+## linear.model.R ####
+
+Outputs = {y}
+
+# Model Parameters
+A = 0; # Default value of intercept
+B = 1; # Default value of slope
+
+# Statistical parameter
+SD_true = 0;
+
+CalcOutputs { 
+  y = A + B * t + NormalRandom(0,SD_true); 
+}
+End.
+
+```
+]
+
+.pull-right[
+
+**input-file**
+
+```r
+## ./mcsim.linear.model.R.exe linear_mcmc.in.R ####
+
+MCMC ("MCMC.default.out","", # name of output file
+     "",         # name of data file
+     2000,0,     # iterations, print predictions flag
+     1,2000,     # printing frequency, iters to print
+     10101010);  # random seed (default)
+
+Level {
+  
+  Distrib(A, Normal, 0, 2); # prior of intercept 
+  Distrib(B, Normal, 1, 2); # prior of slope 
+  
+  Likelihood(y, Normal, Prediction(y), 0.5);
+  
+  Simulation {
+    PrintStep (y, 0, 10, 1); 
+    Data (y, 0.0, 0.15, 2.32, 4.33, 4.61, 6.68, 7.89, 7.13, 7.27, 9.4, 10.0);
+  }
+}
+End.
+  
+```
+
+]
+]
+
+---
+
+# The data
+
+
+```r
+x &lt;- seq(0, 10, 1)
+y &lt;- c(0.0, 0.15, 2.32, 4.33, 4.61, 6.68, 7.89, 7.13, 7.27, 9.4, 10.0)
+plot(x, y)
+```
+
+![](190523_tutorial_files/figure-html/unnamed-chunk-3-1.svg)&lt;!-- --&gt;
+
+---
+
+# MCMC sampling process
+
+.font80[
+
+```
+##   iter     A.1.     B.1.    LnPrior    LnData LnPosterior
+## 1    0 -0.95484 -1.22704  -3.958099 -4567.137   -4571.095
+## 2    1  1.83302 -1.22704  -4.264131 -3201.785   -3206.049
+## 3    2  1.83302 -1.22704  -4.264131 -3201.785   -3206.049
+## 4    3  4.78650 -1.22704  -6.707952 -2128.378   -2135.086
+## 5    4  4.78650 -1.22704  -6.707952 -2128.378   -2135.086
+## 6    5  7.38065 -1.22704 -10.653380 -1502.173   -1512.826
+```
+]
+
+.pull-left[
+
+**Trace plot**
+
+![](190523_tutorial_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-right[
+
+**Parameter space**
+
+![](190523_tutorial_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+
+]
+
+---
+
+# Trace plot
+
+
+
+
+```r
+parms_name &lt;- c("A.1.","B.1.")
+mcmc_trace(sims, pars = parms_name, facet_args = list(ncol = 2))
+```
+
+![](190523_tutorial_files/figure-html/unnamed-chunk-8-1.svg)&lt;!-- --&gt;
+
+---
+
+# Kernel density
+
+
+```r
+j &lt;- c(1002:2001) # Discard first half as burn-in
+mcmc_dens_overlay(x = sims[j,,], pars = parms_name)
+```
+
+![](190523_tutorial_files/figure-html/unnamed-chunk-9-1.svg)&lt;!-- --&gt;
+
+---
+
+# Pair plot
+
+
+```r
+mcmc_pairs(sims[j,,], pars = parms_name, off_diag_fun = "hex")
+```
+
+![](190523_tutorial_files/figure-html/unnamed-chunk-10-1.svg)&lt;!-- --&gt;
+
+---
+
+# Summary report
+
+
+```r
+monitor(sims, probs = c(0.025, 0.975) , digit=4) 
+```
+
+```
+## Inference for the input samples (4 chains: each with iter=2001; warmup=1000):
+## 
+##                  mean se_mean       sd      2.5%     97.5% n_eff   Rhat
+## iter        1500.0000 91.1594 288.9998 1025.0000 1975.0000    10 2.1056
+## A.1.           0.4466  0.0300   0.3002   -0.1278    0.9969   100 1.0407
+## B.1.           0.9980  0.0049   0.0512    0.8949    1.0919   109 1.0352
+## LnPrior       -3.2607  0.0039   0.0377   -3.3492   -3.2247    94 1.0412
+## LnData       -19.5507  0.0839   1.0927  -22.8720  -18.4954   170 1.0194
+## LnPosterior  -22.8113  0.0868   1.1122  -26.0994  -21.7368   164 1.0203
+## 
+## For each parameter, n_eff is a crude measure of effective sample size,
+## and Rhat is the potential scale reduction factor on split chains (at 
+## convergence, Rhat=1).
+```
+
+---
+
+
+
+
+
+# Evaluation of model fit
+
+![](190523_tutorial_files/figure-html/unnamed-chunk-14-1.svg)&lt;!-- --&gt;
+
+---
+
+# Demo - linear model
+
+## 1 Single chain testing
+
+- **MCMC simulation** 
+
+## 2 Multi-chains simulation
+
+- **Check convergence**
+
+- **Evaluation of model fit**
+
+.footnote[
+https://rpubs.com/Nanhung/NB_190523
+]
+
+---
+
+# MCMC()
+
+```r
+# Input-file
+
+MCMC();
+
+# &lt;Global assignments and specifications&gt;
+
+Level {
+
+  Distrib();  
+  Likelihood();
+
+  # Up to 10 levels of hierarchy
+  
+  Simulation {
+    # &lt;Local assignments and specifications&gt;
+  }
+  
+  Simulation {
+    # &lt;Local assignments and specifications&gt;
+  }
+  
+  # Unlimited number of simulation specifications
+} # end Level
+
+End.
+```
+
+---
+  
+# MCMC()
+
+The statement, gives general directives for MCMC simulations with following syntax:
+
+```r
+ MCMC("&lt;OutputFilename&gt;", "&lt;RestartFilename&gt;", "&lt;DataFilename&gt;",
+          &lt;nRuns&gt;, &lt;simTypeFlag&gt;, &lt;printFrequency&gt;, &lt;itersToPrint&gt;,
+          &lt;RandomSeed&gt;);
+```
+
+`"&lt;OutputFilename&gt;"` Output file name, the default is "MCMC.default.out"
+
+`"&lt;RestartFilename&gt;"` Restart file name
+
+`"&lt;DataFilename&gt;"` Data file name
+
+`&lt;nRuns&gt;` an integer for the total sampling number (iteration)
+
+`&lt;simTypeFlag&gt;` an integer (from 0 to 5) to define the simulation type
+
+`&lt;printFrequency&gt;` an integer to set the interval of printed output 
+
+`&lt;itersToPrint&gt;` an integer to set the number of printed output from the final iteration 
+
+`&lt;RandomSeed&gt;` a numeric for pseudo-random number generator
+
+---
+
+# Simulation types
+
+**`&lt;simTypeFlag&gt;` an integer (from 0 to 5) to define the simulation type**
+
+`0`, start/restart a new or unfinished MCMC simulations
+
+`1`, use the last MCMC iteration to quickly check the model fit to the data
+
+`2`, improve computational speed when convergence is approximately obtained
+
+`3`, tempering MCMC with whole posterior
+ 
+`4`, tempering MCMC with only likelihood
+ 
+`5`,  stochastic optimization 
+
+---
+
+# Check convergence
+
+### Manipulate (MCSim under R)
+
+`mcmc_array()`
+
+### Visualize (**bayesplot**, **corrplot**)
+
+`mcmc_trace()`  
+
+`mcmc_dens_overlay()`  
+
+`mcmc_pairs()`  
+
+`corrplot()`
+
+### Report (**rstan**)
+
+`monitor()`  
+
+---
+
+# Parallel
+
+![](https://i.ibb.co/b25QF2z/Screen-Shot-2019-05-20-at-3-08-17-PM.png)
+
+---
+
+# Demo - Ethylbenzene PBPK Model
+
+### Model verification (tutorial 1)
+
+**- Compare the simulated result with previous study**
+
+### Uncertainty analysis (tutorial 2)
+
+**- Set the probability distribution for model parameters**
+
+### Morris elementary effects screening (tutorial 2)
+
+**- Find the influential parameters**
+
+### MCMC calibration (tutorial 3)
+
+**- Estimate the "posterior"**
+
+.footnote[
+https://rpubs.com/Nanhung/NB_190523
+]
+
+---
+
+background-image: url(https://i.ibb.co/q5vKKjJ/Screen-Shot-2019-05-13-at-4-43-31-PM.png)
+background-size: 400px
+background-position: 70% 30% 
+
+# Bayesian Population Model
+
+.large[**Individuals level**]
+
+`\(E\)`: Exposure  
+
+`\(t\)`: Time  
+
+`\(\varphi\)`: measured parameters
+
+`\(\theta\)`: unknown parameters  
+
+`\(y\)`: condition the data
+
+&lt;/br&gt;
+
+.large[**Population level**]
+
+`\(\mu\)`: Population means
+
+`\(\Sigma^2\)`: Population variances
+
+`\(\sigma^2\)`: Residual errors
+
+.pull-right[
+.footnote[
+https://doi.org/10.1007/s002040050284
+]
+]
+
+---
+
+# Population modeling
+
+.code60[
+
+.pull-left[
+
+**Single level**
+
+```r
+# Comments of Input-file
+&lt;Global assignments and specifications&gt;
+  
+  Level { # priors on population parameters
+    
+    Distrib ()
+    Likelihood ()
+    
+    Level { # all subjects grouped
+      
+        Experiment { # 1 
+          &lt;Specifications and data in 1st simulation&gt;
+        } # end 1 
+        Experiment { # 2
+          &lt;Specifications and data in 2nd simulation&gt;
+        } # end 2
+
+      # ... put other experiments
+      
+    } # End grouped level  
+  } # End population level
+End. 
+```    
+
+]
+
+.pull-right[
+
+**Multi level**
+
+```r
+# Comments of Input-file
+&lt;Global assignments and specifications&gt;
+  
+  Level { # priors on population parameters
+    
+    Distrib ()
+    Likelihood ()
+    
+    Level { # individuals
+      
+      Distrib ()
+      
+      Level { # subject A
+        Experiment { # 1 
+          &lt;Specifications and data in 1st simulation&gt;
+        } # end 1 
+        Experiment { # 2
+          &lt;Specifications and data in 2nd simulation&gt;
+        } # end 2
+      } # End subject A
+      
+      # ... put other subjects
+      
+    } # End individuals level  
+  } # End population level
+End. 
+```    
+]
+
+]
+
+---
+
+# Demo - Tetrachloroethylene PBPK Model
+
+## 1 Single level 
+
+- Population-experiments
+
+## 2 Multi level
+
+- Population-individuals-experiments
+
+.footnote[ https://rpubs.com/Nanhung/SM_190523 ]
+
+---
+
+# Final thoughts
+
+MCMC simulation is a computational intensive process for metamodel or big data, one of the important issue today is how to improve the efficiency in the modeling.
+
+- If possible, remove or turn-off unnecessary state variable (e.g., mass balance, metabolites). 
+
+- Re-parameterization ([Chiu et al., 2006](https://rd.springer.com/article/10.1007/s00204-006-0061-9))
+
+- Global sensitivity analysis and parameter fixing ([Hsieh et al., 2018](https://www.frontiersin.org/articles/10.3389/fphar.2018.00588/full))
+
+- Parallel computing
+
+- Grouped data
+
+- Algorithm
+
+- Software, hardware, ...
+
+---
+
+class: inverse, center, middle
+
+# Thanks!
+
+&lt;/br&gt;
+
+question? 
+
+
+.footnote[
+The slide, code, and record can find on my website: [nanhung.rbind.io](https://nanhung.rbind.io/talk/)
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
