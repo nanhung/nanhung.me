@@ -21,7 +21,7 @@ selected = false
 # Links (optional).
 url_pdf = ""
 url_slides = "/slide/190516_tutorial.html"
-url_video = "https://vimeo.com/336693424"
+url_video = ""
 url_code = ""
   
 # Does the content use math formatting?
@@ -37,5 +37,14 @@ highlight = true
 caption = "My caption :smile:"
   
 +++
-    
-<iframe src="/slide/190516_tutorial.html#1" width="672" height="400px"></iframe>
+
+- MCSim under R project: https://github.com/nanhung/MCSim_under_R
+
+- Slides: https://nanhung.rbind.io/slide/190516_tutorial.html#1
+
+- Demo: http://rpubs.com/Nanhung/DM_190516
+
+- Supplmentary: http://rpubs.com/Nanhung/SE_190516
+
+- Video: https://vimeo.com/336693424
+
