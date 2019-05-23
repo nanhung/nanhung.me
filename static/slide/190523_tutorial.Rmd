@@ -82,8 +82,10 @@ After the ethylbenzene PBPK model, I'll use the tetrachloroethylene PBPK model t
 Here is the review of the general workflow in our modeling process. In the first tutorial, I explain the basic knowledge in PK modeling. We can translate the model code from other programming language to MCSim and conduct the straight forward simulation. We had some exercise to run the model and verify the modeling result through comparing the published data. 
 
 Then, in the uncertainty and sensitivity analysis, we can apply Monte Carlo simulation with the given distribution of model parameter to exam whether the experiment data can be covered in uncertainty or the distribution of model output.
+
 If our data can not cover in the range of our simulation, we might need to figure out which parameters had significant impact on the model output. 
 So through Morris elementary effects screening we can find the influential parameter for specific varibale in our model than we can adjust the parameter range to have better prediction. 
+
 In addtion, if we have too many parameters that might cause the computational burden in MCMC calibration, we might need to apply the global sensitivity approach to detect the noninfluential parameter and fix this parameter at baseline value.
 
 Finally, we can us MCMC algorithm to do model calibration. This is the today's topic as well.
@@ -262,13 +264,25 @@ There is a log-likelihood function that can be used to estimate the goodness-of-
   - Need at least 4 chains in simulation
 
 ### Check convergence & graph the output result
+
+.font120[
   - **Parameter**, **log-likelihood of data**
-  - Trace plot, density plot, correlation matrix, auto-correlation, running mean, ...
-  - Gelman–Rubin convergence diagnostics
+  - Trace plot, density plot, correlation matrix, auto-correlation, rank histogram, ...
+  - Gelman–Rubin convergence diagnostics (potential scale reduction factor, $\hat{R}$)
+]
 
 ### Evaluate the model fit
-  - Global evaluation
+  - Global evaluation (all output variables, $y_{i,t}$)
   - Individual evaluation 
+
+???
+
+In the model calibration and evaluation process, we need at least four chains to check how good of the convergence of the model parameter sacross these four simulations. Ideally, the posterior should be well-mixing and not easy to distinguish the difference.
+
+There are several methods to check the convergence include trace plot, density plot, correlation matrix, auto-correlation, rank histogram, etc. 
+The most widely-used convergence diagnostic is the potential scale reduction factor, which was published by Gelman and Rubin in 1992.
+
+After the convergence diagnosis, we can evaluate the model fit through the global method. The MCSim also provide a simple way to quickly check the result through this way. In addition, we can check the individual time-concentration profile and evaluate the model performance.
 
 ---
 
@@ -649,18 +663,18 @@ https://doi.org/10.1007/s002040050284
 
 .pull-left[
 
-**Single level**
+**Individuals level**
 
 ```r
 # Comments of Input-file
 <Global assignments and specifications>
   
-  Level { # priors on population parameters
+*  Level { # priors on population parameters
     
     Distrib ()
     Likelihood ()
     
-    Level { # all subjects grouped
+*    Level { # all subjects grouped
       
         Experiment { # 1 
           <Specifications and data in 1st simulation>
@@ -680,22 +694,22 @@ End.
 
 .pull-right[
 
-**Multi level**
+**Subject level**
 
 ```r
 # Comments of Input-file
 <Global assignments and specifications>
   
-  Level { # priors on population parameters
+*  Level { # priors on population parameters
     
     Distrib ()
     Likelihood ()
     
-    Level { # individuals
+*    Level { # individuals
       
       Distrib ()
       
-      Level { # subject A
+*      Level { # subject A
         Experiment { # 1 
           <Specifications and data in 1st simulation>
         } # end 1 
@@ -718,13 +732,13 @@ End.
 
 # Demo - Tetrachloroethylene PBPK Model
 
-## 1 Single level 
+## 1 Individuls level 
 
-- Population-experiments
+- **Population-experiments**
 
-## 2 Multi level
+## 2 Subject level
 
-- Population-individuals-experiments
+- **Population-individuals-experiments**
 
 .footnote[ https://rpubs.com/Nanhung/SM_190523 ]
 
