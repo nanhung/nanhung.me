@@ -29,21 +29,31 @@ source("MCSim/function.R")
 
 ## 1. Markov Chain Monte Carlo
 
-- Principle
+- Principle & Workflow
 
-- Workflow
+- **Example: linear model**
 
 ## 2. `MCMC()`
 
-- Working with **GNU MCSim** & **R**
+- Working with GNU MCSim & R
 
-- Example: linear model
+- **Example: Ethylbenzene PBPK model**
 
-## 3. Demo
+## 3. Population modeling
 
-- Individual modeling - Ethylbenzene PBPK
+- Single and multi level
 
-- Population modeling - Tetrachloroethylene PBPK
+- **Example: Tetrachloroethylene PBPK model**
+
+???
+
+In this tutorial we will focus MCMC calibration. Which means we want to calibrate the model parameters and find the likelihood of model parameter to fit the data.
+
+I will start from introducing the MCMC principle. What is Bayesian? What is MCMC? How do we apply this technique in our modeling process. Also I will summarie the overall workflow include the contain in our previous tutorials. And, I will use the linear model as an example to explain the basic knowledge in MCMC calibration.
+
+The second section is to exalpain how to use mCSim to Run MCMC simulation and use R to analyze and visualzie the model output. We will go through the Ethylbenzene PBPK model as an example to demo the full workflow from model verification, uncertainty and sensitivity analysis and finally demostrate the MCMC calibration in this case.
+
+After the ethylbenzene PBPK model, I'll use the tetrachloroethylene PBPK model to explain how to apply hierarchical approach to calibrate the parameter in population and individual levels.
 
 ---
 
@@ -58,13 +68,25 @@ source("MCSim/function.R")
 
 ### 3 Uncertainty and sensitivity analysis
 
+- **Monte Carlo simulation**
 - **Morris elementary effects screening** 
 - **Fourier amplitude sensitivity test**
 
-### 4 Model calibration and validation
+### 4 Model calibration 
 
 - **Markov chain Monte Carlo** 
   - Diagnostics (Goodness-of-fit, convergence)
+
+???
+
+Here is the review of the general workflow in our modeling process. In the first tutorial, I explain the basic knowledge in PK modeling. We can translate the model code from other programming language to MCSim and conduct the straight forward simulation. We had some exercise to run the model and verify the modeling result through comparing the published data. 
+
+Then, in the uncertainty and sensitivity analysis, we can apply Monte Carlo simulation with the given distribution of model parameter to exam whether the experiment data can be covered in uncertainty or the distribution of model output.
+If our data can not cover in the range of our simulation, we might need to figure out which parameters had significant impact on the model output. 
+So through Morris elementary effects screening we can find the influential parameter for specific varibale in our model than we can adjust the parameter range to have better prediction. 
+In addtion, if we have too many parameters that might cause the computational burden in MCMC calibration, we might need to apply the global sensitivity approach to detect the noninfluential parameter and fix this parameter at baseline value.
+
+Finally, we can us MCMC algorithm to do model calibration. This is the today's topic as well.
 
 ---
 
@@ -88,19 +110,27 @@ source("MCSim/function.R")
 $$ p(\theta|y) = \frac{p(\theta) p(y|\theta) }{p(y)}$$
 ]
 
-$y$: **Observed data**
-
 $\theta$: **Observed or unobserved parameter**
+
+$y$: **Observed data**
 
 </br>
 
 $p(\theta)$: *Prior distribution* of model parameter
 
-$p(y|\theta)$: *Likelihood* of the experiment data given by a parameter vector
+$p(y|\theta)$: *Sampling distribution* of the experiment data given by a parameter vector
+
+$p(y)$: *Likelihood* of data
 
 $p(\theta|y)$: *Posterior distribution*
 
-$p(y)$: *Likelihood* of data
+???
+
+The MCMC ias based on the Bayesian rule. In this function, it includes the density of observed or unobserved parameter that are often referred to as the prior distribution in our model, which is p(theta). 
+
+Also, we have the sampling distribution (or data distribution), which is p(y|theta). This term is used to explain the probability of observed result that is given by the model parameter
+
+Then, we need to have the likelihood to describe the probability distribution of the experiment data (y). And through this information the posterior can be estimated by this equation.
 
 ---
 
@@ -109,6 +139,10 @@ $p(y)$: *Likelihood* of data
 > Suppose you’re on a game show, and you’re given the choice of three doors. Behind one door is a car, behind the others, goats. You pick a door, say number 1, and the host, who knows what’s behind the doors, opens another door, say number 3, which has a goat. He says to you, ”Do you want to pick door number 2?” Is it to your advantage to switch your choice of doors?
 
 > Marilyn vos Savant. 1990. Ask Marilyn. *Parade Magazine*: 16.
+
+.pull-left[
+![](https://upload.wikimedia.org/wikipedia/commons/d/de/Monty_tree_door1.svg)
+]
 
 .pull-right[
 
@@ -138,6 +172,13 @@ legend("topright", legend = c("Switch to Other Door","Don't Switch"), pch = 1 , 
 
 ]
 
+???
+
+The famous example of bayesian rule in the real life is Monty Hall problem. Suppose you’re on a game show, you have a chance to win a car that is behind the one of three door, so the probability of winning the car is one-third. But the host give the contestent the information, he open the door that is a goat behind this door and ask contest to swith from the chosen door or not. 
+At this time in this case, the question is change to what is the probability to win the car if the contestent switch the choice. It's not the 50/50 probability. 
+
+The diagram here explain the conditional probability of winning by switching the door. If contestent switch the door, it will has 67% probability to win the game compare with 33% if staying with the original choice. 
+
 ---
 
 # Markov Chain Monte Carlo
@@ -156,14 +197,20 @@ The algorithm was named for Nicholas Metropolis (physicist) and Wilfred Keith Ha
 
 1. *Generate*: randomly generate a candidate parameter state $\theta^\prime$ for the next sample by picking from the conditional distribution  $J(\theta^\prime|\theta_t)$
 2. *Compute*:  compute the acceptance probability 
-$A\left(\theta^{\prime}, \theta_{t}\right)=\min \left(1, \frac{P\left(\theta^{\prime}\right)}{P\left(\theta_{t}\right)} \frac{J\left(\theta_{t} | \theta^{\prime}\right)}{J\left(\theta^{\prime} | \theta_{t}\right)}\right)$
+$A\left(\theta^{\prime}, \theta_{t}\right)=\min \left(1, \frac{P\left(\theta^{\prime}|y\right)}{P\left(\theta_{t}|y\right)} \frac{J\left(\theta_{t} | \theta^{\prime}\right)}{J\left(\theta^{\prime} | \theta_{t}\right)}\right)$
 2. *Accept or Reject*:
   1. generate a uniform random number $u \in[0,1]$
   2. if $u \leq A\left(x^{\prime}, x_{t}\right)$ accept the new state and set $\theta_{t+1}=\theta^{\prime}$, otherwise reject the new state, and copy the old state forward $\theta_{t+1}=\theta_{t}$
 
 ???
 
-Markov chain Monte Carlo is a general method based on drawing values of theta from approximate distributions and then correcting those draws to better approximate target posterior p(theta|y).
+Markov chain Monte Carlo is a general method based on drawing values of parameter theta from approximate distributions and then correcting those draws to better approximate target posterior p(theta|y). The Metrapolis-Hastings algorithm is a general term for a family of Markov chain simulation methods that are useful for drawing samples from Bayesian posterior distribution. The Metrpolis algorithm is an adaption of a random walk that uses an acceptance/rejection rule to the target distribution. 
+
+In the beginning the it draw a strating point for the initial parameter sets based on the given prior parameter setting. Then, sample the candidate parameter state from a jumping distribution, which is J of theta prime given theta t. 
+The second step is to compute the acceptance probability from the ratio of posterior and jumpling distribution.
+Finally, uses the acceptance probability and compare with the random number that generate from uniform distribution between 0 and 1 to determine the proposed parameter vector can be keeped or discard in the next iteration.
+
+show animation
 
 ---
 
@@ -172,6 +219,10 @@ class: middle
 .font200[
 ## The product of output is not ~~best-fit~~, but "prior" and "posterior".
 ]
+
+???
+
+In the MCMC process, the pupose is not to estimate the maximun likelihood, but it attemp to continuous construct the probability of the parameter estimation. The posterior in the current iteration will become the prior of next iteration.
 
 ---
 
@@ -187,9 +238,13 @@ $y_i$: experimental observed
 
 $\hat{y}_i$: model predicted value
 
-$j[i]$: data type of data point $i$
+$j[i]$: data type (output variable) of data point $i$
 
 $S_{j[i]}^{2}$: the variance for data type $j$
+
+???
+
+There is a log-likelihood function that can be used to estimate the goodness-of-fit. This function used the information include ... to estimate log-likelihood. In our study, we used this function to estimate the model performance when we apply parameter fixing. The log-likelihood of data can also estimate in MCSim in each iteration0 
 
 ---
 
