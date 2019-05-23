@@ -54,13 +54,13 @@ class: center, middle, inverse, title-slide
 
 ???
 
-In this tutorial we will focus MCMC calibration. Which means we want to calibrate the model parameters and find the likelihood of model parameter to fit the data.
+In this tutorial, we will focus on MCMC calibration. Which means we want to calibrate the model parameters and find the likelihood of the model parameter to fit the data.
 
-I will start from introducing the MCMC principle. What is Bayesian? What is MCMC? How do we apply this technique in our modeling process. Also I will summarie the overall workflow include the contain in our previous tutorials. And, I will use the linear model as an example to explain the basic knowledge in MCMC calibration.
+I will start by introducing the MCMC principle. What is Bayesian? What is MCMC? How do we apply this technique in our modeling process? Also, I will summarise the overall workflow include the content in our previous tutorials. And, I will use the linear model as an example to explain the basic knowledge in MCMC calibration.
 
-The second section is to exalpain how to use mCSim to Run MCMC simulation and use R to analyze and visualzie the model output. We will go through the Ethylbenzene PBPK model as an example to demo the full workflow from model verification, uncertainty and sensitivity analysis and finally demostrate the MCMC calibration in this case.
+The second section is to explain how to use mCSim to Run MCMC simulation and use R to analyze and visualize the model output. We will go through the Ethylbenzene PBPK model as an example to demo the full workflow from model verification, uncertainty, and sensitivity analysis and finally demonstrate the MCMC calibration in this case.
 
-After the ethylbenzene PBPK model, I'll use the tetrachloroethylene PBPK model to explain how to apply hierarchical approach to calibrate the parameter in population and individual levels.
+After the ethylbenzene PBPK model, I'll use the tetrachloroethylene PBPK model to explain how to apply the hierarchical approach to calibrate the parameter in population and individual levels.
 
 ---
 
@@ -133,11 +133,11 @@ $$ p(\theta|y) = \frac{p(\theta) p(y|\theta) }{p(y)}$$
 
 ???
 
-The MCMC ias based on the Bayesian rule. In this function, it includes the density of observed or unobserved parameter that are often referred to as the prior distribution in our model, which is p(theta). 
+The MCMC is based on the Bayesian rule. In this function, it includes the density of observed or unobserved parameter that is often referred to as the prior distribution in our model, which is p(theta). 
 
-Also, we have the sampling distribution (or data distribution), which is p(y|theta). This term is used to explain the probability of observed result that is given by the model parameter
+Also, we have the sampling distribution (or data distribution), which is p(y|theta). This term is used to explain the probability of the observed result that is given by the model parameter.
 
-Then, we need to have the likelihood to describe the probability distribution of the experiment data (y). And through this information the posterior can be estimated by this equation.
+Then, we need to have the likelihood to describe the probability distribution of the experiment data (y). And through this information, the posterior can be estimated by this equation.
 
 ---
 
@@ -159,10 +159,13 @@ Then, we need to have the likelihood to describe the probability distribution of
 
 ???
 
-The famous example of bayesian rule in the real life is Monty Hall problem. Suppose you’re on a game show, you have a chance to win a car that is behind the one of three door, so the probability of winning the car is one-third. But the host give the contestent the information, he open the door that is a goat behind this door and ask contest to swith from the chosen door or not. 
-At this time in this case, the question is change to what is the probability to win the car if the contestent switch the choice. It's not the 50/50 probability. 
+The famous example of Bayesian rule in real life is the Monty Hall problem. 
 
-The diagram here explain the conditional probability of winning by switching the door. If contestent switch the door, it will has 67% probability to win the game compare with 33% if staying with the original choice. 
+Suppose there is a game show, the contestant has a chance to win a car that is behind the one of three-door, so the probability of winning the car is one-third. But the host gives the contestant the information, he opens the door that is a goat behind this door and asks contest to switch from the chosen door or not. 
+
+At this time, in this case, the question is changed to what is the probability of winning the car if the contestant switches the choice. It's not the 50/50 probability. 
+
+The diagram here explains the conditional probability of winning by switching the door. If contestant switches the door, it will have 67% probability to win the game compared with 33% if staying with the original choice. 
 
 ---
 
@@ -189,13 +192,18 @@ The algorithm was named for Nicholas Metropolis (physicist) and Wilfred Keith Ha
 
 ???
 
-Markov chain Monte Carlo is a general method based on drawing values of parameter theta from approximate distributions and then correcting those draws to better approximate target posterior p(theta|y). The Metrapolis-Hastings algorithm is a general term for a family of Markov chain simulation methods that are useful for drawing samples from Bayesian posterior distribution. The Metrpolis algorithm is an adaption of a random walk that uses an acceptance/rejection rule to the target distribution. 
+Markov chain Monte Carlo is a general method based on drawing values of parameter theta from approximate distributions and then correcting those draws to better approximate target posterior p(theta|y). 
 
-In the beginning the it draw a strating point for the initial parameter sets based on the given prior parameter setting. Then, sample the candidate parameter state from a jumping distribution, which is J of theta prime given theta t. 
-The second step is to compute the acceptance probability from the ratio of posterior and jumpling distribution.
-Finally, uses the acceptance probability and compare with the random number that generate from uniform distribution between 0 and 1 to determine the proposed parameter vector can be keeped or discard in the next iteration.
+The Metropolis-Hastings algorithm is a general term for a family of Markov chain simulation methods that are useful for drawing samples from Bayesian posterior distribution. The Metropolis algorithm is an adaption of a random walk that uses an acceptance/rejection rule to the target distribution. 
+
+In the beginning, it draws a starting point for the initial parameter sets based on the given prior parameter setting. Then, sample the candidate parameter state from a jumping distribution, which is J of theta prime given theta t. 
+The second step is to compute the acceptance probability from the ratio of posterior and jumping distribution.
+
+Finally, it uses the acceptance probability and compares with the random number that generates from a uniform distribution between 0 and 1 to determine the proposed parameter vector can be kept or discard in the next iteration.
 
 show animation
+
+A Markov Chain is a random process that has the property that the future depends only on the current state of the process and not the past. So, it is memoryless. Imagine somebody who is drunk and can move only one pace at a time. The drunk moves with equal probability. This is a Markov Chain where the drunk's future or next position depends only upon where he is at present.
 
 ---
 
@@ -229,13 +237,13 @@ The log-likelihood function was used to assess the **goodness-of-fit** of the mo
 
 ???
 
-There is a log-likelihood function that can be used to estimate the goodness-of-fit. This function used the information include ... to estimate log-likelihood. In our study, we used this function to estimate the model performance when we apply parameter fixing. The log-likelihood of data can also estimate in MCSim in each iteration0 
+There is a log-likelihood function that can be used to estimate the goodness-of-fit. This function used the information include ... to estimate log-likelihood. In our study, we used this function to assess the model performance when we apply parameter fixing. The log-likelihood of data can also estimate in MCSim in each iteration.
 
 ---
 
 # Calibration &amp; evaluation
 
-###  Prepare model and input files 
+### Prepare model and input files 
   - Need at least 4 chains in simulation
 
 ### Check convergence &amp; graph the output result
