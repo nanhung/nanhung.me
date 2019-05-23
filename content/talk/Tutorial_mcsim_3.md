@@ -38,4 +38,10 @@ caption = "My caption :smile:"
   
 +++
     
-<iframe src="/slide/190523_tutorial.html#1" width="672" height="400px"></iframe>
+- MCSim under R project: https://github.com/nanhung/MCSim_under_R
+
+- Slide: https://nanhung.rbind.io/slide/190523_tutorial.html#1
+
+- Notebook: http://rpubs.com/Nanhung/NB_190523
+
+- Supplmentary: http://rpubs.com/Nanhung/SM_190523
