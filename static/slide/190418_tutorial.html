@@ -22,7 +22,7 @@ class: center, middle, inverse, title-slide
 <hr color='#EB811B' size=1px width=796px>
 </html>
 ### Nan-Hung Hsieh
-### 2019/04/18 (update: 2019-05-20)
+### 2019/04/18 (update: 2019-05-29)
 
 ---
 
@@ -229,7 +229,7 @@ We can use it to analyze the simulated result from the posterior distribution. O
 
 ---
 
-background-image: url(https://raw.githubusercontent.com/nanhung/MCSim_under_R/master/doc/fig/mcmc_diagram.png)
+background-image: url(https://i.ibb.co/Gx6xKrq/mcmc-diagram.png)
 background-size: 600px
 background-position: 50% 90% 
 
@@ -866,7 +866,7 @@ Based on this idea, I developed an installation function in R package pksensi to
 
 ---
 
-background-image: url(https://raw.githubusercontent.com/nanhung/MCSim_under_R/master/doc/fig/download.png)
+background-image: url(https://i.ibb.co/S5YdcF7/download.png)
 background-size: 650px
 background-position: 50% 70% 
 
@@ -1018,7 +1018,7 @@ The second step is to build the model program. This step needs the mod.exe file 
 
 ---
 
-background-image: url(https://raw.githubusercontent.com/nanhung/MCSim_under_R/master/doc/fig/flowchart.png)
+background-image: url(https://i.ibb.co/bb9xS38/flowchart.png)
 background-size: contain
 
 # Overall Workflow
@@ -1418,20 +1418,20 @@ head(out)
 ```
 
 ```
-##   iter k_12.1.  k_21.1.  k_10.1. V_central.1. Ve_C_central.1.    LnPrior
-## 1    0 6.64722 0.129407 0.502689      47.0794       0.0229435  -4.230709
-## 2    1 4.79799 5.399190 0.502689      59.0430       0.1728790 -11.120220
-## 3    2 4.79799 4.628840 0.502689      59.0430       0.1912030 -11.067020
-## 4    3 4.97568 4.628840 0.502689      59.7788       0.4458630 -12.227060
-## 5    4 4.97568 4.628840 0.502689      59.7788       0.4742960 -12.288880
-## 6    5 4.97568 4.628840 0.995924      55.3041       0.4742960 -11.622740
-##         LnData  LnPosterior
-## 1 -26741.57000 -26745.80000
-## 2    -67.17588    -78.29610
-## 3    -52.92462    -63.99163
-## 4    -12.06065    -24.28771
-## 5    -11.40549    -23.69437
-## 6    -10.25240    -21.87513
+##   iter   k_12.1.  k_21.1. k_10.1. V_central.1. Ve_C_central.1.   LnPrior
+## 1    0 0.0578463 0.367589 1.10359      49.0648        0.180277 -3.225252
+## 2    1 0.0578463 0.367589 1.10359      49.0648        0.180277 -3.225252
+## 3    2 0.0578463 0.367589 1.10359      51.8269        0.180277 -3.274512
+## 4    3 0.0578463 0.367589 1.10359      53.1764        0.232568 -3.664244
+## 5    4 0.0578463 0.367589 1.10359      53.3446        0.232568 -3.686171
+## 6    5 0.0578463 0.367589 1.10359      53.3446        0.232568 -3.686171
+##      LnData LnPosterior
+## 1 -71.15186   -74.37711
+## 2 -71.15186   -74.37711
+## 3 -60.08674   -63.36125
+## 4 -33.27581   -36.94005
+## 5 -33.04232   -36.72850
+## 6 -33.04232   -36.72850
 ```
 
 ```r
@@ -1440,19 +1440,19 @@ tail(out)
 
 ```
 ##      iter k_12.1.  k_21.1.  k_10.1. V_central.1. Ve_C_central.1.   LnPrior
-## 1996 1995 1.13399 0.174051 0.166272      58.9999       0.0335678 -3.482208
-## 1997 1996 1.13399 0.174648 0.166272      58.9999       0.0335678 -3.485633
-## 1998 1997 1.13399 0.174648 0.166272      58.9999       0.0335678 -3.485633
-## 1999 1998 1.13399 0.175221 0.166272      58.9999       0.0335678 -3.488911
-## 2000 1999 1.13008 0.175221 0.166272      58.9999       0.0335678 -3.485460
-## 2001 2000 1.13008 0.175221 0.166272      58.9999       0.0335678 -3.485460
+## 1996 1995 1.10086 0.173742 0.176099      59.6520        0.060332 -4.337722
+## 1997 1996 1.10086 0.177757 0.176099      59.3366        0.030046 -3.543681
+## 1998 1997 1.11723 0.177757 0.176099      59.5178        0.030046 -3.626767
+## 1999 1998 1.11723 0.177757 0.176099      59.3709        0.030046 -3.571257
+## 2000 1999 1.11469 0.179285 0.176099      59.6882        0.030046 -3.698514
+## 2001 2000 1.09671 0.179163 0.176099      59.6882        0.030046 -3.681576
 ##        LnData LnPosterior
-## 1996 18.93835    15.45614
-## 1997 18.78842    15.30278
-## 1998 18.78842    15.30278
-## 1999 18.60444    15.11553
-## 2000 18.64880    15.16334
-## 2001 18.64880    15.16334
+## 1996 17.69351    13.35578
+## 1997 18.41824    14.87456
+## 1998 19.04836    15.42160
+## 1999 19.30200    15.73074
+## 2000 18.50762    14.80911
+## 2001 18.46795    14.78638
 ```
 
 ]
@@ -1584,7 +1584,7 @@ deSolve
 ```r
 library(deSolve)
 model &lt;- "digoxin.model.R"
-makemcsim(model = model, deSolve = T)
+makemcsim(model = model, deSolve = T, dir = "modeling/digoxin")
 parms &lt;- initParms() # Define parameter value 
 newParms &lt;- c(parms, Dose = 509)  # Define input
 Y &lt;- initStates(parms = newParms) # Initial conditions
@@ -1751,6 +1751,10 @@ out &lt;- mcsim(model = "linear.model.R", input = "linear.in.R")
 ```
 
 ```
+## * Created executable program 'mcsim.linear.model.R.exe'.
+```
+
+```
 ## Execute: ./mcsim.linear.model.R.exe modeling/linear.in.R
 ```
 
@@ -1891,7 +1895,7 @@ The bayesplot and rstan can be used to diagnose and visualize the result from MC
 
 ---
 
-background-image: url(https://raw.githubusercontent.com/nanhung/MCSim_under_R/master/doc/fig/syntaxhighlight.png)
+background-image: url(https://i.ibb.co/ZLRrNJy/syntaxhighlight.png)
 background-size: 620px
 background-position: 50% 90% 
 

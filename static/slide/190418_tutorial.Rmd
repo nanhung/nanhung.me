@@ -19,7 +19,8 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 knitr::opts_chunk$set(echo = TRUE)
 #knitr::opts_knit$set(root.dir = "C:/MinGW/msys/1.0/home/nhsieh/MCSim_under_R")
 #knitr::opts_knit$set(root.dir = "C:/Users/lenovo/MCSim_under_R")
-knitr::opts_knit$set(root.dir =  "/Users/nanhung/Rproj/MCSim_under_R")
+#knitr::opts_knit$set(root.dir =  "/Users/nanhung/Rproj/MCSim_under_R")
+knitr::opts_knit$set(root.dir =  "/home/nanhung/MCSim_under_R")
 ```
 
 # Outline
@@ -221,7 +222,7 @@ We can use it to analyze the simulated result from the posterior distribution. O
 
 ---
 
-background-image: url(https://raw.githubusercontent.com/nanhung/MCSim_under_R/master/doc/fig/mcmc_diagram.png)
+background-image: url(https://i.ibb.co/Gx6xKrq/mcmc-diagram.png)
 background-size: 600px
 background-position: 50% 90% 
 
@@ -858,7 +859,7 @@ Based on this idea, I developed an installation function in R package pksensi to
 
 ---
 
-background-image: url(https://raw.githubusercontent.com/nanhung/MCSim_under_R/master/doc/fig/download.png)
+background-image: url(https://i.ibb.co/S5YdcF7/download.png)
 background-size: 650px
 background-position: 50% 70% 
 
@@ -1010,7 +1011,7 @@ The second step is to build the model program. This step needs the mod.exe file 
 
 ---
 
-background-image: url(https://raw.githubusercontent.com/nanhung/MCSim_under_R/master/doc/fig/flowchart.png)
+background-image: url(https://i.ibb.co/bb9xS38/flowchart.png)
 background-size: contain
 
 # Overall Workflow
@@ -1509,7 +1510,7 @@ deSolve
 ```{R}
 library(deSolve)
 model <- "digoxin.model.R"
-makemcsim(model = model, deSolve = T)
+makemcsim(model = model, deSolve = T, dir = "modeling/digoxin")
 parms <- initParms() # Define parameter value 
 newParms <- c(parms, Dose = 509)  # Define input
 Y <- initStates(parms = newParms) # Initial conditions
@@ -1738,7 +1739,7 @@ The bayesplot and rstan can be used to diagnose and visualize the result from MC
 
 ---
 
-background-image: url(https://raw.githubusercontent.com/nanhung/MCSim_under_R/master/doc/fig/syntaxhighlight.png)
+background-image: url(https://i.ibb.co/ZLRrNJy/syntaxhighlight.png)
 background-size: 620px
 background-position: 50% 90% 
 
