@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pksensi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
       </span>
     </div>
 
@@ -87,7 +87,7 @@
       <h1>One-compartment PBTK model</h1>
                         <h4 class="author">Nan-Hung Hsieh</h4>
             
-            <h4 class="date">2019-05-12</h4>
+            <h4 class="date">2019-05-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/nanhung/pksensi/blob/master/vignettes/pbtk1cpt.Rmd"><code>vignettes/pbtk1cpt.Rmd</code></a></small>
       <div class="hidden name"><code>pbtk1cpt.Rmd</code></div>
@@ -249,7 +249,7 @@ Figure 3. The relationship between model parameter and estimated concentration u
 <p>Alternatively, to solve ODE by using GNU MCSim, we need to change the argument to <code>application = mcsim</code> in <code><a href="../reference/compile_model.html">compile_model()</a></code>. Rather than apply R <code>deSolve</code> to solve differential equations, the GNU MCSim can provide higher computational speed in global sensitivity analysis.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.time">system.time</a></span>(y&lt;-<span class="kw"><a href="../reference/solve_fun.html">solve_fun</a></span>(x, times, <span class="dt">initState =</span> initState, <span class="dt">outnames =</span> Outputs, <span class="dt">dllname =</span> mName))</a>
 <a class="sourceLine" id="cb16-2" title="2"><span class="co">#&gt;    user  system elapsed </span></a>
-<a class="sourceLine" id="cb16-3" title="3"><span class="co">#&gt;   6.598   0.043   6.681</span></a></code></pre></div>
+<a class="sourceLine" id="cb16-3" title="3"><span class="co">#&gt;   6.371   0.035   6.439</span></a></code></pre></div>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw"><a href="../reference/compile_model.html">compile_model</a></span>(mName, <span class="dt">application =</span> <span class="st">"mcsim"</span>)</a>
 <a class="sourceLine" id="cb17-2" title="2"><span class="co">#&gt; * Created executable file 'mcsim.pbtk1cpt'.</span></a></code></pre></div>
 <p>Sililiar to <code>solve_fun</code> that can define the initial parameter and state values through input function, the <code>solve_mcsim</code> has a <code>condition</code> argument that is used to givien the specific input value such as oral dose or fixing parameter value or initial state variable.</p>
@@ -259,12 +259,12 @@ Figure 3. The relationship between model parameter and estimated concentration u
 <a class="sourceLine" id="cb18-4" title="4">                           <span class="dt">vars =</span> Outputs,</a>
 <a class="sourceLine" id="cb18-5" title="5">                           <span class="dt">time =</span> times,</a>
 <a class="sourceLine" id="cb18-6" title="6">                           <span class="dt">condition =</span> conditions))</a>
-<a class="sourceLine" id="cb18-7" title="7"><span class="co">#&gt; Starting time: 2019-05-12 16:58:05</span></a>
-<a class="sourceLine" id="cb18-8" title="8"><span class="co">#&gt; * Created input file "input.in".</span></a>
-<a class="sourceLine" id="cb18-9" title="9"><span class="co">#&gt; Execute: ./mcsim.pbtk1cpt input.in</span></a>
-<a class="sourceLine" id="cb18-10" title="10"><span class="co">#&gt; Ending time: 2019-05-12 16:58:06</span></a>
+<a class="sourceLine" id="cb18-7" title="7"><span class="co">#&gt; Starting time: 2019-05-29 15:51:41</span></a>
+<a class="sourceLine" id="cb18-8" title="8"><span class="co">#&gt; * Created input file "sim.in".</span></a>
+<a class="sourceLine" id="cb18-9" title="9"><span class="co">#&gt; Execute: ./mcsim.pbtk1cpt sim.in</span></a>
+<a class="sourceLine" id="cb18-10" title="10"><span class="co">#&gt; Ending time: 2019-05-29 15:51:42</span></a>
 <a class="sourceLine" id="cb18-11" title="11"><span class="co">#&gt;    user  system elapsed </span></a>
-<a class="sourceLine" id="cb18-12" title="12"><span class="co">#&gt;   1.426   0.120   1.558</span></a></code></pre></div>
+<a class="sourceLine" id="cb18-12" title="12"><span class="co">#&gt;   1.379   0.085   1.416</span></a></code></pre></div>
 <p>Under the same given condition, it takes 5-6 (<code>deSolve</code>) and 1-2 (GNU MCSim) seconds to solve model. The <code><a href="../reference/solve_mcsim.html">solve_mcsim()</a></code> shows the better computational performance than <code><a href="../reference/solve_fun.html">solve_fun()</a></code> in <code>pksensi</code>.</p>
 </div>
 <div id="references" class="section level2 unnumbered">

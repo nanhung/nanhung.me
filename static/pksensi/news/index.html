@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pksensi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
       </span>
     </div>
 
@@ -121,21 +121,56 @@
       <small>Source: <a href='https://github.com/nanhung/pksensi/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="pksensi-110" class="section level1">
+    <div id="pksensi-111" class="section level1">
 <h1 class="page-header">
-<a href="#pksensi-110" class="anchor"></a>pksensi 1.1.0<small> Unreleased </small>
+<a href="#pksensi-111" class="anchor"></a>pksensi 1.1.1<small> Unreleased </small>
 </h1>
 <div id="fix-bug" class="section level3">
 <h3 class="hasAnchor">
 <a href="#fix-bug" class="anchor"></a>Fix Bug:</h3>
 <ul>
-<li>Used single time point in <code><a href="../reference/solve_mcsim.html">solve_mcsim()</a></code>
+<li>Add <code>rtol</code> and <code>atol</code> in <code><a href="../reference/solve_mcsim.html">solve_mcsim()</a></code>
 </li>
+<li>Switch default compiler from Clang to GCC in MacOS</li>
+<li>Fix the mName problem under Windows environment in <code><a href="../reference/solve_mcsim.html">solve_mcsim()</a></code>
+</li>
+</ul>
+</div>
+<div id="update-vignette" class="section level3">
+<h3 class="hasAnchor">
+<a href="#update-vignette" class="anchor"></a>Update vignette</h3>
+<ul>
+<li>Remind to set the <code>mxstep</code> to 5000 in APAP-PBPK example</li>
+<li>Add note to APAP vignette (Set <code>atol</code> and <code>rtol</code>)</li>
 </ul>
 </div>
 <div id="update-function" class="section level3">
 <h3 class="hasAnchor">
-<a href="#update-function" class="anchor"></a>Update function:</h3>
+<a href="#update-function" class="anchor"></a>Update function</h3>
+<ul>
+<li>mcsim_version() can work in MCSim_under_R</li>
+<li>Stop the function when compile error in <code><a href="../reference/compile_model.html">compile_model()</a></code>
+</li>
+<li>Revise the default name of output to “simmc.out” and “setpts.out” in <code><a href="../reference/solve_mcsim.html">solve_mcsim()</a></code>
+</li>
+</ul>
+</div>
+</div>
+    <div id="pksensi-110" class="section level1">
+<h1 class="page-header">
+<a href="#pksensi-110" class="anchor"></a>pksensi 1.1.0<small> 2019-05-12 </small>
+</h1>
+<div id="fix-bug-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#fix-bug-1" class="anchor"></a>Fix Bug:</h3>
+<ul>
+<li>Used single time point in <code><a href="../reference/solve_mcsim.html">solve_mcsim()</a></code>
+</li>
+</ul>
+</div>
+<div id="update-function-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#update-function-1" class="anchor"></a>Update function:</h3>
 <p><strong>Installation</strong></p>
 <ul>
 <li>Update the default MCSim version to <code>version = 6.1.0</code> in <code>install_mcsim()</code>
@@ -201,9 +236,9 @@
 <li>Add <code>APAP</code> dataset</li>
 </ul>
 </div>
-<div id="fix-bug-1" class="section level3">
+<div id="fix-bug-2" class="section level3">
 <h3 class="hasAnchor">
-<a href="#fix-bug-1" class="anchor"></a>Fix Bug:</h3>
+<a href="#fix-bug-2" class="anchor"></a>Fix Bug:</h3>
 <ul>
 <li>Fix the <code>order</code> argument in <code><a href="../reference/check.html">heat_check()</a></code>
 </li>
@@ -211,9 +246,9 @@
 </li>
 </ul>
 </div>
-<div id="update-function-1" class="section level3">
+<div id="update-function-2" class="section level3">
 <h3 class="hasAnchor">
-<a href="#update-function-1" class="anchor"></a>Update function:</h3>
+<a href="#update-function-2" class="anchor"></a>Update function:</h3>
 <ul>
 <li>Remove argument <code>params</code> in <code><a href="../reference/solve_fun.html">solve_fun()</a></code>
 </li>
@@ -244,6 +279,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#pksensi-111">1.1.1</a></li>
         <li><a href="#pksensi-110">1.1.0</a></li>
         <li><a href="#pksensi-101">1.0.1</a></li>
         <li><a href="#pksensi-100">1.0.0</a></li>
