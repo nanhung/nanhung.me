@@ -22,7 +22,7 @@ selected = false
 url_pdf = ""
 url_slides = "/slide/190425_tutorial.html"
 url_video = ""
-url_code = "https://rpubs.com/Nanhung/NB_190425"
+url_code = ""
   
 # Does the content use math formatting?
 math = true
@@ -37,5 +37,9 @@ highlight = true
 caption = "My caption :smile:"
   
 +++
+
+- GitHub repo: https://github.com/nanhung/mcsim_tutorial
     
-<iframe src="/slide/190425_tutorial.html#1" width="672" height="400px"></iframe>
+- [Slides](https://nanhung.rbind.io/slide/190425_tutorial.html#1)
+
+- [Demo](https://rpubs.com/Nanhung/Demo_190425) 

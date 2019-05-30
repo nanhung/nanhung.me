@@ -37,11 +37,13 @@ highlight = true
 caption = "My caption :smile:"
   
 +++
+
+- GitHub repo: https://github.com/nanhung/mcsim_tutorial
     
-- MCSim under R project: https://github.com/nanhung/MCSim_under_R
+- [Slides](https://nanhung.rbind.io/slide/190523_tutorial.html#1) 
 
-- Slide: https://nanhung.rbind.io/slide/190523_tutorial.html#1
+- [Demo](https://rpubs.com/Nanhung/Demo_190523) 
 
-- Notebook: http://rpubs.com/Nanhung/NB_190523
+- [Supplementary](https://rpubs.com/Nanhung/Suppl_190523) 
 
-- Supplmentary: http://rpubs.com/Nanhung/SM_190523
+- [Record](https://vimeo.com/338106631)
