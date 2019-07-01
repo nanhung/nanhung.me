@@ -38,13 +38,12 @@ caption = "My caption :smile:"
   
 +++
 
-- MCSim under R project: https://github.com/nanhung/MCSim_under_R
+- GitHub repo: https://github.com/nanhung/mcsim_tutorial
 
-- Slides: https://nanhung.rbind.io/slide/190516_tutorial.html#1
+- [Slides](https://nanhung.rbind.io/slide/190516_tutorial.html#1) 
 
-- Demo: http://rpubs.com/Nanhung/DM_190516
+- [Demo](https://rpubs.com/Nanhung/Demo_190516)
 
-- Supplmentary: http://rpubs.com/Nanhung/SE_190516
+- [Supplementary](https://rpubs.com/Nanhung/Suppl_190516) 
 
-- Video: https://vimeo.com/336693424
-
+- [Video](https://vimeo.com/336693424)

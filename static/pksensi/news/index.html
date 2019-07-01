@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pksensi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -89,7 +89,7 @@
       <a href="../articles/pbpk_apap.html">Acetaminophen-PBPK model</a>
     </li>
     <li>
-      <a href="../articles/pbtk1cpt.html">One-compartment PBTK model</a>
+      <a href="../articles/pbtk1cpt.html">One-compartment PK model</a>
     </li>
   </ul>
 </li>
@@ -121,9 +121,23 @@
       <small>Source: <a href='https://github.com/nanhung/pksensi/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="pksensi-112" class="section level1">
+<h1 class="page-header">
+<a href="#pksensi-112" class="anchor"></a>pksensi 1.1.2<small> Unreleased </small>
+</h1>
+<ul>
+<li>Add timer in solve_fun</li>
+<li>Add default MCSim version = ‘6.1.0’ in compile_model()</li>
+<li>Update pksim(): Can customize xlab and ylab</li>
+<li>Update pbtk1cpt model: Add body weight</li>
+<li>Revise the mcsim_version() for Windows OS</li>
+<li>Fix bug: Create .dll in win10 through compile_model()</li>
+<li>Fix bug: plot() cannot display variable name when using character</li>
+</ul>
+</div>
     <div id="pksensi-111" class="section level1">
 <h1 class="page-header">
-<a href="#pksensi-111" class="anchor"></a>pksensi 1.1.1<small> Unreleased </small>
+<a href="#pksensi-111" class="anchor"></a>pksensi 1.1.1<small> 2019-05-29 </small>
 </h1>
 <div id="fix-bug" class="section level3">
 <h3 class="hasAnchor">
@@ -279,6 +293,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#pksensi-112">1.1.2</a></li>
         <li><a href="#pksensi-111">1.1.1</a></li>
         <li><a href="#pksensi-110">1.1.0</a></li>
         <li><a href="#pksensi-101">1.0.1</a></li>
