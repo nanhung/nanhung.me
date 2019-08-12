@@ -6,9 +6,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Acetaminophen-PBPK model • pksensi</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Acetaminophen-PBPK model">
 <meta property="og:description" content="">
 <meta property="og:image" content="/logo.png">
@@ -31,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pksensi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.3</span>
       </span>
     </div>
 
@@ -39,7 +46,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -68,7 +75,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/nanhung/pksensi">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -81,13 +88,14 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Acetaminophen-PBPK model</h1>
                         <h4 class="author">Nan-Hung Hsieh</h4>
             
-            <h4 class="date">2019-06-29</h4>
+            <h4 class="date">2019-08-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/nanhung/pksensi/blob/master/vignettes/pbpk_apap.Rmd"><code>vignettes/pbpk_apap.Rmd</code></a></small>
       <div class="hidden name"><code>pbpk_apap.Rmd</code></div>
@@ -481,68 +489,68 @@ APAP-S clearance
 </table>
 <p>Same as the example of one-compartment PK model. The model parameter and the corresponding sampling range should be defined to create the parameter matrix. Previously, the probability distributions of model parameters were set to either truncated normal or uniform distribution when the parameters have informative prior information or not. To rapidly reach the acceptance convergence, we apply uniform distribution for all testing parameters. The ranges of informative parameters are set to 1.96-times difference for single side under log-scaled (approximate 54.6 times difference between minimum and maximum in natural scaled). The nominal values of informative model parameters were defined as:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># Nominal value</span></a>
-<a class="sourceLine" id="cb2-2" title="2">Tg &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(<span class="fl">0.23</span>)</a>
-<a class="sourceLine" id="cb2-3" title="3">Tp &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(<span class="fl">0.033</span>)</a>
-<a class="sourceLine" id="cb2-4" title="4">CYP_Km &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(<span class="dv">130</span>)</a>
-<a class="sourceLine" id="cb2-5" title="5">SULT_Km_apap &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(<span class="dv">300</span>)</a>
-<a class="sourceLine" id="cb2-6" title="6">SULT_Ki &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(<span class="dv">526</span>)</a>
-<a class="sourceLine" id="cb2-7" title="7">SULT_Km_paps &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(<span class="fl">0.5</span>)</a>
-<a class="sourceLine" id="cb2-8" title="8">UGT_Km &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(<span class="fl">6.0e3</span>)</a>
-<a class="sourceLine" id="cb2-9" title="9">UGT_Ki &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(<span class="fl">5.8e4</span>)</a>
-<a class="sourceLine" id="cb2-10" title="10">UGT_Km_GA &lt;-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(<span class="fl">0.5</span>)</a>
-<a class="sourceLine" id="cb2-11" title="11">Km_AG &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(<span class="fl">1.99e4</span>)</a>
-<a class="sourceLine" id="cb2-12" title="12">Km_AS &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(<span class="fl">2.29e4</span>)</a>
+<a class="sourceLine" id="cb2-2" title="2">Tg &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(<span class="fl">0.23</span>)</a>
+<a class="sourceLine" id="cb2-3" title="3">Tp &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(<span class="fl">0.033</span>)</a>
+<a class="sourceLine" id="cb2-4" title="4">CYP_Km &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(<span class="dv">130</span>)</a>
+<a class="sourceLine" id="cb2-5" title="5">SULT_Km_apap &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(<span class="dv">300</span>)</a>
+<a class="sourceLine" id="cb2-6" title="6">SULT_Ki &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(<span class="dv">526</span>)</a>
+<a class="sourceLine" id="cb2-7" title="7">SULT_Km_paps &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(<span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb2-8" title="8">UGT_Km &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(<span class="fl">6.0e3</span>)</a>
+<a class="sourceLine" id="cb2-9" title="9">UGT_Ki &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(<span class="fl">5.8e4</span>)</a>
+<a class="sourceLine" id="cb2-10" title="10">UGT_Km_GA &lt;-<span class="kw"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(<span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb2-11" title="11">Km_AG &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(<span class="fl">1.99e4</span>)</a>
+<a class="sourceLine" id="cb2-12" title="12">Km_AS &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(<span class="fl">2.29e4</span>)</a>
 <a class="sourceLine" id="cb2-13" title="13"></a>
 <a class="sourceLine" id="cb2-14" title="14">rng &lt;-<span class="st"> </span><span class="fl">1.96</span> </a></code></pre></div>
 <p>Generally, wide range of parameter value might cause the computing error when solving the differentiial equation. One of the effective ways to prevent this problem is to adjust the value of relative and absolute error tolerance to control the error appearance by resetting these parameters in a lower value. The <code>generate_infile</code> and <code>solve_mcsim</code> provide the arguments of <code>rtol</code> and <code>atol</code> that adjust the error tolerance to prevent the unwanted error. However, the modification will decrease the computing speed. Therefore, the alternative method to prevent this issue is to detect the crucial parameter range that causes the problem. Also, setting the maximum number of steps to higher value instead of using the default value (500) in <strong>GNU MCSim</strong> can prevent this problem (internally defined). The maximum number of step is set to 5000 in this case. Here we seperate the global SA of APAP-PBPK model process to several steps.</p>
-<div id="prepare-and-compile-the-model-file" class="section level3">
-<h3 class="hasAnchor">
-<a href="#prepare-and-compile-the-model-file" class="anchor"></a>Prepare and compile the model file</h3>
+<div id="prepare-and-compile-the-model-file" class="section level2">
+<h2 class="hasAnchor">
+<a href="#prepare-and-compile-the-model-file" class="anchor"></a>Prepare and compile the model file</h2>
 <p>The model code needs to be prepared in the following global SA workflow. After creating the <code>pbpk_apap.model</code> file in the working directory, the next step is to generate the executable program (<code>mcsim.pbpk_apap</code>) through <code>compile_model</code> function.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">mName &lt;-<span class="st"> "pbpk_apap"</span></a>
 <a class="sourceLine" id="cb3-2" title="2"><span class="kw"><a href="../reference/models.html">pbpk_apap_model</a></span>()</a>
 <a class="sourceLine" id="cb3-3" title="3"><span class="kw"><a href="../reference/compile_model.html">compile_model</a></span>(mName, <span class="dt">application =</span> <span class="st">"mcsim"</span>)</a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="co">#&gt; * Created executable file 'mcsim.pbpk_apap.model.exe'.</span></a></code></pre></div>
+<a class="sourceLine" id="cb3-4" title="4"><span class="co">#&gt; * Created executable file 'mcsim.pbpk_apap'.</span></a></code></pre></div>
 </div>
-<div id="define-the-parameter-and-its-distribution" class="section level3">
-<h3 class="hasAnchor">
-<a href="#define-the-parameter-and-its-distribution" class="anchor"></a>Define the parameter and its distribution</h3>
+<div id="define-the-parameter-and-its-distribution" class="section level2">
+<h2 class="hasAnchor">
+<a href="#define-the-parameter-and-its-distribution" class="anchor"></a>Define the parameter and its distribution</h2>
 <p>The 21 testing model parameters are defined in this part, including parameter name, probability distribution, and distributed parameter value. To prevent the computing error, the range of <code>SULT_VmaxC</code> and <code>UGT_VmaxC</code> need to adjust from <span class="math inline">\(U(0, 15)\)</span> <span class="citation">(Zurlinden and Reisfeld 2016)</span> to <span class="math inline">\(U(0, 10)\)</span> <span class="citation">(Hsieh et al. 2018)</span>. The objects <code>q</code> and <code>dist</code> are set to the type of distribution that will use to generate the parameter matrix in <strong>GNU MCSim</strong> (for uncertainty analysis) and R (for SA).</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">params &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"lnTg"</span>, <span class="st">"lnTp"</span>, <span class="st">"lnCYP_Km"</span>,<span class="st">"lnCYP_VmaxC"</span>,</a>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">params &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"lnTg"</span>, <span class="st">"lnTp"</span>, <span class="st">"lnCYP_Km"</span>,<span class="st">"lnCYP_VmaxC"</span>,</a>
 <a class="sourceLine" id="cb4-2" title="2">           <span class="st">"lnSULT_Km_apap"</span>,<span class="st">"lnSULT_Ki"</span>,<span class="st">"lnSULT_Km_paps"</span>,<span class="st">"lnSULT_VmaxC"</span>,</a>
 <a class="sourceLine" id="cb4-3" title="3">           <span class="st">"lnUGT_Km"</span>,<span class="st">"lnUGT_Ki"</span>,<span class="st">"lnUGT_Km_GA"</span>,<span class="st">"lnUGT_VmaxC"</span>,</a>
 <a class="sourceLine" id="cb4-4" title="4">           <span class="st">"lnKm_AG"</span>,<span class="st">"lnVmax_AG"</span>,<span class="st">"lnKm_AS"</span>,<span class="st">"lnVmax_AS"</span>,</a>
 <a class="sourceLine" id="cb4-5" title="5">           <span class="st">"lnkGA_syn"</span>,<span class="st">"lnkPAPS_syn"</span>, <span class="st">"lnCLC_APAP"</span>,<span class="st">"lnCLC_AG"</span>,<span class="st">"lnCLC_AS"</span>)</a>
-<a class="sourceLine" id="cb4-6" title="6">dist &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="st">"Uniform"</span>, <span class="dv">21</span>)</a>
-<a class="sourceLine" id="cb4-7" title="7">q &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="st">"qunif"</span>, <span class="dv">21</span>)</a>
-<a class="sourceLine" id="cb4-8" title="8">q.arg &lt;-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(Tg<span class="op">-</span>rng, Tg<span class="op">+</span>rng), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(Tp<span class="op">-</span>rng, Tp<span class="op">+</span>rng), </a>
-<a class="sourceLine" id="cb4-9" title="9">             <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(CYP_Km<span class="op">-</span>rng, CYP_Km<span class="op">+</span>rng), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="op">-</span><span class="fl">2.</span>, <span class="fl">5.</span>),</a>
-<a class="sourceLine" id="cb4-10" title="10">             <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(SULT_Km_apap<span class="op">-</span>rng, SULT_Km_apap<span class="op">+</span>rng),</a>
-<a class="sourceLine" id="cb4-11" title="11">             <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(SULT_Ki<span class="op">-</span>rng, SULT_Ki<span class="op">+</span>rng),</a>
-<a class="sourceLine" id="cb4-12" title="12">             <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(SULT_Km_paps<span class="op">-</span>rng, SULT_Km_paps<span class="op">+</span>rng),</a>
-<a class="sourceLine" id="cb4-13" title="13">             <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dv">0</span>, <span class="dv">10</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(UGT_Km<span class="op">-</span>rng, UGT_Km<span class="op">+</span>rng),</a>
-<a class="sourceLine" id="cb4-14" title="14">             <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(UGT_Ki<span class="op">-</span>rng, UGT_Ki<span class="op">+</span>rng),</a>
-<a class="sourceLine" id="cb4-15" title="15">             <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(UGT_Km_GA<span class="op">-</span>rng, UGT_Km_GA<span class="op">+</span>rng),</a>
-<a class="sourceLine" id="cb4-16" title="16">             <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dv">0</span>, <span class="dv">10</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(Km_AG<span class="op">-</span>rng, Km_AG<span class="op">+</span>rng),</a>
-<a class="sourceLine" id="cb4-17" title="17">             <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="fl">7.</span>, <span class="dv">15</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(Km_AS<span class="op">-</span>rng, Km_AS<span class="op">+</span>rng),</a>
-<a class="sourceLine" id="cb4-18" title="18">             <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="fl">7.</span>, <span class="dv">15</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="fl">0.</span>, <span class="dv">13</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="fl">0.</span>, <span class="dv">13</span>),</a>
-<a class="sourceLine" id="cb4-19" title="19">             <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="op">-</span><span class="fl">6.</span>, <span class="dv">1</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="op">-</span><span class="fl">6.</span>, <span class="dv">1</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="op">-</span><span class="fl">6.</span>, <span class="dv">1</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb4-6" title="6">dist &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"Uniform"</span>, <span class="dv">21</span>)</a>
+<a class="sourceLine" id="cb4-7" title="7">q &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"qunif"</span>, <span class="dv">21</span>)</a>
+<a class="sourceLine" id="cb4-8" title="8">q.arg &lt;-<span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(Tg<span class="op">-</span>rng, Tg<span class="op">+</span>rng), <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(Tp<span class="op">-</span>rng, Tp<span class="op">+</span>rng), </a>
+<a class="sourceLine" id="cb4-9" title="9">             <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(CYP_Km<span class="op">-</span>rng, CYP_Km<span class="op">+</span>rng), <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="op">-</span><span class="fl">2.</span>, <span class="fl">5.</span>),</a>
+<a class="sourceLine" id="cb4-10" title="10">             <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(SULT_Km_apap<span class="op">-</span>rng, SULT_Km_apap<span class="op">+</span>rng),</a>
+<a class="sourceLine" id="cb4-11" title="11">             <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(SULT_Ki<span class="op">-</span>rng, SULT_Ki<span class="op">+</span>rng),</a>
+<a class="sourceLine" id="cb4-12" title="12">             <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(SULT_Km_paps<span class="op">-</span>rng, SULT_Km_paps<span class="op">+</span>rng),</a>
+<a class="sourceLine" id="cb4-13" title="13">             <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dv">0</span>, <span class="dv">10</span>), <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(UGT_Km<span class="op">-</span>rng, UGT_Km<span class="op">+</span>rng),</a>
+<a class="sourceLine" id="cb4-14" title="14">             <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(UGT_Ki<span class="op">-</span>rng, UGT_Ki<span class="op">+</span>rng),</a>
+<a class="sourceLine" id="cb4-15" title="15">             <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(UGT_Km_GA<span class="op">-</span>rng, UGT_Km_GA<span class="op">+</span>rng),</a>
+<a class="sourceLine" id="cb4-16" title="16">             <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dv">0</span>, <span class="dv">10</span>), <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(Km_AG<span class="op">-</span>rng, Km_AG<span class="op">+</span>rng),</a>
+<a class="sourceLine" id="cb4-17" title="17">             <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">7.</span>, <span class="dv">15</span>), <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(Km_AS<span class="op">-</span>rng, Km_AS<span class="op">+</span>rng),</a>
+<a class="sourceLine" id="cb4-18" title="18">             <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">7.</span>, <span class="dv">15</span>), <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">0.</span>, <span class="dv">13</span>), <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">0.</span>, <span class="dv">13</span>),</a>
+<a class="sourceLine" id="cb4-19" title="19">             <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="op">-</span><span class="fl">6.</span>, <span class="dv">1</span>), <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="op">-</span><span class="fl">6.</span>, <span class="dv">1</span>), <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="op">-</span><span class="fl">6.</span>, <span class="dv">1</span>))</a></code></pre></div>
 </div>
-<div id="define-additional-input-condition-and-output-time-and-variables" class="section level3">
-<h3 class="hasAnchor">
-<a href="#define-additional-input-condition-and-output-time-and-variables" class="anchor"></a>Define additional input condition and output time and variables</h3>
+<div id="define-additional-input-condition-and-output-time-and-variables" class="section level2">
+<h2 class="hasAnchor">
+<a href="#define-additional-input-condition-and-output-time-and-variables" class="anchor"></a>Define additional input condition and output time and variables</h2>
 <p>To optimize the computing speed, this case only uses <strong>GNU MCSim</strong> to estimate the concentration of APAP and its metabolites glucuronide (APAP-G) and sulfate (APAP-S) in plasma. The setting oral dose of APAP is 20 mg/kg in this example. Generally, the input dosing method can be defined through the <code>condition</code> argument. Since the unit of the given dose is mg/kg, the <code>mgkg_flag</code> is set to 1. More definition of input schedule functions can be found in the section of input functions in <strong>GNU MCSim</strong> User’s Manual (<a href="https://www.gnu.org/software/mcsim/mcsim.html#Input-functions" class="uri">https://www.gnu.org/software/mcsim/mcsim.html#Input-functions</a>).</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">conditions &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"mgkg_flag = 1"</span>,</a>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">conditions &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"mgkg_flag = 1"</span>,</a>
 <a class="sourceLine" id="cb5-2" title="2">                <span class="st">"OralExp_APAP = NDoses(2, 1, 0, 0, 0.001)"</span>,</a>
 <a class="sourceLine" id="cb5-3" title="3">                <span class="st">"OralDose_APAP_mgkg = 20.0"</span>)</a>
-<a class="sourceLine" id="cb5-4" title="4">vars &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"lnCPL_APAP_mcgL"</span>, <span class="st">"lnCPL_AG_mcgL"</span>, <span class="st">"lnCPL_AS_mcgL"</span>)</a>
-<a class="sourceLine" id="cb5-5" title="5">times &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="dt">from =</span> <span class="fl">0.1</span>, <span class="dt">to =</span> <span class="fl">12.1</span>, <span class="dt">by =</span> <span class="fl">0.2</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb5-4" title="4">vars &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"lnCPL_APAP_mcgL"</span>, <span class="st">"lnCPL_AG_mcgL"</span>, <span class="st">"lnCPL_AS_mcgL"</span>)</a>
+<a class="sourceLine" id="cb5-5" title="5">times &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="dt">from =</span> <span class="fl">0.1</span>, <span class="dt">to =</span> <span class="fl">12.1</span>, <span class="dt">by =</span> <span class="fl">0.2</span>)</a></code></pre></div>
 </div>
-<div id="uncertainty-analysis" class="section level3">
-<h3 class="hasAnchor">
-<a href="#uncertainty-analysis" class="anchor"></a>Uncertainty analysis</h3>
+<div id="uncertainty-analysis" class="section level2">
+<h2 class="hasAnchor">
+<a href="#uncertainty-analysis" class="anchor"></a>Uncertainty analysis</h2>
 <p>We apply uncertainty analysis through the <code>solve_mcsim</code> and visualize the result by <code>pksim</code> function. Some example data are included in the <strong>pksensi</strong> with experiment time (h) and concentration (mg/L).</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(APAP)</a>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(APAP)</a>
 <a class="sourceLine" id="cb6-2" title="2"><span class="co">#&gt;   Wt Time     APAP        AG       AS         Study Dose</span></a>
 <a class="sourceLine" id="cb6-3" title="3"><span class="co">#&gt; 1 72 0.25 15.50007  3.204143 3.548570 Prescott_1980   20</span></a>
 <a class="sourceLine" id="cb6-4" title="4"><span class="co">#&gt; 2 72 0.50 18.70040  7.945810 6.745292 Prescott_1980   20</span></a>
@@ -551,24 +559,24 @@ APAP-S clearance
 <a class="sourceLine" id="cb6-7" title="7"><span class="co">#&gt; 5 72 1.50 15.59959 24.681272 9.345965 Prescott_1980   20</span></a>
 <a class="sourceLine" id="cb6-8" title="8"><span class="co">#&gt; 6 72 2.00 13.59966 27.279751 8.779722 Prescott_1980   20</span></a></code></pre></div>
 <p>In the setting condition of simulation, The relative and absolute error tolerance (<code>rtol</code> &amp; <code>atol</code>) were set to 1e-7 and 1e-9, respectively, to prevent the computating error. The Monte Carlo simulation is run for 1000 iteration as the assignment of <code>monte_carlo</code>. The input file (‘sim.in’) and output file (‘simmc.out’) will be generated under the standard ASCII format.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">1111</span>)</a>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">1111</span>)</a>
 <a class="sourceLine" id="cb7-2" title="2">out &lt;-<span class="st"> </span><span class="kw"><a href="../reference/solve_mcsim.html">solve_mcsim</a></span>(<span class="dt">mName =</span> mName, <span class="dt">params =</span> params, <span class="dt">vars =</span> vars,</a>
 <a class="sourceLine" id="cb7-3" title="3">                   <span class="dt">monte_carlo =</span> <span class="dv">1000</span>, <span class="dt">dist =</span> dist, <span class="dt">q.arg =</span> q.arg, </a>
 <a class="sourceLine" id="cb7-4" title="4">                   <span class="dt">time =</span> times, <span class="dt">condition =</span> conditions, </a>
 <a class="sourceLine" id="cb7-5" title="5">                   <span class="dt">rtol =</span> <span class="fl">1e-7</span>, <span class="dt">atol =</span> <span class="fl">1e-9</span>)</a>
-<a class="sourceLine" id="cb7-6" title="6"><span class="co">#&gt; Starting time: 2019-06-29 17:34:58</span></a>
+<a class="sourceLine" id="cb7-6" title="6"><span class="co">#&gt; Starting time: 2019-08-12 17:36:05</span></a>
 <a class="sourceLine" id="cb7-7" title="7"><span class="co">#&gt; * Created input file "sim.in".</span></a>
-<a class="sourceLine" id="cb7-8" title="8"><span class="co">#&gt; Execute: ./mcsim.pbpk_apap.model.exe sim.in</span></a>
-<a class="sourceLine" id="cb7-9" title="9"><span class="co">#&gt; Ending time: 2019-06-29 17:35:01</span></a></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/par">par</a></span>(<span class="dt">mfrow =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>,<span class="dv">3</span>), <span class="dt">mar =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb7-8" title="8"><span class="co">#&gt; Execute: ./mcsim.pbpk_apap sim.in</span></a>
+<a class="sourceLine" id="cb7-9" title="9"><span class="co">#&gt; Ending time: 2019-08-12 17:36:07</span></a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="dt">mfrow =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>,<span class="dv">3</span>), <span class="dt">mar =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">1</span>))</a>
 <a class="sourceLine" id="cb8-2" title="2"><span class="kw"><a href="../reference/pksim.html">pksim</a></span>(out, <span class="dt">xlab =</span> <span class="st">"Time (h)"</span>, <span class="dt">ylab =</span> <span class="st">"Conc. (ug/L)"</span>, <span class="dt">main =</span> <span class="st">"APAP"</span>)</a>
-<a class="sourceLine" id="cb8-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/points">points</a></span>(APAP<span class="op">$</span>Time, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(APAP<span class="op">$</span>APAP <span class="op">*</span><span class="st"> </span><span class="dv">1000</span>))</a>
+<a class="sourceLine" id="cb8-3" title="3"><span class="kw"><a href="https://rdrr.io/r/graphics/points.html">points</a></span>(APAP<span class="op">$</span>Time, <span class="kw"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(APAP<span class="op">$</span>APAP <span class="op">*</span><span class="st"> </span><span class="dv">1000</span>))</a>
 <a class="sourceLine" id="cb8-4" title="4"><span class="kw"><a href="../reference/pksim.html">pksim</a></span>(out, <span class="dt">vars =</span> <span class="st">"lnCPL_AG_mcgL"</span>, <span class="dt">xlab =</span> <span class="st">"Time (h)"</span>, <span class="dt">main =</span> <span class="st">"APAP-G"</span>, </a>
 <a class="sourceLine" id="cb8-5" title="5">      <span class="dt">ylab =</span> <span class="st">" "</span>, <span class="dt">legend =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb8-6" title="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/points">points</a></span>(APAP<span class="op">$</span>Time, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(APAP<span class="op">$</span>AG <span class="op">*</span><span class="st"> </span><span class="dv">1000</span>))</a>
+<a class="sourceLine" id="cb8-6" title="6"><span class="kw"><a href="https://rdrr.io/r/graphics/points.html">points</a></span>(APAP<span class="op">$</span>Time, <span class="kw"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(APAP<span class="op">$</span>AG <span class="op">*</span><span class="st"> </span><span class="dv">1000</span>))</a>
 <a class="sourceLine" id="cb8-7" title="7"><span class="kw"><a href="../reference/pksim.html">pksim</a></span>(out, <span class="dt">vars =</span> <span class="st">"lnCPL_AS_mcgL"</span>, <span class="dt">xlab =</span> <span class="st">"Time (h)"</span>, <span class="dt">main =</span> <span class="st">"APAP-S"</span>, </a>
 <a class="sourceLine" id="cb8-8" title="8">      <span class="dt">ylab =</span> <span class="st">" "</span>, <span class="dt">legend =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb8-9" title="9"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/points">points</a></span>(APAP<span class="op">$</span>Time, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(APAP<span class="op">$</span>AS <span class="op">*</span><span class="st"> </span><span class="dv">1000</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb8-9" title="9"><span class="kw"><a href="https://rdrr.io/r/graphics/points.html">points</a></span>(APAP<span class="op">$</span>Time, <span class="kw"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(APAP<span class="op">$</span>AS <span class="op">*</span><span class="st"> </span><span class="dv">1000</span>))</a></code></pre></div>
 <div class="figure">
 <img src="pbpk_apap_files/figure-html/unnamed-chunk-8-1.png" alt="**Figure 1.** Coverage checks of prior PBPK model predictions with calibrated APAP data" width="864"><p class="caption">
 <strong>Figure 1.</strong> Coverage checks of prior PBPK model predictions with calibrated APAP data
@@ -576,16 +584,16 @@ APAP-S clearance
 </div>
 <p>For parent compound, all data points are located in the simulated interval of 25-75%. Through this result, we can determine that the simulated outputs can accurately generate the same concentration profile as the in-vivo experiment under the setting of parameter ranges for APAP. The simulated result of metabolites APAP-G shows the different pharmacokinetic profile with experiment data. However, all data points are located in the simulated interval.</p>
 </div>
-<div id="generate-parameter-matrix" class="section level3">
-<h3 class="hasAnchor">
-<a href="#generate-parameter-matrix" class="anchor"></a>Generate parameter matrix</h3>
+<div id="generate-parameter-matrix" class="section level2">
+<h2 class="hasAnchor">
+<a href="#generate-parameter-matrix" class="anchor"></a>Generate parameter matrix</h2>
 <p>In global SA, we have to additionally generate the parameter matrix from the eFAST method. The current setting uses 512 sample size with 10 replication.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">1234</span>)</a>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">1234</span>)</a>
 <a class="sourceLine" id="cb9-2" title="2">x &lt;-<span class="st"> </span><span class="kw"><a href="../reference/rfast99.html">rfast99</a></span>(<span class="dt">params =</span> params, <span class="dt">n =</span> <span class="dv">512</span>, <span class="dt">q =</span> q, <span class="dt">q.arg =</span> q.arg, <span class="dt">replicate =</span> <span class="dv">10</span>) </a></code></pre></div>
 </div>
-<div id="conduct-the-global-sa" class="section level3">
-<h3 class="hasAnchor">
-<a href="#conduct-the-global-sa" class="anchor"></a>Conduct the global SA</h3>
+<div id="conduct-the-global-sa" class="section level2">
+<h2 class="hasAnchor">
+<a href="#conduct-the-global-sa" class="anchor"></a>Conduct the global SA</h2>
 <p>To conduct the global SA with <strong>GNU MCsim</strong> and <strong>pksensi</strong>, the input file with given “setpoint” condition should be generated before modeling. The file can create by <code>generate_infile</code> function. The <code>solve_mcsim</code> can also automatically create the input file and compute the output.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">out &lt;-<span class="st"> </span><span class="kw"><a href="../reference/solve_mcsim.html">solve_mcsim</a></span>(x, <span class="dt">mName =</span> mName,</a>
 <a class="sourceLine" id="cb10-2" title="2">                   <span class="dt">params =</span> params, </a>
@@ -593,16 +601,16 @@ APAP-S clearance
 <a class="sourceLine" id="cb10-4" title="4">                   <span class="dt">vars =</span> vars,</a>
 <a class="sourceLine" id="cb10-5" title="5">                   <span class="dt">condition =</span> conditions, </a>
 <a class="sourceLine" id="cb10-6" title="6">                   <span class="dt">rtol =</span> <span class="fl">1e-7</span>, <span class="dt">atol =</span> <span class="fl">1e-9</span>)</a>
-<a class="sourceLine" id="cb10-7" title="7"><span class="co">#&gt; Starting time: 2019-06-29 17:35:02</span></a>
+<a class="sourceLine" id="cb10-7" title="7"><span class="co">#&gt; Starting time: 2019-08-12 17:36:08</span></a>
 <a class="sourceLine" id="cb10-8" title="8"><span class="co">#&gt; * Created input file "sim.in".</span></a>
-<a class="sourceLine" id="cb10-9" title="9"><span class="co">#&gt; Execute: ./mcsim.pbpk_apap.model.exe sim.in</span></a>
-<a class="sourceLine" id="cb10-10" title="10"><span class="co">#&gt; Ending time: 2019-06-29 17:39:29</span></a></code></pre></div>
+<a class="sourceLine" id="cb10-9" title="9"><span class="co">#&gt; Execute: ./mcsim.pbpk_apap sim.in</span></a>
+<a class="sourceLine" id="cb10-10" title="10"><span class="co">#&gt; Ending time: 2019-08-12 17:39:08</span></a></code></pre></div>
 </div>
-<div id="visualization-and-decision" class="section level3">
-<h3 class="hasAnchor">
-<a href="#visualization-and-decision" class="anchor"></a>Visualization and decision</h3>
+<div id="visualization-and-decision" class="section level2">
+<h2 class="hasAnchor">
+<a href="#visualization-and-decision" class="anchor"></a>Visualization and decision</h2>
 <p>The plotting function can create the result of time-dependent sensitivity measurement to determine the parameter impact on model output over time.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(out, <span class="dt">vars =</span> <span class="st">"lnCPL_APAP_mcgL"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(out, <span class="dt">vars =</span> <span class="st">"lnCPL_APAP_mcgL"</span>)</a></code></pre></div>
 <div class="figure">
 <img src="pbpk_apap_files/figure-html/unnamed-chunk-11-1.png" alt="**Figure 2.** Time-dependent SI of the plasma APAP concentration estimated from APAP-PBPK model during 12-hr time period post intake." width="768"><p class="caption">
 <strong>Figure 2.</strong> Time-dependent SI of the plasma APAP concentration estimated from APAP-PBPK model during 12-hr time period post intake.
@@ -642,7 +650,14 @@ APAP-S clearance
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#references">References</a></li>
+<li><a href="#prepare-and-compile-the-model-file">Prepare and compile the model file</a></li>
+      <li><a href="#define-the-parameter-and-its-distribution">Define the parameter and its distribution</a></li>
+      <li><a href="#define-additional-input-condition-and-output-time-and-variables">Define additional input condition and output time and variables</a></li>
+      <li><a href="#uncertainty-analysis">Uncertainty analysis</a></li>
+      <li><a href="#generate-parameter-matrix">Generate parameter matrix</a></li>
+      <li><a href="#conduct-the-global-sa">Conduct the global SA</a></li>
+      <li><a href="#visualization-and-decision">Visualization and decision</a></li>
+      <li><a href="#references">References</a></li>
       </ul>
 </div>
       </div>
@@ -650,17 +665,20 @@ APAP-S clearance
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by Nan-Hung Hsieh, Brad Reisfeld, Weihsueh A. Chiu.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9100.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>
