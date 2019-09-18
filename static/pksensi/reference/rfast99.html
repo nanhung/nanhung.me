@@ -15,11 +15,13 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -39,13 +41,14 @@
 
 
 
+
 <meta property="og:title" content="Extended Fourier Amplitude Sensitivity Test with Random Phase Shift — rfast99" />
-
-<meta property="og:description" content="rfast99 is used to create the sequances for each parameter.
-It is based on the fast99 function in sensitivity package." />
-
+<meta property="og:description" content="Applying the extended Fourier amplitude sensitivity Test algorithm to create the numeric sequences for each parameter (Saltelli et al. 1999).
+Each sequence is random generated based on the random phase shift approach.
+It is an extension based on the fast99 function in sensitivity package." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -76,7 +79,7 @@ It is based on the fast99 function in sensitivity package." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pksensi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.4</span>
       </span>
     </div>
 
@@ -110,7 +113,6 @@ It is based on the fast99 function in sensitivity package." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/nanhung/pksensi">
@@ -137,25 +139,25 @@ It is based on the fast99 function in sensitivity package." />
     </div>
 
     <div class="ref-description">
-    
-    <p><code>rfast99</code> is used to create the sequances for each parameter.
-It is based on the <code>fast99</code> function in <span class="pkg">sensitivity</span> package.</p>
-    
+    <p>Applying the extended Fourier amplitude sensitivity Test algorithm to create the numeric sequences for each parameter (Saltelli et al. 1999).
+Each sequence is random generated based on the random phase shift approach.
+It is an extension based on the <code>fast99</code> function in <span class="pkg">sensitivity</span> package.</p>
     </div>
 
     <pre class="usage"><span class='fu'>rfast99</span>(<span class='no'>params</span>, <span class='no'>n</span>, <span class='kw'>M</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>omega</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>q.arg</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>replicate</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>conf</span> <span class='kw'>=</span> <span class='fl'>0.95</span>)</pre>
-    
+  <span class='kw'>replicate</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>conf</span> <span class='kw'>=</span> <span class='fl'>0.95</span>)</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>params</th>
-      <td><p>an integer for the giving number of parameters, or a vector of character strings giving their names.</p></td>
+      <td><p>an integer for the giving number of parameters,
+or a vector of character strings giving their names.</p></td>
     </tr>
     <tr>
       <th>n</th>
-      <td><p>an integer for the sampling number.</p></td>
+      <td><p>an integer for the sampling size.</p></td>
     </tr>
     <tr>
       <th>M</th>
@@ -175,28 +177,26 @@ It is based on the <code>fast99</code> function in <span class="pkg">sensitivity
     </tr>
     <tr>
       <th>replicate</th>
-      <td><p>an integer to define the number of replication. The default is set to 1 turn off the replication.</p></td>
+      <td><p>an integer to define the number of replication. The default is 5.</p></td>
     </tr>
     <tr>
       <th>conf</th>
       <td><p>the confidence level for replication confidence intervals. The default is 0.95.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>The returned parameter value will be stored in an array with
 c(model evaluation, replication, parameters).</p>
-    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>A. Saltelli, S. Tarantola and K. Chan, 1999, A quantitative, model independent method for
-global sensitivity analysis of model output,
+    <p>Saltelli, A., Tarantola, S., &amp; Chan, K. S. (1999).
+A quantitative model-independent method for global sensitivity analysis of model output.
 <em>Technometrics</em>, 41, 39-56.</p>
-<p>R. I. Cukier, H. B. Levine and K. E. Schuler, 1978,
+<p>Cukier, R. I., Levine, H. B., &amp; Shuler, K. E. (1978).
 Nonlinear sensitivity analysis of multiparameter model systems.
 <em>Journal of Computational Physics</em>, 26, 1–42.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Generate the parameter matrix with 20 replications</span>
@@ -206,20 +206,16 @@ Nonlinear sensitivity analysis of multiparameter model systems.
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>1234</span>)
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>rfast99</span>(<span class='kw'>params</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>replicate</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='no'>q</span>, <span class='kw'>q.arg</span> <span class='kw'>=</span> <span class='no'>q.arg</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='no'>x</span>$<span class='no'>a</span>) <span class='co'># the array of c(model evaluation, replication, parameters).</span></div><div class='output co'>#&gt; [1] 300  20   3</div><div class='input'>
-</div><span class='co'># NOT RUN {</span>
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='fu'><a href='https://rdrr.io/r/base/save.html'>save</a></span>(<span class='no'>x</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"input_parameters.rda"</span>)
-<span class='co'># }</span><div class='input'>
-</div></pre>
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#references">References</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -233,7 +229,7 @@ Nonlinear sensitivity analysis of multiparameter model systems.
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9100.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
 
       </footer>

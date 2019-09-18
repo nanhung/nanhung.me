@@ -15,11 +15,13 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -39,13 +41,13 @@
 
 
 
+
 <meta property="og:title" content="Model Compiler — compile_model" />
-
-<meta property="og:description" content="The compile_model is used to compile the C file or MCSim's model file
-to generate the executable file in numerical analysis." />
-
+<meta property="og:description" content="The compile_model is used to compile the model code that is written under C or GNU MCSim format and
+generate the executable program in numerical analysis." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -76,7 +78,7 @@ to generate the executable file in numerical analysis." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pksensi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.4</span>
       </span>
     </div>
 
@@ -110,7 +112,6 @@ to generate the executable file in numerical analysis." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/nanhung/pksensi">
@@ -137,21 +138,19 @@ to generate the executable file in numerical analysis." />
     </div>
 
     <div class="ref-description">
-    
-    <p>The <code>compile_model</code> is used to compile the C file or MCSim's model file
-to generate the executable file in numerical analysis.</p>
-    
+    <p>The <code>compile_model</code> is used to compile the model code that is written under C or <span class="pkg">GNU MCSim</span> format and
+generate the executable program in numerical analysis.</p>
     </div>
 
     <pre class="usage"><span class='fu'>compile_model</span>(<span class='no'>mName</span>, <span class='kw'>application</span> <span class='kw'>=</span> <span class='st'>"mcsim"</span>, <span class='kw'>use_model_file</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>version</span> <span class='kw'>=</span> <span class='st'>"6.1.0"</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>mName</th>
-      <td><p>a string giving the name of the model or C file (without extension).</p></td>
+      <td><p>a string giving the name of the model code (without extension).</p></td>
     </tr>
     <tr>
       <th>application</th>
@@ -160,44 +159,39 @@ that will be applied to the numerical analysis (default is <code>mcsim</code>).<
     </tr>
     <tr>
       <th>use_model_file</th>
-      <td><p>a logical value to operate the compiler to use model or C file,
-the default is set to <code>TRUE</code> to assign the MCSim's model file in compiling.</p></td>
+      <td><p>a logical value to operate the compiler to model or C file,
+the default is set to <code>TRUE</code> to assign the <span class="pkg">GNU MCSim</span>'s model file in compiling.</p></td>
     </tr>
     <tr>
       <th>version</th>
-      <td><p>a character to assign the version of MCSim that had been installed.
+      <td><p>a character to assign the version of <span class="pkg">GNU MCSim</span> that had been installed.
 The version must be assigned for Windows user (default is <code>6.1.0</code>).</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>The default <code>application</code> is set to <code>'mcsim'</code>
-to generate the executable file to solve differential equations by MCSim.
+to generate the executable program to solve differential equations by <span class="pkg">GNU MCSim</span>.
 If <code>application = 'R'</code>,
 the function will compile and create dynamic-link libraries (.dll) on Windows and
-shared objects (.so) on Unix-likes systems (e.g., Linux and MacOS).</p>
-    
+shared objects (.so) on Unix-likes systems (e.g., Linux and MacOS) that can link with <span class="pkg">deSolve</span> solver.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Generally, the solving function through MCSim can provide faster speed than exporting C in R.
-Therefore, this function set <code>use_model_file = TRUE</code> and <code>application = 'mcsim'</code> as a default setting
-and suggest to use MCSim to solve the differential equation.
-To compile MCSim in Windows, be sure to install Rtools or MinGW first.
-For Windows user, to compile MCSim's model file,
-the <code>version</code> of MCSim should provide to conduct model compiling.</p>
-    
+    <p>Generally, the solving function through <span class="pkg">GNU MCSim</span> can provide faster computing speed than exporting C in R.
+Therefore, this function set <code>use_model_file = TRUE</code> and <code>application = 'mcsim'</code>
+as a default setting, suggesting to use <span class="pkg">GNU MCSim</span> as main solver to solve the differential equation.
+To compile model code in Windows, be sure to install Rtools first.
+In addition, the <code>version</code> of <span class="pkg">GNU MCSim</span> should provide to conduct model compiling in Windows.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-          </ul>
+    </ul>
 
   </div>
 </div>
@@ -209,7 +203,7 @@ the <code>version</code> of MCSim should provide to conduct model compiling.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9100.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
 
       </footer>

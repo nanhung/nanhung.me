@@ -15,11 +15,13 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -39,14 +41,15 @@
 
 
 
-<meta property="og:title" content="Example PK Model for Sensitivity Analysis — models" />
 
-<meta property="og:description" content="Three examples are included: Flip-flop pharmacokinetic model,
+<meta property="og:title" content="Example PK Model for Sensitivity Analysis — models" />
+<meta property="og:description" content="The example PK model that were used in sensitivity testing.
+Three examples are included: Flip-flop pharmacokinetic model,
 one-compartment toxicokinetic model from httk (Pearce et al. 2017),
 and acetaminophen pharmacokinetic model (Zurlinden et al. 2016)." />
-
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -77,7 +80,7 @@ and acetaminophen pharmacokinetic model (Zurlinden et al. 2016)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pksensi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.4</span>
       </span>
     </div>
 
@@ -111,7 +114,6 @@ and acetaminophen pharmacokinetic model (Zurlinden et al. 2016)." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/nanhung/pksensi">
@@ -138,11 +140,10 @@ and acetaminophen pharmacokinetic model (Zurlinden et al. 2016)." />
     </div>
 
     <div class="ref-description">
-    
-    <p>Three examples are included: Flip-flop pharmacokinetic model,
+    <p>The example PK model that were used in sensitivity testing.
+Three examples are included: Flip-flop pharmacokinetic model,
 one-compartment toxicokinetic model from <span class="pkg">httk</span> (Pearce et al. 2017),
 and acetaminophen pharmacokinetic model (Zurlinden et al. 2016).</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>FFPK</span>(<span class='no'>params</span>, <span class='no'>time</span>, <span class='kw'>dose</span> <span class='kw'>=</span> <span class='fl'>1</span>)
@@ -150,24 +151,24 @@ and acetaminophen pharmacokinetic model (Zurlinden et al. 2016).</p>
 <span class='fu'>pbtk1cpt_model</span>()
 
 <span class='fu'>pbpk_apap_model</span>()</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>params</th>
-      <td><p>a parameter matrix containing the input sample.</p></td>
+      <td><p>a numeric vector to define the input parameter value.</p></td>
     </tr>
     <tr>
       <th>time</th>
-      <td><p>the given time-points.</p></td>
+      <td><p>a numeric vector to define the given time point(s).</p></td>
     </tr>
     <tr>
       <th>dose</th>
-      <td><p>a given dose.</p></td>
+      <td><p>a numeric value to define the given dose in flip-flop model.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
 
     
@@ -175,17 +176,15 @@ and acetaminophen pharmacokinetic model (Zurlinden et al. 2016).</p>
 <li><p><code>pbtk1cpt_model</code>: Download pbtk1cpt.model file.</p></li>
 <li><p><code>pbpk_apap_model</code>: Download pbpk_apap.model file.</p></li>
 </ul>
-    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>R. Pearce, R. Setzer, C. Strope, N. Sipes and J. Wambaugh, 2017,
-httk: R Package for High-Throughput Toxicokinetics,
+    <p>Pearce, R. G., Setzer, R. W., Strope, C. L., Wambaugh, J. F., &amp; Sipes, N. S. (2017).
+httk: R package for high-throughput toxicokinetics.
 <em>Journal of Statistical Software</em>, 79(4), 1-26.</p>
-<p>T. J. Zurlinden and B. Reisfeld, 2016,
-Physiologically based modeling of the pharmacokinetics of acetaminophen
-and its major metabolites in humans using a Bayesian population approach,
-<em>European Journal of Drug Metabolism and Pharmacokinetics</em>, 79(4), 1-26.</p>
-    
+<p>Zurlinden, T. J., &amp; Reisfeld, B. (2016).
+Physiologically based modeling of the pharmacokinetics of acetaminophen and
+its major metabolites in humans using a Bayesian population approach.
+<em>European journal of drug metabolism and pharmacokinetics</em>, 41(3), 267-280.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>params</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>F</span> <span class='kw'>=</span> <span class='fl'>0.9</span>, <span class='kw'>KA</span> <span class='kw'>=</span> <span class='fl'>1.2</span>, <span class='kw'>KE</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>V</span> <span class='kw'>=</span> <span class='fl'>1.5</span>)
@@ -198,11 +197,8 @@ and its major metabolites in humans using a Bayesian population approach,
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#functions">Functions</a></li>
-
       <li><a href="#references">References</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -216,7 +212,7 @@ and its major metabolites in humans using a Bayesian population approach,
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9100.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
 
       </footer>

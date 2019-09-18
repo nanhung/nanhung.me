@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Solve PK Model Through MCSim — solve_mcsim • pksensi</title>
+<title>Solve PK Model Through <span class="pkg">GNU MCSim</span> — solve_mcsim • pksensi</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -15,11 +15,13 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -39,13 +41,13 @@
 
 
 
-<meta property="og:title" content="Solve PK Model Through MCSim — solve_mcsim" />
 
-<meta property="og:description" content="The solve_mcsim can solve the differential equations of time-dependent quantity/concentration in different tissues/compartments
-through MCSim." />
-
+<meta property="og:title" content="Solve PK Model Through <span class="pkg">GNU MCSim</span> — solve_mcsim" />
+<meta property="og:description" content="Solve the differential equations of time-dependent quantity/concentration in different tissues/compartments
+through GNU MCSim." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -76,7 +78,7 @@ through MCSim." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pksensi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.4</span>
       </span>
     </div>
 
@@ -110,7 +112,6 @@ through MCSim." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/nanhung/pksensi">
@@ -131,16 +132,14 @@ through MCSim." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Solve PK Model Through MCSim</h1>
+    <h1>Solve PK Model Through <span class="pkg">GNU MCSim</span></h1>
     <small class="dont-index">Source: <a href='https://github.com/nanhung/pksensi/blob/master/R/solve_mcsim.R'><code>R/solve_mcsim.R</code></a></small>
     <div class="hidden name"><code>solve_mcsim.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    
-    <p>The <code>solve_mcsim</code> can solve the differential equations of time-dependent quantity/concentration in different tissues/compartments
-through MCSim.</p>
-    
+    <p>Solve the differential equations of time-dependent quantity/concentration in different tissues/compartments
+through <span class="pkg">GNU MCSim</span>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>solve_mcsim</span>(<span class='no'>x</span>, <span class='no'>mName</span>, <span class='kw'>infile.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>outfile.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -151,7 +150,7 @@ through MCSim.</p>
 <span class='fu'>generate_infile</span>(<span class='kw'>infile.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>outfile.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>params</span>, <span class='no'>vars</span>,
   <span class='no'>time</span>, <span class='no'>condition</span>, <span class='kw'>rtol</span> <span class='kw'>=</span> <span class='fl'>1e-06</span>, <span class='kw'>atol</span> <span class='kw'>=</span> <span class='fl'>1e-06</span>, <span class='kw'>monte_carlo</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>dist</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>q.arg</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -185,7 +184,7 @@ through MCSim.</p>
     </tr>
     <tr>
       <th>time</th>
-      <td><p>a numeric to define the given time point(s).</p></td>
+      <td><p>a numeric vector to define the given time point(s).</p></td>
     </tr>
     <tr>
       <th>condition</th>
@@ -205,44 +204,41 @@ through MCSim.</p>
     </tr>
     <tr>
       <th>atol</th>
-      <td><p>an argument passed to the integrator (default 1e-9).</p></td>
+      <td><p>an argument passed to the integrator (default 1e-6).</p></td>
     </tr>
     <tr>
       <th>monte_carlo</th>
-      <td><p>a numeric to define the sample number in Monte Carlo simulaton.</p></td>
+      <td><p>a numeric value to define the sample size in Monte Carlo simulation.</p></td>
     </tr>
     <tr>
       <th>dist</th>
-      <td><p>a vector of distribution names corresponding to <code>&lt;distribution-name&gt;</code> in MCSim.</p></td>
+      <td><p>a vector of distribution names corresponding to <code>&lt;distribution-name&gt;</code> in <span class="pkg">GNU MCSim</span>.</p></td>
     </tr>
     <tr>
       <th>q.arg</th>
       <td><p>a list of shape parameters in the sampling distribution (<code>dist</code>).</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>The output result is the 4-dimension array with
 c(model evaluations, replications, time-points, output variables).</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This function allows users to use external data file that assigned in <code>setpoint.name</code> as parameter matrix.
 If you want to use it, be sure to define <code>n</code> and <code>setpoint.name</code>.</p>
-    
     <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
 
     
 <ul>
-<li><p><code>solve_mcsim</code>: Numerical analysis for the PK model by MCSim.</p></li>
-<li><p><code>generate_infile</code>: Generate the MCSim input file.</p></li>
+<li><p><code>solve_mcsim</code>: Numerical analysis for the PK model by <span class="pkg">GNU MCSim</span>.</p></li>
+<li><p><code>generate_infile</code>: Generate the <span class="pkg">GNU MCSim</span> input file.</p></li>
 </ul>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-</div><span class='co'># NOT RUN {</span>
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='fu'><a href='models.html'>pbtk1cpt_model</a></span>()
 <span class='no'>mName</span> <span class='kw'>&lt;-</span> <span class='st'>"pbtk1cpt"</span>
 <span class='fu'><a href='compile_model.html'>compile_model</a></span>(<span class='no'>mName</span>)
@@ -268,20 +264,15 @@ If you want to use it, be sure to define <code>n</code> and <code>setpoint.name<
                  <span class='kw'>outfile.name</span> <span class='kw'>=</span> <span class='no'>outfile.name</span>, <span class='kw'>params</span> <span class='kw'>=</span> <span class='no'>params</span>, <span class='kw'>vars</span> <span class='kw'>=</span> <span class='no'>vars</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='no'>t</span>,
                  <span class='kw'>condition</span> <span class='kw'>=</span> <span class='st'>"Agutlument = 10"</span>)
 <span class='fu'><a href='pksim.html'>pksim</a></span>(<span class='no'>y</span>)
-<span class='co'># }</span><div class='input'>
-</div></pre>
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-
       <li><a href="#functions">Functions</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -295,7 +286,7 @@ If you want to use it, be sure to define <code>n</code> and <code>setpoint.name<
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9100.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
 
       </footer>
