@@ -1,0 +1,1166 @@
+---
+title: "Uncertainty, Variability, and Sensitivity Analyses in Toxicological Modeling"
+subtitle: "<html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>"
+author: "Nan-Hung Hsieh, PhD"
+date: "Postdoctoral Research Associate<br> Interdisciplinary Faculty of Toxicology, Texas A&M University"
+output:
+  xaringan::moon_reader:
+    css: [default, metropolis, metropolis-fonts]
+    nature:
+      beforeInit: "macros.js"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r, include=FALSE}
+library(sensitivity)
+library(ggplot2)
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+# Today's talk is about...
+
+### Uncertainty and Variability analysis
+
+- Probabilistic modeling
+
+### Sensitivity analysis
+
+- Quantify the uncertainty from model input to model output 
+
+<br>
+
+### Pharmacokinetic modeling
+
+- Predict external exposure to internal dose
+
+### Pharmacodynamic modeling
+
+- Predict the dose-response relationship
+
+???
+
+I'll provide 4 topics in today's talk. The first one is Uncertainty and Variability analysis, I will give a general of how we apply uncertainty and sensitivity analysis in our modeling process. In addition, in my recent research, I also focus on sensitivity analysis to quantify the uncertainty from model output. Sensitivity analysis also has some applications. I will provide some examples later on.
+
+On the other side, I will focus on pharmacokinetic modeling. This approach can help us understand the chemical behavior or properties when we under the chemical exposure. We can use this method to estimate the external exposure to internal dose. Secondary, we want to pharmacodynamic model to know how chemical affect on human health and make some predictions. 
+
+---
+
+background-image: url(https://i.ibb.co/JB7s1bK/Screenshot-from-2019-09-24-11-49-47.png)
+background-size: 700px
+background-position: 50% 50% 
+
+# Modeling in Risk Assessment  
+
+???
+
+According to EPA's Risk assessment terminology. Variability refers to the range of toxic response or exposure, which means the internal and external physical factors that can cause the differences of toxicity effects.
+
+Uncertainty refers to our inability to know for sure. It is often due to the lack of knowledge, such as in experiment data, modeling, and parameter.
+
+Therefore to solve this problem, we can apply probabilistic modeling to quantify or characterize the uncertainty and variability in risk assessment. The probabilistic modeling approach is a more comprehensive than traditional point estimate method to consider the uncertainty and variability in risk assessment.
+
+---
+
+background-image: url(https://i.ibb.co/SmNTtv2/WHO.png)
+background-size: 200px
+background-position: 80% 80% 
+
+# Uncertainty vs. Variability
+
+.font150[
+
+> **Uncertainty** relates to "lack of knowledge"" that, in theory, could be reduced by better data, whereas **variability** relates to an existing aspect of the real world that is outside our control.
+
+> [*World Health Organization (2017)*](https://www.who.int/ipcs/methods/harmonization/areas/hazard_assessment/en/)
+
+]
+
+???
+
+There is a clear definition to differentiate the uncertainty and variability in WHO document.
+
+---
+
+# Variability in Risk Assessment
+
+<img src= "https://i.ibb.co/ykYp8BY/variability.png" height="380px" />
+
+- Reduce chances using a strain that is a "poor" model of humans 
+- Obtaining information about "potential range" to inform risk assessment 
+
+.font60[Chiu WA and Rusyn I, 2018. https://doi.org/10.1007/s00335-017-9731-6]
+
+???
+
+Here are the reasons of why we need to pay attention on variability. Because in the risk assessment, we need to consider the difference response level in the population. And traditionally, in animal study, we usually focus on single mouse strain in toxicology research. There is a chance to use a poor model to represent the humans. Using the different mouse strains give us us the opportunity to reduce this chance. Also. 
+
+---
+
+background-image: url(https://image.ibb.co/jNZi4e/drug_concentration_time.png)
+background-size: 200px
+background-position: 90% 90%
+
+# Pharmacokinetics (PK)
+
+.font120[
+- The fate of chemical in a living organism
+- **ADME** process
+
+.center[
+**A**bsorption - How will it get in?
+
+**D**istribution - Which tissue organ it will go?
+
+**M**etabolism - How is it broken down and transformation?
+
+**E**limination - How it leave the body?
+]
+- Kinetics: rates of change
+- <font color="red">PK is focus on .bolder[TIME (t)] and .bolder[CONCENTRATION (C)]</font>
+]
+
+???
+
+Kinetics is a branch of chemistry which describe the change of one or more variables as a function of time.
+So we focus on the time and concentration. It’ll go up after intake the drug and then go down after reach the maximum concentration.
+
+---
+
+# Pharmacokinetic Model
+
+To .font150[.bolder["predict"]] the **cumulative does** by constructed **compartmental model**.
+
+.pull-left[
+![](http://www.mdpi.com/mca/mca-23-00027/article_deploy/html/images/mca-23-00027-g006.png)
+]
+
+.pull-right[
+![](https://image.ibb.co/nJTM7z/fitting.png)
+]
+
+`\(D\)`: Intake dose (mass)
+
+`\(C\)`: Concentration (mass/vol.)
+
+`\(k_a\)`: Absorption rate (1/time)
+
+`\(V_{max}\)`: Maximal metabolism rate
+
+`\(K_m\)`: Concentration of chemical achieve half `\(V_{max}\)` (mass/vol.)
+
+`\(k_{el}\)`: Elimination rate (1/time)
+
+
+???
+
+But it’s difficult to realize the whole time-concentration relationship due to it will take a lot of time and money in the experiment.
+Therefore, we need to apply toxicokinetic modeling. The basic model is constructed by a single variable with few parameters. We can set up input dose and define the output such as chemical concentration in blood or other tissue organs.
+Then, we can set up the parameters such as absorption,elimination rate constant. We can also used Michaelis-Menten kinetics constants to define the concentration-dependent rate constant for metabolism.
+
+---
+
+class:clear
+
+### Physiologically Based Pharmacokinetic (PBPK) Model
+
+Mathematically transcribe **physiological** and **physicochemical** descriptions of the phenomena involved in the complex **ADME** processes.
+
+.center[
+![:scale 90%](http://pharmguse.net/pkdm/pbpm.jpg)
+]
+
+???
+
+But the real world is not as simple as we think.
+Sometimes we need to consider the complex mechanism and factors that can help us make a good prediction.
+So people developed the PBPK that include physiological and physicochemical parameters that correspond to the real-world situation and can be used to describe the complex ADME processes.
+
+---
+
+# Probabilistic Modeling
+
+.center[
+![:scale 95%](https://ars.els-cdn.com/content/image/1-s2.0-S1740675717300373-gr1_lrg.jpg)
+]
+
+.font60[https://doi.org/10.1016/j.ddmod.2017.08.001]
+
+???
+
+Also, we can apply probabilistic modeling approach in PBPK modeling, this method called Bayesian-PBPK. Before the conduction of Bayesian PBPK, the first thing is to have or find the prior information and apply this information to define the probability distribution of model parameters that need to be used in PBPK modeling. And then, using the PK-Data of individual to calibrate PBPK model, After that, the distribution of model parameter will be adjusted based on the given experiment data. The posterior parameter can be further used to the additional application. Such as understanding the parameter uncertainty and population variability.  
+
+---
+
+background-image: url(https://ars.els-cdn.com/content/image/1-s2.0-S0300483X10002623-gr5.jpg)
+background-size: 400px
+background-position: 70% 40% 
+
+# Bayesian Population Model
+
+.font140[**Individuals level**]
+
+$E$: Exposure  
+
+$t$: Time  
+
+$\theta$: Specific parameters  
+
+$y$: condition the data
+
+</br>
+
+.font140[**Population level**]
+
+$\mu$: Population means
+
+$\Sigma^2$: Population variances
+
+$\sigma^2$: Residual errors
+
+.font60[https://doi.org/10.1016/j.tox.2010.06.007]
+
+---
+
+# Population PBPK Modeling
+
+.font120[
+- Characterizing PBPK parameters from **individuals** to **population**
+- Evaluating population **variability** and parameter **uncertainty**
+- Cross-species comparisons
+]
+
+.center[
+![:scale 70%](https://ars.els-cdn.com/content/image/1-s2.0-S0041008X09003238-gr3_lrg.jpg)
+]
+
+.font60[Chiu WA et al., 2009. https://doi.org/10.1016/j.taap.2009.07.032]
+
+???
+
+This is a one of representative publication that used the Bayesian approach in population PBPK modeling. This paper describes a Bayesian population analysis using MCMC simulation of the harmonized rat, mouse, and human PBPK models for TCE. 
+
+---
+
+# Population PBPK Modeling
+
+.font120[
+- Compare **group-specific** model predictions with data
+- Apply **population** prediction in variability assessment
+]
+
+.center[
+![:scale 60%](https://i.ibb.co/VHT9qZ3/chiu2019.jpg)
+]
+
+.font60[Chiu WA et al., 2009. https://doi.org/10.1016/j.taap.2009.07.032]
+
+???
+
+Through the estimated posterior parameter estimation, the result can be further used to do the population or group specific prediction.
+
+It is useful to generate “population-based” parameters using only the posterior distributions for the population means and variances, instead of the estimated group-specific parameters.
+
+These population predictions provide a sense as to whether the model and the predicted degree of population uncertainty and variability adequately account for the range of heterogeneity in the experimental data.
+
+Assuming the group-specific predictions are accurate, the population-based predictions are useful to identify whether one or more if the datasets are “outliers” with respect to the predicted population. 
+
+It is informative to compare the population-based model predictions to the additional “validation” data in order to assess the predictive power of the PBPK model.
+
+---
+
+background-image: url(https://i.ibb.co/tYDnPDb/chiu2014-2.png)
+background-size: 500px
+background-position: 90% 50% 
+
+# Population PBPK Modeling
+
+.font120[
+
+- Inter-strain & inter-individual variability in metabolism
+
+]
+
+<img src= "https://i.ibb.co/DVWYytX/chiu2014.png" height="380px" />
+
+
+.font60[Chiu WA et al., 2013. https://doi.org/10.1289/ehp.1307623]
+
+???
+
+This is an extensive study. 
+Previous animal studies mainly used single strain, B6C3F1 as a representative animal. But the issue to used B6C3F1 in extrapolation is the metabolism is very difference with the human. It had the highest rate of respiratory tract oxidative metabolism as compared to rats and humans. Also, it doesn't have representative variability in risk assessment.
+So in this study, instead of B6 strain, it includes 16 inbred strains to discuss inter-strain variability and use it to compare with the human inter-individual variability. 
+Through the multi-strains model calibration and prediction, we can have consistent estimates of variability in human and mice
+
+---
+
+class:clear, middle
+
+<center>
+--- Application ---
+## If you have *known* "parameters"
+## ------------------------------------>
+## <font color="red"> Parameters / Model / Data</font>
+## <------------------------------------
+## If you have *known* "data" 
+--- Calibration ---
+
+---
+
+background-image: url(https://ars.els-cdn.com/content/image/1-s2.0-S0300483X18301781-gr2_lrg.jpg)
+background-size: 280px
+background-position: 90% 80%
+
+# Recent study
+
+Funding: **U.S. EPA (STAR RD83561202)** and **National Institutes of Health (F32 ES026005)**
+
+Luo, Y.S., Hsieh, N.H., Soldatow, V.Y., Chiu, W.A. and Rusyn, I., 2018. [Comparative Analysis of Metabolism of Trichloroethylene and Tetrachloroethylene among Mouse Tissues and Strains](https://doi.org/10.1016/j.tox.2018.07.012). Toxicology, 409, pp.33-43.
+
+<hr>
+
+**Motivation**: Quantitative comparison of tissue- and strain-specific metabolism of TCE and PCE has not been performed
+
+<img src= "https://ars.els-cdn.com/content/image/1-s2.0-S0300483X18301781-gr1.jpg" height="220px" />
+
+???
+
+In our recent research, we incorporate more animal experiment results. We built the multicompartment PK model to estimate the metabolism of TCE and PCE. We want to quantitative compare the tissue- and strain-specific metabolism of TCE and PCE because this comparison haven't done before.
+
+In the beginning, we used three different mice strains and given the specific does of TCE amd PCE. After the several hour the mice were sacrified. The time points of 1, 2, 6, 12, 24, 36 h were selected to maximize the metabolic information from both oxidative and glutathione conjugation pathways
+
+We didn't use the PBPK model because the current is PBPK model takes a very long time in model calibration. Therefore, we tried to re-build this simplified model to compare and describe the Trichloroethylene and tetrachloroethylene among mouse tissues and strains. 
+
+
+---
+
+class:clear
+
+Predicted disposition of **TCE (A)**, **PCE (B)**, and their respective metabolites in male B6C3F1/J, C57BL/6J, and NZW/LacJ mice.
+
+.center[
+![](https://ars.els-cdn.com/content/image/1-s2.0-S0300483X18301781-gr5.jpg)
+]
+
+.font70[
+Pie charts are used to provide a relative comparison among various metabolites as predicted by the model in each strain.
+]
+
+???
+
+This is the result of the disposition of TCE and PCE and their respective metabolites in mice strains. 
+Pie charts are used to provide a relative comparison among various metabolites as predicted by the model in each strain. 
+Most of each parent compound (TCE and PCE) remained unmetabolized until excretion
+As you can see the disposition fractions are different across the mice strains. 
+For to the glutathione conjugation metabolism, the overall flux to conjugation was less than 0.3% of the administered dose for both chemicals. 
+
+---
+
+class:clear
+
+**Trichloroethylene (TCE)**
+.center[![:scale 75%](https://i.ibb.co/yRv23dL/TCE.png)]
+
+<hr>
+
+**Tetrachloroethylene (PCE)**
+
+.center[![:scale 75%](https://i.ibb.co/YjRNTH1/PCE.png)]
+
+
+???
+
+Also, we used our estimated result to compare with other toxicokinetics study of TCE/PCE metabolites in mice, rats, and humans. Our result can fill the data gap to understand the chemical metabolism in mice, especially for TCE. 
+
+Based on the result of oxidation to GSH, mice are thought to be more efficient in oxidative metabolism, but less efficient in glutathione conjugation as compared to rats and humans.
+
+---
+
+# Recent study
+
+Funding: **National Institutes of Health (P42 ES027704 and P42 ES ES005948)**
+
+Luo, Y.S., Cichocki, J.A., Hsieh, N.H., Lewis, L., Wright, F.A., Threadgill, D.W., Chiu, W.A. and Rusyn, I., 2019. [Using Collaborative Cross Mouse Population to Fill Data Gaps in Risk Assessment: A Case Study of Population-Based Analysis of Toxicokinetics and Kidney Toxicodynamics of Tetrachloroethylene](https://doi.org/10.1289/EHP5105). Environmental Health Perspectives, 127(6), p.067011.
+
+<hr>
+
+**Background:**
+
+- Interindividual variability in susceptibility remains poorly characterized for environmental chemicals such as tetrachloroethylene (PERC). 
+- Development of population-based experimental models provide a potential approach to fill this critical need in human health risk assessment.
+
+**Objectives:** 
+
+- To better characterize the contribution of glutathione (GSH) conjugation to kidney toxicity of PERC and the degree of associated interindividual toxicokinetic (TK) and toxicodynamic (TD) variability by using the Collaborative Cross (CC) mouse population.
+
+???
+
+This is our following research. This study aim to apply the developed multicompartment PK model in human health risk assessment. In this study, we used in animal experiment result from CC mouse population to characterize metabolism–toxicity interactions and quantify the interindividual variability. Our main objective is ...
+
+---
+
+class:clear
+
+![](https://i.ibb.co/KF8PLWy/Screenshot-from-2019-09-24-11-57-00.png)
+
+.footnote[https://factor.niehs.nih.gov/2019/9/papers/dert/index.htm]
+
+???
+
+This paper was been selected as Papers of the Month. The brief summary of this study is 
+- Mice exposed to PERC had lower kidney weight and more markers of kidney injury
+- Inbred mice used in previous studies generally exhibited metabolism of PERC at the lower end of the overall distribution
+- Default values that are generally used by the U.S. Environmental Protection Agency in human health risk assessments to adjust for population variation, the default values may protect 95% of the population but not the most sensitive individuals
+
+---
+
+class:clear
+
+**Interstrain Variability in Metabolism of PERC through Glutathione Conjugation Pathway**
+
+.center[
+![:scale 44%](https://ehp.niehs.nih.gov/cms/attachment/9d640350-b940-4fc6-b40c-2cc96767ae3e/ehp5105_f4.jpg)
+]
+
+.font80[The range of interstrain differences were 54.2-fold for TCVG, 29.0-fold for TCVC, and 33.6-fold for NAcTCVC.]
+
+???
+
+This is one of our finding that explains the interstrain variability in metabolism of PCE through glutathione conjugation pathway. We used area under the curve to compare the tissue-specific TK of GSH conjugation metabolites across strains. We found that variability across mouse strain can have about 30 to 55-fold interstrain differences, which means the CC strain can have different PK profile in PCE metabolism.
+
+---
+
+class:clear
+
+**Predicted disposition of PERC and its metabolites in CC mouse strains**
+
+.center[
+![:scale 46%](https://ehp.niehs.nih.gov/cms/attachment/ea8235e9-faf8-4c45-aeb9-23413e90aac0/ehp5105_f6.jpg)
+]
+
+
+.font80[
+- The population average was 80.4% for PERC, 19.4% for TCA, and 0.25% for GSH conjugates, where 52% of total GSH conjugates further underwent bioactivation to form reactive species.
+
+- Inter-strain difference was 1.19-fold for PERC, 2.34-fold for oxidation, 6.68-fold for GSH conjugation, and 5.34-fold for bioactivation of GSH conjugates.
+]
+
+???
+
+Based on a previously published multicompartment TK model for PERC and its metabolites, we estimated the disposition for PERC, TCA, and GSH conjugates. Compare with our previous study, the disposition of parent compound was estimated about 90% in the previous research, but for CC strains, the disposition of parent compound was estimated about 80%
+
+CC mouse population–derived concentration-time profiles of PERC, oxidative metabolite (TCA), and GSH conjugative metabolites (TCVG, TCVC, and NAcTCVC) 
+
+The results can be used to quantify the interstrain variability and derive chemical-specific adjustment factors to replace default uncertainty factors.
+
+---
+
+class:clear
+
+**Chemical-Specific Adjustment Factors for Population Variability and Risk Assessment**
+
+![](https://i.ibb.co/f24zFvp/UF-table.png)
+
+<hr>
+
+.center[![:scale 60%](https://i.ibb.co/WF2dr8S/UF.png)]
+
+???
+
+Based on the inter-strain estimation, we further used predicted disposition of PERC, TCA, and GSH conjugates across CC strains to calculate the chemical-specific adjustment factors for TK variability
+
+
+---
+
+# Challenge
+
+.font120[Currently, the **Bayesian Markov chain Monte Carlo (MCMC) algorithm** is an effective way to do population PBPK model calibration. ]
+
+### **BUT**
+
+--
+
+.font120[
+This method often have challenges to reach **"convergence"** with acceptable computational times **(More complex model with more parameters, More time!)**
+]
+
+.right[![](https://slides.yihui.name/gif/questions.gif)]
+
+???
+
+We usually used Bayesian approach to quantify the uncertainty and variability. The Bayesian Markov chain Monte Carlo algorithm is an effective way to do population PBPK model calibration. But ...
+
+---
+
+background-image: url(https://blitzmetrics.com/wp-content/uploads/2013/09/QuestionData.png)
+background-size: contain
+
+# Possible solutions
+
+.center[
+
+</br>
+  
+## **From Model?**
+## **From Data?**
+## **From Parameter?**
+## **From Algorithm?**
+  
+]
+
+???
+
+To improve the computational efficiency, we can focus on these four elements. The first one is ...
+
+---
+
+# Project
+
+Funding: Food and Drug Administration (1U01FD005838)
+
+Project Start: Sep-2016
+
+Name: **<span style="color: red">Enhancing the reliability, efficiency, and usability of Bayesian population PBPK modeling</span>**
+
+???
+
+Based on these reasons, we started this project.
+
+--
+
+- Specific Aim 1: Develop, implement, and evaluate methodologies for parallelizing time-intensive calculations and enhancing a simulated tempering-based MCMC algorithm for Bayesian parameter estimation  
+(.font120[**Revise algorithm in model calibration**])
+
+--
+
+.highlight[
+- Specific Aim 2: Create, implement, and evaluate a robust **Global Sensitivity Analysis** algorithm to reduce PBPK model parameter dimensionality  
+(.font120[**Parameter fixing**])
+]  
+
+--
+
+- Specific Aim 3: Design, build, and test a user-friendly, open source computational platform for implementing an integrated approach for population PBPK modeling  
+(.font120[**User friendly interface**])
+
+---
+
+background-image: url(https://upload.wikimedia.org/wikipedia/commons/5/5a/Mcsimlogo.png)
+background-size: 100px
+background-position: 90% 85% 
+
+# GNU MCSim
+
+.font90[
+> GNU MCSim is a general purpose modeling and simulation program which can performs "standard" or "Markov chain" Monte Carlo simulations. It allows you to specify a set of **linear or nonlinear algebraic equations** or **ordinary differential equations**. They are solved numerically using parameter values you choose or parameter values sampled from statistical distributions. Simulation outputs can be compared to experimental data for Bayesian parameter estimation (model calibration). 
+]
+
+.pull-left[
+.font50[
+- 6.1.0 (19 February 2019)
+- 6.0.1 (05 May 2018)
+- 6.0.0 (24 February 2018)
+- 5.6.6 (21 January 2017)
+- 5.6.5 (27 February 2016)
+- 5.6.4 (30 January 2016)
+- 5.6.3 (1 January 2016)
+- 5.6.2 (24 December 2015)
+- 5.6.1 (21 December 2015)
+- 5.6.0 (16 December 2015)
+- 5.5.0 (17 March 2013)
+- 5.4.0 (18 January 2011)
+- 5.3.1 (3 March 2009)
+- 5.3.0 (12 January 2009)
+- 5.2 beta (29 January 2008)
+- 5.1 beta (18 September 2006)
+- 5.0.0 (4 January 2005)
+- 4.2.0 (15 October 2001)
+- 4.1.0 (1 August 1997)
+- 4.0.0 (24 March 1997)
+
+https://www.gnu.org/software/mcsim/mcsim.html
+
+]
+]
+
+.pull-right[
+
+.font140[Founder: *Frédéric Y. Bois*]  
+
+Staff Toxicologist (Specialist),  
+Reproductive and Cancer Hazard Assessment Section,  
+CalEPA, Berkeley, USA, 1991-96
+]
+???
+
+This project mainly focus on using GNU MCSim
+
+This founder of this project is Dr. Frédéric Y. Bois. He had been worked in CalEPA as Staff Toxicologist for 5 years.
+
+---
+
+# Related publication
+
+### Parameter fixing
+- Hsieh N-H, Reisfeld B, Bois FY and Chiu WA. 2018. [Applying a Global Sensitivity Analysis Workflow to Improve the Computational Efficiencies in Physiologically-Based Pharmacokinetic Modeling](https://www.frontiersin.org/articles/10.3389/fphar.2018.00588/full). Frontiers in Pharmacology 9:588.
+
+- Hsieh N-H, Reisfeld B, and Chiu WA. [pksensi: R package to apply global sensitivity analysis in physiologically based kinetic models](). (Submitted)
+
+</br>
+
+### Revise algorithm in model calibration
+- Bois FY, Hsieh N-H, Gao W, Reisfeld B, Chiu WA. [Well tempered MCMC simulations for population pharmacokinetic models](). (Submitted)  
+
+???
+
+This is our project from FDA that aim to improve the functionality in MCSim and the research of the Bayesian framework. 
+
+One of the current challenges in the Bayesian method is time-consuming if our model becomes more complex or more comprehensive and we have more data in our multi-individuals and multi-groups testing. It will take need very long time to calibrate model parameter. Therefore, in our 2018 paper, we proposed a workflow to fix the non-influential parameter in our PBPK model based on the global sensitivity analysis. 
+
+Through this way, we can save about half time in our model calibration. 
+
+Our recent submitted paper is to show how we developed and used tempering MCMC in PBPK modeling.  This algorithm can also have a faster convergence time compared with the original one.
+
+---
+
+# Proposed Solution - Parameter Fixing 
+
+.font120[We usually fix the "possible" non-influential model parameters through **"expert judgment"**.]
+
+### **BUT**
+
+--
+
+.font120[This approach might cause .font140[**"bias"**] in parameter estimates and model predictions.]
+
+<div align="center"> 
+<img src="http://reliawiki.org/images/3/35/Doe34.png" height="280px" />
+</div>
+
+???
+
+In our specific aim we want to find find the proper way to fix the non-influential parameter in PBPK model to improve the computational speed. Usually, 
+
+---
+
+# Sensitivity Analysis
+
+.font120[
+> The study of how uncertainty in the output of a model (numerical or otherwise) can be apportioned to different sources of uncertainty in the model input.  
+]
+
+![](https://i.ibb.co/0smnKjL/SA.png)
+
+.footnote[
+.font60[Img: Krishnan, K. and Andersen, M.E. eds., 2010. Quantitative modeling in toxicology. John Wiley & Sons.]
+]
+
+???
+
+Sensitivity analysis is the study of how uncertainty in the model output can be appointed to different sources of uncertainty in the model input. For example, in the PBPK model, we can have different measurement outputs such as concentration of blood or organs from animal study. These ouputs are determined by the various input parameters. Therefore, we can apply sensitivity analysis to figure out the most and least important parameter in our modeling process. 
+
+---
+
+# Application of SA?
+
+.font120[**Parameter Prioritization**]
+
+- Identifying the most important parameters
+
+- Reduce the uncertainty in the model response if it is too large (ie not acceptable)
+
+.font120[**Parameter Fixing**]
+
+- Identifying the least important parameters
+
+- Simplify the model if it has too many parameters
+
+.font120[**Parameter Mapping**]
+
+- Identify critical regions of the inputs that are responsible for extreme value of the model response
+
+---
+
+class: clear
+
+background-image: url(https://i.ibb.co/dcm90HB/Screen-Shot-2019-04-30-at-8-48-27-PM.png)
+background-size: contain
+
+???
+
+Here we have observations (assumed error-free for simplicity’s sake) and a model whose parameters are estimated from the data. Estimation can take different courses. Usually it is achieved by minimizing, e.g. by least squares, some measure of distance between the model’s prediction and the data. At the end of the estimation step, ‘best’ parameter values as well as their errors are known. At this point we might consider the model ‘true’ and run an uncertainty analysis by propagating the uncertainty in the parameters through the model, all the way to the model output. In this case the estimated parameters become our factors.
+
+---
+
+
+# Classification of SA Methods
+
+.footnote[.font40[http://evelynegroen.github.io]]
+
+.pull-left[
+
+**Local** (One-at-a-time)
+
+<img src="http://evelynegroen.github.io/assets/images/fig11local.jpg" height="240px" />
+
+**"Local"** SA focus on sensitivity at a particular set of input parameters, usually using gradients or partial derivatives
+
+]
+
+???
+Usually, some people have experience in modeling they have the knowledge in local sensitivity analysis. 
+This method is very simple. You move one parameter and fix other parameters then check the change of model outputs. 
+On the other side, some researcher also developed the approach that moves all parameters at a time and checks the change of model output. We call it Global sensitivity analysis or variance-based sensitivity analysis.
+
+--
+
+.pull-right[
+
+**Global** (All-at-a-time)
+
+<img src="http://evelynegroen.github.io/assets/images/fig2global.jpg" height="240px" />
+
+**"Global"** SA calculates the contribution from the variety of all model parameters, including .bolder[Single parameter effects] and .bolder[Multiple parameter interactions]
+
+]
+
+--
+
+<span style="color: red">
+.font120[.center["Global" sensitivity analysis is good at **parameter fixing**]]
+</span>
+
+
+???
+
+Usually, some people have experience in modeling they have the knowledge in local sensitivity analysis.
+
+This method is very simple. You move one parameter and fix other parameters then check the change of model outputs.
+
+On the other side, some researcher also developed the approach that moves all parameters at a time and checks the change of model output. We call it Global sensitivity analysis or variance-based sensitivity analysis.
+
+---
+
+# Sensitivity index
+
+### First order $(S_i)$
+
+.font110[The output variance contributed by the specific parameter $x_i$,  
+also known as .font130[**main effect**]]
+
+### Interaction $(S_{ij})$
+
+.font110[The output variance contributed by any pair of input parameter]
+
+### Total order $(S_{T})$
+
+.font110[The output variance contributed by the specific parameter and interaction,  
+also known as .font130[**total effect**]]
+
+--
+
+<hr/>
+
+.left[
+.font110[**"Local"**] SA usually only addresses first order effects
+
+.font110[**"Global"**] SA can address total effect that include main effect and interaction
+]
+
+---
+
+# GSA-PBPK
+
+Hsieh N-H, Reisfeld B, Bois FY and Chiu WA. 2018. [Applying a Global Sensitivity Analysis Workflow to Improve the Computational Efficiencies in Physiologically-Based Pharmacokinetic Modeling](https://www.frontiersin.org/articles/10.3389/fphar.2018.00588/full). Frontiers in Pharmacology 9:588.
+
+<hr>
+
+.font120[
+
+Background:
+
+- **Many** global sensitivity analysis (GSA)  algorithms have been developed, but we don't have knowledge to identify which one is the best.
+
+- There is **NO** suitable reference in parameter fixing for PBPK model.
+
+Objectives:
+
+- To explore the application of GSA to ascertain which parameters in the PBPK model are **non-influential**, and therefore can be assigned fixed values in Bayesian parameter estimation with minimal bias.
+
+]
+
+???
+
+There are different types of GSA approach that can estimate the sensitivity index. For example some testing methods use Monte Carlo approach to generate the the random sample in parameter space, but there are also some different kind of methods that uses the algorithm to generate specific search curve to sample the parameter.
+
+---
+
+background-image: url(https://image.ibb.co/b9F8Ze/uSCphVE.gif)
+background-size: 300px
+background-position: 90% 70%
+
+# Materials
+
+**Acetaminophen (APAP) PK data and PBPK model** 
+
+- Eight studies (n = 71) with single oral dose and three different levels of given doses
+
+**Global sensitivity analysis**
+
+- Morris
+- eFAST, Jansen, and Owen method
+
+![:scale 60%](https://image.ibb.co/mfUD0K/wuYl7Bk.png)
+
+---
+
+class: center
+
+# Workflow
+
+.font120[Reproduce result from original paper (**21** parameters)] 
+
+<i class="fa fa-arrow-down"></i>
+
+.font120[Full model calibration (**58** parameters)] 
+
+<i class="fa fa-arrow-down"></i>
+
+???
+Our workflow started by reproducing the result from the previous study.
+
+--
+
+.font120[Sensitivity analysis using different algorithms] 
+
+<span style="color: red"> 
+**Compare the .bolder[time-cost] for sensitivity index to being stable**    
+**Compare the .bolder[consistency] across different algorithms** 
+</span> 
+
+--
+
+<i class="fa fa-arrow-down"></i>
+
+.font120[Bayesian model calibration by SA-judged influential parameters]   
+
+<span style="color: red"> 
+**Compare the model .bolder[performance] under the setting "cut-off"**  
+**Exam the  .bolder[bias] for expert and SA-judged parameters**
+</span> 
+
+---
+
+# Computational efficiency comparison
+
+.center[
+<img src="https://image.ibb.co/mYWr5K/fig1.jpg" height="420px" />  
+]
+
+Time-spend in SA (min): Morris (2.4) < **eFAST (19.8)** $\approx$ Jansen (19.8) < Owen (59.4)
+
+Variation of SA index: Morris (2.3%) < **eFAST (5.3%)** < Jansen (8.0%) <  Owen (15.9%)
+
+???
+In our result, we’ll answer the four questions. 
+
+We tested the computer time under the sample number from 1000 to 8000 and checked the variation of sensitivity index. 
+
+As expected, Morris is the fastest approach that can rapidly compute the result under the same sample number with the lowest variability.
+
+But if we focus on the variance-based method, we can find that eFAST shows better performance than Jansen and Owen.
+
+---
+
+# Consistency comparison 
+
+.pull-left[
+![](https://image.ibb.co/jKtsnz/fig2_1.jpg)
+]
+
+.pull-right[
+![](https://image.ibb.co/mt11fK/fig2_2.jpg)
+]
+
+.center[
+.font120[
+**eFAST** $\approx$ Jansen $\approx$  Owen > Morris
+]
+]
+
+.footnote[Grey: first-order; Red: interaction]
+
+???
+We correlated the sensitivity index across four algorithms by using the results of original and all model parameters. 
+The grey and red color are the correlation plot for first-order and interaction. 
+
+We found that all global methods can provide the consistent sensitivity index. 
+
+However, Morris cannot produce the similar results with other algorithms. 
+
+---
+
+# Accuracy & precision comparison 
+
+.center[
+
+.pull-left[
+
+Original model parameters  
+(**OMP**)
+
+<i class="fa fa-arrow-down"></i>  
+
+.bolder[Setting cut-off]  
+
+<i class="fa fa-arrow-down"></i>
+
+Original influential parameters  
+(**OIP**)
+
+]
+
+.pull-right[
+
+Full model parameters  
+(**FMP**)
+
+
+<i class="fa fa-arrow-down"></i>  
+
+.bolder[Setting cut-off]  
+
+<i class="fa fa-arrow-down"></i>
+
+Full influential parameters  
+(**FIP**)
+
+]
+
+<i class="fa fa-arrow-down"></i>
+
+.bolder[Model calibration and validation]
+
+]
+
+???
+Moving on to the third question.
+
+The crucial factor in this part is how do we set up the cut-off for the sensitivity index that can be used to distinguish the influential and non-influential parameters. 
+
+Then we can use the selected parameter sets to do the further model calibration.
+
+To determine the reliable cut-off, we used both parameter sets from original and the full parameter set. 
+
+After the sensitivity analysis, we set the cut-off and do the model calibration and validation to see which cut-off can provide the better trade-off between computer time and model performance. 
+
+---
+
+class:clear
+
+.pull-left[
+
+### The non-influential original parameters 
+
+**1** Absorption parameters
+
+**2** Phase I metabolism parameters
+
+**4** Phase II metabolism parameters
+
+### The influential additional parameters 
+
+**1** physiological parameter 
+  - Cardiac output
+
+**1** chemical-specific transport parameter 
+  - Blood:plasma ratio of APAP
+
+**4** partition coefficients
+
+]
+
+.pull-right[
+
+</br>
+
+</br>
+
+</br>
+
+</br>
+
+![](https://image.ibb.co/k8KUnU/fig3.jpg)
+
+]
+
+???
+Firstly, we used the cut-off at .05, which means if the parameter can not provide the impact for output variance over 5%, we’ll drop-off this parameter.
+We found 11 influential parameters and 10 non-influential parameters in this original parameter set.
+However, when we used the cut-off at .05, we can only screen 10 parameters in the full model set.
+So we further used the cut-off at .01 to choose additional 10 parameters to do the model calibration.
+
+
+Here is the summary of the number of parameters that were be classified to the non-influential parameter in original parameter setting. 
+These parameters are from absorption and metabolism.
+In addition, we found 6 parameters that were fixed in the previous study.
+
+---
+
+# Accuracy and Precision
+
+.center[
+![](https://image.ibb.co/gUu1s9/fig5.jpg)
+]
+
+???
+We compared the observed human experiment data, and the predicted values then summarized the residual. 
+
+We can see the full influential parameter with the cut-off at .01 that only used 1/3 of full model parameters can provide the similar result with full parameter sets. 
+
+Also, using the cut-off at .05 that only used 10 parameters can generate the similar result with original parameter sets.    
+
+---
+
+# Time Cost on Model Calibration
+
+- Summary of the time-cost for 
+    - All model parameters (this study, 58), 
+    - GSA-judged parameters (this study, 20),
+    - Expert-judged parameters ([Zurlinden and Reisfeld, 2016](https://link.springer.com/article/10.1007%2Fs13318-015-0253-x), 21)
+
+```{r, echo=F, eval=T}
+x <- c("All model parameters", "GSA-judged parameters", "Expert-judged parameters")
+y <- c("104.6 (0.96)", "42.1 (0.29)", "40.8 (0.18)")
+df <- data.frame(x,y)
+names(df) <- c("Parameter group","Time-cost in calibration (hr)")
+knitr::kable(df, format = 'html', align=c("l","c"))
+```
+
+.footnote[All time-cost value are shown with mean and standard deviation (n = 10).]
+
+---
+
+background-image: url(https://i.ibb.co/z8BpX5x/Screenshot-from-2019-09-23-22-04-43.png)
+background-size: 860px
+background-position: 50% 80%
+
+# Related work
+
+**Reproducible research - Software development (R package [pksensi](https://nanhung.rbind.io/pksensi/))**  
+
+---
+
+# Related work
+
+**Application of GSA in trichloroethylene (TCE)-PBPK model**  
+![:scale 90%](https://i.ibb.co/Q87n0Kg/fig2.png)
+
+---
+
+# Toxicodynamic modeling
+
+Funding: **National Institute of Environmental Health Sciences (P42ES027704)**
+
+Hsieh, N.H., Chen, Z., and Rusyn, I., Chiu, W.A., Concentration-response modeling of in vitro bioactivity data from complex mixtures of priority Superfund compounds.
+
+<hr>
+
+Background:
+
+- Environmental chemicals at Superfund sites are composed of diverse chemicals.
+- Traditionally, most exposure-effect studies focus on the adverse effects of a single chemical or a mixture with few compounds.
+- The **high throughput screening-based toxicity testing** provides the opportunity to examine the biological responses from complex mixtures more fully.
+
+Objective: 
+
+<span style="color: red"> To examine the concentration-response relationships of individual Superfund priority-list chemicals and their mixtures using in vitro bioactivity data </span>
+
+---
+
+# *in-vitro* approach
+
+![](https://i.ibb.co/ZJNTQjR/chems.png)
+
+![:scale 80%](https://i.ibb.co/s1gkNvX/assay.png)
+
+???
+
+Environmental chemicals at Superfund sites are composed of diverse chemicals that include heavy metals, pesticides, industrial chemicals, polycyclic aromatic hydrocarbons, and plasticizers
+
+---
+
+background-image: url(https://i.ibb.co/SVTw7fJ/singleDR.png)
+background-size: 550px
+background-position: 50% 95%
+
+# *in-silico* modeling
+
+- Fit a commonly used sigmoidal dose-response model to examine the effects of individual chemicals
+- Apply traditional .font120[**least-squares**], as well as .font120[**Bayesian**] approaches, to enable better characterization of uncertainty
+- Make predictions as to the behavior of Superfund compounds in a mixture under the assumptions of .font120[**independent action**] and .font120[**concentration addition**].
+
+![:scale 10%](https://raw.githubusercontent.com/stan-dev/logos/master/logo.png)
+
+---
+
+background-image: url(https://i.ibb.co/2tzxQCN/inter-intra.png)
+background-size: 200px
+background-position: 85% 95%
+
+# Conclusion
+
+.font120[
+
+- **Probabilistic TK/TD modeling** provides an insight to quantify the uncertainty/variability in risk assessment
+
+- **Bayesian statistics** is a powerful tool. It can be used to understand and characterize the "uncertainty" and "variability" from individuals to population through data and model.
+
+- **Global sensitivity analysis** can be an essential tool to reduce the dimensionality of model parameter and improve the "computational efficiency" in Bayesian PBPK model calibration.
+
+]
+
+---
+
+# Acknowledgement
+
+.pull-left[
+
+![:scale 40%](https://vetmed.tamu.edu/communications/wp-content/uploads/sites/53/2019/09/CVM-BOX-hrz.svg)
+
+**Zunwei Chen**  
+**Weihsueh A. Chiu**  
+**Yu-Syuan Luo**  
+**Ivan Rusyn**  
+
+<hr>
+
+![](https://upload.wikimedia.org/wikipedia/en/thumb/9/95/Colorado_State_University_logo.svg/250px-Colorado_State_University_logo.svg.png)
+
+**Brad Reisfeld**
+
+<hr>
+
+![:scale 40%](https://www.certara.com/wp-content/uploads/2016/08/certara-default-social.png)
+
+**Frederic Y. Bois**
+
+]
+
+.pull-right[
+
+![](https://www.niehs.nih.gov/web-resources/images/niehs-logo.svg)
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Food_and_Drug_Administration_logo_2016.svg/1920px-Food_and_Drug_Administration_logo_2016.svg.png)
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Logo_of_the_United_States_Environmental_Protection_Agency.svg/140px-Logo_of_the_United_States_Environmental_Protection_Agency.svg.png)
+
+
+</br>
+
+.font150[**Thank You!**]  
+
+
+]
