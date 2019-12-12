@@ -38,4 +38,4 @@ My name is Nan-Hung Hsieh (謝男鴻). I'm a postdoc at Texas A&M University [To
 
 I'm also interested in [open science](https://opensource.com/resources/open-science) and [reproducible research](https://en.wikipedia.org/wiki/Reproducibility). I believe that science can be more transparent, so people can easily share and acquire more knowledge through these ways. 
 
-A copy of my CV can be found [**HERE**](/post/CV_(NHsieh).pdf). (Latest update: Sep. 2019) 
+A copy of my CV can be found [**HERE**](/post/CV_(NHsieh).pdf). (Latest update: Dec. 2019) 
