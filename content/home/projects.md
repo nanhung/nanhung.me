@@ -26,11 +26,11 @@ subtitle = ""
      tag = "*"
   
    [[content.filter_button]]
-     name = "Sensitivity Analysis"
-     tag = "sensitivity"
+     name = "PBPK Modeling"
+     tag = "PBPK"
 
    [[content.filter_button]]
-     name = "Mixture Toxicity "
+     name = "Mixture Toxicity"
      tag = "mixtures"
      
 [design]
