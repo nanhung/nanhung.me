@@ -5,9 +5,7 @@ name = "TAMU"
 light = true
 
 # Primary
-primary = "#500000"
-primary_light = "#707373"
-primary_dark = "#500000"
+primary = "#940000"
 
 # Menu
 menu_primary = "#ffffff"
