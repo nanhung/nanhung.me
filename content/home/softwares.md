@@ -50,7 +50,7 @@ subtitle = ""
  css_class = ""
 +++
 
-### As creator
+### Creator
 
 [:package: **pksensi**](https://nanhung.netlify.com/pksensi)  
 An R package to apply global sensitivity analysis in physiologically based kinetic modeling  
@@ -58,7 +58,7 @@ An R package to apply global sensitivity analysis in physiologically based kinet
 
 </br>
 
-#### As contributor
+#### Contributor
 
 [:package: **xaringan**](https://github.com/yihui/xaringan)  
 An R package for creating slideshows with remark.js through R Markdown  
