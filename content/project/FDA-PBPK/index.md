@@ -1,9 +1,10 @@
 ---
-title: Sensitivity analysis of physiologically-based pharmacokinetic model
-summary: Reducing the dimensionality of Bayesian PBPK modeling algorithms by sensitivity analysis
+title: Sensitivity analysis of PBPK model
+summary: Reducing the dimensionality of physiologically-based pharmacokinetic model by sensitivity analysis
 tags:
 - sobol
 - sensitivity
+- pharmacokinetics
 - uncertainty
 date: "2018-06-11T00:00:00Z"
 

@@ -26,21 +26,13 @@ subtitle = ""
      tag = "*"
   
    [[content.filter_button]]
-     name = "Risk Analysis"
-     tag = "risk"
-  
-   [[content.filter_button]]
      name = "Sensitivity Analysis"
      tag = "sensitivity"
-     
-  [[content.filter_button]]
-     name = "Ecotoxicology"
-     tag = "ecotoxicology"
-  
-   [[content.filter_button]]
-     name = "Virus dynamics"
-     tag = "virus-dynamics"
 
+   [[content.filter_button]]
+     name = "Mixture Toxicity "
+     tag = "mixtures"
+     
 [design]
   # Choose how many columns the section has. Valid values: 1 or 2.
   columns = "2"

@@ -6,7 +6,7 @@ authors:
 - Ivan Rusyn
 - Weihsueh Chiu
 
-date: "2019-11-18T15:00:00Z"
+date: "2019-11-18T17:00:00Z"
 doi: ""
 
 # Schedule page publish date (NOT publication's date).
@@ -58,7 +58,7 @@ url_poster: "/poster/2019-SRP.pdf"
 #   E.g. `internal-project` references `content/project/internal-project/index.md`.
 #   Otherwise, set `projects: []`.
 projects:
-- internal-project
+- SRP-TAMU
 
 # Slides (optional).
 #   Associate this publication with Markdown slides.
