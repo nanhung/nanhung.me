@@ -89,3 +89,5 @@ user_groups:
 My name is Nan-Hung Hsieh (謝男鴻). I'm a postdoc at Texas A&M University [Toxicology Program](https://toxicology.tamu.edu/) and [Superfund Research Program](https://superfund.tamu.edu/). My research focuses on computational toxicology and risk assessment, especially [uncertainty/variability](https://www.epa.gov/expobox/uncertainty-and-variability) and [sensitivity analysis](https://en.wikipedia.org/wiki/Sensitivity_analysis) in Bayesian physiologically based kinetic modeling.
 
 I'm also interested in [open science](https://opensource.com/resources/open-science) and [reproducible research](https://en.wikipedia.org/wiki/Reproducibility). I believe that science can be more transparent, so people can easily share and acquire more knowledge through these ways. 
+
+<img src="http://ghchart.rshah.org/bb0000/nanhung" alt="Nan-Hung Hsieh's Github chart" />
