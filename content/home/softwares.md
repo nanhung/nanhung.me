@@ -50,6 +50,17 @@ subtitle = ""
  css_class = ""
 +++
 
-[:package: **pksensi**](https://nanhung.netlify.com/pksensi)  
-An R package to apply global sensitivity analysis in physiologically based kinetic modeling  
-[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version-last-release/pksensi)](https://cran.r-project.org/package=pksensi)
+<div style="float: left; width: 80%;">
+<ul>
+<a href="https://nanhung.netlify.com/pksensi">:package:<strong>pksensi</strong></a>
+<br>
+An R package to apply global sensitivity analysis in physiologically based kinetic modeling
+<br>
+<img src="https://www.r-pkg.org/badges/version-last-release/pksensi" alt="CRAN\_Status\_Badge">
+</ul>
+</div>
+<div style="float: right; width: 20%;">
+<ul>
+<img src="https://raw.githubusercontent.com/nanhung/pksensi/master/man/figures/logo.png" height="80px" align="right">
+</ul>
+</div>
