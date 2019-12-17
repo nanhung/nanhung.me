@@ -1,17 +1,16 @@
 ---
 title: 'Sobol Sensitivity Analysis for pharmacokinetic Model'
-summary: Using mrgsolve package and approach to conduct pharmacokinetic modeling and Sobol sensitivity analysis
+summary: Using mrgsolve package and its approach to conduct pharmacokinetic modeling and Sobol sensitivity analysis
 authors:
 - admin
-date: "2019-02-08T00:00:00Z"
-lastmod: "2019-12-16T00:00:00Z"
+date: "2019-02-08"
 output:
   blogdown::html_page:
     toc: true
     toc_depth: 2
-categories: [sensitivity, pharmacokinetics, Sobol]
-tags: [sensitivity]
 projects: [PBPK]
+categories: [pharmacokinetics, sensitivity]
+tags: [sensitivity, pharmacokinetics, Sobol, mrgsolve]
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder.
@@ -26,13 +25,17 @@ projects: [PBPK]
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(eval = T)
+knitr::opts_chunk$set(eval = F)
 ```
 
-I find a great [example](https://github.com/mrgsolve/gallery/blob/master/application/sobol.md) about performing Sobol sensitivity analysis within pharmacokinetic modeling through [mrgsolve](https://mrgsolve.github.io/) and [PKPDmisc](https://dpastoor.github.io/PKPDmisc/). I didn't have any experience to use these packages in my study. But this is a good opportunity to understand how they work, since I have prior knowledge in sensitivity analysis. Last year, I was lucky to have a chance to participate in [the 10th summer school on Sensitivity Analysis of Model Output](https://ec.europa.eu/jrc/en/event/training-course/samo-2018) (SAMO 2018). It was fantastic!  
+{{% alert note %}}
+<strong>**The post was updated on `r Sys.Date()` under `r sessioninfo::os_name()`.**</strong>
+{{% /alert %}}
+
+I find a great [example](https://github.com/mrgsolve/gallery/blob/master/application/sobol.md) of performing Sobol sensitivity analysis within pharmacokinetic modeling through [mrgsolve](https://mrgsolve.github.io/) and [PKPDmisc](https://dpastoor.github.io/PKPDmisc/). I didn't have any experience to use these packages in my study. But this is a good opportunity to understand how they work since I have prior knowledge in the sensitivity analysis. Last year, I was lucky to have a chance to participate in [the 10th summer school on Sensitivity Analysis of Model Output](https://ec.europa.eu/jrc/en/event/training-course/samo-2018) (SAMO 2018).  
 Here I want to apply some techniques that I learned in this SAMO summer school, and it might be helpful to apply Sobol sensitivity analysis in pharmacokinetic modeling. Maybe in the future, I can integrate this approach in [pksensi](https://nanhung.rbind.io/pksensi/index.html).
 
-## Prerequisites - packages
+## Prerequisites
 
 The list of R packages should be installed first to do the following testing. The related functions are also listed behind the package.
 
@@ -46,7 +49,7 @@ library(reshape2) # melt
 library(LSD) # heatscatter
 ```
 
-For Windows OS, some build tools need to pre-install, such as Rtools. Also, be sure to assign the PATH of Rtools.
+For Windows OS, some build tools need to pre-install, such as Rtools. Also, be sure to assign the right PATH to Rtools.
 ```{r}
 Sys.setenv(PATH = paste("c:\\Rtools\\bin", Sys.getenv("PATH"), sep=";"))
 Sys.setenv(PATH = paste("c:\\Rtools\\mingw_64\\bin", Sys.getenv("PATH"), sep=";"))
@@ -119,7 +122,7 @@ batch_run <- function(x) {
 ```
 
 ## Sobol sensitivity analysis
-The sampling method is based on this [example](https://github.com/metrumresearchgroup/pbpk-qsp-mrgsolve/blob/master/docs/global_sensitivity_analysis.md). Therefore I can adequately reproduce the same output.
+The sampling method is based on this [example](https://github.com/metrumresearchgroup/pbpk-qsp-mrgsolve/blob/master/docs/global_sensitivity_analysis.md). Therefore I can fully reproduce the same output.
 
 ```{r}
 set.seed(88771)
@@ -192,7 +195,7 @@ gen_samples_2 <- function(n, l, which = names(l), factor = c(0.01,100)) {
 
 ## Convergence analysis
 
-This is one of the critical steps in sensitivity analysis. More details can be found in my published paper in [Frontiers in Pharmacology](https://www.frontiersin.org/articles/10.3389/fphar.2018.00588/full). Here I create a function called `sample_converge()`, which can generate the convergence index based on the values of the given sample number. The drawback of this function is time-consuming. Because it estimates the convergence index at each sample number and each defined sampling function.
+This is one of the critical steps in the sensitivity analysis. More details can be found in my published paper in [Frontiers in Pharmacology](https://www.frontiersin.org/articles/10.3389/fphar.2018.00588/full). Here I create a function called `sample_converge()`, which can generate the convergence index based on the values of the given sample number. The drawback of this function is time-consuming. Because it estimates the convergence index at each sample number and each defined sampling function.
 
 ```{r}
 sample_converge <- function(n, l, which = names(l)){
@@ -261,7 +264,7 @@ samp2$x1[,i] %>% log(10) %>% density() %>% plot(main = "Log QMC")
 samp$x1[,i] %>% log(10) %>% density() %>% plot(main = "MC")
 ```
 
-Although the sampling ranges are nearly the same, we can easily understand how different sampling method that cause the difference of parameter sampling result.
+Although the sampling ranges are nearly the same, we can easily understand how different sampling methods that cause the difference of parameter sampling result.
 
 ```{r}
 j <- "TVKA"
@@ -278,7 +281,7 @@ heatscatter(log(samp$x1[,i]), log(samp$x1[,j]), add.contour=T,
             nlevels=3, xlab = i, ylab = j, main = "MC")
 ```
 
-Here, we can find the devil in detail. The uniform sampling in the parameter range without log-transformed ignore the lowest value that might cause bias in sampling.
+Here, we can find the devil in detail. The uniform sampling in the parameter range without log-transformed ignores the lowest range of value that might cause bias in sampling.
 
 ## Sobol sensitivity analysis
 
@@ -327,7 +330,7 @@ for (i in 1:5){
 }
 ```
 
-It's an efficient way to see the relationship between parameter value and model output. The high impact parameter has relatively concentrated contour than other parameters.
+It's an efficient way to see the relationship between parameter value and model output. The high impact parameter has a relatively concentrated contour than other parameters.
 
 ## Convergence assessment
 
@@ -374,8 +377,10 @@ df %>% `colnames<-`(c("sample.no", "parameter", "index", "type")) %>%
 
 2. Rethinking about the sampling. If the sampling range is too wide, try using the log-transformed method.
 
-3. Try Quasi-Monte Carlo. The QMC method can generate distribution than random MC sampling uniformly. Unfortunately, QMC didn't show the best result in convergence assessment in this case.  
+3. Finally, try Quasi-Monte Carlo. The QMC method can generate distribution than random MC sampling uniformly. Unfortunately, QMC didn't show the best result in convergence assessment in this case.  
+
+# Session info
 
 ```{r}
-devtools::session_info()
+sessionInfo()
 ```

@@ -2,11 +2,11 @@
 name = "TAMU"
 
 # Optional Google font URL
-google_fonts = "Fira+Sans|Lato:400,700|Open+Sans"
+google_fonts = "Fira+Sans|Fira+Code|Lato:400,700|Open+Sans"
 
 # Font families
 heading_font = "Open Sans"
 body_font = "Fira Sans"
 nav_font = "Lato"
-mono_font = "Roboto Mono"
+mono_font = "Fira Code"
 
