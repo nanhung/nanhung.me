@@ -1,53 +1,57 @@
 ---
 title: 'Sobol Sensitivity Analysis for pharmacokinetic Model'
-subtitle: 'Convergence assessment of Sobol sensitivity analysis in pharmacokinetic modeling'
-summary: Convergence assessment of Sobol sensitivity analysis in pharmacokinetic modeling.
+summary: Using mrgsolve package and approach to conduct pharmacokinetic modeling and Sobol sensitivity analysis
 authors:
 - admin
-tags:
-- sobol
-- mrgsolve
-- convergence
-- pharmacokinetics 
-categories:
-- sensitivity
 date: "2019-02-08T00:00:00Z"
-lastmod: "2019-02-08T00:00:00Z"
-featured: false
-draft: false
+lastmod: "2019-12-16T00:00:00Z"
+output:
+  blogdown::html_page:
+    toc: true
+    toc_depth: 2
+categories: [sensitivity, pharmacokinetics, Sobol]
+tags: [sensitivity]
+projects: [PBPK]
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder.
 # Placement options: 1 = Full column width, 2 = Out-set, 3 = Screen-width
-# Focal point options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight
-image:
-  placement: 2
-  caption: 'Image credit: [**Unsplash**](https://unsplash.com/photos/CpkOjOcXdUY)'
-  focal_point: ""
-  preview_only: false
-
-# Projects (optional).
-#   Associate this post with one or more of your projects.
-#   Simply enter your project's folder or file name without extension.
-#   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
-#   Otherwise, set `projects = []`.
-projects: [sensitivity]
+# Focal point options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight  
+# image:
+#  placement: 2
+#  preview_only: true
+#  focal_point: 'TopRight'
+#  caption: 'Image credit: [**Unsplash**](https://unsplash.com/photos/CpkOjOcXdUY)'
 
 ---
 
+
 <div id="TOC">
 <ul>
-<li><a href="#reproducible-analysis"><span class="toc-section-number">1</span> Reproducible analysis</a></li>
-<li><a href="#methods-and-defined-functions"><span class="toc-section-number">2</span> Methods and defined functions</a></li>
-<li><a href="#results-1"><span class="toc-section-number">3</span> Results</a></li>
-<li><a href="#take-away"><span class="toc-section-number">4</span> Take away</a></li>
+<li><a href="#prerequisites---packages">Prerequisites - packages</a></li>
+<li><a href="#reproducible-analysis">Reproducible analysis</a><ul>
+<li><a href="#the-sunitinib-pk-model">The sunitinib PK model</a></li>
+<li><a href="#sunitinib-dosing">Sunitinib dosing</a></li>
+<li><a href="#a-bunch-of-helper-functions">A bunch of helper functions</a></li>
+<li><a href="#sobol-sensitivity-analysis">Sobol sensitivity analysis</a></li>
+<li><a href="#results">Results</a></li>
+</ul></li>
+<li><a href="#methods-and-defined-functions">Methods and defined functions</a><ul>
+<li><a href="#log-uniform-quasi-monte-carlo-sampling">Log-uniform &amp; quasi-Monte Carlo sampling</a></li>
+<li><a href="#convergence-analysis">Convergence analysis</a></li>
+</ul></li>
+<li><a href="#results-1">Results</a><ul>
+<li><a href="#sobol-sensitivity-analysis-1">Sobol sensitivity analysis</a></li>
+<li><a href="#convergence-assessment">Convergence assessment</a></li>
+</ul></li>
+<li><a href="#take-away">Take away</a></li>
 </ul>
 </div>
 
 <p>I find a great <a href="https://github.com/mrgsolve/gallery/blob/master/application/sobol.md">example</a> about performing Sobol sensitivity analysis within pharmacokinetic modeling through <a href="https://mrgsolve.github.io/">mrgsolve</a> and <a href="https://dpastoor.github.io/PKPDmisc/">PKPDmisc</a>. I didn’t have any experience to use these packages in my study. But this is a good opportunity to understand how they work, since I have prior knowledge in sensitivity analysis. Last year, I was lucky to have a chance to participate in <a href="https://ec.europa.eu/jrc/en/event/training-course/samo-2018">the 10th summer school on Sensitivity Analysis of Model Output</a> (SAMO 2018). It was fantastic!<br />
 Here I want to apply some techniques that I learned in this SAMO summer school, and it might be helpful to apply Sobol sensitivity analysis in pharmacokinetic modeling. Maybe in the future, I can integrate this approach in <a href="https://nanhung.rbind.io/pksensi/index.html">pksensi</a>.</p>
 <div id="prerequisites---packages" class="section level2">
-<h2><span class="header-section-number">0.1</span> Prerequisites - packages</h2>
+<h2>Prerequisites - packages</h2>
 <p>The list of R packages should be installed first to do the following testing. The related functions are also listed behind the package.</p>
 <pre class="r"><code>library(tidyverse) 
 library(mrgsolve) # mrgsim_ei
@@ -56,13 +60,22 @@ library(sensitivity) # sobol2007
 library(randtoolbox) # sobol
 library(reshape2) # melt
 library(LSD) # heatscatter</code></pre>
+<p>For Windows OS, some build tools need to pre-install, such as Rtools. Also, be sure to assign the PATH of Rtools.</p>
+<pre class="r"><code>Sys.setenv(PATH = paste(&quot;c:\\Rtools\\bin&quot;, Sys.getenv(&quot;PATH&quot;), sep=&quot;;&quot;))
+Sys.setenv(PATH = paste(&quot;c:\\Rtools\\mingw_64\\bin&quot;, Sys.getenv(&quot;PATH&quot;), sep=&quot;;&quot;))</code></pre>
+<pre class="r"><code>pkgbuild::check_build_tools(debug=TRUE)</code></pre>
+<pre><code>## Scanning R CMD config CC...
+## cc_path: c:/Rtools/mingw_64/bin/gcc 
+## install_path: c:/Rtools 
+## Found compatible gcc from R CMD config CC</code></pre>
+<pre><code>## Your system is ready to build packages!</code></pre>
 <hr />
 </div>
 <div id="reproducible-analysis" class="section level1">
-<h1><span class="header-section-number">1</span> Reproducible analysis</h1>
+<h1>Reproducible analysis</h1>
 <p>This section is used to reproduce the result in previous post.</p>
 <div id="the-sunitinib-pk-model" class="section level2">
-<h2><span class="header-section-number">1.1</span> The sunitinib PK model</h2>
+<h2>The sunitinib PK model</h2>
 <pre class="r"><code>mod &lt;- mread(&quot;sunit&quot;, &quot;models&quot;) %&gt;% 
   update(end = 24, delta = 1) %&gt;% zero_re</code></pre>
 <pre><code>## Building sunit ... done.</code></pre>
@@ -103,11 +116,11 @@ library(LSD) # heatscatter</code></pre>
 ## capture CP = (1000*CENT/V2);</code></pre>
 </div>
 <div id="sunitinib-dosing" class="section level2">
-<h2><span class="header-section-number">1.2</span> Sunitinib dosing</h2>
+<h2>Sunitinib dosing</h2>
 <pre class="r"><code>sunev &lt;- function(amt = 50,...) ev(amt = amt, ...)</code></pre>
 </div>
 <div id="a-bunch-of-helper-functions" class="section level2">
-<h2><span class="header-section-number">1.3</span> A bunch of helper functions</h2>
+<h2>A bunch of helper functions</h2>
 <pre class="r"><code>gen_samples&lt;- function(n, l, which = names(l), factor = c(0.01,100)) {
   vars &lt;- select_vars(names(l), !!(enquo(which)))
   l &lt;- as.list(l)[vars]
@@ -141,11 +154,14 @@ library(LSD) # heatscatter</code></pre>
 }</code></pre>
 </div>
 <div id="sobol-sensitivity-analysis" class="section level2">
-<h2><span class="header-section-number">1.4</span> Sobol sensitivity analysis</h2>
+<h2>Sobol sensitivity analysis</h2>
 <p>The sampling method is based on this <a href="https://github.com/metrumresearchgroup/pbpk-qsp-mrgsolve/blob/master/docs/global_sensitivity_analysis.md">example</a>. Therefore I can adequately reproduce the same output.</p>
 <pre class="r"><code>set.seed(88771)
-samp &lt;- gen_samples(6000, param(mod), TVCL:TVVP)
-head(samp$x1)</code></pre>
+samp &lt;- gen_samples(6000, param(mod), TVCL:TVVP)</code></pre>
+<pre><code>## Warning: select_vars() is deprecated. 
+## Please use tidyselect::vars_select() instead
+## This warning is displayed once per session.</code></pre>
+<pre class="r"><code>head(samp$x1)</code></pre>
 <pre><code>##       TVCL      TVVC      TVKA      TVQ      TVVP
 ## 1 2837.253 166875.30 11.013982 108.5520 34567.952
 ## 2 3490.800  14354.07 18.822180 547.8690 50545.862
@@ -158,9 +174,9 @@ head(samp$x1)</code></pre>
 ## This warning is displayed once per session.</code></pre>
 </div>
 <div id="results" class="section level2">
-<h2><span class="header-section-number">1.5</span> Results</h2>
+<h2>Results</h2>
 <pre class="r"><code>plot(x)</code></pre>
-<p><img src="/post/2019-02-08-sobol-sensitivity-analysis-for-pk-model_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="/post/2019-02-08-sobol-sensitivity-analysis/index_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>The result shows that only TVCL and TVVC can significantly dominate the output result. Also, it’s difficult to determine the influence of TVKA, TVQ, and TVVP.</p>
 <pre class="r"><code>x</code></pre>
 <pre><code>## 
@@ -171,25 +187,25 @@ head(samp$x1)</code></pre>
 ## 
 ## First order indices:
 ##           original          bias   std. error     min. c.i.   max. c.i.
-## TVCL  0.1601012111  2.214509e-03 0.0147719664  0.1316449251 0.189595425
-## TVVC  0.3320740078  2.876393e-03 0.0251520442  0.2830470899 0.379087675
-## TVKA  0.0010487694 -2.155859e-05 0.0006259874 -0.0003245785 0.002275195
-## TVQ   0.0051811252 -2.478164e-04 0.0019619628  0.0013627356 0.009513428
-## TVVP -0.0004045875 -1.257215e-04 0.0009964991 -0.0021085877 0.001548759
+## TVCL  0.1601012111 -3.961186e-04 0.0165887575  0.1202675221 0.191178797
+## TVVC  0.3320740078 -1.285038e-04 0.0294846206  0.2733978327 0.391703368
+## TVKA  0.0010487694 -6.613295e-05 0.0007313674 -0.0004292212 0.002390704
+## TVQ   0.0051811252 -1.872421e-04 0.0019048728  0.0014201887 0.009856908
+## TVVP -0.0004045875 -5.127682e-05 0.0009684934 -0.0026189101 0.001518605
 ## 
 ## Total indices:
 ##        original          bias  std. error    min. c.i.  max. c.i.
-## TVCL 0.62250758 -0.0034865050 0.017071677  0.592191898 0.66000962
-## TVVC 0.81936724 -0.0004663454 0.017085775  0.782400067 0.85437849
-## TVKA 0.01614792 -0.0005697163 0.005517145  0.004259271 0.02703173
-## TVQ  0.04231475 -0.0017862104 0.047789088 -0.055005315 0.11255199
-## TVVP 0.02456133  0.0004543576 0.009441657  0.003857844 0.04377317</code></pre>
+## TVCL 0.62250758 -7.167859e-04 0.018940870  0.584373307 0.65593812
+## TVVC 0.81936724 -1.052853e-03 0.020453124  0.779979644 0.86583928
+## TVKA 0.01614792  2.026065e-04 0.005829411  0.003003340 0.02467302
+## TVQ  0.04231475  1.472590e-03 0.052447894 -0.075011615 0.11446682
+## TVVP 0.02456133  1.780932e-05 0.008600429  0.002349588 0.03899559</code></pre>
 </div>
 </div>
 <div id="methods-and-defined-functions" class="section level1">
-<h1><span class="header-section-number">2</span> Methods and defined functions</h1>
+<h1>Methods and defined functions</h1>
 <div id="log-uniform-quasi-monte-carlo-sampling" class="section level2">
-<h2><span class="header-section-number">2.1</span> Log-uniform &amp; quasi-Monte Carlo sampling</h2>
+<h2>Log-uniform &amp; quasi-Monte Carlo sampling</h2>
 <p>Based on the <code>gen_samples()</code> above, I further create two functions. The first one sample the parameters under the log-transformed parameter range. The main reason to develop this function is that the setting range of model parameters are extremely large in this example. The original example generated uniform samples from a 100 fold decrease to 100 fold increase based on the nominal parameter value. It might cause an unexpected sampling bias. Therefore, the new function aims to solve this problem.</p>
 <p>Let’s call this function as <code>gen_samples_1()</code>.</p>
 <pre class="r"><code>gen_samples_1 &lt;- function(n, l, which = names(l), factor = c(0.01,100)) {
@@ -227,7 +243,7 @@ head(samp$x1)</code></pre>
 }</code></pre>
 </div>
 <div id="convergence-analysis" class="section level2">
-<h2><span class="header-section-number">2.2</span> Convergence analysis</h2>
+<h2>Convergence analysis</h2>
 <p>This is one of the critical steps in sensitivity analysis. More details can be found in my published paper in <a href="https://www.frontiersin.org/articles/10.3389/fphar.2018.00588/full">Frontiers in Pharmacology</a>. Here I create a function called <code>sample_converge()</code>, which can generate the convergence index based on the values of the given sample number. The drawback of this function is time-consuming. Because it estimates the convergence index at each sample number and each defined sampling function.</p>
 <pre class="r"><code>sample_converge &lt;- function(n, l, which = names(l)){
   vars &lt;- select_vars(names(l), !!(enquo(which)))
@@ -254,7 +270,7 @@ head(samp$x1)</code></pre>
 </div>
 </div>
 <div id="results-1" class="section level1">
-<h1><span class="header-section-number">3</span> Results</h1>
+<h1>Results</h1>
 <p>The first step in this section is using three defined functions to generate the testing parameter sets. The sampling number is 1000 for 5 parameters of TVCL, TVVC, TVKA, TVQ, and TVVP.</p>
 <pre class="r"><code>set.seed(88771) 
 samp &lt;- gen_samples(1000, param(mod), TVCL:TVVP)
@@ -301,7 +317,7 @@ samp1$x1[,i] %&gt;% density() %&gt;% plot(main = &quot;Log MC&quot;)
 samp1$x1[,i] %&gt;% log(10) %&gt;% density() %&gt;% plot(main = &quot;Log MC&quot;)
 samp2$x1[,i] %&gt;% log(10) %&gt;% density() %&gt;% plot(main = &quot;Log QMC&quot;)
 samp$x1[,i] %&gt;% log(10) %&gt;% density() %&gt;% plot(main = &quot;MC&quot;)</code></pre>
-<p><img src="/post/2019-02-08-sobol-sensitivity-analysis-for-pk-model_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="/post/2019-02-08-sobol-sensitivity-analysis/index_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p>Although the sampling ranges are nearly the same, we can easily understand how different sampling method that cause the difference of parameter sampling result.</p>
 <pre class="r"><code>j &lt;- &quot;TVKA&quot;
 par(mfrow = c(3,2), mar = c(2,2,4,1))
@@ -315,10 +331,10 @@ heatscatter(log(samp2$x1[,i]), log(samp2$x1[,j]), add.contour=T,
             nlevels=3, xlab = i, ylab = j, main = &quot;Log QMC&quot;)
 heatscatter(log(samp$x1[,i]), log(samp$x1[,j]), add.contour=T,
             nlevels=3, xlab = i, ylab = j, main = &quot;MC&quot;)</code></pre>
-<p><img src="/post/2019-02-08-sobol-sensitivity-analysis-for-pk-model_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="/post/2019-02-08-sobol-sensitivity-analysis/index_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 <p>Here, we can find the devil in detail. The uniform sampling in the parameter range without log-transformed ignore the lowest value that might cause bias in sampling.</p>
 <div id="sobol-sensitivity-analysis-1" class="section level2">
-<h2><span class="header-section-number">3.1</span> Sobol sensitivity analysis</h2>
+<h2>Sobol sensitivity analysis</h2>
 <p>Now, let’s run <code>Sobol2007()</code> with sampling parameter sets that were generated above</p>
 <pre class="r"><code>x &lt;- sobol2007(batch_run, X1=samp$x1, X2=samp$x2, nboot=100)
 x1 &lt;- sobol2007(batch_run, X1=samp1$x1, X2=samp1$x2, nboot=100)
@@ -333,19 +349,19 @@ x2 &lt;- sobol2007(batch_run, X1=samp2$x1, X2=samp2$x2, nboot=100)</code></pre>
 ## 
 ## First order indices:
 ##          original          bias  std. error     min. c.i.   max. c.i.
-## TVCL 0.1578766813  5.012385e-03 0.029278635  0.0897186624 0.201866655
-## TVVC 0.3447385309  8.374844e-03 0.052814673  0.2256359297 0.427604593
-## TVKA 0.0024763449  2.373005e-05 0.001390263 -0.0003113366 0.005189519
-## TVQ  0.0006193458  5.645544e-04 0.003724279 -0.0080400435 0.006242974
-## TVVP 0.0014283420 -4.903354e-05 0.001889425 -0.0024604804 0.005245518
+## TVCL 0.1578766813  3.250022e-03 0.033005767  0.0831340971 0.208784945
+## TVVC 0.3447385309  8.297948e-03 0.058385061  0.2116874512 0.439716478
+## TVKA 0.0024763449  1.134024e-04 0.001395324 -0.0006966283 0.004475360
+## TVQ  0.0006193458  1.030277e-05 0.003931364 -0.0082013704 0.007769471
+## TVVP 0.0014283420 -1.568393e-04 0.002094409 -0.0029347135 0.005404179
 ## 
 ## Total indices:
-##          original          bias std. error   min. c.i.   max. c.i.
-## TVCL  0.672686672 -0.0102220989 0.04633728  0.59281897 0.789283127
-## TVVC  0.879711964 -0.0019054688 0.02182246  0.83962655 0.928699868
-## TVKA -0.002296679  0.0008413025 0.00627142 -0.01699606 0.008496922
-## TVQ   0.090611733 -0.0070882690 0.04120019  0.02882457 0.187441411
-## TVVP -0.017351498  0.0017017751 0.03155429 -0.07603819 0.063987904</code></pre>
+##          original          bias std. error   min. c.i.  max. c.i.
+## TVCL  0.672686672 -0.0059100925 0.04348816  0.60216947 0.77544255
+## TVVC  0.879711964 -0.0023144031 0.02527204  0.83348425 0.93344461
+## TVKA -0.002296679  0.0003929362 0.00609826 -0.01654166 0.00753213
+## TVQ   0.090611733 -0.0043982793 0.04320352  0.01043012 0.17826769
+## TVVP -0.017351498 -0.0005199410 0.03743392 -0.08840910 0.07573544</code></pre>
 <pre class="r"><code>x1</code></pre>
 <pre><code>## 
 ## Call:
@@ -354,20 +370,20 @@ x2 &lt;- sobol2007(batch_run, X1=samp2$x1, X2=samp2$x2, nboot=100)</code></pre>
 ## Model runs: 70000 
 ## 
 ## First order indices:
-##         original          bias  std. error    min. c.i.  max. c.i.
-## TVCL 0.112745680  0.0026565784 0.022466040  0.063361769 0.15082631
-## TVVC 0.182459668  0.0025801709 0.026674092  0.127316358 0.23893441
-## TVKA 0.021922824  0.0004888711 0.005009015  0.010456681 0.03100943
-## TVQ  0.023164323  0.0002864731 0.008486985  0.003380099 0.03716093
-## TVVP 0.002536912 -0.0001392410 0.009145051 -0.017324642 0.02074989
+##         original          bias  std. error     min. c.i.  max. c.i.
+## TVCL 0.112745680 -0.0018874736 0.021582893  0.0667614621 0.14906761
+## TVVC 0.182459668  0.0022066883 0.029547809  0.1126664154 0.23557963
+## TVKA 0.021922824  0.0001354410 0.004531145  0.0107957910 0.02909251
+## TVQ  0.023164323  0.0017545308 0.008545537  0.0005484498 0.03525311
+## TVVP 0.002536912  0.0007573005 0.008796247 -0.0135753283 0.02221676
 ## 
 ## Total indices:
 ##        original          bias std. error  min. c.i. max. c.i.
-## TVCL 0.71060891 -0.0090987188 0.03552466 0.65125586 0.7909084
-## TVVC 0.72747952  0.0027789293 0.03171177 0.66407305 0.7794759
-## TVKA 0.32450192 -0.0051129215 0.04216267 0.23945646 0.4078702
-## TVQ  0.24375109 -0.0073162011 0.03950212 0.17323399 0.3362771
-## TVVP 0.08803744  0.0004144841 0.01928357 0.04367123 0.1287615</code></pre>
+## TVCL 0.71060891 -3.411062e-04 0.03015394 0.65364477 0.7744247
+## TVVC 0.72747952 -6.774622e-03 0.03716421 0.67285885 0.8337374
+## TVKA 0.32450192 -6.844519e-03 0.03941054 0.25251174 0.4119687
+## TVQ  0.24375109  5.215198e-05 0.04065983 0.15330960 0.3209390
+## TVVP 0.08803744 -2.040679e-03 0.02449453 0.03902242 0.1323451</code></pre>
 <pre class="r"><code>x2</code></pre>
 <pre><code>## 
 ## Call:
@@ -377,173 +393,181 @@ x2 &lt;- sobol2007(batch_run, X1=samp2$x1, X2=samp2$x2, nboot=100)</code></pre>
 ## 
 ## First order indices:
 ##         original          bias  std. error    min. c.i.  max. c.i.
-## TVCL 0.103053511  0.0028262338 0.016635276  0.065230617 0.13173635
-## TVVC 0.107953643  0.0018690990 0.015629609  0.077203453 0.13310952
-## TVKA 0.026633093  0.0017673356 0.005997603  0.012004116 0.03583295
-## TVQ  0.022689512 -0.0004086214 0.008989424  0.005895948 0.03760702
-## TVVP 0.002595473  0.0007961698 0.005699388 -0.008999633 0.01419777
+## TVCL 0.103027957  1.329474e-03 0.016928092  0.062206744 0.13392310
+## TVVC 0.108067943  4.850138e-04 0.017032442  0.067234051 0.13681107
+## TVKA 0.026631543 -1.896882e-04 0.006256774  0.012587506 0.03674231
+## TVQ  0.022702256 -7.581687e-05 0.010309681 -0.002974256 0.03819241
+## TVVP 0.002593369  1.097495e-03 0.007197813 -0.014341987 0.01483385
 ## 
 ## Total indices:
-##        original          bias std. error  min. c.i. max. c.i.
-## TVCL 0.69397587 -0.0082166809 0.03517866 0.62262374 0.7715309
-## TVVC 0.75993807 -0.0002017117 0.02741192 0.71040000 0.8298959
-## TVKA 0.29168389  0.0003159408 0.04169429 0.22751231 0.3914107
-## TVQ  0.22996502 -0.0017208325 0.03689100 0.15739127 0.3073664
-## TVVP 0.09510386  0.0008423339 0.02086733 0.04653191 0.1337083</code></pre>
+##       original         bias std. error  min. c.i. max. c.i.
+## TVCL 0.6939626 -0.005988046 0.03177676 0.64003307 0.7667221
+## TVVC 0.7600239 -0.003652923 0.03244894 0.70463123 0.8348733
+## TVKA 0.2916849 -0.002200904 0.03767825 0.21765965 0.3703749
+## TVQ  0.2299604  0.001193074 0.03354570 0.15617823 0.2964697
+## TVVP 0.0951044  0.001477643 0.02077172 0.04920617 0.1352185</code></pre>
 <p>Plot</p>
 <pre class="r"><code>par(mfrow = c(2,2), mar = c(2,2,3,1))
 plot(x, main = &quot;MC&quot;)
 plot(x1, main = &quot;Log MC&quot;)
 plot(x2, main = &quot;Log QMC&quot;)</code></pre>
-<p><img src="/post/2019-02-08-sobol-sensitivity-analysis-for-pk-model_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="/post/2019-02-08-sobol-sensitivity-analysis/index_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 <p>Same as above, we can find that only TVCL and TVVC have an obvious influence on the model output in the previous sampling method. However, the proposed methods can easily rank the importance of parameters in this case.</p>
 <p>The results of the parameter vs. model output look like this.</p>
 <pre class="r"><code>par(mfrow = c(3,2), mar = c(2,2,4,1))
 for (i in 1:5){
   heatscatter(log(x$X[,i]), log(x$y), xlab = &quot;&quot;, ylab = &quot;&quot;, main = names(x$X)[i])
 }</code></pre>
-<p><img src="/post/2019-02-08-sobol-sensitivity-analysis-for-pk-model_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p><img src="/post/2019-02-08-sobol-sensitivity-analysis/index_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 <p>This is the result of sampling in the log-transformed parameter range.</p>
 <pre class="r"><code>par(mfrow = c(3,2), mar = c(2,2,4,1))
 for (i in 1:5){
   heatscatter(log(x1$X[,i]), log(x1$y), xlab = &quot;&quot;, ylab = &quot;&quot;, main = names(x1$X)[i])
 }</code></pre>
-<p><img src="/post/2019-02-08-sobol-sensitivity-analysis-for-pk-model_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p><img src="/post/2019-02-08-sobol-sensitivity-analysis/index_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 <p>It’s an efficient way to see the relationship between parameter value and model output. The high impact parameter has relatively concentrated contour than other parameters.</p>
 </div>
 <div id="convergence-assessment" class="section level2">
-<h2><span class="header-section-number">3.2</span> Convergence assessment</h2>
+<h2>Convergence assessment</h2>
 <p>The convergence index can simply calculate through the 95% CI of sensitivity index that is estimated from bootstrapping in the Sobol method. Here is the result of the convergence index under the sample number of 1000 from the above section.</p>
 <pre class="r"><code>x$T[,&quot;max. c.i.&quot;] - x$T[,&quot;min. c.i.&quot;]</code></pre>
-<pre><code>## [1] 0.19646416 0.08907332 0.02549298 0.15861684 0.14002610</code></pre>
+<pre><code>## [1] 0.17327308 0.09996036 0.02407379 0.16783757 0.16414454</code></pre>
 <pre class="r"><code>x1$T[,&quot;max. c.i.&quot;] - x1$T[,&quot;min. c.i.&quot;]</code></pre>
-<pre><code>## [1] 0.13965253 0.11540284 0.16841379 0.16304310 0.08509031</code></pre>
+<pre><code>## [1] 0.12077997 0.16087857 0.15945694 0.16762939 0.09332266</code></pre>
 <pre class="r"><code>x2$T[,&quot;max. c.i.&quot;] - x2$T[,&quot;min. c.i.&quot;]</code></pre>
-<pre><code>## [1] 0.14890720 0.11949593 0.16389841 0.14997513 0.08717637</code></pre>
+<pre><code>## [1] 0.12668908 0.13024203 0.15271526 0.14029143 0.08601233</code></pre>
 <p>In this part, the values of the sample number were set at 500, 1000, 2000, 4000, and 8000. It will take a couple of minutes to run <code>sample_converge()</code></p>
 <pre class="r"><code>sample &lt;- c(500, 1000, 2000, 4000, 8000)
 set.seed(88771)
 system.time(converge_list &lt;- sample_converge(sample, param(mod), TVCL:TVVP))</code></pre>
 <pre><code>##    user  system elapsed 
-## 400.042   5.766 402.707</code></pre>
+##  324.86    4.61  329.47</code></pre>
 <pre class="r"><code>df &lt;- do.call(rbind, list(converge_list[[1]] %&gt;% melt() %&gt;% cbind(type = &quot;MC&quot;),
                           converge_list[[2]] %&gt;% melt() %&gt;% cbind(type = &quot;log_MC&quot;),
                           converge_list[[3]] %&gt;% melt() %&gt;% cbind(type = &quot;log_QMC&quot;)))</code></pre>
 <p>Finally, visualizing the result to see the convergence of each parameter. Both QMC and MC random sampling showed a similar result. Each parameter was close or below the threshold of 0.05. However, it’s hard to conclude that the QMC can provide the best way for Sobol sensitivity analysis in pharmacokinetic modeling.</p>
 <pre class="r"><code>theme_set(theme_light())
 df %&gt;% `colnames&lt;-`(c(&quot;sample.no&quot;, &quot;parameter&quot;, &quot;index&quot;, &quot;type&quot;)) %&gt;%
-  ggplot(aes(sample.no, index, group = parameter)) + geom_line(aes(color = parameter)) + 
+  ggplot(aes(sample.no, index, group = parameter)) + 
+  geom_line(aes(color = parameter)) + 
   facet_wrap(~type) + 
-  expand_limits(y= c(0, 0.5)) + geom_hline(yintercept = 0.05, linetype=&quot;dashed&quot;, size = 0.2) +
+  expand_limits(y= c(0, 0.5)) + 
+  geom_hline(yintercept = 0.05, linetype=&quot;dashed&quot;, size = 0.2) +
   labs(y = &quot;Convergence index&quot;, x = &quot;Sample number&quot;) +
   theme(legend.position = &quot;top&quot;)</code></pre>
-<p><img src="/post/2019-02-08-sobol-sensitivity-analysis-for-pk-model_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p><img src="/post/2019-02-08-sobol-sensitivity-analysis/index_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
 </div>
 </div>
 <div id="take-away" class="section level1">
-<h1><span class="header-section-number">4</span> Take away</h1>
+<h1>Take away</h1>
 <ol style="list-style-type: decimal">
 <li><p>Always plot the data. Because the devil might in the detail and your data might look likes a dinosaur.</p></li>
 <li><p>Rethinking about the sampling. If the sampling range is too wide, try using the log-transformed method.</p></li>
 <li><p>Try Quasi-Monte Carlo. The QMC method can generate distribution than random MC sampling uniformly. Unfortunately, QMC didn’t show the best result in convergence assessment in this case.</p></li>
 </ol>
 <pre class="r"><code>devtools::session_info()</code></pre>
-<pre><code>## ─ Session info ──────────────────────────────────────────────────────────
+<pre><code>## - Session info ---------------------------------------------------------------
 ##  setting  value                       
-##  version  R version 3.5.2 (2018-12-20)
-##  os       Ubuntu 18.04.1 LTS          
-##  system   x86_64, linux-gnu           
-##  ui       X11                         
-##  language en_US                       
-##  collate  en_US.UTF-8                 
-##  ctype    en_US.UTF-8                 
+##  version  R version 3.6.2 (2019-12-12)
+##  os       Windows 10 x64              
+##  system   x86_64, mingw32             
+##  ui       RTerm                       
+##  language (EN)                        
+##  collate  English_United States.1252  
+##  ctype    English_United States.1252  
 ##  tz       America/Chicago             
-##  date     2019-02-10                  
+##  date     2019-12-16                  
 ## 
-## ─ Packages ──────────────────────────────────────────────────────────────
+## - Packages -------------------------------------------------------------------
 ##  package       * version     date       lib source        
-##  assertthat      0.2.0       2017-04-11 [1] CRAN (R 3.5.2)
-##  backports       1.1.3       2018-12-14 [1] CRAN (R 3.5.2)
-##  bindr           0.1.1       2018-03-13 [1] CRAN (R 3.5.2)
-##  bindrcpp      * 0.2.2       2018-03-29 [1] CRAN (R 3.5.2)
-##  blogdown        0.10        2019-01-09 [1] CRAN (R 3.5.2)
-##  bookdown        0.9         2018-12-21 [1] CRAN (R 3.5.2)
-##  boot            1.3-20      2017-07-30 [4] CRAN (R 3.5.0)
-##  broom           0.5.1       2018-12-05 [1] CRAN (R 3.5.2)
-##  callr           3.1.1       2018-12-21 [1] CRAN (R 3.5.2)
-##  cellranger      1.1.0       2016-07-27 [1] CRAN (R 3.5.2)
-##  cli             1.0.1       2018-09-25 [1] CRAN (R 3.5.2)
-##  colorspace      1.4-0       2019-01-13 [1] CRAN (R 3.5.2)
-##  crayon          1.3.4       2017-09-16 [1] CRAN (R 3.5.2)
-##  desc            1.2.0       2018-05-01 [1] CRAN (R 3.5.2)
-##  devtools        2.0.1       2018-10-26 [1] CRAN (R 3.5.2)
-##  digest          0.6.18      2018-10-10 [1] CRAN (R 3.5.2)
-##  dplyr         * 0.7.8       2018-11-10 [1] CRAN (R 3.5.2)
-##  evaluate        0.12        2018-10-09 [1] CRAN (R 3.5.2)
-##  forcats       * 0.3.0       2018-02-19 [1] CRAN (R 3.5.2)
-##  fs              1.2.6       2018-08-23 [1] CRAN (R 3.5.2)
-##  generics        0.0.2       2018-11-29 [1] CRAN (R 3.5.2)
-##  ggplot2       * 3.1.0       2018-10-25 [1] CRAN (R 3.5.2)
-##  glue            1.3.0       2018-07-17 [1] CRAN (R 3.5.2)
-##  gtable          0.2.0       2016-02-26 [1] CRAN (R 3.5.2)
-##  haven           2.0.0       2018-11-22 [1] CRAN (R 3.5.2)
-##  hms             0.4.2       2018-03-10 [1] CRAN (R 3.5.2)
-##  htmltools       0.3.6       2017-04-28 [1] CRAN (R 3.5.2)
-##  httr            1.4.0       2018-12-11 [1] CRAN (R 3.5.2)
-##  jsonlite        1.6         2018-12-07 [1] CRAN (R 3.5.2)
-##  knitr           1.21        2018-12-10 [1] CRAN (R 3.5.2)
-##  labeling        0.3         2014-08-23 [1] CRAN (R 3.5.2)
-##  lattice         0.20-38     2018-11-04 [4] CRAN (R 3.5.1)
-##  lazyeval        0.2.1       2017-10-29 [1] CRAN (R 3.5.2)
-##  LSD           * 4.0-0       2018-01-26 [1] CRAN (R 3.5.2)
-##  lubridate       1.7.4       2018-04-11 [1] CRAN (R 3.5.2)
-##  magrittr        1.5         2014-11-22 [1] CRAN (R 3.5.2)
-##  memoise         1.1.0       2017-04-21 [1] CRAN (R 3.5.2)
-##  modelr          0.1.2       2018-05-11 [1] CRAN (R 3.5.2)
-##  mrgsolve      * 0.9.0       2019-01-23 [1] CRAN (R 3.5.2)
-##  munsell         0.5.0       2018-06-12 [1] CRAN (R 3.5.2)
-##  nlme            3.1-137     2018-04-07 [4] CRAN (R 3.5.0)
-##  pillar          1.3.1       2018-12-15 [1] CRAN (R 3.5.2)
-##  pkgbuild        1.0.2       2018-10-16 [1] CRAN (R 3.5.2)
-##  pkgconfig       2.0.2       2018-08-16 [1] CRAN (R 3.5.2)
-##  pkgload         1.0.2       2018-10-29 [1] CRAN (R 3.5.2)
-##  PKPDmisc      * 2.1.1       2017-12-17 [1] CRAN (R 3.5.2)
-##  plyr            1.8.4       2016-06-08 [1] CRAN (R 3.5.2)
-##  prettyunits     1.0.2       2015-07-13 [1] CRAN (R 3.5.2)
-##  processx        3.2.1       2018-12-05 [1] CRAN (R 3.5.2)
-##  ps              1.3.0       2018-12-21 [1] CRAN (R 3.5.2)
-##  purrr         * 0.3.0       2019-01-27 [1] CRAN (R 3.5.2)
-##  R6              2.3.0       2018-10-04 [1] CRAN (R 3.5.2)
-##  randtoolbox   * 1.17.1      2018-02-14 [1] CRAN (R 3.5.2)
-##  Rcpp            1.0.0       2018-11-07 [1] CRAN (R 3.5.2)
-##  RcppArmadillo   0.9.200.7.0 2019-01-17 [1] CRAN (R 3.5.2)
-##  readr         * 1.3.1       2018-12-21 [1] CRAN (R 3.5.2)
-##  readxl          1.2.0       2018-12-19 [1] CRAN (R 3.5.2)
-##  remotes         2.0.2       2018-10-30 [1] CRAN (R 3.5.2)
-##  reshape2      * 1.4.3       2017-12-11 [1] CRAN (R 3.5.2)
-##  rlang           0.3.1       2019-01-08 [1] CRAN (R 3.5.2)
-##  rmarkdown       1.11        2018-12-08 [1] CRAN (R 3.5.2)
-##  rngWELL       * 0.10-5      2017-05-21 [1] CRAN (R 3.5.2)
-##  rprojroot       1.3-2       2018-01-03 [1] CRAN (R 3.5.2)
-##  rstudioapi      0.9.0       2019-01-09 [1] CRAN (R 3.5.2)
-##  rvest           0.3.2       2016-06-17 [1] CRAN (R 3.5.2)
-##  scales          1.0.0       2018-08-09 [1] CRAN (R 3.5.2)
-##  sensitivity   * 1.15.2      2018-09-02 [1] CRAN (R 3.5.2)
-##  sessioninfo     1.1.1       2018-11-05 [1] CRAN (R 3.5.2)
-##  stringi         1.2.4       2018-07-20 [1] CRAN (R 3.5.2)
-##  stringr       * 1.3.1       2018-05-10 [1] CRAN (R 3.5.2)
-##  tibble        * 2.0.1       2019-01-12 [1] CRAN (R 3.5.2)
-##  tidyr         * 0.8.2       2018-10-28 [1] CRAN (R 3.5.2)
-##  tidyselect      0.2.5       2018-10-11 [1] CRAN (R 3.5.2)
-##  tidyverse     * 1.2.1       2017-11-14 [1] CRAN (R 3.5.2)
-##  usethis         1.4.0       2018-08-14 [1] CRAN (R 3.5.2)
-##  withr           2.1.2       2018-03-15 [1] CRAN (R 3.5.2)
-##  xfun            0.4         2018-10-23 [1] CRAN (R 3.5.2)
-##  xml2            1.2.0       2018-01-24 [1] CRAN (R 3.5.2)
-##  yaml            2.2.0       2018-07-25 [1] CRAN (R 3.5.2)
+##  assertthat      0.2.1       2019-03-21 [1] CRAN (R 3.6.1)
+##  backports       1.1.5       2019-10-02 [1] CRAN (R 3.6.1)
+##  blogdown        0.17        2019-11-13 [1] CRAN (R 3.6.1)
+##  bookdown        0.16        2019-11-22 [1] CRAN (R 3.6.1)
+##  boot            1.3-23      2019-07-05 [2] CRAN (R 3.6.2)
+##  broom           0.5.2       2019-04-07 [1] CRAN (R 3.6.1)
+##  callr           3.4.0       2019-12-09 [1] CRAN (R 3.6.1)
+##  cellranger      1.1.0       2016-07-27 [1] CRAN (R 3.6.1)
+##  cli             2.0.0       2019-12-09 [1] CRAN (R 3.6.1)
+##  colorspace      1.4-1       2019-03-18 [1] CRAN (R 3.6.1)
+##  crayon          1.3.4       2017-09-16 [1] CRAN (R 3.6.1)
+##  DBI             1.0.0       2018-05-02 [1] CRAN (R 3.6.1)
+##  dbplyr          1.4.2       2019-06-17 [1] CRAN (R 3.6.1)
+##  desc            1.2.0       2018-05-01 [1] CRAN (R 3.6.1)
+##  devtools        2.2.1       2019-09-24 [1] CRAN (R 3.6.1)
+##  digest          0.6.23      2019-11-23 [1] CRAN (R 3.6.1)
+##  dplyr         * 0.8.3       2019-07-04 [1] CRAN (R 3.6.1)
+##  ellipsis        0.3.0       2019-09-20 [1] CRAN (R 3.6.1)
+##  evaluate        0.14        2019-05-28 [1] CRAN (R 3.6.1)
+##  fansi           0.4.0       2018-10-05 [1] CRAN (R 3.6.1)
+##  farver          2.0.1       2019-11-13 [1] CRAN (R 3.6.1)
+##  forcats       * 0.4.0       2019-02-17 [1] CRAN (R 3.6.1)
+##  fs              1.3.1       2019-05-06 [1] CRAN (R 3.6.1)
+##  generics        0.0.2       2018-11-29 [1] CRAN (R 3.6.1)
+##  ggplot2       * 3.2.1       2019-08-10 [1] CRAN (R 3.6.1)
+##  glue            1.3.1       2019-03-12 [1] CRAN (R 3.6.1)
+##  gtable          0.3.0       2019-03-25 [1] CRAN (R 3.6.1)
+##  haven           2.2.0       2019-11-08 [1] CRAN (R 3.6.1)
+##  hms             0.5.2       2019-10-30 [1] CRAN (R 3.6.1)
+##  htmltools       0.4.0       2019-10-04 [1] CRAN (R 3.6.1)
+##  httr            1.4.1       2019-08-05 [1] CRAN (R 3.6.1)
+##  jsonlite        1.6         2018-12-07 [1] CRAN (R 3.6.1)
+##  knitr           1.26        2019-11-12 [1] CRAN (R 3.6.1)
+##  labeling        0.3         2014-08-23 [1] CRAN (R 3.6.0)
+##  lattice         0.20-38     2018-11-04 [2] CRAN (R 3.6.2)
+##  lazyeval        0.2.2       2019-03-15 [1] CRAN (R 3.6.1)
+##  lifecycle       0.1.0       2019-08-01 [1] CRAN (R 3.6.1)
+##  LSD           * 4.0-0       2018-01-26 [1] CRAN (R 3.6.0)
+##  lubridate       1.7.4       2018-04-11 [1] CRAN (R 3.6.1)
+##  magrittr        1.5         2014-11-22 [1] CRAN (R 3.6.1)
+##  memoise         1.1.0       2017-04-21 [1] CRAN (R 3.6.1)
+##  modelr          0.1.5       2019-08-08 [1] CRAN (R 3.6.1)
+##  mrgsolve      * 0.10.0      2019-10-15 [1] CRAN (R 3.6.1)
+##  munsell         0.5.0       2018-06-12 [1] CRAN (R 3.6.1)
+##  nlme            3.1-142     2019-11-07 [2] CRAN (R 3.6.2)
+##  pillar          1.4.2       2019-06-29 [1] CRAN (R 3.6.1)
+##  pkgbuild        1.0.6       2019-10-09 [1] CRAN (R 3.6.1)
+##  pkgconfig       2.0.3       2019-09-22 [1] CRAN (R 3.6.1)
+##  pkgload         1.0.2       2018-10-29 [1] CRAN (R 3.6.1)
+##  PKPDmisc      * 2.1.1       2017-12-17 [1] CRAN (R 3.6.1)
+##  plyr            1.8.5       2019-12-10 [1] CRAN (R 3.6.1)
+##  prettyunits     1.0.2       2015-07-13 [1] CRAN (R 3.6.1)
+##  processx        3.4.1       2019-07-18 [1] CRAN (R 3.6.1)
+##  ps              1.3.0       2018-12-21 [1] CRAN (R 3.6.1)
+##  purrr         * 0.3.3       2019-10-18 [1] CRAN (R 3.6.1)
+##  R6              2.4.1       2019-11-12 [1] CRAN (R 3.6.1)
+##  randtoolbox   * 1.30.0      2019-04-21 [1] CRAN (R 3.6.0)
+##  Rcpp            1.0.3       2019-11-08 [1] CRAN (R 3.6.1)
+##  RcppArmadillo   0.9.800.3.0 2019-12-07 [1] CRAN (R 3.6.1)
+##  readr         * 1.3.1       2018-12-21 [1] CRAN (R 3.6.1)
+##  readxl          1.3.1       2019-03-13 [1] CRAN (R 3.6.1)
+##  remotes         2.1.0       2019-06-24 [1] CRAN (R 3.6.1)
+##  reprex          0.3.0       2019-05-16 [1] CRAN (R 3.6.1)
+##  reshape2      * 1.4.3       2017-12-11 [1] CRAN (R 3.6.1)
+##  rlang           0.4.2       2019-11-23 [1] CRAN (R 3.6.1)
+##  rmarkdown       2.0         2019-12-12 [1] CRAN (R 3.6.2)
+##  rngWELL       * 0.10-5      2017-05-21 [1] CRAN (R 3.6.0)
+##  rprojroot       1.3-2       2018-01-03 [1] CRAN (R 3.6.1)
+##  rstudioapi      0.10        2019-03-19 [1] CRAN (R 3.6.1)
+##  rvest           0.3.5       2019-11-08 [1] CRAN (R 3.6.1)
+##  scales          1.1.0       2019-11-18 [1] CRAN (R 3.6.1)
+##  sensitivity   * 1.16.3      2019-12-05 [1] CRAN (R 3.6.1)
+##  sessioninfo     1.1.1       2018-11-05 [1] CRAN (R 3.6.1)
+##  stringi         1.4.3       2019-03-12 [1] CRAN (R 3.6.0)
+##  stringr       * 1.4.0       2019-02-10 [1] CRAN (R 3.6.1)
+##  testthat        2.3.1       2019-12-01 [1] CRAN (R 3.6.1)
+##  tibble        * 2.1.3       2019-06-06 [1] CRAN (R 3.6.1)
+##  tidyr         * 1.0.0       2019-09-11 [1] CRAN (R 3.6.1)
+##  tidyselect      0.2.5       2018-10-11 [1] CRAN (R 3.6.1)
+##  tidyverse     * 1.3.0       2019-11-21 [1] CRAN (R 3.6.1)
+##  usethis         1.5.1       2019-07-04 [1] CRAN (R 3.6.1)
+##  vctrs           0.2.0       2019-07-05 [1] CRAN (R 3.6.1)
+##  withr           2.1.2       2018-03-15 [1] CRAN (R 3.6.1)
+##  xfun            0.11        2019-11-12 [1] CRAN (R 3.6.1)
+##  xml2            1.2.2       2019-08-09 [1] CRAN (R 3.6.1)
+##  yaml            2.2.0       2018-07-25 [1] CRAN (R 3.6.0)
+##  zeallot         0.1.0       2018-01-28 [1] CRAN (R 3.6.1)
 ## 
-## [1] /home/nanhung/R/x86_64-pc-linux-gnu-library/3.5
-## [2] /usr/local/lib/R/site-library
-## [3] /usr/lib/R/site-library
-## [4] /usr/lib/R/library</code></pre>
+## [1] C:/Users/nan_1/Documents/R/win-library/3.6
+## [2] C:/Program Files/R/R-3.6.2/library</code></pre>
 </div>
