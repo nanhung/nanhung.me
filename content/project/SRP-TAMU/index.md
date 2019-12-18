@@ -1,12 +1,21 @@
 ---
-title: P42ES027704
+title: P42 ES027704
 summary: Comprehensive Tools and Models for Addressing Exposure to Mixtures During Environmental Emergency-Related Contamination Events
 tags:
 - mixtures
 - toxicodynamics
-date: "2019-11-18T00:00:00Z"
 ---
 
 ## Comprehensive Tools and Models for Addressing Exposure to Mixtures During Environmental Emergency-Related Contamination Events
+Dtae: 04/01/17-03/31/22
+
+PI: [Ivan Rusyn](https://nanhung.rbind.io/authors/ivan-rusyn/)  
+Co-PI: [Weihsueh A. Chiu](https://nanhung.rbind.io/authors/weihsueh-a.-chiu/)
+
+### Description
 
 Comprehensive tools and models for addressing exposure to mixtures during environmental emergency-related contamination events Overall Program Description Climate change and shifts in domestic economic activity markedly increase risks from catastrophic chemical contamination events resulting from weather-related or anthropogenic emergencies. The complexities of hazardous chemical exposures, potential adverse health impacts, and the need to rapidly and comprehensively evaluate the potential hazards of exposures to complex mixtures call for novel approaches in the Superfund Research Program. This Center brings together a team of scientists from biomedical, geosciences, data science and engineering disciplines to design comprehensive solutions for complex exposure- and hazard-related challenges. Our overall theme is to characterize and manage both existing and environmental emergency-created hazardous waste sites through the development of the tools that can be used by first responders, the impacted communities, and the government bodies involved in site management and cleanup. Our case study is a hurricane or flooding event that impacts Galveston Bay/Houston Ship Channel area and leads to exposure to contaminated sediments. Project 1 will study fate and transport of complex environmental contaminants in sediments and incorporate this information into environmental models. Project 2 will develop novel low-cost broad-acting sorption materials suitable for mitigation of acute exposures to complex contaminant mixtures. Projects 3 and 4 will take advantage of the discoveries in cell imaging and stem cell biology to establish predictive in vitro methods for quantitative evaluation of the complex mixture- perturbed adverse outcome pathways and intra- and inter-individual variability in toxicity. An Exposure Science Core will be developing and applying novel sensitive analytical methods for targeted and un-targeted analysis of a broad array of contaminants in environmental and biological samples. A Data Science Core will develop computational and statistical tools for analysis and integration of “big data” in environmental health. A Decision Science Core will develop an integrated toxicokinetic, human health, and economic models to support environmental health decisions. The Center will engage with community organizations and public health practitioners in Texas to address health concerns of the populations that may be impacted by environmental emergency-related contamination events. We will train students and postdoctoral fellows in inter-disciplinary approaches across our scientific areas, decision making and emergency response. The research translation to local, state, national and international stakeholders will be conducted through technology transfer and comprehensive outreach for the solutions developed by the Center. Finally, the management of this program will be conducted in close partnership with the administration at Texas A&M University and Health Science Center, the NIEHS-funded Center for Translational Environmental Health Research, and overseen by the advisors representing academia, federal and state agencies, industry and a non-governmental organization. 
+
+### Public Health Relevance
+
+Overall Program Narrative This Center is focused on developing better, faster, more informative research tools and computational models that aid during response to and recovery from environmental emergencies. Climate change and human activity increase vulnerability to disasters that may involve exposure to hazardous chemicals. We bring together a team of scientists from biomedical, geosciences, data science and engineering disciplines to propose solutions for characterization and management of both existing and environmental emergency-created hazardous waste sites. The case study is a hurricane or flooding event that impacts Galveston Bay/Houston Ship Channel area and leads to exposure to contaminated sediments.
