@@ -4,10 +4,11 @@ summary: Comprehensive Tools and Models for Addressing Exposure to Mixtures Duri
 tags:
 - mixtures
 - toxicodynamics
+date: "2017-04-01T00:00:00Z"
 ---
 
 ## Comprehensive Tools and Models for Addressing Exposure to Mixtures During Environmental Emergency-Related Contamination Events
-Dtae: 04/01/17-03/31/22
+Date: 04/01/17-03/31/22
 
 PI: [Ivan Rusyn](https://nanhung.rbind.io/authors/ivan-rusyn/)  
 Co-PI: [Weihsueh A. Chiu](https://nanhung.rbind.io/authors/weihsueh-a.-chiu/)
