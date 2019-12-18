@@ -3,7 +3,7 @@ title: "pksensi: an R package to apply sensitivity analysis in pharmacokinetic m
 authors:
 - admin
 - Brad Reisfeld
-- Weihsueh Chiu
+- Weihsueh A. Chiu
 
 date: "2019-03-12T15:00:00Z"
 doi: ""

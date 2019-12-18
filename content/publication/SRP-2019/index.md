@@ -4,7 +4,7 @@ authors:
 - admin
 - Zunwei Chen
 - Ivan Rusyn
-- Weihsueh Chiu
+- Weihsueh A. Chiu
 
 date: "2019-11-18T17:00:00Z"
 doi: ""

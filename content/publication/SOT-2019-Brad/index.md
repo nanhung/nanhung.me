@@ -2,10 +2,10 @@
 title: "PoPKAT: A Framework for Bayesian Population PBPK Analysis"
 authors:
 - Brad Reisfeld
-- Weihsueh Chiu
+- Weihsueh A. Chiu
 - admin
 - Catherine Olschanowsky
-- Frederic Bois
+- Frederic Y. Bois
 - Sudipto Ghosh
 
 date: "2019-03-12T15:00:00Z"
