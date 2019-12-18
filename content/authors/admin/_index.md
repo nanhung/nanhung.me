@@ -46,9 +46,6 @@ social:
   icon_pack: fas
   link: mailto:nhsieh@cvm.tamu.edu
   #link: '#contact'  # For a direct email link, use "mailto:test@example.org".
-- icon: twitter
-  icon_pack: fab
-  link: https://twitter.com/nanhung_hsieh
 - icon: google-scholar
   icon_pack: ai
   link: https://scholar.google.com/citations?user=AM1YgJAAAAAJ&hl=en&oi=sra
@@ -61,15 +58,19 @@ social:
 - icon: impactstory
   icon_pack: ai
   link: https://impactstory.org/u/0000-0003-0163-2766
-- icon: github
-  icon_pack: fab
-  link: https://github.com/nanhung
+- icon: researchgate
+  icon_pack: ai
+  link: https://www.researchgate.net/profile/Nan-Hung_Hsieh  
 - icon: linkedin
   icon_pack: fab
   link: https://www.linkedin.com/in/nhsie/  
-  
-  
-  
+- icon: twitter
+  icon_pack: fab
+  link: https://twitter.com/nanhung_hsieh
+- icon: github
+  icon_pack: fab
+  link: https://github.com/nanhung
+
 # Link to a PDF of your resume/CV from the About widget.
 # To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.
 # - icon: cv
