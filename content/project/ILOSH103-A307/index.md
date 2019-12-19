@@ -5,7 +5,7 @@ tags:
 - BPb
 - bayesian
 - BMD
-- risk
+- occupational risk
 - decision
 date: "2014-03-01T00:00:00Z"
 ---
@@ -14,7 +14,8 @@ date: "2014-03-01T00:00:00Z"
 Date: 03/01/14 - 11/30/14 
 
 Funder: [Institute of Labor, Occupational Safety And Health, Ministry of Labor](https://www.ilosh.gov.tw/enhome)  
-PI: [Nan-Hung Hsieh](https://nanhung.rbind.io/authors/admin/) & [Shun-Hui Chung](https://nanhung.rbind.io/authors/shun-hui-chung/)
+PI: [Nan-Hung Hsieh](https://nanhung.rbind.io/authors/admin/) & [Shun-Hui Chung](https://nanhung.rbind.io/authors/shun-hui-chung/)  
+Project Link: [Chinese](https://laws.ilosh.gov.tw/ioshcustom/Web/YearlyReserachReports/Detail?id=2764)  
 
 ### ABSTRACT
 
