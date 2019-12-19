@@ -10,7 +10,7 @@ date: "2016-09-01T00:00:00Z"
 ---
 
 ## Enhancing the Reliability, Efficiency, and Usability of Bayesian Population PBPK Modeling  
-Date: 09/01/16 - 08/31/18
+Date: 09/01/16 - 08/31/18 (Amount: $250,000)
 
 PI: [Brad Reisfeld](https://nanhung.rbind.io/authors/brad-reisfeld/)  
 Co-PI: [Weihsueh A. Chiu](https://nanhung.rbind.io/authors/weihsueh-a.-chiu/)
