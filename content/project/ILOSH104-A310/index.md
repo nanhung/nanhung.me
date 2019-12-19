@@ -6,6 +6,8 @@ tags:
 - meta analysis
 - occupational risk
 date: "2015-06-01T00:00:00Z"
+image:
+  caption: Photo by [Abhijith S Nair](https://unsplash.com/@abhijith__s_nair?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/worker-fog?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 ---
 
 ## Assessing the Fine Particles-Associated Health Risks for Workers in Workplace  

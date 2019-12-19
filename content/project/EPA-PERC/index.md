@@ -7,6 +7,8 @@ tags:
 - Metabolism
 - Risk
 date: "2014-06-01T00:00:00Z"
+image:
+  caption: Photo from [The Jackson Laboratory](https://www.jax.org/news-and-insights/2017/june/multi-parent-mouse-populations-reveal-genomic-secrets)
 ---
 
 ## Toxicogenetics of Tetrachloroethylene Metabolism and Toxicity: Using Collaborative Cross Mouse Population Approach to Address Remaining Gaps in Human Health Assessments

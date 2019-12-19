@@ -8,6 +8,8 @@ tags:
 - occupational risk
 - decision
 date: "2014-03-01T00:00:00Z"
+image:
+  caption: Photo from [Wikipedia](https://en.wikipedia.org/wiki/Lead%E2%80%93acid_battery#/media/File:Recycling_lead_in_a_lead-acid_battery_recovery_facility.jpg)
 ---
 
 ## Assessing Health Risks for Workers in High Lead Exposed Factories  

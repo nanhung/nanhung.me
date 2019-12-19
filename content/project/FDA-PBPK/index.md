@@ -1,6 +1,6 @@
 ---
 title: U01 FD005838
-summary:  Enhancing the Reliability, Efficiency, and Usability of Bayesian Population PBPK Modeling
+summary: Enhancing the Reliability, Efficiency, and Usability of Bayesian Population PBPK Modeling
 tags:
 - bayesian
 - PBPK
