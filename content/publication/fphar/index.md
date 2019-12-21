@@ -4,7 +4,7 @@ authors:
 - admin
 - Brad Reisfeld
 - Frederic Y. Bois
-- Weihsueh Chiu
+- Weihsueh A. Chiu
 
 date: "2018-06-08T00:00:00Z"
 doi: "10.3389/fphar.2018.00588"

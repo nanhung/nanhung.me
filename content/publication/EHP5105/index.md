@@ -7,7 +7,7 @@ authors:
 - Lauren Lewis
 - Fred A. Wright
 - David W. Threadgill
-- Weihsueh Chiu
+- Weihsueh A. Chiu
 - Ivan Rusyn
 
 date: "2019-06-27T00:00:00Z"
@@ -21,7 +21,7 @@ publication_types: ["2"]
 
 # Publication name and optional abbreviated publication name.
 publication: In *Environmental Health Perspectives*
-publication_short: In *Environ. Health Perspect.*
+publication_short: In *Environ Health Perspect*
 
 tags:
 - tetrachloroethylene
