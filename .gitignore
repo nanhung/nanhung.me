@@ -1,11 +1,24 @@
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
-public/*
-.DS_Store
+# IDE specific
+.idea/
+.vscode/
+resources/
+public/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Node
+node_modules/
+
+# MCSim
 *.o
 *.so
 *.exe
 *.dll
 *.out
+
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.DS_Store
