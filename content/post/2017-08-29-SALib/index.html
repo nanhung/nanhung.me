@@ -27,9 +27,9 @@ tags: [sensitivity, Sobol, python]
 
 <div id="TOC">
 <ul>
-<li><a href="#sensitivity-analysis">Sensitivity analysis</a></li>
+<li><a href="#installation-setting">Installation &amp; setting</a></li>
+<li><a href="#sensitivity-analysis-by-salib">Sensitivity analysis by SALib</a></li>
 <li><a href="#visualization-in-r">Visualization in R</a></li>
-<li><a href="#session-info">Session info</a></li>
 </ul>
 </div>
 
@@ -39,10 +39,9 @@ tags: [sensitivity, Sobol, python]
 <blockquote>
 <p>Sensitivity Analysis is the study of how uncertainty in the output of a model (numerical or otherwise) can be apportioned to different sources of uncertainty in the model input. - <a href="https://www.wiley.com/en-us/Global+Sensitivity+Analysis%3A+The+Primer-p-9780470059975">Global Sensitivity Analysis: The Primer</a></p>
 </blockquote>
-<p>Sensitivity analysis is a mathematical method to understand how model output influenced by the uncertainty in the model parameters. Here is a simple <a href="https://salib.readthedocs.io/en/latest/basics.html">example</a> to perform a sensitivity analysis by python module <a href="https://salib.readthedocs.io/en/latest/index.html"><strong>SALib</strong></a>. I used the Sobol method as an example and visualized the test results. The running environment was in R and utilized <strong>reticulate</strong> package to call Python from R.</p>
-<p>The blog post is update and</p>
-<div id="installation-setting" class="section level3">
-<h3>Installation &amp; setting</h3>
+<p>According to the above definition, sensitivity analysis is a mathematical method to understand how model output influenced by the uncertainty in the model parameters. In this post, I used a simple <a href="https://salib.readthedocs.io/en/latest/basics.html">example</a> to perform a sensitivity analysis by python module <a href="https://salib.readthedocs.io/en/latest/index.html"><strong>SALib</strong></a>. In addition, the <a href="https://salib.readthedocs.io/en/latest/api.html#sobol-sensitivity-analysis">Sobol</a> method was used as an example and visualized the test results in R. The running environment was in R and utilized <a href="https://rstudio.github.io/reticulate/"><strong>reticulate</strong></a> package to call Python from R.</p>
+<div id="installation-setting" class="section level2">
+<h2>Installation &amp; setting</h2>
 <p>The following command is used to install the related R package (<strong>reticulate</strong> &amp; <strong>ggplot</strong>) and python <strong>SALib</strong>.</p>
 <pre class="r"><code>install.packages(&quot;reticulate&quot;)
 install.packages(&quot;ggplot2&quot;)
@@ -57,12 +56,12 @@ Sys.which(&quot;python3&quot;)</code></pre>
 <pre><code>##            python3 
 ## &quot;/usr/bin/python3&quot;</code></pre>
 </div>
-<div id="sensitivity-analysis" class="section level2">
-<h2>Sensitivity analysis</h2>
+<div id="sensitivity-analysis-by-salib" class="section level2">
+<h2>Sensitivity analysis by SALib</h2>
 <p>There are two ways to call python script. One uses <code>source_python()</code> to read the python script. The other is to use Python REPL embedded within the R session by <code>repl_python()</code>. After the analysis in Python REPL, use <code>exit</code> to return to the R prompt. The following is the python script that conducts Sobol sensitivity analysis for Ishigami function (sourced from <strong>SALib</strong> example).
-The Ishigami function of Ishigami &amp; Homma (1990) is a classic function that can be used to test uncertainty and conduct sensitivity analysis. The parameters in the Ishigami function also have strong nonlinearity or nonmonotonicity with outputs.</p>
-<p><span class="math display">\[f(x)=sin(x_1)+asin^2(x_2)+bx_{3}^4(x_1)\]</span>
-The default setting of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are 7 and 0.1. The distribution of <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span>, and <span class="math inline">\(X_3\)</span> are uniform distributions ranged between <span class="math inline">\(-\pi\)</span> and <span class="math inline">\(\pi\)</span>.</p>
+The <a href="https://www.sfu.ca/~ssurjano/ishigami.html">Ishigami function</a> is a classic function that can be used to test uncertainty and conduct sensitivity analysis. The parameters in the Ishigami function also have strong nonlinearity or nonmonotonicity with outputs.</p>
+<p><span class="math display">\[f(x)=sin(x_1)+asin^2(x_2)+bx_{3}^4(x_1)\]</span></p>
+<p>According to the <a href="https://github.com/SALib/SALib/blob/master/src/SALib/test_functions/Ishigami.py">sorce code</a> in SALib, the default setting of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are 7 and 0.1. In addition, the distribution of <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span>, and <span class="math inline">\(X_3\)</span> are uniform distributions ranged between <span class="math inline">\(-\pi\)</span> and <span class="math inline">\(\pi\)</span>.</p>
 <pre class="python"><code># Importing SALib
 import SALib
 import random
@@ -90,14 +89,15 @@ Y = Ishigami.evaluate(X)
 # Perform analysis
 Si = sobol.analyze(problem, Y, print_to_console=True)</code></pre>
 <pre><code>## Parameter S1 S1_conf ST ST_conf
-## x1 0.307975 0.063848 0.560137 0.085270
-## x2 0.447767 0.051791 0.438722 0.041722
-## x3 -0.004255 0.060125 0.242845 0.023270
+## x1 0.307975 0.062166 0.560137 0.083126
+## x2 0.447767 0.056009 0.438722 0.037057
+## x3 -0.004255 0.058614 0.242845 0.026408
 ## 
 ## Parameter_1 Parameter_2 S2 S2_conf
-## x1 x2 0.012205 0.092162
-## x1 x3 0.251526 0.108422
-## x2 x3 -0.009954 0.065775</code></pre>
+## x1 x2 0.012205 0.088722
+## x1 x3 0.251526 0.101116
+## x2 x3 -0.009954 0.075114</code></pre>
+<p>By using Sobol sensitivity analysis, we can obtain three sensitivity indices, which are first-order index (<code>S1</code>; the contribution to the output variance by a single model parameter alone), second-order index (<code>S2</code>; the contribution to the output variance caused by the interaction of two model parameters), and total-order index (<code>ST</code>; the contribution to the output variance caused by a model parameters, including both its first-order effects and interactions). The confidence interval is generated by resampling that can be used to check the convergence of the estimated results.</p>
 </div>
 <div id="visualization-in-r" class="section level2">
 <h2>Visualization in R</h2>
@@ -107,13 +107,13 @@ Si = sobol.analyze(problem, Y, print_to_console=True)</code></pre>
 ## [1]  0.307975489  0.447766610 -0.004254525
 ## 
 ## $S1_conf
-## [1] 0.06384752 0.05179114 0.06012467
+## [1] 0.06216644 0.05600881 0.05861368
 ## 
 ## $ST
 ## [1] 0.5601373 0.4387225 0.2428447
 ## 
 ## $ST_conf
-## [1] 0.08527023 0.04172216 0.02327007
+## [1] 0.08312561 0.03705691 0.02640761
 ## 
 ## $S2
 ##      [,1]       [,2]        [,3]
@@ -123,8 +123,8 @@ Si = sobol.analyze(problem, Y, print_to_console=True)</code></pre>
 ## 
 ## $S2_conf
 ##      [,1]       [,2]       [,3]
-## [1,]  NaN 0.09216189 0.10842211
-## [2,]  NaN        NaN 0.06577468
+## [1,]  NaN 0.08872155 0.10111577
+## [2,]  NaN        NaN 0.07511383
 ## [3,]  NaN        NaN        NaN</code></pre>
 <p>The Saltelli sampler generated <span class="math inline">\(N\times(2D+2)\)</span> samples (8000 samples in this case) to evaluate the model sensitivity, where <span class="math inline">\(N\)</span> is the setting sample number(1000 in this case), and <span class="math inline">\(D\)</span> is the number of model inputs (3 in this case).</p>
 <pre class="r"><code>par(mfrow=c(1,3), mar=c(2,2,2,1))
@@ -132,14 +132,14 @@ plot(py$X[,1], main=&quot;X1&quot;)
 plot(py$X[,2], main=&quot;X2&quot;)
 plot(py$X[,3], main=&quot;X3&quot;)</code></pre>
 <p><img src="/post/2017-08-29-SALib/index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<p>The scatter plot for parameters (<span class="math inline">\(X\)</span>), and model outputs (<span class="math inline">\(Y\)</span>) can be used to understand the parameter effect on the model outputs.</p>
+<p>The below scatter plot of parameters (<span class="math inline">\(X\)</span>) and model output (<span class="math inline">\(Y\)</span>) can be used to understand the parameter effect on the output variance.</p>
 <pre class="r"><code>par(mfrow=c(1,3), mar=c(2,2,2,1))
 plot(py$X[,1], py$Y, pch = &quot;.&quot;, main=&quot;X1&quot;)
 plot(py$X[,2], py$Y, pch = &quot;.&quot;, main=&quot;X2&quot;)
 plot(py$X[,3], py$Y, pch = &quot;.&quot;, main=&quot;X3&quot;)</code></pre>
 <p><img src="/post/2017-08-29-SALib/index_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Finally, we can use the calculated sensitivity index to investigate the influence of model parameters.</p>
-<pre class="r"><code># Manipulation
+<pre class="r"><code># Create the data frame for ggplot
 parms &lt;- c(&quot;x1&quot;, &quot;x2&quot;, &quot;x3&quot;)
 sobol &lt;- c(py$Si$S1, py$Si$ST)
 conf &lt;- c(py$Si$S1_conf, py$Si$ST_conf)
@@ -147,12 +147,12 @@ df &lt;- data.frame(parms, sobol, conf)
 df$Order &lt;- rep(c(&quot;Main&quot;, &quot;Total&quot;), each = 3)
 df</code></pre>
 <pre><code>##   parms        sobol       conf Order
-## 1    x1  0.307975489 0.06384752  Main
-## 2    x2  0.447766610 0.05179114  Main
-## 3    x3 -0.004254525 0.06012467  Main
-## 4    x1  0.560137277 0.08527023 Total
-## 5    x2  0.438722499 0.04172216 Total
-## 6    x3  0.242844745 0.02327007 Total</code></pre>
+## 1    x1  0.307975489 0.06216644  Main
+## 2    x2  0.447766610 0.05600881  Main
+## 3    x3 -0.004254525 0.05861368  Main
+## 4    x1  0.560137277 0.08312561 Total
+## 5    x2  0.438722499 0.03705691 Total
+## 6    x3  0.242844745 0.02640761 Total</code></pre>
 <pre class="r"><code># Plotting
 pd &lt;- position_dodge(0.1)
 theme_set(theme_bw())
@@ -161,10 +161,8 @@ ggplot(df, aes(x=parms, y=sobol, group=Order, color=Order)) +
   geom_point(position=pd, size=3) +
   labs(x=&quot;Parameter&quot;, y=&quot;Sobol index&quot;)</code></pre>
 <p><img src="/post/2017-08-29-SALib/index_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<p>According to this result, we can easily find that the parameter <span class="math inline">\(X1\)</span> has the highest effect on model output based on the total effect. In addition, the current result also shows that the estimated Sobol index does not reach the acceptable convergence (wider confidence interval). Therefore, the sample number needs to increase further to improve the variation in the estimation.</p>
-</div>
-<div id="session-info" class="section level1">
-<h1>Session info</h1>
+<p>According to this result, we can easily find that the parameter <span class="math inline">\(X1\)</span> has the highest effect on model output based on the total effect. In addition, the current result also shows that the estimated Sobol index does not reach the acceptable convergence (wider confidence interval). Therefore, the sample number needs to increase further to improve the variation in the estimation.
+# Session info</p>
 <pre class="r"><code>sessionInfo()</code></pre>
 <pre><code>## R version 3.6.2 (2019-12-12)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
