@@ -150,7 +150,7 @@ ggplot(df, aes(x=parms, y=sobol, group=Order, color=Order)) +
 ```
 
 According to this result, we can easily find that the parameter $X1$ has the highest effect on model output based on the total effect. In addition, the current result also shows that the estimated Sobol index does not reach the acceptable convergence (wider confidence interval). Therefore, the sample number needs to increase further to improve the variation in the estimation. 
-# Session info
+## Session info
 
 ```{r}
 sessionInfo()
