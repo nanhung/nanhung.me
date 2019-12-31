@@ -1,0 +1,310 @@
+---
+title: 'MCSim under R'
+summary: Run GNU MCSim (under R) in Windows system
+authors:
+- admin
+date: "2018-03-09"
+output:
+  blogdown::html_page:
+    toc: true
+    toc_depth: 2
+projects: [PBPK]
+categories: [software]
+tags: [mcsim, R]
+
+# Featured image
+# To use, add an image named `featured.jpg/png` to your page's folder.
+# Placement options: 1 = Full column width, 2 = Out-set, 3 = Screen-width
+# Focal point options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight  
+# image:
+#  placement: 2
+#  preview_only: true
+#  focal_point: 'TopRight'
+#  caption: 'Image credit: [**Unsplash**](https://unsplash.com/photos/CpkOjOcXdUY)'
+
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#prerequisites">Prerequisites</a><ul>
+<li><a href="#create-gnu-mcsim-program">Create GNU MCSim program</a></li>
+</ul></li>
+<li><a href="#r-package-desolve-solution">R package <strong>deSolve</strong> solution</a><ul>
+<li><a href="#solve-ode-in-pure-r">Solve ODE in pure R</a></li>
+<li><a href="#use-desolve-with-gnu-mcsim-model-file">Use <strong>deSolve</strong> with <strong>GNU MCSim</strong> model file</a></li>
+</ul></li>
+<li><a href="#gnu-mcsim-solution"><strong>GNU MCSim</strong> solution</a></li>
+<li><a href="#session-info">Session info</a></li>
+</ul>
+</div>
+
+<p>{{% alert note %}}
+<strong><strong>The post was updated on 2019-12-31 under Windows 10 x64.</strong></strong>
+{{% /alert %}}</p>
+<div id="prerequisites" class="section level1">
+<h1>Prerequisites</h1>
+<ul>
+<li>R</li>
+<li>RStudio</li>
+<li>Rtools</li>
+<li>GNU MCSim (portable version; <a href="https://github.com/nanhung/MCSim_under_R" class="uri">https://github.com/nanhung/MCSim_under_R</a>)</li>
+</ul>
+<p>This exercise was sourced from the file <a href="https://www.gnu.org/software/mcsim/mcsim_under_R.zip"><strong>MCSim under R</strong></a> in <a href="https://www.gnu.org/software/mcsim/"><strong>GNU MCSim</strong></a>. The version of <strong>Rtools</strong> is 3.5 and <strong>GNU MCSim</strong> is 6.1.0.</p>
+<p>If you have installed <code>devtools</code> you can use <code>devtools::find_rtools()</code> to check the avaliable of Rtools.</p>
+<pre class="r"><code>devtools::find_rtools()</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<p>Also, we need to chek the Rtools is in the PATH by using</p>
+<pre class="r"><code>Sys.getenv(&quot;PATH&quot;)</code></pre>
+<pre><code>## [1] &quot;c:\\Rtools\\mingw_64\\bin;c:\\Rtools\\bin;C:\\Program Files\\R\\R-3.6.2\\bin\\x64;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\Program Files\\Git\\cmd;C:\\Users\\nan_1\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\nan_1\\AppData\\Local\\Programs\\Microsoft VS Code\\bin&quot;</code></pre>
+<p>If you can not find the Rtools in the PATH. such as, <code>c:\\Rtools\\bin</code> and <code>c:\\Rtools\\mingw_64\\bin</code>. You will need to manually add it as follow,</p>
+<pre class="r"><code>Sys.setenv(PATH = paste(&quot;c:\\Rtools\\bin&quot;, Sys.getenv(&quot;PATH&quot;), sep=&quot;;&quot;))
+Sys.setenv(PATH = paste(&quot;c:\\Rtools\\mingw_64\\bin&quot;, Sys.getenv(&quot;PATH&quot;), sep=&quot;;&quot;))</code></pre>
+<p>Then, use following command to check the function.</p>
+<pre class="r"><code>Sys.which(&quot;gcc&quot;)</code></pre>
+<pre><code>##                                  gcc 
+## &quot;c:\\Rtools\\mingw_64\\bin\\gcc.exe&quot;</code></pre>
+<pre class="r"><code>Sys.which(&quot;make&quot;)</code></pre>
+<pre><code>##                        make 
+## &quot;c:\\Rtools\\bin\\make.exe&quot;</code></pre>
+<div id="create-gnu-mcsim-program" class="section level2">
+<h2>Create GNU MCSim program</h2>
+<p>The following steps can compile the <code>simple.model</code> file (sourced from <strong>GNU MCSim</strong>) and create the executable program. The testing model <code>simple.model</code> file looks like this:</p>
+<pre><code>#------------------------------------------------------------------------------
+# the deSolve example model (simple.model)
+#------------------------------------------------------------------------------
+
+States = {y0, y1, y2};
+
+Outputs = {yout};
+
+# Parameters
+k1 = 1;
+k2 = 1;
+k3 = 1;
+
+Dynamics {
+
+  dt(y0) = -k1 * y0 + k2 * y1 * y2; 
+  dt(y2) =  k3 * y1 * y1; 
+  dt(y1) = -dt(y0) - dt(y2);
+
+  yout = y0 + y1 + y2;
+
+} # End of Dynamics
+
+Events {
+  y0 = 1;
+}
+
+Roots { # here we need inlining, otherwise &#39;gout&#39; will not be understood 
+  Inline ( gout[0] = y[0] - 0.5; );
+}
+
+End.</code></pre>
+<p>{{% alert warning %}}
+Make sure that the <code>simple.model</code> and <code>mod</code> folder are put in the working directory!
+{{% /alert %}}</p>
+<p><strong>NOTE:</strong> In this case, we don’t need to load libSBML. Therefore, check the <code>config.h</code> file in mod folder. We can see the line 26 in the config.h file like <a href="https://github.com/rbind/nanhung.me/blob/master/content/post/mod/config.h">THIS</a>. The <code>#define HAVE_LIBSBML 1</code> had been disabled. It can prevent the problem when compile to the mod.exe file. (Thanks <strong>Yu-Sheng Lin</strong> for provding this issue; Mar. 23, 2018).</p>
+<pre class="r"><code>libSBML = &quot;&quot; # libSBML = &quot;-lsbml&quot; 
+# uncomment and execute if you have and want to use libSBML.
+
+# create mod.exe in &quot;mod&quot; folder
+system(paste(&quot;gcc -o ./mod/mod.exe ./mod/*.c &quot;, libSBML, sep = &quot;&quot;)) </code></pre>
+<p>Use model file to check it works.</p>
+<pre class="r"><code>mName &lt;- &quot;simple.model&quot;</code></pre>
+<p>If everything is going well, we can move on to next section.</p>
+</div>
+</div>
+<div id="r-package-desolve-solution" class="section level1">
+<h1>R package <strong>deSolve</strong> solution</h1>
+<div id="solve-ode-in-pure-r" class="section level2">
+<h2>Solve ODE in pure R</h2>
+<pre class="r"><code># Load deSolve package
+library(deSolve)</code></pre>
+<pre class="r"><code># Create the ODE function based on the **deSolve** format
+model &lt;- function(t, Y, parameters) {
+  with (as.list(parameters), {
+    dy1 = -k1*Y[1] + k2*Y[2]*Y[3];
+    dy3 = k3*Y[2]*Y[2];
+    dy2 = -dy1 - dy3;
+    list(c(dy1, dy2, dy3));
+    })
+}
+jac &lt;- function (t, Y, parameters) {
+  with (as.list(parameters), {
+       PD[1,1] &lt;- -k1;
+       PD[1,2] &lt;- k2*Y[3];
+       PD[1,3] &lt;- k2*Y[2];
+       PD[2,1] &lt;- k1;
+       PD[2,3] &lt;- -PD[1,3];
+       PD[3,2] &lt;- k3*Y[2];
+       PD[2,2] &lt;- -PD[1,2] - PD[3,2];
+
+       return(PD) 
+    }) 
+}</code></pre>
+<pre class="r"><code># Define the parameter values and some conditions
+parms &lt;- c(k1 = 0.04, k2 = 1e4, k3=3e7) # parameter values
+Y &lt;- c(y1 = 1.0, y2 = 0.0, y3 = 0.0) # Initial conditions
+times  &lt;- c(0.04, 0.4*10^(0:11)) # Time steps
+PD &lt;- matrix(nrow = 3, ncol = 3, data = 0)</code></pre>
+<pre class="r"><code># Solve ODE 
+out.1 &lt;- ode(Y, times, model, parms = parms, jacfunc = jac)
+head(out.1)</code></pre>
+<pre><code>##       time        y1           y2         y3
+## [1,] 4e-02 1.0000000 0.000000e+00 0.00000000
+## [2,] 4e-01 0.9865579 3.410551e-05 0.01340797
+## [3,] 4e+00 0.9061220 2.247436e-05 0.09385556
+## [4,] 4e+01 0.7159311 9.189438e-06 0.28405972
+## [5,] 4e+02 0.4505299 3.223045e-06 0.54946692
+## [6,] 4e+03 0.1832003 8.942355e-07 0.81679876</code></pre>
+<pre class="r"><code># Visualization
+plot(out.1,type=&quot;b&quot;,log=&quot;x&quot;)</code></pre>
+<p><img src="/post/2018-03-09-mcsim-under-r/index_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+</div>
+<div id="use-desolve-with-gnu-mcsim-model-file" class="section level2">
+<h2>Use <strong>deSolve</strong> with <strong>GNU MCSim</strong> model file</h2>
+<pre class="r"><code># Create .c file and use -R to generate &quot;simple.model_inits.R&quot; initialization file
+system(paste(&quot;./mod/mod.exe -R &quot;, mName, &quot; &quot;, mName, &quot;.c&quot;, sep = &quot;&quot;)) </code></pre>
+<pre class="r"><code># compile the MCSim executable, needs to be done each time you modify the model
+system (paste0(&quot;R CMD SHLIB &quot;, mName, &quot;.c&quot;)) # create .o and .dll files
+dyn.load(paste(mName, .Platform$dynlib.ext, sep=&quot;&quot;)) # load simple.model.dll</code></pre>
+<pre class="r"><code>source (&quot;simple.model_inits.R&quot;)
+
+parms_init &lt;- initParms () # define parameter values
+Y_init &lt;- initStates (parms) # define initial state values
+
+# set output times, time 0 must be given
+times &lt;- c(0.04, 0.4*10^(0:10))
+
+out.2.1 &lt;- ode(Y_init, times, func = &quot;derivs&quot;, parms = parms_init, 
+               jacfunc = &quot;jac&quot;, dllname = &quot;simple.model&quot;, 
+               initfunc = &quot;initmod&quot;, nout = 1, outnames = &quot;Sum&quot;)
+
+plot(out.2.1, log=&quot;x&quot;, type=&quot;b&quot;)</code></pre>
+<p><img src="/post/2018-03-09-mcsim-under-r/index_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>{{% alert note %}}
+We can’t find any change in the dynamic process. It is due to the all initial value equal to 0.<br />
+{{% /alert %}}</p>
+<div id="parameters-and-initial-values" class="section level3">
+<h3>Parameters and initial values</h3>
+<pre class="r"><code># Define the parameters and initial values
+parms &lt;- c(k1 = 0.04, k2 = 1e4, k3=3e7) 
+Y &lt;- c(y0 = 1.0, y1 = 0.0, y2 = 0.0)
+
+# Use the defined parameters and initial values
+out.2.2 &lt;- ode(Y, times, func = &quot;derivs&quot;, parms = parms,
+               dllname = mName, initfunc = &quot;initmod&quot;,
+               nout = 1, outnames = &quot;Sum&quot;)
+
+# Here is the output data frame
+head(out.2.2)</code></pre>
+<pre><code>##       time        y0           y1         y2 Sum
+## [1,] 4e-02 1.0000000 0.000000e+00 0.00000000   1
+## [2,] 4e-01 0.9865579 3.410551e-05 0.01340797   1
+## [3,] 4e+00 0.9061220 2.247436e-05 0.09385556   1
+## [4,] 4e+01 0.7159311 9.189438e-06 0.28405972   1
+## [5,] 4e+02 0.4505299 3.223045e-06 0.54946692   1
+## [6,] 4e+03 0.1832003 8.942355e-07 0.81679876   1</code></pre>
+<pre class="r"><code># Plotting
+plot(out.2.2, log=&quot;x&quot;, type=&quot;b&quot;)</code></pre>
+<p><img src="/post/2018-03-09-mcsim-under-r/index_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+</div>
+</div>
+</div>
+<div id="gnu-mcsim-solution" class="section level1">
+<h1><strong>GNU MCSim</strong> solution</h1>
+<p>In this part, we need to put <code>simple.in</code> file in the working directory. The input file can define the initial and parameter values, respectively. Also,we need to set the output time steps and intervals. The source code looks like this:</p>
+<pre><code>#------------------------------------------------------------------------------
+# the deSolve example model run with GNU MCSim
+#------------------------------------------------------------------------------
+
+Simulation {
+
+  # Initial value
+  y0 = 1;
+
+  # Parameters
+  k1 = 0.04;
+  k2 = 1e4;
+  k3 = 3e7;
+
+  Print (y0, y1, y2, yout, 0.04, 4e-1, 4e+0, 4e+1, 4e+2, 4e+3, 4e+4, 4e+5, 4e+6, 4e+7, 4e+8, 
+         4e+9);
+}
+
+End.</code></pre>
+<p>The following step compile the <code>simple.model</code> file and create the executable program named <code>mcsim.simple.model.exe</code>.</p>
+<pre class="r"><code># set the name of your model
+mName = &quot;simple.model&quot;</code></pre>
+<p>Your model executable can be linked with the GNU Scientific Library (GSL, recommended). If you have GSL installed the directives <code>#define HAVE_LIBGSL 1</code> and <code>#define HAVE_LIBGSLCBLAS 1</code> should appear in the <code>config.h</code> file, in the directory above this one. If it does not, put them in, alone at the beginning of a line. If you do NOT have libGSL, those directives should NOT appear in that file. If they do, delete them.</p>
+<pre class="r"><code>libGSL = &quot;&quot; # libGSL = &quot;-lgsl -lgslcblas&quot; 
+# uncomment and execute if you have the GNU Scientific Library
+
+system(paste(&quot;./mod/mod.exe &quot;, mName, &quot; &quot;, mName, &quot;.c&quot;, sep = &quot;&quot;)) </code></pre>
+<pre><code>## [1] 0</code></pre>
+<pre class="r"><code># Unlike above exercice, you need to remove the -R flag that can only create c file.</code></pre>
+<p>Compile the <code>simple.model.c</code> to <code>mcsim.simple.model.exe</code>.</p>
+<pre class="r"><code>system(paste(&quot;gcc -O3 -I.. -I./sim -o mcsim_&quot;, mName, &quot;.exe &quot;, mName, &quot;.c ./sim/*.c -lm &quot;, sep = &quot;&quot;))</code></pre>
+<pre><code>## [1] 0</code></pre>
+<pre class="r"><code># run the simulation input file
+# put its name here
+simName = &quot;simple.in&quot;
+
+# run!
+system(paste(&quot;./mcsim_&quot;, mName, &quot;.exe &quot;, simName, sep = &quot;&quot;))</code></pre>
+<pre><code>## [1] 0</code></pre>
+<pre class="r"><code># the output file is called out by default, load it
+out.3 &lt;- read.delim(&quot;sim.out&quot;, skip = 2)
+head (out.3)</code></pre>
+<pre><code>##    Time       y0          y1         y2 yout
+## 1 4e-02 0.998413 3.62315e-05 0.00155113    1
+## 2 4e-01 0.985172 3.38640e-05 0.01479370    1
+## 3 4e+00 0.905517 2.24046e-05 0.09446050    1
+## 4 4e+01 0.715827 9.18720e-06 0.28416300    1
+## 5 4e+02 0.450521 3.22294e-06 0.54947500    1
+## 6 4e+03 0.183202 8.94233e-07 0.81679700    1</code></pre>
+<pre class="r"><code># look
+par(mfrow=c(2,2))
+plot(out.3[,1], out.3[,2], log=&quot;x&quot;,type=&quot;b&quot;, xlab = &quot;time&quot;, ylab = &quot;&quot;, main = &quot;y0&quot;)
+plot(out.3[,1], out.3[,3], log=&quot;x&quot;,type=&quot;b&quot;, xlab = &quot;time&quot;, ylab = &quot;&quot;, main = &quot;y1&quot;)
+plot(out.3[,1], out.3[,4], log=&quot;x&quot;,type=&quot;b&quot;, xlab = &quot;time&quot;, ylab = &quot;&quot;, main = &quot;y2&quot;)
+plot(out.3[,1], out.3[,5], log=&quot;x&quot;,type=&quot;b&quot;, xlab = &quot;time&quot;, ylab = &quot;&quot;, main = &quot;yout&quot;)</code></pre>
+<p><img src="/post/2018-03-09-mcsim-under-r/index_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+</div>
+<div id="session-info" class="section level1">
+<h1>Session info</h1>
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>## R version 3.6.2 (2019-12-12)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 17763)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=English_United States.1252 
+## [2] LC_CTYPE=English_United States.1252   
+## [3] LC_MONETARY=English_United States.1252
+## [4] LC_NUMERIC=C                          
+## [5] LC_TIME=English_United States.1252    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] deSolve_1.25
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_1.0.3        compiler_3.6.2    prettyunits_1.0.2 remotes_2.1.0    
+##  [5] tools_3.6.2       testthat_2.3.1    digest_0.6.23     pkgbuild_1.0.6   
+##  [9] pkgload_1.0.2     evaluate_0.14     memoise_1.1.0     rlang_0.4.2      
+## [13] cli_2.0.0         rstudioapi_0.10   yaml_2.2.0        blogdown_0.17    
+## [17] xfun_0.11         withr_2.1.2       stringr_1.4.0     knitr_1.26       
+## [21] fs_1.3.1          desc_1.2.0        devtools_2.2.1    rprojroot_1.3-2  
+## [25] glue_1.3.1        R6_2.4.1          processx_3.4.1    fansi_0.4.0      
+## [29] rmarkdown_2.0     bookdown_0.16     sessioninfo_1.1.1 callr_3.4.0      
+## [33] magrittr_1.5      backports_1.1.5   ps_1.3.0          ellipsis_0.3.0   
+## [37] htmltools_0.4.0   usethis_1.5.1     assertthat_0.2.1  stringi_1.4.3    
+## [41] crayon_1.3.4</code></pre>
+</div>
