@@ -75,7 +75,7 @@ Sys.which("gcc")
 Sys.which("make")
 ```
 
-## Create GNU MCSim program
+## Create **GNU MCSim** program
 
 The following steps is used to generate the executable program (`mod.exe`) that can traslate the format of model code to C. 
 
@@ -137,7 +137,7 @@ jac <- function (t, Y, parameters) {
 # Define the parameter values and some conditions
 parms <- c(k1 = 0.04, k2 = 1e4, k3=3e7) # parameter values
 Y <- c(y1 = 1.0, y2 = 0.0, y3 = 0.0) # Initial conditions
-times  <- c(0.04, 0.4*10^(0:11)) # Time steps
+times  <- c(0, 0.4*10^(0:11)) # Time steps
 PD <- matrix(nrow = 3, ncol = 3, data = 0)
 ```
 
@@ -288,18 +288,26 @@ End.
 
 The following step compile the `simple.model` file and create the executable program named `mcsim.simple.model.exe`. 
 
-```{R}
-system("MinGM-6.1.0/mod.exe simple.model simple.model.c") 
+```{r echo=T, results='hide'}
+mcsim <- "MinGM-6.1.0"
+model <- "simple.model"
+input <- "simple.in"
+system(paste0(mcsim, "/mod.exe ", model, " ", model, ".c")) 
 ```
 
 Unlike above exercice, we need to remove the -R flag that can only create c file. Then, compile the `simple.model.c` to `mcsim.simple.model.exe`. 
 
-```{R, warning=FALSE}
-system("gcc -O3 -I.. -I MinGM-6.1.0/sim -o mcsim_simple.model.exe simple.model.c MinGM-6.1.0/sim/*.c -lm ")
+```{r echo=T, results='hide'}
+system(paste0("gcc -O3 -I.. -I ", mcsim,"/sim -o mcsim.", model, ".exe ", 
+       model, ".c ", mcsim, "/sim/*.c -lm "))
+```
 
+```{R, echo=T, results='hide'}
 # run!
-system("./mcsim_simple.model.exe simple.in")
+system(paste0("./mcsim.", model, ".exe ", input))
+```
 
+```{r}
 # the output file is called out by default, load it
 out.3 <- read.delim("sim.out", skip = 2)
 head (out.3)
@@ -311,6 +319,28 @@ plot(out.3[,1], out.3[,3], log="x",type="b", xlab = "time", ylab = "", main = "y
 plot(out.3[,1], out.3[,4], log="x",type="b", xlab = "time", ylab = "", main = "y2")
 plot(out.3[,1], out.3[,5], log="x",type="b", xlab = "time", ylab = "", main = "yout")
 ```
+
+In addition, creating the R function can help us conduct the simulation more easily,
+
+```{r}
+# Create function
+mingm <- function(mcsim, model, input){
+  system(paste0(mcsim, "/mod.exe ", model, " ", model, ".c")) 
+  paste0("gcc -O3 -I.. -I ", mcsim,"/sim -o mcsim.", model, ".exe ",
+         model, ".c ", mcsim, "/sim/*.c -lm ")
+  system(paste0("./mcsim.", model, ".exe ", input))
+}
+```
+
+```{r echo=T, results='hide'}
+mingm(mcsim = "MinGM-6.1.0", model = "simple.model", input = "simple.in")
+```
+
+```{r}
+out.4 <- read.delim("sim.out", skip = 2)
+head (out.4)
+```
+
 
 # Session info
 
