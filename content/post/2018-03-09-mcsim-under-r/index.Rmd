@@ -201,7 +201,7 @@ system("MinGM-6.1.0/mod.exe -R simple.model simple.model.c")
 system ("R CMD SHLIB simple.model.c") 
 
 # load simple.model.dll
-dyn.load(paste(mName, .Platform$dynlib.ext, sep="")) 
+dyn.load(paste("simple.model", .Platform$dynlib.ext, sep="")) 
 ```
 
 Note, the compile the GNU MCSim model, needs to be done each time you modify the model.
@@ -250,7 +250,7 @@ Y <- c(y0 = 1.0, y1 = 0.0, y2 = 0.0)
 
 # Use the defined parameters and initial values
 out.2.2 <- ode(Y, times, func = "derivs", parms = parms,
-               dllname = mName, initfunc = "initmod",
+               dllname = "simple.model", initfunc = "initmod",
                nout = 1, outnames = "Sum")
 
 # Here is the output data frame
@@ -295,7 +295,7 @@ system("MinGM-6.1.0/mod.exe simple.model simple.model.c")
 Unlike above exercice, we need to remove the -R flag that can only create c file. Then, compile the `simple.model.c` to `mcsim.simple.model.exe`. 
 
 ```{R, warning=FALSE}
-system("gcc -O3 -I.. -I./sim -o mcsim_simple.model.exe simple.model.c ./sim/*.c -lm ")
+system("gcc -O3 -I.. -I MinGM-6.1.0/sim -o mcsim_simple.model.exe simple.model.c MinGM-6.1.0/sim/*.c -lm ")
 
 # run!
 system("./mcsim_simple.model.exe simple.in")
