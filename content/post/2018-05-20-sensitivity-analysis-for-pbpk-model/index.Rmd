@@ -1,6 +1,6 @@
 ---
-title: 'Sensitivity Analysis for PBPK model'
-summary: Applying the Morris screening method to exam the parameter sensitivity in physiological-based pharmacokinetic model (with R deSolve package)
+title: 'Sensitivity Analysis for PBPK Model'
+summary: Applying the Morris screening to exam the parameter sensitivity in physiological-based pharmacokinetic model
 author: Nan-Hung Hsieh
 authors:
 - admin

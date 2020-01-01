@@ -1,6 +1,6 @@
 ---
-title: 'Sobol Sensitivity Analysis for pharmacokinetic Model'
-summary: Using mrgsolve package and its approach to conduct pharmacokinetic modeling and Sobol sensitivity analysis
+title: 'Sobol Sensitivity Analysis for Pharmacokinetic Model'
+summary: Using mrgsolve package and its approach to conduct Sobol sensitivity analysis in pharmacokinetic modeling
 authors:
 - admin
 date: "2019-02-08"
@@ -9,7 +9,7 @@ output:
     toc: true
     toc_depth: 2
 projects: [PBPK]
-categories: [pharmacokinetics, sensitivity]
+categories: [sensitivity]
 tags: [sensitivity, pharmacokinetics, Sobol, mrgsolve]
 
 # Featured image
