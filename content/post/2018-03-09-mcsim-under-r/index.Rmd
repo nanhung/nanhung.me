@@ -32,14 +32,19 @@ knitr::opts_chunk$set(eval = T)
 <strong>**The post was updated on `r Sys.Date()` under `r sessioninfo::os_name()`.**</strong>
 {{% /alert %}}
 
-# Prerequisites
+# Introduction
 
-- R
-- RStudio
-- Rtools
-- GNU MCSim (portable version; https://github.com/nanhung/MCSim_under_R)
+Using **GNU MCSim** under Windows is more complicated than the Unix-like System, such as macOS and Linux. Also, it does not provide the function to analyze and visualize the output result. Therefore, I write this post to demo how to run **GNU MCSim** under Windows OS and conduct the follow-up analysis with R. This exercise was sourced from the file [**MCSim under R**](https://www.gnu.org/software/mcsim/mcsim_under_R.zip) in [**GNU MCSim**](https://www.gnu.org/software/mcsim/). 
 
-This exercise was sourced from the file [**MCSim under R**](https://www.gnu.org/software/mcsim/mcsim_under_R.zip) in [**GNU MCSim**](https://www.gnu.org/software/mcsim/). The version of **Rtools** is 3.5 and **GNU MCSim** is 6.1.0.
+In this post, I used **Rtools** (v3.5) which has some essential set of Unix/Linux tools to conduct the model compilation. Also, the **GNU MCSim** (v6.1.0) is used to do the following modeling and simulation works. The portable version are put in my GitHub repo (https://github.com/nanhung/MinGM)
+
+```{r}
+wd <- getwd()
+url <- "https://github.com/nanhung/MinGM/archive/v6.1.0.zip"
+tf <- tempfile()
+download.file(url, tf, mode = "wb")
+unzip(zipfile = tf, exdir = wd)
+```
 
 If you have installed `devtools` you can use `devtools::find_rtools()` to check the avaliable of Rtools.
 
@@ -72,62 +77,22 @@ Sys.which("make")
 
 ## Create GNU MCSim program
 
-The following steps can compile the `simple.model` file (sourced from **GNU MCSim**) and create the executable program. The testing model `simple.model` file looks like this:
-
-```
-#------------------------------------------------------------------------------
-# the deSolve example model (simple.model)
-#------------------------------------------------------------------------------
-
-States = {y0, y1, y2};
-
-Outputs = {yout};
-
-# Parameters
-k1 = 1;
-k2 = 1;
-k3 = 1;
-
-Dynamics {
-
-  dt(y0) = -k1 * y0 + k2 * y1 * y2; 
-  dt(y2) =  k3 * y1 * y1; 
-  dt(y1) = -dt(y0) - dt(y2);
-
-  yout = y0 + y1 + y2;
-
-} # End of Dynamics
-
-Events {
-  y0 = 1;
-}
-
-Roots { # here we need inlining, otherwise 'gout' will not be understood 
-  Inline ( gout[0] = y[0] - 0.5; );
-}
-
-End.
-```
-
-
-{{% alert warning %}}
-Make sure that the `simple.model` and `mod` folder are put in the working directory!
-{{% /alert %}}
-
-**NOTE:** In this case, we don't need to load libSBML. Therefore, check the `config.h` file in mod folder. We can see the line 26 in the config.h file like [THIS](https://github.com/rbind/nanhung.me/blob/master/content/post/mod/config.h). The `#define HAVE_LIBSBML 1` had been disabled. It can prevent the problem when compile to the mod.exe file. (Thanks **Yu-Sheng Lin** for provding this issue; Mar. 23, 2018).
+The following steps is used to generate the executable program (`mod.exe`) that can traslate the format of model code to C. 
 
 ```{r echo=T, results='hide'}
 libSBML = "" # libSBML = "-lsbml" 
 # uncomment and execute if you have and want to use libSBML.
 
 # create mod.exe in "mod" folder
-system(paste("gcc -o ./mod/mod.exe ./mod/*.c ", libSBML, sep = "")) 
+system(paste("gcc -o MinGM-6.1.0/mod.exe MinGM-6.1.0/mod/*.c ", libSBML, sep = "")) 
 ```
 
-Use model file to check it works.
+**NOTE:** In this case, we don't need to load libSBML. Therefore, check the `config.h` file in mod folder. We can see the line 26 in the config.h file like [THIS](https://github.com/rbind/nanhung.me/blob/master/content/post/mod/config.h). The `#define HAVE_LIBSBML 1` had been disabled. It can prevent the problem when compile to the mod.exe file. (Thanks **Yu-Sheng Lin** for provding this issue; Mar. 23, 2018).
 
-```{R}
-mName <- "simple.model"
+Finally, check if we successfully generate the program `mod.exe`.
+
+```{r}
+file.exists("MinGM-6.1.0/mod.exe")
 ```
 
 If everything is going well, we can move on to next section.
@@ -135,6 +100,8 @@ If everything is going well, we can move on to next section.
 # R package **deSolve** solution
 
 ## Solve ODE in pure R
+
+This section is a demo of solving the ODE in R environment with **deSolve** package.
 
 ```{r}
 # Load deSolve package
@@ -187,26 +154,73 @@ plot(out.1,type="b",log="x")
 
 ## Use **deSolve** with **GNU MCSim** model file
 
+Here, we want to use model code that was based on the GNU MCSim format. The model code look like following format,
+
+```
+##################
+## simple.model ##
+##################
+
+States = {y0, y1, y2};
+Outputs = {yout};
+
+# Parameters
+k1 = 1;
+k2 = 1;
+k3 = 1;
+
+Dynamics {
+
+  dt(y0) = -k1 * y0 + k2 * y1 * y2; 
+  dt(y2) =  k3 * y1 * y1; 
+  dt(y1) = -dt(y0) - dt(y2);
+
+  yout = y0 + y1 + y2;
+
+} 
+
+Events {
+  y0 = 1;
+}
+
+Roots { # here we need inlining, otherwise 'gout' will not be understood 
+  Inline ( gout[0] = y[0] - 0.5; );
+}
+
+End.
+```
+
+First, we need to create model script that is based on C (`simple.model.c`) and generate initialization file (`simple.model_inits.R`). 
+
 ```{r echo=T, results='hide'}
-# Create .c file and use -R to generate "simple.model_inits.R" initialization file
-system(paste("./mod/mod.exe -R ", mName, " ", mName, ".c", sep = "")) 
+system("MinGM-6.1.0/mod.exe -R simple.model simple.model.c") 
 ```
 
 ```{r echo=T, results='hide'}
-# compile the MCSim executable, needs to be done each time you modify the model
-system (paste0("R CMD SHLIB ", mName, ".c")) # create .o and .dll files
-dyn.load(paste(mName, .Platform$dynlib.ext, sep="")) # load simple.model.dll
+# create simple.model.o and simple.model.dll files
+system ("R CMD SHLIB simple.model.c") 
+
+# load simple.model.dll
+dyn.load(paste(mName, .Platform$dynlib.ext, sep="")) 
 ```
+
+Note, the compile the GNU MCSim model, needs to be done each time you modify the model.
 
 ```{R}
 source ("simple.model_inits.R")
 
-parms_init <- initParms () # define parameter values
-Y_init <- initStates (parms) # define initial state values
+# define parameter values
+parms_init <- initParms () 
+
+# define initial state values
+Y_init <- initStates (parms) 
 
 # set output times, time 0 must be given
-times <- c(0.04, 0.4*10^(0:10))
+times <- c(0, 4e-1, 4e+0, 4e+1, 4e+2, 4e+3, 4e+4, 4e+5, 4e+6, 4e+7, 4e+8, 4e+9)
+```
 
+
+```{r}
 out.2.1 <- ode(Y_init, times, func = "derivs", parms = parms_init, 
                jacfunc = "jac", dllname = "simple.model", 
                initfunc = "initmod", nout = 1, outnames = "Sum")
@@ -218,7 +232,16 @@ plot(out.2.1, log="x", type="b")
 We can't find any change in the dynamic process. It is due to the all initial value equal to 0.  
 {{% /alert %}}
 
+
+```{r}
+parms_init
+Y_init
+```
+
+
 ### Parameters and initial values
+
+Since the parameters and initial state values should define before simulation, we need to use the following code to assign them.
 
 ```{R}
 # Define the parameters and initial values
@@ -239,12 +262,12 @@ plot(out.2.2, log="x", type="b")
 
 # **GNU MCSim** solution
 
-In this part, we need to put `simple.in` file in the working directory. The input file can define the initial and parameter values, respectively. Also,we need to set the output time steps and intervals. The source code looks like this:
+Here we want to use GNU MCSim to solve ODE. In this part, we need to have the input file (`simple.in`) in the working directory. The input file can define the initial and parameter values, respectively. Also,we need to set the output time steps and intervals. The source code looks like this:
 
 ```
-#------------------------------------------------------------------------------
-# the deSolve example model run with GNU MCSim
-#------------------------------------------------------------------------------
+###############
+## simple.in ##
+###############
 
 Simulation {
 
@@ -256,7 +279,7 @@ Simulation {
   k2 = 1e4;
   k3 = 3e7;
 
-  Print (y0, y1, y2, yout, 0.04, 4e-1, 4e+0, 4e+1, 4e+2, 4e+3, 4e+4, 4e+5, 4e+6, 4e+7, 4e+8, 
+  Print (y0, y1, y2, yout, 4e-1, 4e+0, 4e+1, 4e+2, 4e+3, 4e+4, 4e+5, 4e+6, 4e+7, 4e+8, 
          4e+9);
 }
 
@@ -266,31 +289,16 @@ End.
 The following step compile the `simple.model` file and create the executable program named `mcsim.simple.model.exe`. 
 
 ```{R}
-# set the name of your model
-mName = "simple.model"
+system("MinGM-6.1.0/mod.exe simple.model simple.model.c") 
 ```
 
-Your model executable can be linked with the GNU Scientific Library (GSL, recommended). If you have GSL installed the directives `#define HAVE_LIBGSL 1` and `#define HAVE_LIBGSLCBLAS 1` should appear in the `config.h` file, in the directory above this one. If it does not, put them in, alone at the beginning of a line. If you do NOT have libGSL, those directives should NOT appear in that file. If they do, delete them.
-
-```{R}
-libGSL = "" # libGSL = "-lgsl -lgslcblas" 
-# uncomment and execute if you have the GNU Scientific Library
-
-system(paste("./mod/mod.exe ", mName, " ", mName, ".c", sep = "")) 
-# Unlike above exercice, you need to remove the -R flag that can only create c file.
-```
-
-Compile the `simple.model.c` to `mcsim.simple.model.exe`. 
+Unlike above exercice, we need to remove the -R flag that can only create c file. Then, compile the `simple.model.c` to `mcsim.simple.model.exe`. 
 
 ```{R, warning=FALSE}
-system(paste("gcc -O3 -I.. -I./sim -o mcsim_", mName, ".exe ", mName, ".c ./sim/*.c -lm ", sep = ""))
-
-# run the simulation input file
-# put its name here
-simName = "simple.in"
+system("gcc -O3 -I.. -I./sim -o mcsim_simple.model.exe simple.model.c ./sim/*.c -lm ")
 
 # run!
-system(paste("./mcsim_", mName, ".exe ", simName, sep = ""))
+system("./mcsim_simple.model.exe simple.in")
 
 # the output file is called out by default, load it
 out.3 <- read.delim("sim.out", skip = 2)
