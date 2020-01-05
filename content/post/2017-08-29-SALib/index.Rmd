@@ -43,21 +43,27 @@ The following command is used to install the related R package (**reticulate** &
 ```{r, eval=F}
 install.packages("reticulate")
 install.packages("ggplot2")
+```
+
+```{r}
+library(reticulate)
+```
+
+```{r, eval=F}
 py_install("SALib")
 ```
 
 Instead, using `pip3 install SALib` in the terminal can also install **SALib**.
 
 ```{r}
-# Load packages
-library(reticulate)
+# Load ggplot for plotting
 library(ggplot2)
 ```
 
 The reticulate uses the version of Python found in PATH by default. The `use_python()` and `Sys.which()` functions can help us assign the alternate version and check it, for example:
 
 ```{r}
-use_python("/home/nanhung/.local/share/r-miniconda/envs/r-reticulate/bin/python3")
+use_python("/usr/bin/python3")
 Sys.which("python3")
 ```
 
