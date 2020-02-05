@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pksensi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.5</span>
       </span>
     </div>
 
@@ -243,7 +243,7 @@ in physiologically-based pharmacokinetic modeling.
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='rfast99.html'>rfast99</a></span>(<span class='kw'>params</span> <span class='kw'>=</span> <span class='no'>params</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>200</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='no'>q</span>, <span class='kw'>q.arg</span> <span class='kw'>=</span> <span class='no'>q.arg</span>, <span class='kw'>rep</span> <span class='kw'>=</span> <span class='fl'>20</span>)
 
 <span class='no'>time</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>0.25</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>12.25</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='fl'>0.5</span>)
-<span class='no'>out</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve_fun.html'>solve_fun</a></span>(<span class='no'>x</span>, <span class='kw'>model</span> <span class='kw'>=</span> <span class='no'>FFPK</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='no'>time</span>, <span class='kw'>vars</span> <span class='kw'>=</span> <span class='st'>"output"</span>)</div><div class='output co'>#&gt; <span class='message'>Starting time: 2019-09-18 16:09:01</span></div><div class='output co'>#&gt; <span class='message'>Ending time: 2019-09-18 16:09:02</span></div><div class='input'>
+<span class='no'>out</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve_fun.html'>solve_fun</a></span>(<span class='no'>x</span>, <span class='kw'>model</span> <span class='kw'>=</span> <span class='no'>FFPK</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='no'>time</span>, <span class='kw'>vars</span> <span class='kw'>=</span> <span class='st'>"output"</span>)</div><div class='output co'>#&gt; <span class='message'>Starting time: 2020-02-05 15:57:06</span></div><div class='output co'>#&gt; <span class='message'>Ending time: 2020-02-05 15:57:06</span></div><div class='input'>
 
 <span class='co'># Check results of sensitivity measures</span>
 <span class='fu'>check</span>(<span class='no'>out</span>)</div><div class='output co'>#&gt; 
