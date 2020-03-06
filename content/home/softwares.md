@@ -59,8 +59,20 @@ An R package to apply global sensitivity analysis in physiologically based kinet
 <img src="https://www.r-pkg.org/badges/version-last-release/pksensi" alt="CRAN\_Status\_Badge">
 </ul>
 </div>
-<div style="float: right; width: 20%;">
+<div style="float: right; width: 18%;">
 <ul>
 <img src="https://raw.githubusercontent.com/nanhung/pksensi/master/man/figures/logo.png" height="80px" align="right">
+</ul>
+</div>
+<br>
+<div style="float: left; width: 80%;">
+<ul>
+<a href="https://savannah.gnu.org/projects/mcsim/">:package:<strong>MCSim</strong></a>
+<br>
+A simulation and statistical inference tool for algebraic or differential equation systems
+</div>
+<div style="float: right; width: 18%;">
+<ul>
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Mcsimlogo.png" height="80px" align="right">
 </ul>
 </div>
