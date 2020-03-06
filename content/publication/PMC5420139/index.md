@@ -32,7 +32,7 @@ featured: false
 
 links:
 #- name: Custom Link
-url_source: 'https://bmcpublichealth.biomedcentral.com/articles/10.1186/s12889-017-4315-7'
+#url_source: 'https://bmcpublichealth.biomedcentral.com/articles/10.1186/s12889-017-4315-7'
 url_pdf: 'https://bmcpublichealth.biomedcentral.com/track/pdf/10.1186/s12889-017-4315-7'
 url_project: 'https://nanhung.rbind.io/project/ilosh-a307/'
 #url_code: '#'

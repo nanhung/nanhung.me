@@ -29,12 +29,12 @@ featured: false
 links:
 #- name: Custom Link
 #  url: http://example.org
+#url_source: 'https://www.frontiersin.org/articles/10.3389/fphar.2018.00588/full'
 url_pdf: 'https://www.frontiersin.org/articles/10.3389/fphar.2018.00588/pdf'
 #url_code: '#'
 #url_dataset: '#'
 #url_project: '#'
 #url_slides: '#'
-#url_source: '#'
 #url_video: '#'
 
 # Featured image
