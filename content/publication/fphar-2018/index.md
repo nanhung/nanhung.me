@@ -30,14 +30,13 @@ links:
 #- name: Custom Link
 #  url: http://example.org
 url_source: 'https://doi.org/10.3389/fphar.2018.00588'
-#url_pdf: 'https://www.frontiersin.org/articles/10.3389/fphar.2018.00588/pdf'
-#url_code: ''
 links:
 - icon: file
   icon_pack: fas
   name: BibTeX
   url: https://nanhung.netlify.com/bibtex/hsieh2018applying.html
-
+#url_pdf: '#'
+#url_code: '#'
 #url_dataset: '#'
 #url_project: '#'
 #url_slides: '#'
