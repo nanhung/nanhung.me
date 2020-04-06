@@ -8,7 +8,7 @@ authors:
 - Ivan Rusyn
 
 date: "2018-11-01T00:00:00Z"
-doi: "10.1016/j.tox.2018.07.012"
+#doi: "10.1016/j.tox.2018.07.012"
 
 # Publication type.
 # Legend: 0 = Uncategorized; 1 = Conference paper; 2 = Journal article;
@@ -32,6 +32,11 @@ links:
 #- name: Custom Link
 # url_pdf: '#'
 url_project: 'https://nanhung.rbind.io/project/epa-perc/'
+links:
+- icon: file
+  icon_pack: fas
+  name: BibTeX
+  url: https://nanhung.netlify.com/bibtex/luo2018comparative.html
 #url_code: '#'
 #url_dataset: '#'
 #url_slides: '#'
