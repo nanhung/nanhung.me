@@ -797,10 +797,6 @@ There are different types of GSA approach that can estimate the sensitivity inde
 
 ---
 
-background-image: url(https://image.ibb.co/b9F8Ze/uSCphVE.gif)
-background-size: 300px
-background-position: 90% 70%
-
 # Materials
 
 **Acetaminophen (APAP) PK data and PBPK model** 
