@@ -238,7 +238,7 @@ background-position: 95% 95%
 
 # Metabolism - Acetaminophen
 
-.center[![](https://image.ibb.co/e7eccz/JjqgWwg.gif)]
+.center[![](https://i.ibb.co/M1kNrnt/13318-2015-253-Fig2-HTML-gif.png)]
 
 .font125[
 - Acetaminophen (APAP) is a widely used pain reliver and fever reducer.
