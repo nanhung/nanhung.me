@@ -31,6 +31,7 @@ featured: false
 links:
 #- name: Custom Link
 # url_pdf: '#'
+url_source: 'https://doi.org/10.1016/j.tox.2018.07.012'
 url_project: 'https://nanhung.rbind.io/project/epa-perc/'
 links:
 - icon: file

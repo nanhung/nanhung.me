@@ -33,6 +33,7 @@ featured: false
 
 links:
 #- name: Custom Link
+url_source: 'https://doi.org/10.1289/EHP5105'
 url_pdf: 'https://ehp.niehs.nih.gov/doi/pdf/10.1289/EHP5105'
 url_project: 'https://nanhung.rbind.io/project/epa-perc/'
 #url_code: '#'
