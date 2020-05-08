@@ -81,7 +81,7 @@ through GNU MCSim." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pksensi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.7</span>
       </span>
     </div>
 
@@ -161,7 +161,8 @@ through <span class="pkg">GNU MCSim</span>.</p>
   <span class='kw'>atol</span> <span class='kw'>=</span> <span class='fl'>1e-06</span>,
   <span class='kw'>monte_carlo</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>dist</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>q.arg</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+  <span class='kw'>q.arg</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )
 
 <span class='fu'>generate_infile</span>(
@@ -244,6 +245,10 @@ through <span class="pkg">GNU MCSim</span>.</p>
     <tr>
       <th>q.arg</th>
       <td><p>a list of shape parameters in the sampling distribution (<code>dist</code>).</p></td>
+    </tr>
+    <tr>
+      <th>parallel</th>
+      <td><p>a logical value to apply parallel computing to improve speed (currently can only run under 4 cores setting).</p></td>
     </tr>
     </table>
 

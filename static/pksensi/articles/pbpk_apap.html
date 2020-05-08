@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pksensi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.7</span>
       </span>
     </div>
 
@@ -95,7 +95,7 @@
       <h1 data-toc-skip>Acetaminophen-PBPK model</h1>
                         <h4 class="author">Nan-Hung Hsieh</h4>
             
-            <h4 class="date">2020-05-04</h4>
+            <h4 class="date">2020-05-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/nanhung/pksensi/blob/master/vignettes/pbpk_apap.Rmd"><code>vignettes/pbpk_apap.Rmd</code></a></small>
       <div class="hidden name"><code>pbpk_apap.Rmd</code></div>
@@ -564,10 +564,10 @@ APAP-S clearance
                    <span class="kw">monte_carlo</span> <span class="kw">=</span> <span class="fl">1000</span>, <span class="kw">dist</span> <span class="kw">=</span> <span class="no">dist</span>, <span class="kw">q.arg</span> <span class="kw">=</span> <span class="no">q.arg</span>,
                    <span class="kw">time</span> <span class="kw">=</span> <span class="no">times</span>, <span class="kw">condition</span> <span class="kw">=</span> <span class="no">conditions</span>,
                    <span class="kw">rtol</span> <span class="kw">=</span> <span class="fl">1e-7</span>, <span class="kw">atol</span> <span class="kw">=</span> <span class="fl">1e-9</span>)</pre></body></html></div>
-<pre><code>#&gt; Starting time: 2020-05-04 21:02:38</code></pre>
+<pre><code>#&gt; Starting time: 2020-05-07 18:02:41</code></pre>
 <pre><code>#&gt; * Created input file "sim.in".</code></pre>
 <pre><code>#&gt; Execute: ./mcsim.pbpk_apap sim.in</code></pre>
-<pre><code>#&gt; Ending time: 2020-05-04 21:02:42</code></pre>
+<pre><code>#&gt; Ending time: 2020-05-07 18:02:45</code></pre>
 <div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">mfrow</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">3</span>), <span class="kw">mar</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">1</span>,<span class="fl">1</span>))
 <span class="fu"><a href="../reference/pksim.html">pksim</a></span>(<span class="no">out</span>, <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"Time (h)"</span>, <span class="kw">ylab</span> <span class="kw">=</span> <span class="st">"Conc. (ug/L)"</span>, <span class="kw">main</span> <span class="kw">=</span> <span class="st">"APAP"</span>)
 <span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span>(<span class="no">APAP</span>$<span class="no">Time</span>, <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(<span class="no">APAP</span>$<span class="no">APAP</span> * <span class="fl">1000</span>))
@@ -597,10 +597,10 @@ APAP-S clearance
                    <span class="kw">vars</span> <span class="kw">=</span> <span class="no">vars</span>,
                    <span class="kw">condition</span> <span class="kw">=</span> <span class="no">conditions</span>,
                    <span class="kw">rtol</span> <span class="kw">=</span> <span class="fl">1e-7</span>, <span class="kw">atol</span> <span class="kw">=</span> <span class="fl">1e-9</span>)</pre></body></html></div>
-<pre><code>#&gt; Starting time: 2020-05-04 21:02:44</code></pre>
+<pre><code>#&gt; Starting time: 2020-05-07 18:02:47</code></pre>
 <pre><code>#&gt; * Created input file "sim.in".</code></pre>
 <pre><code>#&gt; Execute: ./mcsim.pbpk_apap sim.in</code></pre>
-<pre><code>#&gt; Ending time: 2020-05-04 21:09:16</code></pre>
+<pre><code>#&gt; Ending time: 2020-05-07 18:08:53</code></pre>
 </div>
 <div id="visualization-and-decision" class="section level2">
 <h2 class="hasAnchor">

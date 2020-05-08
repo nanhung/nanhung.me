@@ -82,7 +82,7 @@ It can also be used to solve the function with analytical solution." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pksensi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.7</span>
       </span>
     </div>
 
@@ -258,7 +258,7 @@ Solving differential equations in R: package deSolve.
   <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='rfast99.html'>rfast99</a></span>(<span class='kw'>params</span> <span class='kw'>=</span> <span class='no'>params</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>200</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='no'>q</span>, <span class='kw'>q.arg</span> <span class='kw'>=</span> <span class='no'>q.arg</span>, <span class='kw'>rep</span> <span class='kw'>=</span> <span class='fl'>20</span>)
 
   <span class='no'>time</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>0.25</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>12.25</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='fl'>0.5</span>)
-  <span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'>solve_fun</span>(<span class='no'>x</span>, <span class='kw'>model</span> <span class='kw'>=</span> <span class='no'>FFPK</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='no'>time</span>, <span class='kw'>vars</span> <span class='kw'>=</span> <span class='st'>"output"</span>)</div><div class='output co'>#&gt; <span class='message'>Starting time: 2020-05-04 21:02:33</span></div><div class='output co'>#&gt; <span class='message'>Ending time: 2020-05-04 21:02:34</span></div><div class='input'>
+  <span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'>solve_fun</span>(<span class='no'>x</span>, <span class='kw'>model</span> <span class='kw'>=</span> <span class='no'>FFPK</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='no'>time</span>, <span class='kw'>vars</span> <span class='kw'>=</span> <span class='st'>"output"</span>)</div><div class='output co'>#&gt; <span class='message'>Starting time: 2020-05-07 18:02:36</span></div><div class='output co'>#&gt; <span class='message'>Ending time: 2020-05-07 18:02:37</span></div><div class='input'>
   <span class='fu'><a href='pksim.html'>pksim</a></span>(<span class='no'>y</span>) <span class='co'># Visualize uncertainty of model output</span></div><div class='img'><img src='solve_fun-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>

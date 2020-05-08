@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pksensi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.7</span>
       </span>
     </div>
 
@@ -95,7 +95,7 @@
       <h1 data-toc-skip>One-compartment PK model</h1>
                         <h4 class="author">Nan-Hung Hsieh</h4>
             
-            <h4 class="date">2020-05-04</h4>
+            <h4 class="date">2020-05-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/nanhung/pksensi/blob/master/vignettes/pbtk1cpt.Rmd"><code>vignettes/pbtk1cpt.Rmd</code></a></small>
       <div class="hidden name"><code>pbtk1cpt.Rmd</code></div>
@@ -241,8 +241,8 @@
 <p>Because the PK model is being used to describe a continuous process for the chemical concentration over time, the sensitivity measurements, therefore, have the time-dependent relationships for each model parameter. Here we use the defined output time points (<code>t</code>) to examine the change of the parameter sensitivity over time. To solve the model through <strong>deSolve</strong>, we need to provide the details of the argument, which include time (<code>t</code>), initial conditions of state variable (<code>initState</code>), output variables (<code>outnames</code>), and name of the model function (<code>func</code>). To create the time-dependent sensitivity measurement, we set the time duration from 0.01 to 24.01 hours with the time segment of 1 hour as the above definition in <code><a href="https://rdrr.io/pkg/deSolve/man/ode.html">ode()</a></code> function in this example. The initial time point should avoid 0 to prevent computational error in misconduct. The <code>outnames</code> is based on the arguments from the <code><a href="https://rdrr.io/pkg/deSolve/man/ode.html">ode()</a></code> function in <strong>deSolve</strong> package.</p>
 <div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="no">outputs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Ccompartment"</span>, <span class="st">"Ametabolized"</span>)
 <span class="no">out</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/solve_fun.html">solve_fun</a></span>(<span class="no">x</span>, <span class="kw">time</span> <span class="kw">=</span> <span class="no">t</span>, <span class="kw">func</span> <span class="kw">=</span> <span class="no">pbtk1cpt</span>, <span class="kw">initState</span> <span class="kw">=</span> <span class="no">initState</span>, <span class="kw">outnames</span> <span class="kw">=</span> <span class="no">outputs</span>)</pre></body></html></div>
-<pre><code>#&gt; Starting time: 2020-05-04 21:09:29</code></pre>
-<pre><code>#&gt; Ending time: 2020-05-04 21:12:07</code></pre>
+<pre><code>#&gt; Starting time: 2020-05-07 18:09:06</code></pre>
+<pre><code>#&gt; Ending time: 2020-05-07 18:11:44</code></pre>
 <p>The output result <code>out</code> is an S3 object of <code><a href="../reference/rfast99.html">rfast99()</a></code> as well, which can link with <code><a href="https://rdrr.io/r/base/print.html">print()</a></code>, <code><a href="https://rdrr.io/r/base/plot.html">plot()</a></code>, and <code><a href="../reference/check.html">check()</a></code> method to examine the sensitivity measurements. The <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> function gives the sensitivity and convergence indices for main, interaction, and total order at each time point. In addition to print out the result of SA, the more efficient way to distinguish the influence of model parameter is to visualize these indices.</p>
 <div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">out</span>)</pre></body></html></div>
 <p><img src="pbtk1cpt_files/figure-html/unnamed-chunk-11-1.png" width="90%" style="display: block; margin: auto;"></p>
@@ -378,8 +378,8 @@
 <p>Run simulation and check result.</p>
 <div class="sourceCode" id="cb42"><html><body><pre class="r"><span class="no">outputs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Ccompartment"</span>, <span class="st">"Ametabolized"</span>)
 <span class="no">out</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/solve_fun.html">solve_fun</a></span>(<span class="no">x</span>, <span class="kw">time</span> <span class="kw">=</span> <span class="no">t</span>, <span class="kw">initState</span> <span class="kw">=</span> <span class="no">initState</span>, <span class="kw">outnames</span> <span class="kw">=</span> <span class="no">outputs</span>, <span class="kw">dllname</span> <span class="kw">=</span> <span class="no">mName</span>)</pre></body></html></div>
-<pre><code>#&gt; Starting time: 2020-05-04 21:12:10</code></pre>
-<pre><code>#&gt; Ending time: 2020-05-04 21:12:27</code></pre>
+<pre><code>#&gt; Starting time: 2020-05-07 18:11:48</code></pre>
+<pre><code>#&gt; Ending time: 2020-05-07 18:12:05</code></pre>
 <div class="sourceCode" id="cb45"><html><body><pre class="r"><span class="fu"><a href="../reference/check.html">check</a></span>(<span class="no">out</span>)</pre></body></html></div>
 <pre><code>#&gt; 
 #&gt; Sensitivity check ( Index &gt; 0.05 )
@@ -415,10 +415,10 @@
 <a href="#model-implementation-with-gnu-mcsim-solving-engine" class="anchor"></a>Model Implementation with <strong>GNU MCSim</strong> solving engine</h2>
 <p>In addition to use <strong>deSolve</strong> to solve differential equations in PK model, the <strong>GNU MCSim</strong> can provide better computational efficiency. To solve ODE through <strong>GNU MCSim</strong>, we need to change the argument to <code>application = mcsim</code> in <code><a href="../reference/compile_model.html">compile_model()</a></code> function. The computing time of using <code><a href="../reference/solve_fun.html">solve_fun()</a></code> function in SA is estimated as,</p>
 <div class="sourceCode" id="cb47"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="no">out</span><span class="kw">&lt;-</span><span class="fu"><a href="../reference/solve_fun.html">solve_fun</a></span>(<span class="no">x</span>, <span class="no">t</span>, <span class="kw">initState</span> <span class="kw">=</span> <span class="no">initState</span>, <span class="kw">outnames</span> <span class="kw">=</span> <span class="no">Outputs</span>, <span class="kw">dllname</span> <span class="kw">=</span> <span class="no">mName</span>))</pre></body></html></div>
-<pre><code>#&gt; Starting time: 2020-05-04 21:12:28</code></pre>
-<pre><code>#&gt; Ending time: 2020-05-04 21:12:42</code></pre>
+<pre><code>#&gt; Starting time: 2020-05-07 18:12:06</code></pre>
+<pre><code>#&gt; Ending time: 2020-05-07 18:12:20</code></pre>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;  14.465   0.000  14.493</code></pre>
+#&gt;  14.414   0.008  14.448</code></pre>
 <p>Then, before we conduct the SA through <strong>GNU MCSim</strong>, The following code is used to compile the <strong>GNU MCSim</strong> model code to the executable program.</p>
 <div class="sourceCode" id="cb51"><html><body><pre class="r"><span class="fu"><a href="../reference/compile_model.html">compile_model</a></span>(<span class="no">mName</span>, <span class="kw">application</span> <span class="kw">=</span> <span class="st">"mcsim"</span>)</pre></body></html></div>
 <pre><code>#&gt; * Created executable file 'mcsim.pbtk1cpt'.</code></pre>
@@ -427,12 +427,12 @@
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="no">out</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/solve_mcsim.html">solve_mcsim</a></span>(<span class="no">x</span>, <span class="kw">mName</span> <span class="kw">=</span> <span class="no">mName</span>, <span class="kw">params</span> <span class="kw">=</span> <span class="no">params</span>,
                                <span class="kw">vars</span> <span class="kw">=</span> <span class="no">Outputs</span>, <span class="kw">time</span> <span class="kw">=</span> <span class="no">t</span>,
                                <span class="kw">condition</span> <span class="kw">=</span> <span class="no">conditions</span>))</pre></body></html></div>
-<pre><code>#&gt; Starting time: 2020-05-04 21:12:43</code></pre>
+<pre><code>#&gt; Starting time: 2020-05-07 18:12:21</code></pre>
 <pre><code>#&gt; * Created input file "sim.in".</code></pre>
 <pre><code>#&gt; Execute: ./mcsim.pbtk1cpt sim.in</code></pre>
-<pre><code>#&gt; Ending time: 2020-05-04 21:12:46</code></pre>
+<pre><code>#&gt; Ending time: 2020-05-07 18:12:24</code></pre>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   3.723   0.159   3.892</code></pre>
+#&gt;   3.663   0.179   3.850</code></pre>
 <p>After solving the equations under the same given condition, we can find that <strong>GNU MCSim</strong> provide faster speed in computing performance than using <strong>deSolve</strong>. In this case, we only focus on performing the global SA alone for generic PK model without additonal comparison with experiment data. The PBPK example will display and reproduce our previous published result <span class="citation">(Hsieh et al. 2018)</span> with full global SA workflow.</p>
 </div>
 <div id="session-info" class="section level2">
@@ -459,23 +459,24 @@
 #&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     
 #&gt; 
 #&gt; other attached packages:
-#&gt; [1] deSolve_1.28  httk_2.0.1    pksensi_1.1.6
+#&gt; [1] deSolve_1.28  httk_2.0.1    pksensi_1.1.7
 #&gt; 
 #&gt; loaded via a namespace (and not attached):
-#&gt;  [1] Rcpp_1.0.4.6      plyr_1.8.6        compiler_4.0.0    pillar_1.4.3     
-#&gt;  [5] tools_4.0.0       getPass_0.2-2     digest_0.6.25     lattice_0.20-41  
-#&gt;  [9] evaluate_0.14     memoise_1.1.0     tibble_3.0.1      lifecycle_0.2.0  
-#&gt; [13] gtable_0.3.0      pkgconfig_2.0.3   rlang_0.4.6       Matrix_1.2-18    
-#&gt; [17] DBI_1.1.0         rstudioapi_0.11   yaml_2.2.1        expm_0.999-4     
-#&gt; [21] mvtnorm_1.1-0     pkgdown_1.5.1     xfun_0.13         dplyr_0.8.5      
-#&gt; [25] stringr_1.4.0     knitr_1.28        mitools_2.4       desc_1.2.0       
-#&gt; [29] fs_1.4.1          vctrs_0.2.4       rprojroot_1.3-2   grid_4.0.0       
-#&gt; [33] tidyselect_1.0.0  reshape_0.8.8     glue_1.4.0        data.table_1.12.8
-#&gt; [37] R6_2.4.1          survival_3.1-12   rmarkdown_2.1     purrr_0.3.4      
-#&gt; [41] ggplot2_3.3.0     magrittr_1.5      splines_4.0.0     backports_1.1.6  
-#&gt; [45] scales_1.1.0      htmltools_0.4.0   ellipsis_0.3.0    MASS_7.3-51.6    
-#&gt; [49] assertthat_0.2.1  colorspace_1.4-1  survey_4.0        stringi_1.4.6    
-#&gt; [53] munsell_0.5.0     msm_1.6.8         crayon_1.3.4</code></pre>
+#&gt;  [1] tidyselect_1.0.0  xfun_0.13         purrr_0.3.4       mitools_2.4      
+#&gt;  [5] splines_4.0.0     lattice_0.20-41   expm_0.999-4      colorspace_1.4-1 
+#&gt;  [9] vctrs_0.2.4       htmltools_0.4.0   yaml_2.2.1        survival_3.1-12  
+#&gt; [13] rlang_0.4.6       pkgdown_1.5.1     pillar_1.4.4      glue_1.4.0       
+#&gt; [17] DBI_1.1.0         foreach_1.5.0     lifecycle_0.2.0   plyr_1.8.6       
+#&gt; [21] stringr_1.4.0     munsell_0.5.0     gtable_0.3.0      mvtnorm_1.1-0    
+#&gt; [25] codetools_0.2-16  memoise_1.1.0     evaluate_0.14     knitr_1.28       
+#&gt; [29] doParallel_1.0.15 parallel_4.0.0    Rcpp_1.0.4.6      scales_1.1.0     
+#&gt; [33] backports_1.1.6   desc_1.2.0        fs_1.4.1          ggplot2_3.3.0    
+#&gt; [37] digest_0.6.25     stringi_1.4.6     msm_1.6.8         dplyr_0.8.5      
+#&gt; [41] getPass_0.2-2     survey_4.0        grid_4.0.0        rprojroot_1.3-2  
+#&gt; [45] tools_4.0.0       magrittr_1.5      tibble_3.0.1      crayon_1.3.4     
+#&gt; [49] pkgconfig_2.0.3   MASS_7.3-51.6     ellipsis_0.3.0    Matrix_1.2-18    
+#&gt; [53] data.table_1.12.8 assertthat_0.2.1  rmarkdown_2.1     reshape_0.8.8    
+#&gt; [57] rstudioapi_0.11   iterators_1.0.12  R6_2.4.1          compiler_4.0.0</code></pre>
 </div>
 <div id="references" class="section level2 unnumbered">
 <h2 class="hasAnchor">
