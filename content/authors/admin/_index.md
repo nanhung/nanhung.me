@@ -88,6 +88,3 @@ user_groups:
 ---
 
 My name is Nan-Hung Hsieh (謝男鴻). I'm a postdoc at Texas A&M University [**Toxicology Program**](https://toxicology.tamu.edu/) and [**Superfund Research Program**](https://superfund.tamu.edu/). My research focuses on [**uncertainty/variability**](https://www.epa.gov/expobox/uncertainty-and-variability) and [**probabilistic modeling**](https://www.epa.gov/risk/about-risk-assessment#whatisrisk) in quantitative systems toxicology/pharmacology.
-
-I'm also interested in [**open science**](https://blog.epa.gov/tag/open-science/). I believe that science can be more transparent, so people can easily share and acquire more knowledge through these ways. 
-
