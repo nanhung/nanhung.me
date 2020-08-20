@@ -42,28 +42,28 @@ education:
 #   For an email link, use "fas" icon pack, "envelope" icon, and a link in the
 #   form "mailto:your-email@example.com" or "#contact" for contact widget.
 social:
-- icon: envelope
-  icon_pack: fas
-  link: mailto:nhsieh@cvm.tamu.edu
-  #link: '#contact'  # For a direct email link, use "mailto:test@example.org".
+#- icon: envelope
+#  icon_pack: fas
+#  link: mailto:nhsieh@cvm.tamu.edu
+#  #link: '#contact'  # For a direct email link, use "mailto:test@example.org".
 - icon: google-scholar
   icon_pack: ai
   link: https://scholar.google.com/citations?user=AM1YgJAAAAAJ&hl=en&oi=sra
-- icon: publons
-  icon_pack: ai
-  link: https://publons.com/author/435686/nan-hung-hsieh
-- icon: orcid
-  icon_pack: ai
-  link: http://orcid.org/0000-0003-0163-2766
-- icon: impactstory
-  icon_pack: ai
-  link: https://impactstory.org/u/0000-0003-0163-2766
-- icon: researchgate
-  icon_pack: ai
-  link: https://www.researchgate.net/profile/Nan-Hung_Hsieh  
-- icon: linkedin
-  icon_pack: fab
-  link: https://www.linkedin.com/in/nhsie/  
+#- icon: publons
+#  icon_pack: ai
+#  link: https://publons.com/author/435686/nan-hung-hsieh
+#- icon: orcid
+#  icon_pack: ai
+#  link: http://orcid.org/0000-0003-0163-2766
+#- icon: impactstory
+#  icon_pack: ai
+#  link: https://impactstory.org/u/0000-0003-0163-2766
+#- icon: researchgate
+#  icon_pack: ai
+#  link: https://www.researchgate.net/profile/Nan-Hung_Hsieh  
+#- icon: linkedin
+#  icon_pack: fab
+#  link: https://www.linkedin.com/in/nhsie/  
 - icon: twitter
   icon_pack: fab
   link: https://twitter.com/nanhung_hsieh
@@ -91,4 +91,3 @@ My name is Nan-Hung Hsieh (謝男鴻). I'm a postdoc at Texas A&M University [**
 
 I'm also interested in [**open science**](https://blog.epa.gov/tag/open-science/). I believe that science can be more transparent, so people can easily share and acquire more knowledge through these ways. 
 
-<img src="http://ghchart.rshah.org/bb0000/nanhung" alt="Nan-Hung Hsieh's Github chart" />
