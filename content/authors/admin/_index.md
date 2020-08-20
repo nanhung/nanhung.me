@@ -61,12 +61,12 @@ social:
 #- icon: researchgate
 #  icon_pack: ai
 #  link: https://www.researchgate.net/profile/Nan-Hung_Hsieh  
-#- icon: linkedin
-#  icon_pack: fab
-#  link: https://www.linkedin.com/in/nhsie/  
-- icon: twitter
+- icon: linkedin
   icon_pack: fab
-  link: https://twitter.com/nanhung_hsieh
+  link: https://www.linkedin.com/in/nhsie/  
+#- icon: twitter
+#  icon_pack: fab
+#  link: https://twitter.com/nanhung_hsieh
 - icon: github
   icon_pack: fab
   link: https://github.com/nanhung
