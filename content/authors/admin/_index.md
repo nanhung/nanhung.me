@@ -13,9 +13,9 @@ superuser: true
 role: Ph.D
 
 # Organizations/Affiliations
-organizations:
-- name: Texas A&M University
-  url: "https://www.tamu.edu/"
+#organizations:
+#- name: Texas A&M University
+#  url: "https://www.tamu.edu/"
 
 # Short bio (displayed in user profile at end of posts)
 # bio: 
@@ -87,4 +87,4 @@ user_groups:
 - Visitors
 ---
 
-My name is Nan-Hung Hsieh (謝男鴻). I'm a postdoc at Texas A&M University [**Toxicology Program**](https://toxicology.tamu.edu/) and [**Superfund Research Program**](https://superfund.tamu.edu/). My research focuses on [**uncertainty/variability**](https://www.epa.gov/expobox/uncertainty-and-variability) and [**probabilistic modeling**](https://www.epa.gov/risk/about-risk-assessment#whatisrisk) in quantitative systems toxicology/pharmacology.
+Nan-Hung Hsieh is a Toxicologist. His research focuses on [**uncertainty/variability**](https://www.epa.gov/expobox/uncertainty-and-variability) and [**probabilistic modeling**](https://www.epa.gov/risk/about-risk-assessment#whatisrisk) in quantitative systems toxicology/pharmacology.
