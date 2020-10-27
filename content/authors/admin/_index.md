@@ -49,9 +49,9 @@ social:
 - icon: google-scholar
   icon_pack: ai
   link: https://scholar.google.com/citations?user=AM1YgJAAAAAJ&hl=en&oi=sra
-#- icon: publons
-#  icon_pack: ai
-#  link: https://publons.com/author/435686/nan-hung-hsieh
+- icon: publons
+  icon_pack: ai
+  link: https://publons.com/author/435686/nan-hung-hsieh
 #- icon: orcid
 #  icon_pack: ai
 #  link: http://orcid.org/0000-0003-0163-2766
