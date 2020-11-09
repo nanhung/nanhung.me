@@ -1,7 +1,7 @@
 ---
-title: "Well-tempered MCMC simulations for population pharmacokinetic models"
+title: "Well-Tempered MCMC Simulations for Population Pharmacokinetic Models"
 authors:
-- Frederic Y. Bois
+- Frédéric Y. Bois
 - admin
 - Wang Gao
 - Weihsueh A. Chiu

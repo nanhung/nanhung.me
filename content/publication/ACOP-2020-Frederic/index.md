@@ -1,12 +1,13 @@
 ---
-title: "Concentration-response modeling of in vitro bioactivity data from complex mixtures of priority Superfund compounds"
+title: "Well-tempered MCMC simulations for population pharmacokinetic models"
 authors:
+- Frédéric Y. Bois
 - admin
-- Zunwei Chen
-- Ivan Rusyn
+- Wang Gao
 - Weihsueh A. Chiu
+- Brad Reisfeld
 
-date: "2019-11-18T17:00:00Z"
+date: "2020-11-08T17:00:00Z"
 doi: ""
 
 # Schedule page publish date (NOT publication's date).
@@ -19,8 +20,8 @@ doi: ""
 publication_types: ["1"]
 
 # Publication name and optional abbreviated publication name.
-publication: In *2019 Superfund Research Project Annual Meeting*
-publication_short: In *2019 SRP Annual Meeting*
+publication: In *2020 11th American Conference on Pharmacometrics*
+publication_short: In *2020 ACoP11*
 
 #abstract: 
 
@@ -28,9 +29,9 @@ publication_short: In *2019 SRP Annual Meeting*
 #summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum.
 
 tags:
-- mixtures
+- PBPK
 - bayesian
-- toxicodynamics
+- pharmacokinetics
 featured: false
 
 links:
@@ -39,7 +40,7 @@ links:
 #url_pdf: '#'
 #url_code: '#'
 #url_dataset: '#'
-url_poster: "/poster/2019-SRP.pdf"
+url_poster: "/poster/2020-ACOP-Frederic.pdf"
 #url_project: ''
 #url_slides: ''
 #url_source: '#'
@@ -58,7 +59,7 @@ url_poster: "/poster/2019-SRP.pdf"
 #   E.g. `internal-project` references `content/project/internal-project/index.md`.
 #   Otherwise, set `projects: []`.
 projects:
-- SRP-TAMU
+- FDA-PBPK
 
 # Slides (optional).
 #   Associate this publication with Markdown slides.
