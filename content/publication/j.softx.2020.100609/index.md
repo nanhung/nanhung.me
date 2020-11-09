@@ -5,7 +5,7 @@ authors:
 - Brad Reisfeld
 - Weihsueh A. Chiu
 
-date: "2020-07-1T00:00:00Z"
+date: "2020-07-01T00:00:00Z"
 #doi: ""
 
 # Publication type.
@@ -22,7 +22,6 @@ tags:
 - sensitivity
 - PBPK
 - R
-
 featured: false
 
 links:
