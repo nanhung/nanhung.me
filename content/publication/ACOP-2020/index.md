@@ -33,7 +33,7 @@ tags:
 - bayesian
 - PBPK
 - pop-pk
-featured: true
+featured: false
 
 links:
 #- name: Custom Link
