@@ -1,8 +1,7 @@
 ---
-title: "Risk Characterization and Probabilistic Concentration–Response Modeling of Complex Environmental Mixtures Using New Approach Methodologies (NAMs) Data from Organotypic *in Vitro* Human Stem Cell Assays"
+title: "Risk Characterization and Probabilistic Concentration–Response Modeling of Complex Environmental Mixtures Using New Approach Methodologies (NAMs) Data from Organotypic in Vitro Human Stem Cell Assays"
 authors:
 - admin
-- 
 - Zunwei Chen
 - Ivan Rusyn
 - Weihsueh A. Chiu
