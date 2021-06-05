@@ -64,7 +64,7 @@ A simulation and statistical inference tool for algebraic or differential equati
 <br>
 <div style="float: left; width: 80%;">
 <ul>
-<a href="https://nanhung.netlify.com/pksensi">:package:<strong>pksensi</strong></a>
+<a href="https://nanhung.github.io/pksensi">:package:<strong>pksensi</strong></a>
 <br>
 An R package to apply global sensitivity analysis in physiologically based kinetic modeling
 <br>
