@@ -87,4 +87,4 @@ user_groups:
 - Visitors
 ---
 
-Nan-Hung Hsieh is a Toxicologist. His research focuses on [**uncertainty/variability**](https://www.epa.gov/expobox/uncertainty-and-variability) and [**probabilistic modeling**](https://www.epa.gov/risk/about-risk-assessment#whatisrisk) in quantitative systems toxicology/pharmacology.
+Nan-Hung Hsieh is a Toxicologist. His research focuses on [**uncertainty/variability**](https://www.epa.gov/expobox/uncertainty-and-variability) and [**probabilistic modeling**](https://www.epa.gov/risk/about-risk-assessment#whatisrisk) in quantitative systems toxicology/pharmacology. He is also a developer, contributor, and reviewer for some open-source software.
